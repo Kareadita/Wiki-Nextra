@@ -7,9 +7,6 @@ const isProduction = process.env.NODE_ENV === "production";
 const assetPrefix = isProduction ? "/wiki" : "";
 
 const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: true,
@@ -20,6 +17,9 @@ const nextConfig = {
 
 module.exports = {
 	...withNextra(),
+	images: {
+    unoptimized: true,
+	},
 	async redirects() {
 		return [
 			{
