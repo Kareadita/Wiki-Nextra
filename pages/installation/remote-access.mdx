@@ -1,0 +1,55 @@
+import { Callout } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
+
+<Callout type="info">
+While we recgonize that most people want to access their system remotely, we do not provide an avenue for support. Any support requests based around remote access should be brought up with the vendor. 
+</Callout>
+
+These are the recommended ways:
+
+|     Name      | Public Access | Requires external software | Notes                       |
+|:-------------:|:-------------:|:--------------------------:|-----------------------------|
+|      VPN      |      No       |            Yes             | Recommended for single user |
+| Reverse Proxy |      Yes      |             No             | Recommened for multiuser    |
+
+<Tabs items={['Reverse Proxy', 'VPN']}>
+  <Tabs.Tab>
+# Reverse Proxy
+### What is a [Reverse Proxy](https://en.wikipedia.org/wiki/Reverse_proxy)?
+
+A Reverse Proxy allows you to share web-based services, like Kavita, outside your home network through the upload bandwidth of your home internet connection.
+
+This can be accomplished in several ways including a purchased domain name, a free domain name service such as [NoIP.com](https://www.noip.com/), etc in combination with some form of Dynamic DNS.
+
+We will not cover how to achieve this here, but we will provide resources and examples of common Reverse Proxy configuration files.
+
+If you would like to contribute your working Reverse Proxy config please join us in [Discord](https://discord.gg/b52wT37kt7) to discuss. 
+
+### Config examples
+
+* [NGINX Example](remote-access/nginx-example)
+* [NGINX Proxy Manager Example](remote-access/npm-example)
+* [HAPROXY Example](remote-access/haproxy-example)
+* [Caddy Example](remote-access/caddy-example)
+* [Apache2 Example](remote-access/apache2-example)
+* [SWAG Example](remote-access/swag-example)
+----
+</Tabs.Tab>
+<Tabs.Tab>
+# VPN
+If you plan to host your kavita for yourself and don't want to have public access to your server you should setup a vpn. 
+
+Users usually recommend using [Zerotier](https://www.zerotier.com/) for this purpose. It's a free easy to setup vpn. Which doens't require any technical skill.
+
+To set up:
+- Create an account at the main page and create a network
+- Install the app in both the server and any device you wish to use
+- Join the created network in your devices
+- Authorize the devices in the network main panel
+- Connect to your apps using the new tailscale IP address
+----
+  </Tabs.Tab>
+</Tabs>
+
+
+

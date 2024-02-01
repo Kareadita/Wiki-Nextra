@@ -1,0 +1,79 @@
+---
+title: NAS Install
+external_links:
+    no_follow: true
+---
+
+import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+Kavita can run on a wide varity of devices and NAS's. 
+
+<Callout type="info">
+While kavita can generally be installed on most systems, you should still check with your device manufacture to make sure your desired install method is supported.
+</Callout>
+
+<Tabs items={['Unraid', 'Synology', 'QNAP', 'TrueNAS ']}>
+  <Tabs.Tab>
+<Steps>
+### Step 1
+ 
+Search for Kavita in the Community Applications system. 
+ 
+### Step 2
+ 
+Choose your port (5000 is default), and path for data (Manga,comics,books) and library files.
+
+</Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+Synology can be setup either manually by using an appropriate [Linux](native) build or via [docker install](/installation/docker/install)
+
+If your Synology is capable of running docker you can follow the guide written by [Mariushosting](https://mariushosting.com/how-to-install-kavita-on-your-synology-nas/)
+
+  </Tabs.Tab>
+<Tabs.Tab>
+While the Kavita team does not own any QNAP devices, there does exist an image maintained by a third party.
+You can find it [here](https://www.forum-nas.fr/threads/kavita-net-apache80-0-5-1-1-a-fast-feature-rich-cross-platform-reading-server.16507/) 
+
+If your QNAP device is capable of running docker, users have reported that the standard [docker install](/installation/docker/install) works. This will enable you to stay up to date and even partake in nightly testing releases. 
+
+</Tabs.Tab>
+<Tabs.Tab>
+<Steps>
+
+### Step 1 
+
+In your server's filesystem, create a folder for your library and a folder for Kavita's config.
+
+### Step 2 
+
+Install the TrueCharts app catalog, search for Kavita, and click "install".
+
+### Step 3 
+
+Modify the following sections:
+
+`Application Name`
+	
+Set the application name to whatever you want.
+
+`Storage and Persistence`
+	
+Set the storage type for "App Config Storage" to "HostPath (Simple)" and set the path to your config folder.
+		
+Set the storage type for "Manga Storage" to "HostPath (Simple)", and set the path to your library folder. This will mount to `/manga` within Kavita.
+
+<Callout type="info">
+Leave all other sections at their default settings. Continue to the end and click "Save". 
+</Callout>
+
+### Step 4
+
+To access Kavita, go to the Installed Applications page and click Kavita's "Open" button.
+
+
+</Steps>
+</Tabs.Tab>
+</Tabs>

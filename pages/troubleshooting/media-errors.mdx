@@ -1,0 +1,40 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Potential Media Problems
+
+Here is the most common problems you will see on the Media errors page. 
+
+{<table>
+  <thead>
+    <tr>
+      <th>Error Message</th>
+      <th align="center">Potentional Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">A local file header is corrupt.</td>
+      <td align="left">The zip file is damaged and can't be opened.</td>
+    </tr>
+    <tr>
+      <td align="left">Unknown Rar Header: ##</td>
+      <td align="left">The rar file is damaged and can't be opened.</td>
+    </tr>
+    <tr>
+      <td align="left">EPUB parsing error: 'nav' element in the navigation file does not contain a required 'ol' element.</td>
+      <td align="left">You have an invalid table of contents or multiple nav elements in your table of contents file.</td>
+    </tr>
+    <tr>
+      <td align="left">EPUB parsing error: 'li' element in the navigation file must contain either an 'a' element or a 'span' element.</td>
+      <td align="left">The table of contents is not following spec. Repack with Sigil or Calibre to fix.</td>
+    </tr>
+    <tr>
+      <td align="left">End of central directory</td>
+      <td align="left">Bad archive, repair or replace.</td>
+    </tr>
+    <tr>
+      <td align="left">Incorrect EPUB navigation point: point ID is missing.</td>
+      <td align="left">Bad internal metadata for the epub making it unable to be parsed. Use Sigil or Calibre to fix.</td>
+    </tr>
+  </tbody>
+</table>}

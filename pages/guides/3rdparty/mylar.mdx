@@ -1,0 +1,54 @@
+import { Callout } from 'nextra-theme-docs'
+
+<Callout type="info">
+This guide was written for Mylar3 v0.7.8
+</Callout>
+
+## Settings
+
+<Callout type="warning" emoji="⚠️">
+  This section is only designed to assist you in using sane settings so that kavita can detect your files. We are not affiliated with mylar and will not help you with installing or using it. 
+</Callout>
+
+This will tag your files according to [ComicVine](https://comicvine.gamespot.com/) where the volumes in are labeled as `Volume {VolumeYear}`. This is the best option since some volumes don't have proper volume numbers setup which causes volumes to stack and not show properly in the Kavita library.
+
+Access your Mylar instance from your web browser and complete the following:
+1. Go to "Settings > Quality & Post Processing"
+2. Under the "Post-Processing" section:
+	* Enable Post-Processing
+3. Under the "Metadata Tagging" section:
+	* Enable Metadata Tagging
+	* Enable Write ComicRack (cr) tags (ComicInfo.xml)
+	* Enable Overwrite existing cbz tags (if they exist)
+	*  Click "Show Advanced" and
+		* Enable Tag Volume
+		* Enable Use Start Year as Volume
+		* Notes format: "CVDB"
+4. Go to "Settings > Advanced Settings"
+5. Under the "Renaming options" section:
+	*  Enable Rename files
+	*  Set "Folder Format" to
+  
+```ts copy
+$Publisher/$Series ($Year)
+```
+
+  3. Set "File Format" to:
+```ts copy
+$Series $VolumeY $Annual #$Issue ($monthname $Year)
+```
+
+4. Enable Issue Number Padding checkbox
+5. Set "Format" to `00x`
+6. Under the "Miscellaneous" section:
+	* Enable Place cover.jpg into Comic Directory for each comic
+7. In Kavita, rescan your library and wait for changes to be applied. You may need to refresh the web page.
+
+Note: If a comic's title and volume year match, then they will still stack in Kavita. This situation may not exist, but just be aware of the possibility in case things still aren't showing properly in Kavita after setup.
+
+## Usage
+
+To retag previously established comics in Mylar, after completing this setup section, complete the following:
+1. In Mylar go to "Manage > Manage Comics"
+2. Check the box for each comic you want to retag and in the dropdown menu on the upper left, select "MetaTag Series"
+3. If that doesn't work, go to each commic and click "Manual MetaTagging"

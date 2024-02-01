@@ -1,0 +1,108 @@
+import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+## Updating standalone installs of Kavita
+
+<Callout type="warning">
+	If you are updating from a really old version you need to upgrade every 2 versions at a time. Doing otherwise you risk to having to restart with a fresh database.
+	
+	If you are on 0.7.6+ you can update directly to 0.7.13 otherwise you need to update incrementally to prevent data loss (v0.5.6 > v0.7.1.4 > v0.7.3.1 > v0.7.6 > v0.7.13)
+</Callout>
+
+<Tabs items={['🐧 Linux', '🍎 OSX', ' 🪟 Windows']}>
+  <Tabs.Tab>
+<Steps>
+
+### Step 1
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down untill you see the 'assets' section where there's a list of files that you can download
+ 
+### Step 2
+
+Unzip the archive to a temporary directory with the command tar -xzf `kavita-linux-{arch}.tar.gz` 
+
+After extracting the archive to a temporary folder, remove the 'config' folder in said temporary folder.
+
+### Step 3
+Stop Kavita program/service from running. 
+
+### Step 4
+Move all the files from your temporary directoy over your Kavita install directory.
+
+### Step 5
+Restart your kavita service.
+
+</Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+  
+<Callout type="warning">
+No one on the dev team owns a Mac. These instructions are suggested by our users. If you want to help contribute to this list click ["Help improve this page"](https://github.com/Kareadita/Wiki/tree/main/pages/installation/native.mdx)!
+</Callout>
+
+<Steps>
+### Step 1
+ 
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. The file you want is "kavita-osx-x64.tar.gz".
+ 
+### Step 2
+ 
+Unpack Kavita to your temp folder of choice. For example, in Terminal:
+```bash
+cd ~
+mv ~/Downloads/kavita-osx-x64.tar.gz ~
+tar -xf kavita-osx-x64.tar.gz
+```
+
+### Step 3
+Remove the `config` folder from your newly downloaded folder
+
+### Step 4
+Copy the temp files over top of the already existing files in your Kavita folder. Say 'Yes' to overwriting. 
+
+### Step 5
+
+Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita folder, or else appsettings.json will fail to be acquired.
+
+```bash
+cd ~/Kavita
+./Kavita
+```
+
+</Steps>
+  </Tabs.Tab>
+<Tabs.Tab>
+
+### Updating with Scoop
+
+
+To update with Scoop run 
+```cmd
+scoop update kavita
+```
+If you installed scoop using it's default settings, Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
+
+
+### Update from Github:
+
+<Steps>
+### Step 1
+ 
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. 
+
+Download the `kavita-win-x64` if you have a 64-bit system (preferred version - Windows 10 + Windows 11)
+
+Download the `kavita-win-x86` if you have a 32-bit system (usually older devices - Windows 7 and below)
+
+### Step 2
+ 
+Extract all Files to a temporary location.
+
+Delete the `config` folder in your temporary location
+
+### Step 3
+
+Copy and paste all files in your temporary location to your Kavita install directory. When prompted, overwrite the files with the new copies.
+</Steps>
+</Tabs.Tab>
+</Tabs>

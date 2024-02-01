@@ -1,0 +1,38 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Getting Started
+
+## System Requirements
+
+Kavita can run on a wide varity of devices but your experience will generally be better the more resources you have. Your media files don't need to be on a SSD, but keeping your Kavita database file on a SSD will greatly increase performance of the application. 
+
+Due to the upstream library `NetVips`, the only requirement to run kavita is a CPU that supports [SSE4.2](https://en.wikipedia.org/wiki/SSE4) for cover generation. Almost all modern CPU's made in the last 10 years support this. 
+
+If you have an Intel CPU, you can check if your device is supported by looking in [Intel's ARC database](https://ark.intel.com/content/www/us/en/ark.html#@Processors) for your CPU. "Instruction Set Extensions" should list SSE4.2
+
+AMD users can check [wikipedia for their arcitecture](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) to see if there is support. 
+
+Users have reported memory usage averages 150-350MB depending on the size of your library. Spikes in memory will occur after scanning but will go back down over time as garbage collection runs.
+
+## Supported Browsers 
+
+Kavita uses Angular, which supports up to the [2 most recent versions of a web browser](https://angular.io/guide/browser-support) If you use an older web browser you may have compatibility issues, or worst case, not be able to load Kavita at all due to incompatibility. 
+
+## Demo
+
+If you want to try out a demo of Kavita first before installing, you can find it at [https://demo.kavitareader.com/](https://demo.kavitareader.com/). The login credentials are:
+
+- **Username:** `demouser`
+- **Password:** `Demouser64`
+
+## Installation methods
+
+Kavita only supports operating systems and enviroments that are still in their support cycle. Running the software using End-of-Life technologies is highly likely to run into issues. 
+
+There are a few ways to get setup running kavita depending on what enviroment you have:
+
+1. Install using [Docker](/installation/docker)
+2. Install using a [pre-compiled executable](/installation/native) for your operating system
+3. Install on your [NAS or storage applicance](/installation/nas)
+
+

@@ -1,0 +1,59 @@
+import { Callout } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
+
+# Docker
+
+## Usage
+
+The Kavita team offers multiple different methods to obtain the container image:
+
+| Method                          |                                Description                                  |
+| ------------------------------- | :-------------------------------------------------------------------------: |
+| [LinuxServer.io](https://hub.docker.com/r/linuxserver/kavita)                  |           Only offers stable versions. Please see LSIO's website for their own instructions on how to run the container. The rest of the options on this page won't apply here.            |
+| [Kavita DockerHub](https://hub.docker.com/r/jvmilazz0/kavita)                | The primary dockerhub account for Kavita.  |
+| [Github Container Registry](https://github.com/kareadita/Kavita/pkgs/container/kavita) |    Another option in case you don't want to use dockerhub.      |
+
+<Callout type="info">
+	Docker Compose is the reccomended way to run containers. Only use `docker run` if you know what your doing. 💪
+</Callout>
+
+<Tabs items={['docker-compose.yml / Portainer Stacks', 'docker run']}>
+  <Tabs.Tab>
+  The contents of the compose file can be pasted directly into software like [Dockage](https://github.com/louislam/dockge) or [Portainer](https://www.portainer.io/). Otherwise create the docker-compose.yml file in the folder you want to run it from and execute `docker-compose up -d`
+
+```yaml
+services:
+    kavita:
+        image: jvmilazz0/kavita:latest    # Using the stable branch from the offical dockerhub repo.
+        container_name: kavita
+        volumes:
+            - ./manga:/manga            # Manga is just an example you can have the name you want. See the following
+            - ./comics:/comics          # Use as many as you want
+            - ./books:/books            #
+            - ./data:/kavita/config     # Change './data if you want to have the config files in a different place.
+                                        # /kavita/config must not be changed
+        environment:
+            - TZ=Your/Timezone
+        ports:
+            - "5000:5000" # Change the public port (the first 5000) if you have conflicts with other services
+        restart: unless-stopped
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```bash
+docker run --name kavita -p 5000:5000 \
+-v /your/manga/directory:/manga \
+-v /your/storage/directory/kavita:/kavita/config \
+--restart unless-stopped \
+-e TZ=Your/Timezone \
+-d jvmilazz0/kavita:latest
+```
+
+If you prefer bind mounts, you can swap out the two `--volume` lines with:
+
+```bash
+--mount type=volume,source=/your/storage/path/kavita,target=/config \
+--mount type=volume,source=/your/storage/path/kavita,target=/data \
+```
+  </Tabs.Tab>
+</Tabs>

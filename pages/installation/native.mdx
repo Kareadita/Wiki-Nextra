@@ -1,0 +1,121 @@
+import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+Pre-built binaries will be available on [GitHub](https://github.com/Kareadita/Kavita/releases), Supported platforms are: Linux, macOS, and Windows.
+
+Kavita's releases are made to be used out of the box. This means there's no need to install extra requirements
+
+<Tabs items={['🐧 Linux', '🍎 OSX', ' 🪟 Windows']}>
+  <Tabs.Tab>
+<Steps>
+### Step 1
+ 
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download
+ 
+### Step 2
+ 
+Unzip the archive to a writable directory with the command `tar -xzf kavita-linux-{arch}.tar.gz`
+
+### Step 3
+
+Use `chmod` and `chown` commands so Kavita can write to the directory you placed it in.
+
+### Step 4
+
+Run Kavita executable. Usually `./Kavita`
+</Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+  
+<Callout type="warning">
+No one on the dev team owns a Mac. These instructions are suggested by our users. If you want to help contribute to this list click ["Help improve this page"](https://github.com/Kareadita/Wiki/tree/main/pages/installation/native.mdx)!
+</Callout>
+
+<Steps>
+### Step 1
+ 
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. The file you want is "kavita-osx-x64.tar.gz".
+ 
+### Step 2
+ 
+Unpack Kavita to your User Folder or folder of choice. For example, in Terminal:
+```bash
+cd ~
+mv ~/Downloads/kavita-osx-x64.tar.gz ~
+tar -xf kavita-osx-x64.tar.gz
+```
+
+### Step 3
+
+Make Kavita executable.
+
+```bash
+sudo chmod +x ~/Kavita/Kavita
+```
+
+### Step 4
+Disable Gatekeeper for Kavita's folder so that Kavita and all .dll and .dylib files can be opened
+```bash
+xattr -r -d com.apple.quarantine ~/Kavita/
+```
+
+### Step 5
+```bash
+export alias sqlite=sqlite3
+```
+
+### Step 6
+
+Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita folder, or else appsettings.json will fail to be acquired.
+
+```bash
+cd ~/Kavita
+./Kavita
+```
+
+### Step 7
+Open a browser window, at address: http://localhost:5000/
+</Steps>
+  </Tabs.Tab>
+<Tabs.Tab>
+You have 2 options when it comes to running on windows. You can install with [Scoop](https://github.com/ScoopInstaller/Install#installation) or use the native builds posted in the steps below.
+
+To install with [Scoop](https://github.com/ScoopInstaller/Install#installation) follow their instuctions to get scoop onto your system.
+Once scoop is installed, run:
+```cmd
+scoop bucket add extras
+scoop install kavita
+```
+If you installed scoop using it's default settings, Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
+
+
+## Install Steps from Github:
+
+<Steps>
+### Step 1
+ 
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. 
+
+Download the `kavita-win-x64` if you have a 64-bit system (preferred version - Windows 10 + Windows 11)
+
+Download the `kavita-win-x86` if you have a 32-bit system (usually older devices - Windows 7 and below)
+
+ 
+### Step 2
+ 
+Unzip the archive to a writable directory using a program like [7z](https://www.7-zip.org/)
+
+<Callout type="error">
+Do not place it in `Program Files/` or `Program Files (x86)/`
+
+These are protected folders and will have permissions problems!
+</Callout>
+
+### Step 3
+
+Once the files are extracted to a location, you just need to run Kavita.exe to launch the server.
+
+</Steps>
+</Tabs.Tab>
+</Tabs>

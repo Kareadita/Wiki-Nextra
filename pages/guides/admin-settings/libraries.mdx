@@ -1,0 +1,116 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Libraries Tab
+
+![Library](../../../public/guides/admin-settings/admin-settings-library.png "Library page in Admin Settings")
+
+The libraries tab is how you make your own content avilable to your users.
+
+## Managing Libraries
+
+![LibraryStatus](../../../public/guides/admin-settings/admin-settings-library-status.png "Library Status in Admin Settings")
+
+Name of the library is highlighed in green. Clicking on it will send you to the series view inside the library.
+
+Type is one of 4 options:
+
+Manga<br/>
+Comic<br/>
+Book<br/>
+Image<br/>
+
+Shared folders tells you how many source folders you have linked to this library. A single library can contain more than 1 folder on disk in order to merge libraries.
+
+Last Scanned: Will give you the timestamp that the last scan occured. 
+
+## Adding Libraries
+
+To add a library click on the "Add Library" button
+
+![LibraryAdd](../../../public/guides/admin-settings/admin-settings-library-add.png "Add Library Button")
+
+### General
+![LibraryAddScreen](../../../public/guides/admin-settings/admin-settings-library-add-library.png "Add Library Screen")
+Fill out the name you want your library known by. This is what you will select when adding libraries to users. 
+
+Select the type of library you are trying to create from the dropdown, then press next.
+
+<Callout type="error" emoji="️⚠️">
+  Read up on the different types of libraries you can make and the rules that govern them here: !! ADD LINK !! 
+</Callout>
+
+### Folders
+![LibraryAddFolders](../../../public/guides/admin-settings/admin-settings-library-add-library-folder.png "Add Library Folders")
+
+Pick the folders you want added to your library using the folder picker. A library can contain more than 1 folder. This is useful if you have your files spread out across multiple hard drives or network shares. It is not recommended to directly select a series folder.
+
+<Callout type="info" emoji="🐳">
+  Docker users: If you don't see your mounted folder at first make sure to check `/` for it. 
+</Callout>
+
+### Library Cover
+![LibraryAddCovers](../../../public/guides/admin-settings/admin-settings-library-add-library-cover.png "Add Library Cover")
+
+This step isn't required but allows you to upload a small cover image to use to customize the icon when the library is displayed. 
+
+Using too large of a file here can slow down the server. 32x32 is reccomended
+
+### Advanced Settings
+![LibraryAdvanced](../../../public/guides/admin-settings/admin-settings-library-add-library-advanced.png "Library Advanced Settings")
+
+#### File types
+
+This controls what kind of files the scanner will look for when adding to the library. Use this for example if you want to turn off PDF's from showing up in a comic library. Or if your having cover.jpg's creating new series, you can turn off 'image'. 
+
+
+#### Exclude Patterns
+![LibraryAdvancedGlob](../../../public/guides/admin-settings/admin-settings-library-add-library-advanced-glob.png "Library Advanced Settings - Glob")
+
+In the example above, any file within a folder named One Piece will be ignored.
+
+More advanced customization of excludes is accomplished by [glob patterns](https://github.com/dazinator/DotNet.Glob/blob/develop/README.md#patterns)
+
+* Patterns without the forward-slash ' /' character (e.g. *.cbz) match filenames
+* Patterns with the forward-slash '/' character (e.g. somedir/*) match directory and file patterns
+
+#### Manage Collections
+
+Set to create Collections from SeriesGroup tags found within ComicInfo.xml or epub metadata. 
+
+#### Manage ReadingLists
+
+Set to create Reading Lists from StoryArc/StoryArcNumber and AlternativeSeries/AlternativeCount tags found within ComicInfo.xml or epub metadata.
+
+#### Allow Scrobbling 
+<Callout type="info" emoji="ℹ️">
+  This feature requires an active Kavita+ subscrtion to use. 
+</Callout>
+
+This controls if your users can scrobble series that are found in this library. 
+
+#### Folder Watching
+<Callout type="warning" emoji="⚠️">
+  Folder watching takes 10 minutes to trigger once a change is detected.
+</Callout>
+Folder watching is enabled by default and watches each folder of a given library for modifications. 
+
+Folder watching lets Kavita know when a file has been added or modified in your library and update it in your Kavita instance.
+When files are added (loose images or non supported extensions are ignored), renamed, deleted, etc, Kavita takes note and queues a Scan.
+
+Overrides server folder watching for this library. If off, folder watching won't run on this library. If libraries share folders, then folders may still be ran against.
+
+<Callout type="info" emoji="🐳">
+  Docker on Windows over WSL2 does not support folder watching. [See Issue on Gihtuh](https://github.com/Kareadita/Kavita/issues/1714)
+</Callout>
+
+#### Include in Dashboard
+
+Should series from the library be included on the Dashboard? This affects all cards like On Deck, Recently Updated, Recently Added, or any custom additions.
+
+#### Include in Recommended
+
+Should series from the library be included on the Recommended page?
+
+#### Include in Search
+
+Should series and any derived information (genres, people, files) from the library be included in search results?
