@@ -1,12 +1,8 @@
----
-title: 'Apache2 Example'
----
-
 These examples assume that Kavita is running on host 192.168.0.152 port 5000, and that apache is being used for SSL termination (Kavita is running http). 
 
 If you intend for apache to serve http alone, rather than https with a redirect for http, you will need to make your virtualhost definitions use port 80, and remove all of the config lines starting with SSL. If upstream is running serving https, you'll need to modify the proxy lines to reference https and the websocket lines to reference wss instead of ws.
 
-### Basic Apache2 Example
+## Basic Apache2 Example
 ```
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
@@ -37,7 +33,7 @@ If you intend for apache to serve http alone, rather than https with a redirect 
 </IfModule>
 ```
 
-### Kavita on a new domain/subdomain
+## Kavita on a new domain/subdomain
 ```
 <VirtualHost *:80>
 # Since, We are using HTTPS, we redirect all HTTP queries to HTTPS.
@@ -81,7 +77,7 @@ If you intend for apache to serve http alone, rather than https with a redirect 
 ```
 
 
-### Kavita on an existing domain with subpath
+## Kavita on an existing domain with subpath
 When using this, make sure you set the Base URL field in Kavita Settings.
 ```
 <VirtualHost *:80>

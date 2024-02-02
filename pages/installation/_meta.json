@@ -3,5 +3,6 @@
 	"docker": "Docker",
 	"native": "Native",
 	"nas":    "NAS",
-	"managed-hosting": "Managed Hosting"
+	"managed-hosting": "Managed Hosting",
+	"remote-access": "Remote Access"
 }
