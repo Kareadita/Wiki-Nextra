@@ -17,7 +17,7 @@ The Kavita team offers multiple different methods to obtain the container image:
 	Docker Compose is the reccomended way to run containers. Only use `docker run` if you know what your doing. 💪
 </Callout>
 
-<Tabs items={['docker-compose.yml / Portainer Stacks', 'docker run']}>
+<Tabs items={['docker-compose.yml / Portainer Stacks', 'docker run', "docker non root user']}>
   <Tabs.Tab>
   The contents of the compose file can be pasted directly into software like [Dockage](https://github.com/louislam/dockge) or [Portainer](https://www.portainer.io/). Otherwise create the docker-compose.yml file in the folder you want to run it from and execute `docker-compose up -d`
 
@@ -54,6 +54,42 @@ If you prefer bind mounts, you can swap out the two `--volume` lines with:
 ```bash
 --mount type=volume,source=/your/storage/path/kavita,target=/config \
 --mount type=volume,source=/your/storage/path/kavita,target=/data \
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  If you want to run Kavita with a non-root user, you can use the following syntax.
+
+  <Callout type="error" emoji="️⚠️">
+    Ensure that the host local directory `/your/storage/directory/kavita` is accessible and writable by the user.
+  </Callout>
+
+  <Callout type="info">
+    Running Kavita this way, you will get an error in the logs:
+
+```bash
+There was an error setting base url
+System.UnauthorizedAccessException: Access to the path '/kavita/wwwroot/index.html' is denied.
+ ---> System.IO.IOException: Permission denied
+   --- End of inner exception stack trace ---
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirError)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode, Boolean failForSymlink, Boolean& wasSymlink, Func`4 createOpenException)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, UnixFileMode openPermissions, Int64& fileLength, UnixFileMode& filePermissions, Boolean failForSymlink, Boolean& wasSymlink, Func`4 createOpenException)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+   at HtmlAgilityPack.HtmlDocument.Save(String filename)
+   at API.Startup.UpdateBaseUrlInIndex(String baseUrl) in /home/runner/work/Kavita/Kavita/API/Startup.cs:line XXX
+```
+  </Callout>
+
+```bash
+docker run --name kavita -p 5000:5000 \
+-v /your/manga/directory:/manga \
+-v /your/storage/directory/kavita:/kavita/config \
+--restart unless-stopped \
+-e TZ=Your/Timezone \
+--user username:groupname \
+-d jvmilazz0/kavita:latest
 ```
   </Tabs.Tab>
 </Tabs>
