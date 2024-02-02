@@ -1,7 +1,3 @@
----
-title: 'SWAG EXAMPLE'
----
-
 ### SWAG (Secure Web Application Gateway) Reverse Proxy Config
 
 Place the following configuration as `kavita.subdomain.conf` in the `/nginx/proxy-confs` directory, only subdomain is supported.
