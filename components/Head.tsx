@@ -3,17 +3,14 @@ export default function Head() {
 		<>
 			<meta name="viewport" content="width=device-width" />
 			<meta charSet="utf-8" />
-			<title>Stump</title>
+			<title>Kavita</title>
 			<link rel="icon" href="/favicon.ico" />
 			<meta name="robots" content="index,follow" />
 			<meta
 				name="description"
 				content="Lightning fast with a slick design, Kavita is a rocket fueled self-hosted digital library which supports a vast array of file formats."
 			/>
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="twitter:site" content="@stumpapp_" />
-			<meta name="twitter:creator" content="@stumpapp_" />
-			<meta property="og:title" content="Stump" />
+			<meta property="og:title" content="Kavita" />
 			<meta
 				property="og:description"
 				content="Lightning fast with a slick design, Kavita is a rocket fueled self-hosted digital library which supports a vast array of file formats."
