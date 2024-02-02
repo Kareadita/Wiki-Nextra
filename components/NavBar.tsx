@@ -3,7 +3,7 @@ import { Navbar as NextraNavBar, ThemeSwitch } from 'nextra-theme-docs'
 
 const docLinks = [
 	{
-		href: '/installation',
+		href: '/installation/getting-started',
 		route: 'installation',
 		title: 'Installation',
 		type: 'page',
