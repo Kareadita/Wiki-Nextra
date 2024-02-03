@@ -1,0 +1,90 @@
+import { Callout } from 'nextra-theme-docs'
+import Image from 'next/image'
+
+<Callout emoji="♥">
+Big thanks to aitopu34 a.k.a ACK72 for developing this extension
+</Callout>
+
+<Callout type="info">
+    As of v1.3.x the extension is only compatible with Paperback v0.8.
+</Callout>
+
+## Known Limitations
+* Recommendation and ReadingList feature of Kavita currently are not supported.
+* Tracking is supported, but as of Paperback v0.8 you must add the series to a collection (press the bookmark icon), then setup tracking individually.
+
+## Issues
+Kavya Extension: Please report any errors [on the extensions github page](https://github.com/ACK72/kavya-paperback/issues/new?assignees=ACK72&labels=&template=bug_report.md&title=%5BBUG%5D). 
+
+Please do not create issues on Kavita's GitHub for extension-related issues.
+
+## Installation
+
+! **Make sure Kavita is updated to the latest version**
+
+1. After that, go the to [app store and install Paperback](https://apps.apple.com/us/app/paperback-a-komga-client/id1626613373).
+
+![Image_11](../../../public/guides/3rdparty/paperback-image_11.png?resize=450,450 "Image_11")
+
+2. Go to [https://ack72.github.io/kavya-paperback/](https://ack72.github.io/kavya-paperback/) and tap "**Add to Paperback**"
+![Image_10](../../../public/guides/3rdparty/paperback-image_10.png?resize=450,450 "Image_10")
+
+3. Tap "Open" when prompted to Open in "Paperback"?
+![Image_9](../../../public/guides/3rdparty/paperback-image_9.png?resize=450,450 "Image_9")
+
+4. Tap "Add as Source Repo"
+![Image_8](../../../public/guides/3rdparty/paperback-image_8.png?resize=450,450 "Image_8")
+
+5. Open Paperback and go to **Settings > External Sources > Browse ACK72's Extensions**
+![Image_6](../../../public/guides/3rdparty/paperback-image_6.png?resize=450,450 "Image_6")
+
+6. Install Kavya
+![Image_5](../../../public/guides/3rdparty/paperback-image_5.png?resize=450,450 "Image_5")
+
+## Setup
+
+To make the extension link with your Kavita instance we need the API Key.
+The steps to get the API Key are:
+
+Access your Kavita instance from your web browser and log in
+1. Access your Kavita **user** dashboard
+2. Switch to "3rd Party Clients" tab
+3. Copy the text under the API Key
+![Image_1](../../../public/guides/3rdparty/paperback-image_1.png?resize=450,450 "Image_1")
+
+**Once the API KEY is obtained open Paperback**
+4. Go back to External Sources page and tap on Kayva
+![Image_4](../../../public/guides/3rdparty/paperback-image_4.png?resize=450,450 "Image_4")
+
+7. Under Source Settings tap on "Server Settings"
+![Image_3](../../../public/guides/3rdparty/paperback-image_3.png?resize=450,450 "Image_3")
+
+9. Under Server Settings enter in your your Server URL in the corresponding field.
+10. Enter your API key in the corresponding field.
+12. Tap Save
+![Image_2](../../../public/guides/3rdparty/paperback-image_2.png?resize=450,450 "Image_2")
+
+
+13. Tap on the Book icon in the bottom left, then "Kavya" in the top of the screen.
+14. Swipe down to refresh.
+15. Browse your library 
+![Image](../../../public/guides/3rdparty/paperback-image.png?resize=450,450 "Image")
+
+## Progress Syncing
+<Callout type="info">
+    Progress Syncing is handled at chapter/issue level, not page level. That means after a chapter/issue is finished completion is synced to Kavita.
+</Callout> 
+
+1. Open Paperback and go to Settings
+2. Tap External Trackers
+![IMG_6210](../../../public/guides/3rdparty/paperback-img_6210.png?resize=450,450 "IMG_6210")
+
+3. Tap Edit and "+"
+![IMG_6211](../../../public/guides/3rdparty/paperback-img_6211.png?resize=450,450 "IMG_6211")
+
+4. You can put whatever you would like in the name field. Add this to the URL field: `https://ACK72.github.io/kavya-paperback-tracker` and tap "Add to Paperback"
+![IMG_6214](../../../public/guides/3rdparty/paperback-img_6214.png?resize=450,450 "IMG_6214")
+
+5. Tap the source you just named.
+6. Tap Install next to the Tracker
+![IMG_6215](../../../public/guides/3rdparty/paperback-img_6215.png?resize=450,450 "IMG_6215")
