@@ -1,0 +1,36 @@
+import { Callout } from 'nextra-theme-docs'
+
+## Komf
+
+* Separate server that listens to `Series Add` events from Kavita and can scrape a number of configurable sources 
+* Actively developed with support from the developer in Kavita discord
+* Supports writing directly to Kavita's DB via the API or saving to ComicInfo.xml inside files.
+* Has a RESTful API or can use CLI commands
+
+<Callout type="info">
+  komf does not have it's own webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript)
+</Callout>
+
+## Setup
+To get started with komf you need to create a file called `application.yml` in the same folder that komf runs from. That means if your using the .jar file it should be in the same folder. 
+If your running docker then you need to define a `/config` folder where the file can live. 
+
+The minimum `application.yml` file needed to start komf is:
+
+```yml copy
+kavita:
+  baseUri: "http://localhost:5000" #or env:KOMF_KAVITA_BASE_URI
+  apiKey: "YOUR_API_KEY_HERE!" #or env:KOMF_KAVITA_API_KEY
+
+database:
+  file: ./database.sqlite # database file location.
+```
+
+Fill out your baseUri to point to your kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
+
+<Callout type="info">
+  The API key you use will be the user that komf is logging in as. Make sure that user has the correct permissions in Kavita to do what your asking of it.
+</Callout>
+
+
+[Github](https://github.com/Snd-R/komf)

@@ -24,7 +24,6 @@ export default function Head() {
 			<meta property="og:image:height" content="699" />
 			<meta property="og:locale" content="en_US" />
 			<meta property="og:site_name" content="Kavita" />
-			<link rel="canonical" href="https://www.kavitareader.com/" />
 		</>
 	)
 }

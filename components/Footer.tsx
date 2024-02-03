@@ -23,7 +23,7 @@ const navigation = {
 			name: 'GitHub',
 		},
 		{
-			href: 'https://discord.gg/63Ybb7J3as',
+			href: 'https://discord.gg/b52wT37kt7',
 			icon: SiDiscord,
 			isExternal: true,
 			name: 'Discord',
