@@ -1,14 +1,21 @@
+import { SiTeamcity } from '@icons-pack/react-simple-icons'
+import { getModifiedCookieValues } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
+import Script from 'next/script'
 import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra/components'
+
 
 ## Komf
+[Github](https://github.com/Snd-R/komf)
 
 * Separate server that listens to `Series Add` events from Kavita and can scrape a number of configurable sources 
 * Actively developed with support from the developer in Kavita discord
 * Supports writing directly to Kavita's DB via the API or saving to ComicInfo.xml inside files.
-* Has a RESTful API or can use CLI commands
+* Can automate using it's own API or CLI commands. 
+* Userscript for in browser management.
 
 <Callout type="info">
-  komf does not have it's own webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript)
+  komf does not have it's own webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript).
 </Callout>
 
 ## Setup
@@ -26,11 +33,71 @@ database:
   file: ./database.sqlite # database file location.
 ```
 
-Fill out your baseUri to point to your kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
+Fill out your `baseUri` to point to your kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
 
 <Callout type="info">
   The API key you use will be the user that komf is logging in as. Make sure that user has the correct permissions in Kavita to do what your asking of it.
 </Callout>
 
+### Userscript
 
-[Github](https://github.com/Snd-R/komf)
+Once you have komf running with the minium setup posted above, we need to setup the userscript to connect to it.
+
+<Steps>
+
+### Step 1
+
+If you don't already have a script manager add-on in your browser, setup [TamperMonkey](https://www.tampermonkey.net/). If you already running a script manager you *should* be able to use it without issue
+but due to subtle differences between the programs it's not always guarenteed.
+ 
+### Step 2
+
+Once you have your script manager installed, visit the userscript's [releases page on github](https://github.com/Snd-R/komf-userscript/releases)
+
+### Step 3
+
+Click on `komf.user.js` for the latest release and your script manager should intercept the request.
+
+### Step 4
+
+Don't modify anything here. Cick 'Install'
+
+<Callout type="warning">
+  Modifying the script directly breaks the auto-update function and will require you to manually setup your includes every time. Just don't change anything here!
+</Callout>
+
+
+### Step 5
+
+After installing the script, open up the script manager. It can usually be found in the top right of your browser where your other add-ons are.
+
+### Step 6
+
+Go to your script managers 'dashboard' and click on the newly added komf script.
+
+### Step 7
+
+Go to the 'Settings' tab of the komf script. In the `Includes/Excludes` section find `User Includes` and click add. 
+
+### Step 8
+
+Type in the IP / hostname of your Kavita install. You NEED to include `/*` at the end for the script manager to detect the site.
+
+Example: 
+```bash
+http://192.168.0.100:5000/*
+```
+### Step 9
+
+Once the userscript is setup to recgonize your Kavita you can close the script manager and open your Kavita instance.
+
+### Step 10
+
+Inside your Kavita's browser window you will now see a jig-saw puzzle peice in the top right corner next to your username. Click on it and put in your IP address of where komf is located. (This is NOT your kavita URL!)
+
+Press 'Check Connection' to test if the userscript can talk to komf. If you see a `Connected ✔` then everything is working! 
+
+### Step 11
+
+Now you can configure the rest of the settings for komf directly from here. You can pick your providers, what libraries you want to apply against and any discord notifications to be sent.
+</Steps>
