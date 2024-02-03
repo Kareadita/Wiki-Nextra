@@ -38,7 +38,7 @@ export default {
 		const { asPath } = useRouter()
 		if (asPath !== '/') {
 			return {
-				titleTemplate: '%s | Wiki',
+				titleTemplate: '%s | Kavita Wiki',
 			}
 		}
 
