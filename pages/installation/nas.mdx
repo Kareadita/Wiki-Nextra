@@ -1,7 +1,5 @@
 ---
-title: NAS Install
-external_links:
-    no_follow: true
+title: NAS Installs
 ---
 
 import { Callout } from 'nextra-theme-docs'
@@ -11,13 +9,14 @@ import { Tabs } from 'nextra/components'
 Kavita can run on a wide varity of devices and NAS's. 
 
 <Callout type="info">
-While kavita can generally be installed on most systems, you should still check with your device manufacture to make sure your desired install method is supported.
+While kavita can be installed on most systems, you should still check with your device manufacture to make sure your desired install method is supported. Some devices are too old run docker, but will able to run Kavita natively.
 </Callout>
 
 <Tabs items={['Unraid', 'Synology', 'QNAP', 'TrueNAS ']}>
   <Tabs.Tab>
 <Steps>
-### Step 1
+
+### Step 1 - Installing for UnRAID
  
 Search for Kavita in the Community Applications system. 
  
@@ -27,13 +26,17 @@ Choose your port (5000 is default), and path for data (Manga,comics,books) and l
 
 </Steps>
   </Tabs.Tab>
-  <Tabs.Tab>
+<Tabs.Tab>
+#### Synology Install Steps
+
 Synology can be setup either manually by using an appropriate [Linux](native) build or via [docker install](/installation/docker/install)
 
 If your Synology is capable of running docker you can follow the guide written by [Mariushosting](https://mariushosting.com/how-to-install-kavita-on-your-synology-nas/)
+</Tabs.Tab>
 
-  </Tabs.Tab>
 <Tabs.Tab>
+## QNAP Install Steps
+
 While the Kavita team does not own any QNAP devices, there does exist an image maintained by a third party.
 You can find it [here](https://www.forum-nas.fr/threads/kavita-net-apache80-0-5-1-1-a-fast-feature-rich-cross-platform-reading-server.16507/) 
 
@@ -42,8 +45,7 @@ If your QNAP device is capable of running docker, users have reported that the s
 </Tabs.Tab>
 <Tabs.Tab>
 <Steps>
-
-### Step 1 
+### Step 1 - Installing for TruNAS
 
 In your server's filesystem, create a folder for your library and a folder for Kavita's config.
 
@@ -72,7 +74,6 @@ Leave all other sections at their default settings. Continue to the end and clic
 ### Step 4
 
 To access Kavita, go to the Installed Applications page and click Kavita's "Open" button.
-
 
 </Steps>
 </Tabs.Tab>
