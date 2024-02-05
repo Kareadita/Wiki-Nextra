@@ -4,19 +4,15 @@ import { Callout } from 'nextra-theme-docs'
 
 ## System Requirements
 
-Kavita can run on a wide varity of devices but your experience will generally be better the more resources you have. Your media files don't need to be on a SSD, but keeping your Kavita database file on a SSD will greatly increase performance of the application. 
+Kavita can run on a wide varity of devices but your experience will be better the more resources you have. Your media files don't need to be on a SSD, but keeping your Kavita database file on a SSD will greatly increase performance of the application. Users have reported running the app on as little as a single core 1Ghz CPU and 256MB RAM. 
 
-Due to the upstream library `NetVips`, the only requirement to run kavita is a CPU that supports [SSE4.2](https://en.wikipedia.org/wiki/SSE4) for cover generation. Almost all modern CPU's made in the last 10 years support this. 
+The only requirement Kavita has is the need for CPU that supports SSE4.2 extensions. This is because of the upstream library `NetVIPS`. [See the FAQ](../troubleshooting/faq.mdx#q-what-is-the-netvips-dependency-and-what-does-it-mean-if-i-cant-run-it) for how to work around it. 
 
-If you have an Intel CPU, you can check if your device is supported by looking in [Intel's ARC database](https://ark.intel.com/content/www/us/en/ark.html#@Processors) for your CPU. "Instruction Set Extensions" should list SSE4.2
-
-AMD users can check [wikipedia for their arcitecture](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) to see if there is support. 
-
-Users have reported memory usage averages 150-350MB depending on the size of your library. Spikes in memory will occur after scanning but will go back down over time as garbage collection runs.
+Users have reported memory usage averages 150-350MB depending on the size of your library. Spikes in memory will occur after scanning but will go back down over time.
 
 ## Supported Browsers 
 
-Kavita uses Angular, which supports up to the [2 most recent versions of a web browser](https://angular.io/guide/browser-support) If you use an older web browser you may have compatibility issues, or worst case, not be able to load Kavita at all due to incompatibility. 
+Kavita uses Angular, which supports up to the [2 most recent versions of a web browser](https://angular.io/guide/browser-support). If you use an older web browser you may have compatibility issues, or worst case, not be able to load Kavita at all due to incompatibility. 
 
 ## Demo
 
@@ -34,5 +30,3 @@ There are a few ways to get setup running kavita depending on what enviroment yo
 1. Install using [Docker](/installation/docker)
 2. Install using a [pre-compiled executable](/installation/native) for your operating system
 3. Install on your [NAS or storage applicance](/installation/nas)
-
-
