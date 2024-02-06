@@ -31,7 +31,7 @@ Run Kavita executable. Usually `./Kavita`
 To have Kavita start in the background at boot, you may install it as a systemd service. Save the following to a file named `kavita.service` in the directory /etc/systemd/system
 
 <Callout type="info">
-  This file is an example and assumes you have installed Kavita in /opt/Kavita and you are running it as a separate user. Make sure to customize it to your own syetem.
+  This file is an example and assumes you have installed Kavita in `/opt/Kavita` and with running it as a separate user. Make sure to customize it to your own syetem.
 </Callout>
 
 ```bash copy
@@ -52,6 +52,8 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
+
+Once the file is saved you can run `systemctl start kavita.service` to test if it starts correctly. If does, run `systemctl enable kavita.service` and it will start at boot for your system.
 
 </Steps>
   </Tabs.Tab>
