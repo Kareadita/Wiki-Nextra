@@ -15,7 +15,13 @@ A. No, Kavita uses filenames and internal metadata for parsing and is not design
 A. Kavita uses NetVips for cover generation and thus requires SSE4.2 instruction set. Generally, Core i3/i5/i7/i9 support them, whereas Pentium and Celeron CPUs do not. CPUs from 2011 onwards should support SSE4.2. You can read more about it [here](https://github.com/kleisauke/net-vips/issues/176). If you fall in this category and still want to use Kavita, you can delete the libvips.dll or libvips.so and install it (`libvips-tools` for Linux) via your system manager (version must < v8.10.6) or compile it yourself, see this issue [here](https://github.com/Kareadita/Kavita/issues/1423). 
 
 #### Q. I'm seeing database is locked errors in my logs
-A. This can happen on some configurations. An easy solution is to turn on WAL mode, which Kavita supports out of the box. To do this, open your sqlite file and run `PRAGMA journal_mode=WAL;` while Kavita is not running. An easy tool to do this is [DB Browser for SQLite](https://sqlitebrowser.org/)
+A. This can happen on some configurations. An easy solution is to turn on WAL mode, which Kavita supports out of the box. To do this, open your sqlite file (after stopping kavita) and run `PRAGMA journal_mode=WAL;`. An easy tool to do this is [DB Browser for SQLite.](https://sqlitebrowser.org/)
+
+For CLI users you can run the command below if your platform has the needed sqlite3 tools installed. 
+
+```bash copy
+sqlite3 kavita.db 'PRAGMA journal_mode=WAL;
+```
 
 #### Q. Is there an app? I don't want to use the website.
 Kavita does not yet offer mobile apps, however you can "Add to Home screen" our website, which will create an icon on your mobile device and launch the site in fullscreen mode. If that doesn't work for you, you can use a supported external reader, found [here](https://wiki.kavitareader.com/faq/external-readers).

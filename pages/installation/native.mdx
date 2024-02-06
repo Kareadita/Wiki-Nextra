@@ -1,3 +1,4 @@
+import { SYSTEM_ENTRYPOINTS } from 'next/dist/shared/lib/constants'
 import { Callout } from 'nextra-theme-docs'
 import { Steps } from 'nextra/components'
 import { Tabs } from 'nextra/components'
@@ -24,6 +25,34 @@ Use `chmod` and `chown` commands so Kavita can write to the directory you placed
 ### Step 4
 
 Run Kavita executable. Usually `./Kavita`
+
+### Setup Kavita as a service (Optional) 
+
+To have Kavita start in the background at boot, you may install it as a systemd service. Save the following to a file named `kavita.service` in the directory /etc/systemd/system
+
+<Callout type="info">
+  This file is an example and assumes you have installed Kavita in /opt/Kavita and you are running it as a separate user. Make sure to customize it to your own syetem.
+</Callout>
+
+```bash copy
+[Unit]
+Description=Kavita Server
+After=network.target
+
+[Service]
+User=kavita
+Group=kavita
+Type=simple
+WorkingDirectory=/opt/Kavita
+ExecStart=/opt/Kavita/Kavita
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
 </Steps>
   </Tabs.Tab>
   <Tabs.Tab>
@@ -59,6 +88,13 @@ Disable Gatekeeper for Kavita's folder so that Kavita and all .dll and .dylib fi
 ```bash
 xattr -r -d com.apple.quarantine ~/Kavita/
 ```
+
+Forgetting to disable Gatekeeper will prevent Kavita from running!
+If you get this screen:
+![Gatekeeper](/../public/installation/osx-gatekeeper.png "Gatekeeper warning")
+
+That means the command wasn't ran on the right folder.
+
 
 ### Step 5
 ```bash
