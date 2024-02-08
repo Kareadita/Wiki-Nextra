@@ -26,7 +26,7 @@ export default function AppPreview() {
 					initial={{ opacity: 0, scale: 0.75 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 0.5, duration: 1 }}
-					className="z-40 flex h-full flex-1 self-center bg-[url('/homepage-light.png')] bg-contain bg-[center_top] bg-no-repeat dark:bg-[url('/homepage-dark.png')] sm:w-auto"
+					className="z-40 flex h-full flex-1 self-center bg-[url('/homepage-dark.png')] bg-contain bg-[center_top] bg-no-repeat dark:bg-[url('/homepage-dark.png')] sm:w-auto"
 				/>
 			</div>
 		</div>
