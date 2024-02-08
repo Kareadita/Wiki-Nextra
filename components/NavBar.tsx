@@ -2,13 +2,14 @@ import { useRouter } from 'next/router'
 import { Navbar as NextraNavBar, ThemeSwitch } from 'nextra-theme-docs'
 
 const docLinks = [
+	/*
 	{
 		href: 'https://demo.kavitareader.com/login?apiKey=9003cf99-9213-4206-a787-af2fe4cc5f1f',
 		route: 'demo',
 		title: 'Demo',
 		type: 'page',
 		newWindow: true,
-	},
+	},	*/
 	{
 		href: '/installation/getting-started',
 		route: 'installation',
@@ -21,6 +22,7 @@ const docLinks = [
 		title: 'Guides',
 		type: 'page',
 	},
+
 ]
 
 type Props = React.ComponentProps<typeof NextraNavBar>
