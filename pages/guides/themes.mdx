@@ -6,7 +6,7 @@ import { Callout } from 'nextra-theme-docs'
 <Callout type="info">
  Kavita only supports the Dark theme out of the box. However, you can find a good starting point for [Light/E-Ink themes here](https://github.com/Kareadita/Themes).
 
- The light theme was made for a much older version of Kavita. It will need some touch up to run properly these days. 
+ A basic light theme is available but needs some polish. It has been last updated to Kavita v0.7.14.
 </Callout>
 
 Kavita supports reading a .css file for custom theming.
@@ -14,7 +14,7 @@ Kavita supports reading a .css file for custom theming.
 Submit your created custom themes on our [Theme repo!](https://github.com/Kareadita/Themes) 
 
 There are a few things to note:
-- As of v0.7, you no longer need to maintain all the css variables, only those you need to override.
+- You only need to add variables you want to override or any custom css
 - The file must be .css
 - The filename must only contain characters, numbers, and `-`
 - The filename must match the top-level CSS property
@@ -24,7 +24,7 @@ There are a few things to note:
 - This is limited to the properties we have exposed. (*See Available CSS Variables Below*)
 
 <Callout type="info">
- If you would like any other properties exposed, please feel free to suggest themes in our [Discord](https://discord.gg/b52wT37kt7) server or [feature request page](https://feats.kavitareader.com/).
+ If you would like any other properties exposed, please feel free to suggest themes in our [Discord](https://discord.gg/b52wT37kt7) server or [feature request page](https://github.com/Kareadita/Kavita/discussions).
 </Callout>
 
 So for instance, if we created `/config/themes/test-theme-123.css` then the CSS within the file should be structured as follows
@@ -67,6 +67,21 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --body-text-color: hex/rgb(a);   
 --btn-icon-filter: invert(1) grayscale(%) brightness(%));  // Any filter chain. Useful mainly for dark themes
 --primary-color-scrollbar: hex/rgb(a); 
+```
+
+#### Global
+```css
+--hr-color: hex/rgb(a);  
+--accent-bg-color: hex/rgb(a);  
+--accent-text-color: hex/rgb(a);  
+--grid-breakpoints-xs: px;  
+--grid-breakpoints-sm: px;  
+--grid-breakpoints-md: px;  
+--grid-breakpoints-lg: px;  
+--grid-breakpoints-xl: px;  
+--body-font-family: "Font-Family", sans-serif;  
+--brand-font-family: "Font-Family", sans-serif;  
+--text-muted-color: hex/rgb(a);
 ```
   
 #### Navbar
@@ -180,7 +195,7 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --side-nav-mobile-box-shadow: px/em hex/rgb(a);  
 --side-nav-hover-text-color: hex/rgb(a);  
 --side-nav-hover-bg-color: hex/rgb(a);  
---side-nav-color: hex/rgb(a);  
+--side-nav-text-color: hex/rgb(a);  
 --side-nav-border-radius: px;  
 --side-nav-border: hex/rgb(a)/none;  
 --side-nav-border-closed: hex/rgb(a)/none;  
@@ -269,21 +284,7 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --ratingstar-star-empty: hex/rgb(a);  
 --ratingstar-star-filled: hex/rgb(a);  
 ```
-
-#### Global
-```css
---hr-color: hex/rgb(a);  
---accent-bg-color: hex/rgb(a);  
---accent-text-color: hex/rgb(a);  
---grid-breakpoints-xs: px;  
---grid-breakpoints-sm: px;  
---grid-breakpoints-md: px;  
---grid-breakpoints-lg: px;  
---grid-breakpoints-xl: px;  
---body-font-family: "Font-Family", sans-serif;  
---brand-font-family: "Font-Family", sans-serif;  
-```
-
+'
 #### Card
 ```css
 --card-bg-color: hex/rgb(a);  
@@ -369,4 +370,9 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 #### Rating Star
 ```css
 --rating-star-color: hex/rgb(a);
+```
+
+#### Badge
+```css
+--badge-text-color: hex/rgb(a);
 ```
