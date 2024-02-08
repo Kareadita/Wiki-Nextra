@@ -1,4 +1,6 @@
-import { SiGithub } from '@icons-pack/react-simple-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLaptop } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -24,7 +26,7 @@ export default function Hero() {
 					Lightning fast with a slick design, Kavita is a rocket fueled self-hosted digital library which supports a vast array of file formats. Install to start reading and share your server with your friends. 
 				</motion.p>
 
-				<div className="mx-auto mt-5 flex max-w-md justify-center space-x-2 md:mt-8">
+				<div className="mx-auto mt-5 flex max-w-lg justify-center space-x-2 md:mt-8">
 					<motion.div
 						className="flex"
 						initial={{ opacity: 0, scale: 0.5 }}
@@ -47,10 +49,27 @@ export default function Hero() {
 					>
 						<Link
 							className="dark:active:border-neutral-650 dark:active:bg-neutral-650 flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-transparent px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-300 hover:border-neutral-200 hover:bg-neutral-50 hover:text-neutral-900 focus:outline-none active:border-neutral-200 active:bg-neutral-50 active:text-neutral-600 dark:bg-opacity-90 dark:text-neutral-200 dark:shadow-sm dark:hover:border-neutral-500 dark:hover:bg-neutral-700 dark:hover:bg-opacity-100 dark:hover:text-white dark:active:text-white dark:active:opacity-90"
+							href="https://demo.kavitareader.com/login?apiKey=9003cf99-9213-4206-a787-af2fe4cc5f1f"
+							target="_blank"
+						>
+							<FontAwesomeIcon icon={faLaptop} />
+
+							<span>View Demo</span>
+						</Link>
+					</motion.div>
+
+					<motion.div
+						className="flex"
+						initial={{ opacity: 0, scale: 0.5 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ delay: 1.3, duration: 0.5 }}
+					>
+						<Link
+							className="dark:active:border-neutral-650 dark:active:bg-neutral-650 flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-transparent px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-300 hover:border-neutral-200 hover:bg-neutral-50 hover:text-neutral-900 focus:outline-none active:border-neutral-200 active:bg-neutral-50 active:text-neutral-600 dark:bg-opacity-90 dark:text-neutral-200 dark:shadow-sm dark:hover:border-neutral-500 dark:hover:bg-neutral-700 dark:hover:bg-opacity-100 dark:hover:text-white dark:active:text-white dark:active:opacity-90"
 							href="https://github.com/Kareadita/Kavita"
 							target="_blank"
 						>
-							<SiGithub />
+							<FontAwesomeIcon icon={faGithub} />
 
 							<span>See on Github</span>
 						</Link>

@@ -10,6 +10,14 @@ export const GITHUB_REPO = 'https://github.com/Kareadita/Wiki-Nextra'
 const DOCS_PAGES_HREF = `${GITHUB_REPO}/tree/main/pages`
 
 export default {
+	banner: {
+		key: '0.7.14',
+		text: (
+		  <a href="https://github.com/Kareadita/Kavita/releases/tag/v0.7.14" target="_blank">
+			🎉 Kavita 0.7.14 is released. Read more →
+		  </a>
+		)
+	},
 	chat: {
 		link: 'https://discord.gg/b52wT37kt7',
 	},

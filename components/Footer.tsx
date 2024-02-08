@@ -1,4 +1,4 @@
-import { SiDiscord, SiGithub, SiOpencollective, SiTwitter } from '@icons-pack/react-simple-icons'
+import { SiDiscord, SiGithub, SiOpencollective} from '@icons-pack/react-simple-icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
@@ -6,6 +6,7 @@ import React from 'react'
 const navigation = {
 	nav: [
 		{ disabled: false, href: '/', name: 'Home' },
+		{ disabled: false, href: 'https://demo.kavitareader.com/login?apiKey=9003cf99-9213-4206-a787-af2fe4cc5f1f', name: 'Demo', newWindow: true},
 		{ disabled: false, href: '/installation', name: 'Installation' },
 		{ disabled: false, href: '/guides', name: 'Guides' },
 	],
