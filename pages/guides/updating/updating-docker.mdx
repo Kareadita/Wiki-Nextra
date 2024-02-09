@@ -1,6 +1,6 @@
 import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra/components'
 import { Tabs } from 'nextra/components'
-
 
 # Updating Kavita
 
@@ -8,13 +8,48 @@ import { Tabs } from 'nextra/components'
 Remember to use the new [Docker Central Repo!](https://hub.docker.com/r/jvmilazz0/kavita) The old repo `kizaing/kavita` is no longer supported!
 </Callout>
 
-
 <Callout type="warning">
-	If you are updating from a really old version you need to upgrade every 2 versions at a time. Doing otherwise you risk to having to restart with a fresh database.
+	If you are updating from a really old version, you need to upgrade every 2 versions at a time. Doing otherwise you risk to having to restart with a fresh database!
 	
-	If you are on 0.7.6+ you can update directly to 0.7.13 otherwise you need to update incrementally to prevent data loss (v0.5.6 > v0.7.1.4 > v0.7.3.1 > v0.7.6 > v0.7.13)
+	If you are on 0.7.6+ you can update directly to 0.7.14, otherwise you need to update incrementally to prevent data loss (v0.5.6 > v0.7.1.4 > v0.7.3.1 > v0.7.6 > v0.7.14)
 </Callout>
-<Tabs items={['docker-compose.yml', 'docker run']}>
+
+<Tabs items={['portainer', 'docker-compose.yml', 'docker run']}>
+
+<Tabs.Tab>
+As long as Kavita is in a 'stack' then updating is simple:
+
+<Steps>
+
+### Step 1
+Go to your stacks in the left sidenav of portainer
+
+![stacks](../../../public/guides/updating/portainer-stacks.png "Portainer Stacks")
+
+### Step 2 
+
+Go into your Kavita stack in the main listing of available stacks.
+
+### Step 3 
+
+Go to the editor tab
+
+![editor](../../../public/guides/updating/portiner-editor.png "Portainer Editor Screen")
+
+### Step 4
+
+![update](../../../public/guides/updating/portainer-actions.png "Portainer Editor Screen")
+
+Go straight to the 'Update the stack' Button and click it. When the dialog box comes up asking "Are you sure?", check the box "Re-pull image and redeploy"
+
+![repull](../../../public/guides/updating/portainer-repull.png "Portainer Re-pull")
+
+### Clean up
+
+Don't forget to remove any orphaned images in the 'Images' tab so they don't keep taking up space. 
+
+</Steps>
+</Tabs.Tab>
   <Tabs.Tab>
 Navigate to the location your compose file is at and run:
 

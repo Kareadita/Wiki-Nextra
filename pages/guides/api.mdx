@@ -2,9 +2,11 @@
 
 ## Authentication
 
-### Sessions
+For writing custom scripts that access Kavita's API, you will need to authenticate against the API first. You can do this by sending a POST request to the [`/api/Plugin/authenticate`](https://www.kavitareader.com/docs/api/#/Plugin/post_api_Plugin_authenticate) endpoint with an API key. It will return a JWT User Token back that you can send in all your headers going forward. 
 
-You can get your JWT token by opening dev tools on a browser you have authenticated against and getting this key "kavita-user" from local storage. This will have a token key within it. Use "Bearer TOKEN_KEY" to authenticate. This must be on all APIs for Kavita to respond.
+You don't want to directly use JWT tokens in your scripts. They expire and rotate out on a frequent basis. API keys do not expire an only change if the user manually requests a new key.
+
+Using the API key will always give you a valid JWT token. 
 
 ## Swagger UI
 
@@ -13,3 +15,36 @@ Kavita's REST API is documented using Swagger, however the UI is disabled for no
 ## OpenAPI
 
 The link to the OpenAPI file is located here: https://raw.githubusercontent.com/Kareadita/Kavita/develop/openapi.json
+
+## Python Example
+
+Here's a small example written in Python for connecting to the `/api/Plugin/authenticate` endpoint, sending the API key, taking the 'token' response to add to the headers, then hitting the scan_endpoint with the JWT_Token attached in the headers.
+
+```python copy
+import requests
+import json
+from urllib.parse import urlparse
+
+url = input("Paste in your full ODPS URL from your Kavita user dashboard (/preferences#clients): ")
+
+parsed_url = urlparse(url)
+
+host_address = parsed_url.scheme + "://" + parsed_url.netloc
+api_key = parsed_url.path.split('/')[-1]
+
+login_endpoint = "/api/Plugin/authenticate"
+try:
+    apikeylogin = requests.post(host_address + login_endpoint + "?apiKey=" + api_key + "&pluginName=pythonScanScript")
+    apikeylogin.raise_for_status() # check if the response code indicates an error
+    jwt_token = apikeylogin.json()['token']
+except requests.exceptions.RequestException as e:
+    print("Error during authentication:", e)
+    exit()
+
+headers = {
+    "Authorization": f"Bearer {jwt_token}",
+    "Content-Type": "application/json"
+}
+scan_endpoint = "/api/Library/scan-all"
+response = requests.post(host_address + scan_endpoint, headers=headers)
+```

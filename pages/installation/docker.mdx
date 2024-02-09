@@ -3,15 +3,13 @@ import { Tabs } from 'nextra/components'
 
 # Docker
 
-## Usage
+There is a few options when it comes to docker images. Just note that LSIO doesn't offer ARMv7 support (32-Bit Rasberry Pi's) or Nightly images. 
 
-The Kavita team offers multiple different methods to obtain the container image:
-
-| Method                          |                                Description                                  |
-| ------------------------------- | :-------------------------------------------------------------------------: |
-| [LinuxServer.io](https://hub.docker.com/r/linuxserver/kavita)                  |           Only offers stable versions. Please see LSIO's website for their own instructions on how to run the container. The rest of the options on this page won't apply here.            |
-| [Kavita DockerHub](https://hub.docker.com/r/jvmilazz0/kavita)                | The primary dockerhub account for Kavita.  |
-| [Github Container Registry](https://github.com/kareadita/Kavita/pkgs/container/kavita) |    Another option in case you don't want to use dockerhub.      |
+| Method                          |                                Description                                  | Notes                                                                      | 
+| ------------------------------- | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------:| 
+| [LinuxServer.io](https://hub.docker.com/r/linuxserver/kavita)                  |           Only offers stable versions. Please see LSIO's website for their own instructions on how to run the container. The rest of the options on this page won't apply here.|  No 32bit ARM support (armv7), no nightly testing branch |
+| [Kavita DockerHub](https://hub.docker.com/r/jvmilazz0/kavita)                | The primary dockerhub account for Kavita.  | Nightly Testing + official 32-bit ARM images |
+| [Github Container Registry](https://github.com/kareadita/Kavita/pkgs/container/kavita) |    Another option in case you don't want to use dockerhub.      | Nightly Testing + official 32-bit ARM images | 
 
 <Callout type="info">
 	Docker Compose is the reccomended way to run containers. Only use `docker run` if you know what your doing. 💪
