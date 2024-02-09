@@ -1,0 +1,105 @@
+## Comics and Manga Metadata
+Comics and manga use a "comicinfo.xml" file for metadata.
+
+This file must be named **ComicInfo.xml and be at the root of the archive.**
+
+The XML schema of this file can be found in the [Anansi Project webpage](https://anansi-project.github.io/). We support [v2.1 (draft)](https://anansi-project.github.io/docs/comicinfo/schemas/v2.1).
+
+## ComicInfo
+
+### Conversion table
+
+| In ComicInfo                                                                                   | Is | Equivalent In Kavita                                                           |
+|------------------------------------------------------------------------------------------------|----|--------------------------------------------------------------------------------|
+| `Title`                                                                                        | →  | Chapter Title                                                                  |
+| [`LocalizedSeries`](/guides/metadata/comics#non-standard-tags)                                 | →  | Localized Name                                                                 |
+| `Series` or [`SeriesSort`](/guides/metadata/comics#non-standard-tags)                          | →  | Name                                                                           |
+| `Number`                                                                                       | →  | Issue/Chapter number                                                           |
+| [`Count`](/guides/metadata/comics#count)                                                       | →  | [Publication Status](/guides/metadata/comics#publication-status)               |
+| `Volume`                                                                                       | →  | Volume                                                                         |
+| `Summary`                                                                                      | →  | Summary                                                                        |
+| `Writer`                                                                                       | →  | Writers                                                                        |
+| `Publisher`                                                                                    | →  | Publisher                                                                      |
+| `Year`, `Month`, `Day`                                                                         | →  | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
+| `Summary`                                                                                      | →  | Series Summary from first issue/chapter Issue/Chapter Summary                  |
+| `Writer`, `Penciller`, `Inker`, `Colorist`, `Letterer`, `Cover Artist`, `Editor`, `Translator` | →  | Writer, Penciller, Inker, Colorist, Letterer, Cover Artist, Editor, Translator |
+| `Genre`                                                                                        | →  | Genres                                                                         |
+| `Tags`                                                                                         | →  | Tags                                                                           |
+| `Web`                                                                                          | →  | Web Links (Also used for matching in CBLs)                                     |
+| `PageCount`                                                                                    | →  | Length  (This is aggregated on the Series)                                     |
+| `LanguageISO`                                                                                  | →  | Language                                                                       |
+| [`Format`](/guides/metadata/comics#format)                                                     | →  | Special                                                                        |
+| [`SeriesGroup`](/guides/metadata/comics#seriesgroup)                                           | →  | Collections                                                                    |
+| [`AgeRating`](/guides/metadata/comics#age-rating)                                              | →  | Age Rating                                                                     |
+| `GTIN`                                                                                         | →  | ISBN                                                                           |
+
+### Non-standard tags
+
+- `<LocalizedSeries>` : Contains optional localized series name which will display in Kavita. Will allow searching for either series name. Will group files that have the localized name and the series name together as one series.
+- `<SeriesSort>` : The sort title to use for the Series. Kavita will prefer this over `<Series>`
+
+### Count
+Kavita will set the Publication Status on a series for you based on this tag
+
+- If you have at least one "Count" defined within any ComicInfo from the series, and it is not 0, then Kavita will assume the Series is Ended. Otherwise, it will be assumed Ongoing.
+
+- If the Count matches the Volume count or Chapter count, then Kavita will assume the Series is Completed (you own all items of the series)
+
+- Ideally, the value of this field should be the total number of volumes (manga) or issues (comics)
+
+### Publication Status
+Kavita will set the Publication Status on a series for you based on the underlying ComicInfo. 
+
+If you have at least one ComicInfo with the `Count` property, then Kavita will at least mark the series as Ended.
+
+Kavita will also check if the number of Volumes or Chapters matches this exactly and if so, will mark the series as Completed.
+
+[//]: # (TODO: Add locked section rel link)
+This logic will only run if the field is not [locked](../04.get-started-using-your-library/02.adding-and-editing-metadata/default.en.md#locking-fields). At any time you can hover over the tag badge in Series Detail to view how many issues or volumes you are missing. 
+
+### Release Year
+
+Likewise with Age Rating, Release Year is a summation of the minimum year defined within a series that is at least 4 units long (> 1000).
+
+### Format
+If a Format is specified, that issue or volume may be forced into being treated as a Special (v0.5.4+). 
+
+The following entries will cause this:
+* Special
+* Reference
+* Director's Cut
+* Box Set
+* Box-Set
+* Annual
+* Anthology
+* Epilogue
+* One Shot
+* One-Shot
+* Prologue
+* TPB
+* Trade Paper Back
+* Omnibus
+* Compendium
+* Absolute
+* Graphic Novel
+* GN
+* FCBD 
+
+### SeriesGroup
+
+The SeriesGroup tag can contain comma delimited strings that will either create or update existing collections in Kavita if the Library has `Manage Collections` turned on (default is off). 
+
+### Age Rating
+
+Age rating may vary between different files within a series. The Series will take the highest Age Rating (aka most mature) and use it from the files contained within. So for example, say you have:
+
+Current tags from less restrictive to most restrictive: 
+
+[//]: # (TODO: Add list from least restrictive to most restrictive)
+
+* Issue 1 - PG
+* Issue 2 - PG
+* Issue 3 - M
+
+The series will be M as that is the most mature rating in all Issues.
+
