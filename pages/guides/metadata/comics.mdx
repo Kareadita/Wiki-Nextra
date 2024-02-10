@@ -43,7 +43,7 @@ The XML schema of this file can be found in the [Anansi Project webpage](https:/
 ### Count
 Kavita will set the Publication Status on a series for you based on this tag
 
-<Callout type="info"> This following logic will only run if the field is not locked.</Callout>
+<Callout type="info">The following logic will only run if the field is not locked.</Callout>
 
 - If you have at least one "Count" defined within any ComicInfo from the series, and it is not 0, then Kavita will assume the Series is Ended. Otherwise, it will be assumed Ongoing.
 
@@ -91,11 +91,27 @@ Age rating may vary between different files within a series. The Series will tak
 
 Current tags from less restrictive to most restrictive: 
 
-[//]: # (TODO: Add list from least restrictive to most restrictive)
-
 * Issue 1 - PG
 * Issue 2 - PG
 * Issue 3 - M
 
 The series will be M as that is the most mature rating in all Issues.
+
+Age Rating from least to most mature. The order is fixed according to the ComicInfo.xml standard.
+
+* Unknown
+* Rating Pending
+* Early Childhood
+* Everyone
+* G
+* Everyone 10+
+* PG
+* Kids to Adults
+* Teen
+* MA15+
+* Mature 17+
+* M
+* R18+
+* Adults Only 18+
+* X18+
 
