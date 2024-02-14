@@ -1,0 +1,44 @@
+---
+title: 'Book Reader'
+---
+import Image from 'next/image'
+import step1 from '../../../public/guides/readers/book-settings.png'
+import step2 from '../../../public/guides/readers/book-toc.png'
+
+
+## Book Reader
+
+Like many other readers, Kavita offers customizations for your reading experience. We offer 7 additional fonts to select from in addition to the fonts that come with the book. Font sizing, line spacing, and margin can all be customized (Margin will default to 0% on mobile devices regardless of your settings). 
+
+We offer multiple reading directions and tap to paginate. Tap to Paginate lets you click on the sides of the book rather than having to press the Next/Prev page buttons on the top or bottom of the reader. 
+
+The book reader lets you save your settings to your account from within the reader. You are not required to press Save, you can instead adjust it just for that reading session. 
+
+## Progress
+The book reader will remember approximately where you leave off and will try to restore the scroll position. This will work regardless of what size device you start and resume on. 
+
+## Menu Controls
+    <Image
+      src={step1}
+      alt="picture"
+      width={300} 
+      height={250}
+    />
+
+## Table of Contents
+
+    <Image
+      src={step2}
+      alt="picture"
+      width={300} 
+      height={250}
+    />
+
+Kavita provides a dedicated section in the menu drawer for the table of contents. If a table of contents is not provided in the book metadata, Kavita will attempt to create one by parsing out links and headers in the book itself. As you read, the links will become bold based on where in the page you are. For example, in the image here, I have scrolled down and am on the first part of the first chapter. Notice that the chapter is also bold. You can click on any link to jump instantly to it. 
+
+## Inner Links
+Some books have links within the reader. Some external and some internal. Kavita does pre-processing before you read and determines if a link is external or not. All external links will open in a new tab. Internal links can be clicked and Kavita will remember the history of links clicked, so you can back out of your nested linking in order by pressing the back button. 
+
+## Continuous Reading
+The book reader offers a way to stay within the reader and move on to the next book (assuming your book is in a series or a reading list). Like the web reader, we now have buttons to manually click and jump between books. Likewise, when you read the first or last page of the book and there is another book, the Next button will show two arrows implying the pagination will load the next book.
+
