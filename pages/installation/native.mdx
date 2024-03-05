@@ -13,12 +13,18 @@ Kavita's releases are made to be used 'out of the box'. This means there's no ne
 You have 2 options when it comes to running on windows. You can install with [Scoop](https://github.com/ScoopInstaller/Install#installation) or use the native builds posted in the steps below.
 
 To install with [Scoop](https://github.com/ScoopInstaller/Install#installation), follow their instuctions to get scoop onto your system.
+
 Once scoop is installed, run:
 ```cmd
 scoop bucket add extras
 scoop install kavita
 ```
-If you installed scoop using it's default settings, Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
+If you want to run Kavita as a service then you can add: 
+```cmd
+scoop install shawl
+```
+
+If scoop was installed without modfying the default settings then Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
 
 
 ## Install Steps from Github:
@@ -45,7 +51,30 @@ These are protected folders and will have permissions problems!
 
 ### Step 3
 
-Once the files are extracted to a location, you just need to run Kavita.exe to launch the server.
+Once the files are extracted to a location, run Kavita.exe to launch the server.
+
+
+### Running as a service (Optional)
+
+<Callout type="error">
+  `nssm` is outdated and has problems with Windows 11. Do not use it. 
+</Callout>
+
+
+We reccomend using [shawl](https://github.com/mtkennerly/shawl) to run Kavita as a service. Shawl is a "portable app", you can simply download it and put it anywhere without going through an installer.
+
+Once you have shawl installed then you can modify this command to create the service: 
+
+<Callout type="warning">
+  This is an example! You need to modify the command to point to your files! Copying and pasting this command won't work.
+</Callout>
+
+
+```
+sc create Kavita binPath= "C:\path\to\shawl.exe run --name Kavita --cwd C:\your\folder\for\kavita -- C:\your\folder\for\kavita\Kavita.exe"
+```
+
+
 
 </Steps>
 </Tabs.Tab>
