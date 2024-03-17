@@ -11,9 +11,6 @@ Remember to use the new [Docker Central Repo!](https://hub.docker.com/r/jvmilazz
 #### Q. I really like Kavita, but can it mirror or just use my folder structure?
 A. No, Kavita uses filenames and internal metadata for parsing and is not designed to use folder structure. Please don't ask for this feature, it will never be implemented. If this is important to you, [Ubooquity](https://vaemendis.net/ubooquity/) may be a better choice, as it offers this feature. 
 
-#### Q. Kavita doesn't seem to run / generate covers / generates black and white covers on my computer?
-A. Kavita uses NetVips for cover generation and thus requires SSE4.2 instruction set. Generally, Core i3/i5/i7/i9 support them, whereas Pentium and Celeron CPUs do not. CPUs from 2011 onwards should support SSE4.2. You can read more about it [here](https://github.com/kleisauke/net-vips/issues/176). If you fall in this category and still want to use Kavita, you can delete the libvips.dll or libvips.so and install it (`libvips-tools` for Linux) via your system manager (version must < v8.10.6) or compile it yourself, see this issue [here](https://github.com/Kareadita/Kavita/issues/1423). 
-
 #### Q. I'm seeing database is locked errors in my logs
 A. This can happen on some configurations. An easy solution is to turn on WAL mode, which Kavita supports out of the box. To do this, open your sqlite file (after stopping kavita) and run `PRAGMA journal_mode=WAL;`. An easy tool to do this is [DB Browser for SQLite.](https://sqlitebrowser.org/)
 
@@ -22,6 +19,8 @@ For CLI users you can run the command below if your platform has the needed sqli
 ```bash copy
 sqlite3 kavita.db 'PRAGMA journal_mode=WAL;'
 ```
+#### Q. I'm running on macOS monterey and I get error 403 when trying to load the web app.
+As of macOS monterey (12.xx) some systems might have the AirPlay service running on port 5000. You'll need to pick a different port for Kavita to run under.
 
 #### Q. Is there an app? I don't want to use the website.
 Kavita does not yet offer mobile apps, however you can "Add to Home screen" our website, which will create an icon on your mobile device and launch the site in fullscreen mode. If that doesn't work for you, you can use a supported external reader, found [here](https://wiki.kavitareader.com/faq/external-readers).
@@ -55,6 +54,8 @@ A. By default, Kavita will collect stats on your installation. This will run aft
     "ReadingMode": "Webtoon"
 }
 ```
+#### Q. Kavita doesn't seem to run / generate covers / generates black and white covers on my computer?
+A. Kavita uses NetVips for cover generation and thus requires SSE4.2 instruction set. Generally, Core i3/i5/i7/i9 support them, whereas Pentium and Celeron CPUs do not. CPUs from 2011 onwards should support SSE4.2. You can read more about it [here](https://github.com/kleisauke/net-vips/issues/176). If you fall in this category and still want to use Kavita, you can delete the libvips.dll or libvips.so and install it (`libvips-tools` for Linux) via your system manager (version must < v8.10.6) or compile it yourself, see this issue [here](https://github.com/Kareadita/Kavita/issues/1423). 
 
 #### Q. What is the `NetVips` dependency and what does it mean if I can't run it?
 

@@ -23,9 +23,9 @@ If you want to run Kavita as a service then you can add:
 ```cmd
 scoop install shawl
 ```
+Then see the [optional step](#running-as-a-service-optional) section once you have everything installed. 
 
 If scoop was installed without modfying the default settings then Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
-
 
 ## Install Steps from Github:
 
@@ -53,13 +53,11 @@ These are protected folders and will have permissions problems!
 
 Once the files are extracted to a location, run Kavita.exe to launch the server.
 
-
 ### Running as a service (Optional)
 
 <Callout type="error">
   `nssm` is outdated and has problems with Windows 11. Do not use it. 
 </Callout>
-
 
 We reccomend using [shawl](https://github.com/mtkennerly/shawl) to run Kavita as a service. Shawl is a "portable app", you can simply download it and put it anywhere without going through an installer.
 
@@ -73,9 +71,6 @@ Once you have shawl installed then you can modify this command to create the ser
 ```
 sc create Kavita binPath= "C:\path\to\shawl.exe run --name Kavita --cwd C:\your\folder\for\kavita -- C:\your\folder\for\kavita\Kavita.exe"
 ```
-
-
-
 </Steps>
 </Tabs.Tab>
 <Tabs.Tab>
@@ -97,7 +92,6 @@ cd ~
 mv ~/Downloads/kavita-osx-x64.tar.gz ~
 tar -xf kavita-osx-x64.tar.gz
 ```
-
 ### Step 3
 
 Make Kavita executable.
@@ -108,16 +102,17 @@ sudo chmod +x ~/Kavita/Kavita
 
 ### Step 4
 Disable Gatekeeper for Kavita's folder so that Kavita and all .dll and .dylib files can be opened
+
 ```bash
 xattr -r -d com.apple.quarantine ~/Kavita/
 ```
 
 Forgetting to disable Gatekeeper will prevent Kavita from running!
+
 If you get this screen:
 ![Gatekeeper](/../public/installation/osx-gatekeeper.png "Gatekeeper warning")
 
 That means the command wasn't ran on the right folder.
-
 
 ### Step 5
 ```bash
@@ -132,7 +127,6 @@ Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita fol
 cd ~/Kavita
 ./Kavita
 ```
-
 ### Step 7
 Open a browser window, at address: http://localhost:5000/
 </Steps>

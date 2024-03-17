@@ -4,11 +4,13 @@ import { Callout } from 'nextra-theme-docs'
 
 ## System Requirements
 
-Kavita can run on a wide varity of devices but your experience will be better the more resources you have. Your media files don't need to be on a SSD, but keeping your Kavita database file on a SSD will greatly increase performance of the application. Users have reported running the app on as little as a single core 1Ghz CPU and 256MB RAM. 
+Kavita is built with Microsoft .NET 8.0 and Angular 17. The .NET Framework requires an operating system that is still in it's support cycle in order to work. You can check the list of supported OS's [here](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md)
+
+Kavita can run on a wide varity of devices, but your experience will be better the more hardware resources you have. While your media files don't need to be on a SSD, keeping your Kavita database file on a SSD will greatly increase performance of the application. 
+
+Users have reported running the app on as little as a single core 1Ghz CPU and 256MB RAM. 
 
 The only requirement Kavita has is the need for CPU that supports SSE4.2 extensions. This is because of the upstream library `NetVIPS`. [See the FAQ](../troubleshooting/faq.mdx#q-what-is-the-netvips-dependency-and-what-does-it-mean-if-i-cant-run-it) for how to work around it. 
-
-Users have reported memory usage averages 150-350MB depending on the size of your library. Spikes in memory will occur after scanning but will go back down over time.
 
 ## Supported Browsers 
 
