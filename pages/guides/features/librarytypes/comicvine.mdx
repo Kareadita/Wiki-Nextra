@@ -1,0 +1,8 @@
+Uses strict comic regex to parse files, expects embedded metadata. UI uses Comic terminology. Metadata/Mylar aligned. 
+
+When can it be used: Only on ComicVine library type
+Filetypes: Archive by default. Will always ignore cover.ext in the series directory
+How it works:
+Series name is formulated first by checking comicInfo Series + Volume
+Falls back to Folder and checks explicitly for Series (Volume) format. Does this up until the library root.
+Falls back to just the folder name as the Series
