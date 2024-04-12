@@ -12,7 +12,7 @@ export default function AppPreview() {
 	useEffect(() => {
 		let imageUrl = 'homepage-light.png'
 		if (resolvedTheme == 'dark') {
-			imageUrl = 'homepage-dark.png'
+			imageUrl = 'homepage-dark.webp'
 		}
 
 		const image = new Image()
@@ -26,7 +26,7 @@ export default function AppPreview() {
 					initial={{ opacity: 0, scale: 0.75 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 0.5, duration: 1 }}
-					className="z-40 flex h-full flex-1 self-center bg-[url('/homepage-dark.png')] bg-contain bg-[center_top] bg-no-repeat dark:bg-[url('/homepage-dark.png')] sm:w-auto"
+					className="z-40 flex h-full flex-1 self-center bg-[url('/homepage-dark.webp')] bg-contain bg-[center_top] bg-no-repeat dark:bg-[url('/homepage-dark.webp')] sm:w-auto"
 				/>
 			</div>
 		</div>
