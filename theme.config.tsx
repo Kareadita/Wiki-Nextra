@@ -11,10 +11,10 @@ const DOCS_PAGES_HREF = `${GITHUB_REPO}/tree/main/pages`
 
 export default {
 	banner: {
-		key: '0.7.14',
+		key: '0.8.0',
 		text: (
-		  <a href="https://github.com/Kareadita/Kavita/releases/tag/v0.7.14" target="_blank">
-			🎉 Kavita 0.7.14 is released. Read more →
+		  <a href="https://github.com/Kareadita/Kavita/releases/tag/v0.8.0" target="_blank">
+			🎉 Kavita v0.8.0 is released. Read more →
 		  </a>
 		)
 	},
