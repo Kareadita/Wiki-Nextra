@@ -17,9 +17,9 @@ export default function Head() {
 			/>
 			<meta property="og:url" content="https://www.kavitareader.com/" />
 			<meta property="og:type" content="website" />
-			<meta property="og:image" content="https://raw.githubusercontent.com/Kareadita/Wiki-Nextra/main/public/homepage-dark.png" />
+			<meta property="og:image" content="https://raw.githubusercontent.com/Kareadita/Wiki-Nextra/main/public/homepage-dark.webp" />
 			<meta property="og:image:alt" content="OG Image" />
-			<meta property="og:image:type" content="image/png" />
+			<meta property="og:image:type" content="image/webp" />
 			<meta property="og:image:width" content="1332" />
 			<meta property="og:image:height" content="699" />
 			<meta property="og:locale" content="en_US" />
