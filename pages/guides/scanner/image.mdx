@@ -1,0 +1,22 @@
+---
+title: Images
+---
+
+### Image Structure
+
+Images offer no metadata support and has a very simple mechanism for parsing:
+- Series is set to directory name and cleaned
+- Volume and Chapters are attempted to parse from folders up to the library root
+- If none are found, every image will be treated as a special
+
+This library type is designed to be used for Manga and uses those parsing patterns for Volume/Chapter extraction. 
+
+### Example
+```
+┖── Series Name
+    ┠── Volume 1
+        ┠── Chapter 1
+            ┠── 01.png
+    ┠── Chapter 2
+        ┖── 01.png
+```
