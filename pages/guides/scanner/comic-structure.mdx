@@ -34,8 +34,10 @@ The following will be parsed as "Chapters", which may naturally group into a Vol
 | `Babe 01`                                                                              |                    |        | 1       |
 | `Babe T1 01`                                                                           |                    |    1    | 1       |
 
-
-! If you have multiple comics from different years, you can name them as "Fables {2004}" and "Fables {1989}". Then in Kavita's UI, you can rename the "Name" field to be "Fables (2004)" and "Fables (1989)" so they are separate series. This workaround is the only way for different releases of the same series to be supported in Kavita. Note that anything withing () will be stripped during parsing as there is usually junk in there. Use {} or embedded metadata. 
+<Callout type="info">
+	 If you have multiple comics from different years, you can name them as "Fables {2004}" and "Fables {1989}" or better yet, use the [Comic Vine](/guides/scanner/comicvine) library type.
+     Anything withing () will be stripped during parsing as there is usually junk in there. Use {} or embedded metadata. 
+</Callout>
 
 Comics also have a list of special filename keywords that will mark them as specials. Some of these are:
 * Specials
@@ -57,4 +59,6 @@ Comics also have a list of special filename keywords that will mark them as spec
 * HS
 * THS
 
-! **Note**: The "[Format metadata field](https://wiki.kavitareader.com/en/guides/managing-your-files/metadata#format)" for the [ComicInfo metadata](https://wiki.kavitareader.com/en/guides/managing-your-files/metadata#comicinfo) can also be used to mark the comic as a special.
+<Callout type="info">
+	 The "[Format metadata field](/guides/metadata/comics#format)" for the [ComicInfo metadata](/guides/metadata/comics#conversion-table) can also be used to mark the comic as a special.
+</Callout>
