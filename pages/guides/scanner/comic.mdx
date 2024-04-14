@@ -19,6 +19,8 @@ The same naming conventions work with Comics.
     ┖── Series Name v03 c01.cbz
 ```
 
+
+
 The following will be parsed as "Chapters", which may naturally group into a Volume entity if a volume is on the file itself.
 
 | Filename                                                                               | Parsed Series Name | Volume | Chapter |
@@ -26,17 +28,18 @@ The following will be parsed as "Chapters", which may naturally group into a Vol
 | `Invincible 070.5 - Invincible Returns 1 (2010) (digital) (Minutemen-InnerDemons).cbr` |                    |        | 70.5    |
 | `Batman & Wildcat (1 of 3)`                                                            |                    |        | 1       |
 | `Amazing Man Comics chapter 25`                                                        |                    |        | 25      |
-| `Superman v1 024 (09-10 1943)`                                                         |                    |   1    | 24      |
+| `Superman v1 024 (09-10 1943)`                                                         |                    | 1      | 24      |
 | `Y - The Last Man `                                                                    |                    |        | 1       |
 | `Batgirl Vol.2000 #57 (December, 2004)`                                                |                    |        | 57      |
 | `Babe 01`                                                                              |                    |        | 1       |
-| `Babe T1 01`                                                                           |                    |   1    | 1       |
+| `Babe T1 01`                                                                           |                    |    1    | 1       |
 
-
-## Specials 
+<Callout type="info">
+	 If you have multiple comics from different years, you can name them as "Fables {2004}" and "Fables {1989}" or better yet, use the [Comic Vine](/guides/scanner/comicvine) library type.
+     Anything withing () will be stripped during parsing as there is usually junk in there. Use {} or embedded metadata. 
+</Callout>
 
 Comics also have a list of special filename keywords that will mark them as specials. Some of these are:
-
 * Specials
 * Annual
 * Extra Chapter
@@ -57,5 +60,5 @@ Comics also have a list of special filename keywords that will mark them as spec
 * THS
 
 <Callout type="info">
-	  The "[Format](../metadata/comics#format)" field in the [ComicInfo metadata](../metadata/comics#comicinfo) can also be used to mark the comic as a special.
+	 The "[Format metadata field](/guides/metadata/comics#format)" for the [ComicInfo metadata](/guides/metadata/comics#conversion-table) can also be used to mark the comic as a special.
 </Callout>
