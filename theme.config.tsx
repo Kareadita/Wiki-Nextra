@@ -13,8 +13,8 @@ export default {
 	banner: {
 		key: '0.8.0',
 		text: (
-		  <a href="https://github.com/Kareadita/Kavita/releases/tag/v0.8.0" target="_blank">
-			🎉 Kavita v0.8.0 is released. Read more →
+		  <a href="https://github.com/Kareadita/Kavita/releases/latest" target="_blank">
+			🎉 Kavita v0.8.1 is released. Read more →
 		  </a>
 		)
 	},
