@@ -26,6 +26,11 @@ module.exports = {
 				destination: '/installation/getting-started',
 				permanent: true,
 				source: '/installation',
+			},
+			{
+				destination: '/moved',
+				permanent: true,
+				source: '/en/:path*',
 			}
 		]
 	},

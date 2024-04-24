@@ -18,6 +18,9 @@
 		"display": "hidden",
 		"type": "page"
 	},
+	"moved": {
+		"display": "hidden"
+	},
 	"installation": "Installation",
 	"guides": "Guides",
 	"troubleshooting": "Troubleshooting",
