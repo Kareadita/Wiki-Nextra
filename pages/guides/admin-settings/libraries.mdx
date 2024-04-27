@@ -4,13 +4,13 @@ import { Callout } from 'nextra-theme-docs'
 
 ![Library](../../../public/guides/admin-settings/admin-settings-library.png "Library page in Admin Settings")
 
-The libraries tab is how you make your own content avilable to your users.
+The libraries tab is how you make your own content available to your users.
 
 ## Managing Libraries
 
 ![LibraryStatus](../../../public/guides/admin-settings/admin-settings-library-status.png "Library Status in Admin Settings")
 
-Name of the library is highlighed in green. Clicking on it will send you to the series view inside the library.
+The name of the library is highlighted in green. Clicking on it will send you to the series view inside the library.
 
 Type is one of 4 options:
 
@@ -19,9 +19,9 @@ Comic<br/>
 Book<br/>
 Image<br/>
 
-Shared folders tells you how many source folders you have linked to this library. A single library can contain more than 1 folder on disk in order to merge libraries.
+Shared folders tell you how many source folders you have linked to this library. A single library can contain more than 1 folder on disk to merge libraries.
 
-Last Scanned: Will give you the timestamp that the last scan occured. 
+Last Scanned: Will give you the timestamp that the last scan occurred. 
 
 ## Adding Libraries
 
@@ -53,14 +53,14 @@ Pick the folders you want added to your library using the folder picker. A libra
 
 This step isn't required but allows you to upload a small cover image to use to customize the icon when the library is displayed. 
 
-Using too large of a file here can slow down the server. 32x32 is reccomended
+Using too large of a file here can slow down the server. 32x32 is recommended
 
 ### Advanced Settings
 ![LibraryAdvanced](../../../public/guides/admin-settings/admin-settings-library-add-library-advanced.png "Library Advanced Settings")
 
 #### File types
 
-This controls what kind of files the scanner will look for when adding to the library. Use this for example if you want to turn off PDF's from showing up in a comic library. Or if your having cover.jpg's creating new series, you can turn off 'image'. 
+This controls what kind of files the scanner will look for when adding to the library. Use this for example if you want to turn off PDF's from showing up in a comic library. Or if you're having cover.jpg's creating a new series, you can turn off 'image'. 
 
 
 #### Exclude Patterns
@@ -95,9 +95,9 @@ This controls if your users can scrobble series that are found in this library.
 Folder watching is enabled by default and watches each folder of a given library for modifications. 
 
 Folder watching lets Kavita know when a file has been added or modified in your library and update it in your Kavita instance.
-When files are added (loose images or non supported extensions are ignored), renamed, deleted, etc, Kavita takes note and queues a Scan.
+When files are added (loose images or non-supported extensions are ignored), renamed, deleted, etc, Kavita takes note and queues a Scan.
 
-Overrides server folder watching for this library. If off, folder watching won't run on this library. If libraries share folders, then folders may still be ran against.
+Overrides server folder watching for this library. If off, folder watching won't run on this library. If libraries share folders, then folders may still be run against.
 
 <Callout type="info" emoji="🐳">
   Docker on Windows over WSL2 does not support folder watching. [See Issue on Gihtub](https://github.com/Kareadita/Kavita/issues/1714)

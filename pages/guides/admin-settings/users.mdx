@@ -11,11 +11,11 @@ From the Users Tab, admins can see the pending invites to their server and their
 ### User Properties
 ![Status](../../../public/guides/admin-settings/admin-settings-users-status.png "User Status")
 
-Last Active will show the last timestamp that user was seen online. If they are online right now there will be a green dot at the end of the timestamp. 
+Last Active will show the last timestamp that the user was seen online. If they are online right now there will be a green dot at the end of the timestamp. 
 
-If the user hasn't gone through the setup screen they will show as 'Pending'. Either they haven't opened the email sent (or didn't get it) or the admin hasn't setup the account manually.
+If the user hasn't gone through the setup screen they will show as 'Pending'. Either they haven't opened the email sent (or didn't get it) or the admin hasn't set up the account manually.
 
-Sharing: Will show all the libraries you have shared with that user. 
+Sharing: This will show all the libraries you have shared with that user. 
 
 Roles will list out all the different permissions the user has. If the user is an admin it will just list "Admin", as admin users have all permissions possible and can't have roles restricted. 
 
@@ -28,7 +28,7 @@ Clicking on the edit users button will bring up the same dialog used to create t
 ![Delete](../../../public/guides/admin-settings/admin-settings-users-delete.png "Delete User Button")
 
 <Callout type="error" emoji="️⚠️">
-  This action is irreversible and permanently deletes the users data.  
+  This action is irreversible and permanently deletes the user's data.  
 </Callout>
 
 This removes the user from the server. All the users saved preferences and bookmarks will also be deleted. 
@@ -38,17 +38,17 @@ If you just want to prevent the user from logging in but still keep their accoun
 ### Resend Invite
 ![Resend](../../../public/guides/admin-settings/admin-settings-users-resend.png "Resend Invite Button")
 <Callout type="info">
-  This action requires that you setup an email server in the [email](/guides/admin-settings/email) settings before using it.
+  This action requires that you set up an email server in the [email](/guides/admin-settings/email) settings before using it.
 </Callout>
 
-If the user hasn't setup their account yet and has used an email address is on file, this will resend the new user setup email to them.
+If the user hasn't set up their account yet and has used an email address on file, this will resend the new user setup email to them.
 
 ### Setup User
 ![Setup](../../../public/guides/admin-settings/admin-settings-users-setup.png "Setup Users Button")
 
-This will allow the admin to force setup the account and trigger the setup wizard manually. If you use this option you will have to give the person you setup the account for their username and password since they won't be able to choose for themselves. 
+This will allow the admin to force the setup of the account and trigger the setup wizard manually. If you use this option you will have to give the person you set the account for their username and password since they won't be able to choose for themselves. 
 
-This option only shows up while the user is not setup. Once a user creates their account, this option is no longer available. 
+This option only shows up while the user is not set up. Once a user creates their account, this option is no longer available. 
 
 ## Inviting Users
 
@@ -56,7 +56,7 @@ To invite a user to your server click on: ![Invite](../../../public/guides/admin
 
 Once the new user screen comes up you can fill out all the required information.
 
-Right now the wording may seem confusing, but you are able to create a username only account if you want. Just enter a username (without a @domain.com) and you can use that. As the screen notes however, username accounts can't use the email password reset option. They will have to ask the admin to reset their password for them. 
+Right now the wording may seem confusing, but you can create a username-only account if you want. Just enter a username (without a @domain.com) and you can use that. As the screen notes, however, username accounts can't use the email password reset option. They will have to ask the admin to reset their password for them. 
 
 
 ![InviteUser](../../../public/guides/admin-settings/admin-settings-users-create-user.png "Invite User Screen")
@@ -68,16 +68,16 @@ Right now the wording may seem confusing, but you are able to create a username 
 <Callout type="error" emoji="️⚠️">
   ! Admins have full access to the server ! <br/>
   
-  They are able to make changes that could negitively impact other users or Kavita itself. 
+  They are able to make changes that could negatively impact other users or Kavita itself. 
 </Callout>
 
-They bypass all age restrictions, can change any and all server related settings and can see all libraries. Admins are also able to see full file paths on disk, where normal users only see the library path. 
+They bypass all age restrictions, can change any and all server-related settings and can see all libraries. Admins are also able to see full file paths on disk, whereas normal users only see the library path. 
 
-It's not reccomended to use an admin account as your daily driver. Especially if you want to filter potentially NSFW material from view, as admins bypass all filtering restrictions.
+It's not recommended to use an admin account as your daily driver. Especially if you want to filter potentially NSFW material from view, as admins bypass all filtering restrictions.
 
 ### Download
 
-If checked, allows the user to download files. Controls downloads through both the webUI and and 3rd party applications that also allow downloads.
+If checked, allows the user to download files. Controls download through both the webUI and 3rd party applications that also allow downloads.
 
 ### Change Password
 
@@ -87,7 +87,7 @@ If unchecked only admins will be able to reset the password for the user.
 
 ### Bookmark
 
-Controls if the user is allowed to create bookmarks in their own profile. Reason this is a setting is because bookmarks are stored independently and thus take up some storage space on disk. 
+Controls if the user is allowed to create bookmarks in their own profile. The reason this is a setting is because bookmarks are stored independently and thus take up some storage space on disk. 
 
 ### Change Restriction
 
@@ -99,7 +99,7 @@ Controls if a user is allowed to login or not. This allows an admin to disable t
 
 ### Age Rating Restriction
 
-When selected, all series and reading lists that have at least one item that is greater than the selected restriction will be pruned from results. This is not applicable for admins.
+When selected, all series and reading lists that have at least one item that is greater than the selected restriction will be pruned from the results. This is not applicable to admins.
 
 ### Include Unknowns
 

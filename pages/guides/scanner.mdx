@@ -103,7 +103,7 @@ If these rules are followed, you shouldn't have any problems.
 Kavita will generate a library representation of your files on disk. A Kavita library does _not_ represent exactly your folder structure. Kavita uses filenames, internal metadata, and some limited folder names to parse out the series, volume, chapter, etc from the file and group them.
 
 The scan parses the file names, reads the comic info (if applicable), updates the database with that information, and updates the UI. 
-If the file hasn't been modified since the last time Kavita scanned, it will not do extra processing on the file. 
+If the file hasn't been modified since the last time Kavita scanned it, it will not do extra processing on the file. 
 If your archives contain metadata, it will override any parsed information from the file.
 
 ### Refresh Covers
@@ -128,12 +128,12 @@ In-depth overview on how the scan loop works
 ### Step 3: Processing files
 - The library dictates the rules for the parser and there are different parsers for different file types. 
 - The parser parses out any information from the files, these files are a list of files collected from the folder scan in the previous step and are assumed to be one series
-- After parsing, Kavita checks any series need to be merged together. Merging might happen if there are ComicInfo's with `LocalizedSeries` tag which allows 2 different names to be merged together automatically. Note: If there are multiple series in one folder with localizedSeries tag, they will group incorrectly. Kavita will log this, but not stop the scan. This is not a valid configuration.
+- After parsing, Kavita checks any series need to be merged together. Merging might happen if there are ComicInfo's with a `LocalizedSeries` tag which allows 2 different names to be merged automatically. Note: If there are multiple series in one folder with a localizedSeries tag, they will group incorrectly. Kavita will log this, but not stop the scan. This is not a valid configuration.
 - For each found series in the folder (should be one), Kavita invokes a process series task
 
 ### Step 4: Process Series
 - This is responsible for taking the processed data and updating the Database. This runs parallel with other process series tasks. This may make the logs difficult to understand.
-- The first thing that needs to happen is find the series in the Database. This is done by checking against Series name and localized name. If neither exist, a new series will be created.
+- The first thing that needs to happen is find the series in the Database. This is done by checking against the Series name and localized name. If neither exists, a new series will be created.
 - In here, Kavita does all the underlying db work and update fields, etc.
 - Lastly Kavita queues tasks to perform Cover Generation and File Analysis. These again will run in parallel and are scheduled on the same queue as other scan tasks. 
 
@@ -142,6 +142,6 @@ In-depth overview on how the scan loop works
 </Callout>
 
 #### Notes
-- Having multiple series in one folder is not supported but does work. There are some caveats to this. If there exists a series in that folder that utilizes LocalizedSeries ComicInfo tag, then the series may group in an unexpected way. This will be informed to the user via the Log file, ie ``. In addition, Folder Watching wont pick up on series changes correctly due to utilizing the same folder. 
+- Having multiple series in one folder is not supported but does work. There are some caveats to this. If there exists a series in that folder that utilizes the LocalizedSeries ComicInfo tag, then the series may group unexpectedly. This will be informed to the user via the Log file, ie ``. In addition, Folder Watching won't pick up on series changes correctly due to utilizing the same folder. 
 - For series scan, if the series folder is no longer on the disk, the scan will be aborted. A library scan should be run which will delete the series. 
 - Not every action you can perform on a folder will change its modification time, including renaming and moving it. Keep this in mind if library scans are not working as expected. Sometimes creating a blank .txt file in the folder is enough to make the OS change the update time. 

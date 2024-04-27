@@ -5,7 +5,7 @@ import { Callout } from 'nextra-theme-docs'
 
 ## Recurring Tasks
 
-Recurring tasks have the ablity to be customize their run time with cron jobs. [Check your cron](https://www.crontab.guru) syntax first before saving. 
+Recurring tasks can customize their run time with cron jobs. [Check your cron](https://www.crontab.guru) syntax first before saving. 
 
 * Disable = Never <br/>
 * Daily = Midnight in your local TZ <br/>
@@ -16,18 +16,18 @@ Recurring tasks have the ablity to be customize their run time with cron jobs. [
 You can set the frequency that you want Kavita to scan for changes to your libraries. 
 
 #### Kavita Backup
-You can set the frequency that you want Kavita to backup it's database and files. 
+You can set the frequency that you want Kavita to backup its database and files. 
 
 #### Cleanup 
 <Callout type="error" emoji="️🚫">
   Do NOT disable this task. It will cause problems.
 </Callout>
 
-Kavita has a handful of processes that it need to clean up eventually. This does tasks like reclaiming disk space and clearing out temp files.
+Kavita has a handful of processes that it needs to clean up eventually. This does tasks like reclaiming disk space and clearing out temp files.
 
 ## Ad-hoc Tasks
 
-These are one off tasks that you are able to be ran at any time. They do not have a schedule. 
+These are one-off tasks that you are able to run at any time. They do not have a schedule. 
 
 #### Convert Media to Target Encoding
 
@@ -35,11 +35,11 @@ If you have changed the [Save Media As](media#save-media-as) to a different form
 
 #### Bust Cache
 
-For Kavita+ users to clear out the K+ cache. This might be needed if a series matches to the wrong series and keeps showing back up.
+For Kavita+ users to clear out the K+ cache. This might be needed if a series matches the wrong series and keeps showing back up.
 
 #### Bust Locale Cache
 
-This can fix issues with localizaion strings not showing correctly after an update.
+This can fix issues with localization strings not showing correctly after an update.
 
 #### Clear Reading Cache
 
@@ -55,11 +55,11 @@ Same as the [Kavita Backup](#kavita-backup) scheduled task, but lets you run it 
 
 #### Download Logs
 
-Compiles all log files into a zip and downloads it. Useful if your remote to your instance and need logs.
+Compiles all log files into a zip and downloads it. Useful if you're remote to your instance and need logs.
 
 #### Analyze Files
 
-Legacy scan option that starts a long-running task which will analyze files to generate extension and size. For users that had Kavita before 0.7.0 installed. 
+Legacy scan option that starts a long-running task that will analyze files to generate extension and size. For users that had Kavita before 0.7.0 installed. 
 
 ####  Check for Updates 
 

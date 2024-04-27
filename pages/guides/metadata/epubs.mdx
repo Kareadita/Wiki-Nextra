@@ -5,7 +5,7 @@ import { Callout } from 'nextra-theme-docs'
 <Callout type="info">OPF metadata files must be **inside** the `.epub` file, or it won't be read.</Callout>
 
 EPUB files do not have a ComicInfo.xml, but they do have some limited metadata in the OPF file.
-See the table below to know what tags do kavita read from the OPF file
+See the table below to know what tags Kavita reads from the OPF file
 
 ## OPF
 
@@ -53,14 +53,14 @@ In the following example, we have just a single title here and the meta tag to r
 <meta refines="#t1" property="title-type">collection</meta>
 ```
 
-If you add an additional tag of `display-seq` then Kavita will treat the collection as a reading list and generate the reading list with the following order. Note that if you have conflicts, Kavita will automatically reorder, so order may be skewed. 
+If you add an additional tag of `display-seq` then Kavita will treat the collection as a reading list and generate the reading list in the following order. Note that if you have conflicts, Kavita will automatically reorder, so order may be skewed. 
 
 ```
 <meta refined="#t1" property="display-seq">1</meta>
 ```
 
 ### Grouping Series
-Some books belong together, like in the example, Harry Potter. Sure, we can have each book as it's own series, but sometimes it's better to group them under one series. The ideal way to perform this grouping is by using `calibre:series` and `calibre:series_index` or `belongs-to-collection` and `group-position` for Epub 3.2 files. In the following, we can have our 2 harry potter books grouped together as one single Harry Potter Series (I am using Epub 2 for the first and Epub 3+ for the second):
+Some books belong together, like in the example, Harry Potter. Sure, we can have each book as its own series, but sometimes it's better to group them under one series. The ideal way to perform this grouping is by using `calibre:series` and `calibre:series_index` or `belongs-to-collection` and `group-position` for Epub 3.2 files. In the following, we can have our 2 Harry Potter books grouped together as one single Harry Potter Series (I am using Epub 2 for the first and Epub 3+ for the second):
 
 ```
 <dc:title id="id">Harry Potter and the Philosopher's Stone</dc:title>

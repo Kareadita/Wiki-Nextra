@@ -3,7 +3,7 @@ import { Tabs } from 'nextra/components'
 
 # Docker
 
-There is a few options when it comes to docker images. Just note that LSIO doesn't offer ARMv7 support (32-Bit Rasberry Pi's) or Nightly images. 
+There is a few options when it comes to docker images. Just note that LSIO doesn't offer ARMv7 support (32-bit Rasberry Pi's) or Nightly images. 
 
 | Method                          |                                Description                                  | Notes                                                                      | 
 | ------------------------------- | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------:| 
@@ -12,21 +12,21 @@ There is a few options when it comes to docker images. Just note that LSIO doesn
 | [Github Container Registry](https://github.com/kareadita/Kavita/pkgs/container/kavita) |    Another option in case you don't want to use dockerhub.      | Nightly Testing + official 32-bit ARM images | 
 
 <Callout type="info">
-	Docker Compose is the reccomended way to run containers. Only use `docker run` if you know what your doing. 💪
+	Docker Compose is the recommended way to run containers. Only use `docker run` if you know what you are doing. 💪
 </Callout>
 
 <Tabs items={['docker-compose.yml / Portainer Stacks', 'docker run']}>
   <Tabs.Tab>
-  The contents of the compose file can be pasted directly into software like [Dockage](https://github.com/louislam/dockge) or [Portainer](https://www.portainer.io/). Otherwise create the docker-compose.yml file in the folder you want to run it from and execute `docker-compose up -d`
+  The contents of the compose file can be pasted directly into software like [Dockage](https://github.com/louislam/dockge) or [Portainer](https://www.portainer.io/). Otherwise, create the docker-compose.yml file in the folder you want to run it from and execute `docker compose up -d`
 
 <Callout type="warning">
-	This is just a template for setting up your own docker compose file. Make sure to modify the folder paths to point to your own media. 
+	This is just a template for setting up your docker compose file. Make sure to modify the folder paths to point to your own media. 
 </Callout>
 
 ```yaml
 services:
     kavita:
-        image: jvmilazz0/kavita:latest    # Using the stable branch from the offical dockerhub repo.
+        image: jvmilazz0/kavita:latest    # Using the stable branch from the official dockerhub repo.
         container_name: kavita
         volumes:
             - ./manga:/manga            # Manga is just an example you can have the name you want. See the following

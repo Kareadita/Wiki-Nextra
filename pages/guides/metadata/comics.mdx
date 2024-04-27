@@ -5,7 +5,7 @@ Comics and manga use a "comicinfo.xml" file for metadata.
 
 This file must be named **ComicInfo.xml and be at the root of the archive.**
 
-The XML schema of this file can be found in the [Anansi Project webpage](https://anansi-project.github.io/). We support [v2.1 (draft)](https://anansi-project.github.io/docs/comicinfo/schemas/v2.1).
+The XML schema of this file can be found on the [Anansi Project webpage](https://anansi-project.github.io/). We support [v2.1 (draft)](https://anansi-project.github.io/docs/comicinfo/schemas/v2.1).
 
 ## ComicInfo
 
@@ -36,8 +36,8 @@ The XML schema of this file can be found in the [Anansi Project webpage](https:/
 
 ### Non-standard tags
 
-- `<LocalizedSeries>` : Contains optional localized series name which will display in Kavita. Will allow searching for either series name. Will group files that have the localized name and the series name together as one series.
-- `<SeriesSort>` : The sort title to use for the Series. Kavita will prefer this over `<Series>`
+- `<LocalizedSeries>`: Contains optional localized series name which will display in Kavita. Will allow searching for either series name. Will group files that have the localized name and the series name together as one series.
+- `<SeriesSort>`: The sort title to use for the Series. Kavita will prefer this over `<Series>`
 
 ### Count
 Kavita will set the Publication Status on a series for you based on this tag
@@ -57,7 +57,7 @@ At any time you can hover over the tag badge in Series Detail to view how many i
 Likewise with Age Rating, Release Year is a summation of the minimum year defined within a series that is at least 4 units long (> 1000).
 
 ### Format
-If a Format is specified, that issue or volume may be forced into being treated as a Special (v0.5.4+). 
+If a Format is specified, that issue or volume may be forced into being treated as a Special. 
 
 The following entries will cause this:
 * Special
@@ -82,7 +82,7 @@ The following entries will cause this:
 
 ### SeriesGroup
 
-The SeriesGroup tag can contain comma delimited strings that will either create or update existing collections in Kavita if the Library has `Manage Collections` turned on (default is off). 
+The SeriesGroup tag can contain comma-delimited strings that will either create or update existing collections in Kavita if the Library has `Manage Collections` turned on (default is off). 
 
 ### Age Rating
 

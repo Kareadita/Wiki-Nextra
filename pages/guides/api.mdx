@@ -2,15 +2,15 @@
 
 ## Authentication
 
-For writing custom scripts that access Kavita's API, you will need to authenticate against the API first. You can do this by sending a POST request to the [`/api/Plugin/authenticate`](https://www.kavitareader.com/docs/api/#/Plugin/post_api_Plugin_authenticate) endpoint with an API key. It will return a JWT User Token back that you can send in all your headers going forward. 
+For writing custom scripts that access Kavita's API, you will need to authenticate against the API first. You can do this by sending a POST request to the [`/api/Plugin/authenticate`](https://www.kavitareader.com/docs/api/#/Plugin/post_api_Plugin_authenticate) endpoint with an API key. It will return a JWT User Token that you can send in all your headers going forward. 
 
-You don't want to directly use JWT tokens in your scripts. They expire and rotate out on a frequent basis. API keys do not expire an only change if the user manually requests a new key.
+You don't want to directly use JWT tokens in your scripts. They expire and rotate out on a frequent basis. API keys do not expire and only change if the user manually requests a new key.
 
 Using the API key will always give you a valid JWT token. 
 
 ## Swagger UI
 
-Kavita's REST API is documented using Swagger, however the UI is disabled for non-dev instances. You can see [Kavita's API Docs](https://www.kavitareader.com/docs/api/#/) on the main kavita website.
+Kavita's REST API is documented using Swagger, however, the UI is disabled for non-dev instances. You can see [Kavita's API Docs](https://www.kavitareader.com/docs/api/#/) on the main Kavita website.
 
 ## OpenAPI
 

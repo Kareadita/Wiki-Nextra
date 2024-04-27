@@ -7,18 +7,18 @@ import { Steps } from 'nextra/components'
 * Separate server that listens to `Series Add` events from Kavita and can scrape a number of configurable sources 
 * Actively developed with support from the developer in Kavita discord
 * Supports writing directly to Kavita's DB via the API or saving to ComicInfo.xml inside files.
-* Can automate using it's own API or CLI commands. 
-* Userscript for in browser management.
+* Can automate using its own API or CLI commands. 
+* Userscript for in-browser management.
 
 <Callout type="info">
-  komf does not have it's own webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript).
+  komf does not have a webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript).
 </Callout>
 
 ## Setup
 To get started with komf you need to create a file called `application.yml` in the same folder that komf runs from. That means if your using the .jar file it should be in the same folder. 
-If your running docker then you need to define a `/config` folder where the file can live. 
+If you are running docker then you need to define a `/config` folder where the file can live. 
 
-The minimum `application.yml` file needed to start komf is:
+The minimum `application.yml` file needed to start Komf is:
 
 ```yml copy
 kavita:
@@ -29,21 +29,21 @@ database:
   file: ./database.sqlite # database file location.
 ```
 
-Fill out your `baseUri` to point to your kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
+Fill out your `baseUri` to point to your Kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
 
 <Callout type="info">
-  The API key you use will be the user that komf is logging in as. Make sure that user has the correct permissions in Kavita to do what your asking of it.
+  The API key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
 </Callout>
 
 ### Userscript
 
-Once you have komf running with the minium setup posted above, we need to setup the userscript to connect to it.
+Once you have Komf running with the minimum setup posted above, we need to set up the user script to connect to it.
 
 <Steps>
 
 ### Step 1
 
-If you don't already have a script manager add-on in your browser, setup [TamperMonkey](https://www.tampermonkey.net/). If you already running a script manager you *should* be able to use it without issue
+If you don't already have a script manager add-on in your browser, set up [TamperMonkey](https://www.tampermonkey.net/). If you already running a script manager you *should* be able to use it without issue
 but due to subtle differences between the programs it's not always guaranteed.
  
 ### Step 2
@@ -56,10 +56,10 @@ Click on `komf.user.js` for the latest release and your script manager should in
 
 ### Step 4
 
-Don't modify anything here. Cick 'Install'
+Don't modify anything here. Click 'Install'
 
 <Callout type="warning">
-  Modifying the script directly breaks the auto-update function and will require you to manually setup your includes every time. Just don't change anything here!
+  Modifying the script directly breaks the auto-update function and will require you to manually set up your includes every time. Just don't change anything here!
 </Callout>
 
 
@@ -69,11 +69,11 @@ After installing the script, open up the script manager. It can usually be found
 
 ### Step 6
 
-Go to your script managers 'dashboard' and click on the newly added komf script.
+Go to your script managers 'dashboard' and click on the newly added Komf script.
 
 ### Step 7
 
-Go to the 'Settings' tab of the komf script. In the `Includes/Excludes` section find `User Includes` and click add. 
+Go to the 'Settings' tab of the home script. In the `Includes/Excludes` section find `User Includes` and click Add. 
 
 ### Step 8
 
@@ -85,15 +85,15 @@ http://192.168.0.100:5000/*
 ```
 ### Step 9
 
-Once the userscript is setup to recgonize your Kavita you can close the script manager and open your Kavita instance.
+Once the userscript is set up to recognize your Kavita you can close the script manager and open your Kavita instance.
 
 ### Step 10
 
-Inside your Kavita's browser window you will now see a jig-saw puzzle peice in the top right corner next to your username. Click on it and put in your IP address of where komf is located. (This is NOT your kavita URL!)
+Inside your Kavita's browser window, you will now see a jigsaw puzzle piece in the top right corner next to your username. Click on it and put in your IP address of where komf is located. (This is NOT your kavita URL!)
 
-Press 'Check Connection' to test if the userscript can talk to komf. If you see a `Connected ✔` then everything is working! 
+Press 'Check Connection' to test if the userscript can talk to your Komf backend. If you see a `Connected ✔` then everything is working! 
 
 ### Step 11
 
-Now you can configure the rest of the settings for komf directly from here. You can pick your providers, what libraries you want to apply against and any discord notifications to be sent.
+Now you can configure the rest of the settings for some directly from here. You can pick your providers, what libraries you want to apply against and any discord notifications to be sent.
 </Steps>
