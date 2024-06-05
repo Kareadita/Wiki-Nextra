@@ -66,12 +66,13 @@ This controls what kind of files the scanner will look for when adding to the li
 #### Exclude Patterns
 ![LibraryAdvancedGlob](../../../public/guides/admin-settings/admin-settings-library-add-library-advanced-glob.png "Library Advanced Settings - Glob")
 
-In the example above, any file within a folder named One Piece will be ignored.
+In the example above, any file within a folder named One Piece from the library root will be ignored.
 
 More advanced customization of excludes is accomplished by [glob patterns](https://github.com/dazinator/DotNet.Glob/blob/develop/README.md#patterns)
 
 * Patterns without the forward-slash ' /' character (e.g. *.cbz) match filenames
 * Patterns with the forward-slash '/' character (e.g. somedir/*) match directory and file patterns
+* `**/folder/*` will ignore the folder at any depth in a path
 
 #### Manage Collections
 
