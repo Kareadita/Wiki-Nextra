@@ -14,7 +14,7 @@ export default {
 		key: '0.8.0',
 		text: (
 		  <a href="https://github.com/Kareadita/Kavita/releases/latest" target="_blank">
-			🎉 Kavita v0.8.1 is released. Read more →
+			🎉 Kavita v0.8.2 is released. Read more →
 		  </a>
 		)
 	},
