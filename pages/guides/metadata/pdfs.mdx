@@ -1,1 +1,25 @@
-Currently metadata from PDFs are not supported in Kavita, but there is work investigating alternatives.
+import { Callout } from 'nextra-theme-docs'
+
+## Metadata
+
+PDF files do not have a ComicInfo.xml, but they can have some limited metadata embedded in the file inside an `<x:xmpmeta>` tag, which can be edited with the calibre app or the ebook-meta command line tool shipped with calibre.
+
+See the table below to know what tags Kavita reads from the PDF file
+
+## PDF
+
+### Conversion table
+
+| In PDF                                                                                         | Is | Equivalent In Kavita                                                           |
+|------------------------------------------------------------------------------------------------|----|--------------------------------------------------------------------------------|
+| `dc:title` (this can be overridden by `calibre:series`)					 | →  | Chapter Title                                                                  |
+| `calibre:series`                                                                               | →  | Name                                                                           |
+| `calibreSI:series_index`                                                                       | →  | Volume                                                                         |
+| `calibre:rating`                                                                               | →  | UserRating                                                                     |
+| `dc:description`                                                                               | →  | Summary                                                                        |
+| `dc:publisher`                                                                                 | →  | Publisher                                                                      |
+| `Year`, `Month`, `Day`                                                                         | →  | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
+| `dc:creator`                                                                                   | →  | Writer                                                                         |
+| `dc:subject`                                                                                   | →  | Genres                                                                         |
+| `dc:language`                                                                                  | →  | Language (Kavita will only take the first)                                     |
+| `pdfx:isbn` or `prism:isbn`                                                                    | →  | ISBN                                                                           |
