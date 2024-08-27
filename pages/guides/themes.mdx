@@ -66,7 +66,73 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --bs-body-bg: hex/rgb(a);  // Background color for pages  
 --body-text-color: hex/rgb(a);   
 --btn-icon-filter: invert(1) grayscale(%) brightness(%));  // Any filter chain. Useful mainly for dark themes
---primary-color-scrollbar: hex/rgb(a); 
+```
+
+### Elevation System
+You can find more information about Elevation [here](https://m2.material.io/design/color/dark-theme.html#properties).
+
+```css
+--elevation-layer0: rgba;
+--elevation-layer1: rgba;
+--elevation-layer2: rgba;
+--elevation-layer3: rgba;
+--elevation-layer4: rgba;
+--elevation-layer5: rgba;
+--elevation-layer6: rgba;
+--elevation-layer7: rgba;
+--elevation-layer8: rgba;
+--elevation-layer9: rgba;
+--elevation-layer10: rgba;
+
+--elevation-layer0-dark: rgba;
+--elevation-layer1-dark: rgba;
+--elevation-layer2-dark: rgba;
+--elevation-layer3-dark: rgba;
+--elevation-layer4-dark: rgba;
+--elevation-layer5-dark: rgba;
+--elevation-layer6-dark: rgba;
+--elevation-layer7-dark: rgba;
+--elevation-layer8-dark: rgba;
+--elevation-layer9-dark: rgba;
+--elevation-layer10-dark: rgba;
+--elevation-layer11-dark: rgba;
+
+--elevation-layer0-dark-solid: hex/rgb;
+--elevation-layer1-dark-solid: hex/rgb;
+--elevation-layer2-dark-solid: hex/rgb;
+--elevation-layer3-dark-solid: hex/rgb;
+--elevation-layer4-dark-solid: hex/rgb;
+--elevation-layer5-dark-solid: hex/rgb;
+--elevation-layer6-dark-solid: hex/rgb;
+--elevation-layer7-dark-solid: hex/rgb;
+--elevation-layer8-dark-solid: hex/rgb;
+--elevation-layer9-dark-solid: hex/rgb;
+```
+
+#### Colorscape
+Theming colors that performs a gradient for background. Can be disabled else automatically applied based on cover image colors.
+`--colorscape-primary-color` and the alpha variants will be updated in real time. the default variant is fixed and represents the default state and should 
+match the non-default/alpha on launch.
+```css
+--colorscape-enabled: true/false;
+
+/* These are the default background colors for the app. These will be updated on different pages with the generated colors. Must be RGB */
+--colorscape-primary-color: rgb;
+--colorscape-lighter-color: rgb;
+--colorscape-darker-color: rgb;
+--colorscape-complementary-color: rgb;
+
+/* These need to be an alpha 0 variant. */
+--colorscape-primary-color: rgba;
+--colorscape-lighter-color: rgba;
+--colorscape-darker-color: rgba;
+--colorscape-complementary-color: rgba;
+
+/* These are the default background colors. They need to match and cannot be a var reference. They will not be updated. */
+--colorscape-primary-default-color: rgb;
+--colorscape-lighter-default-color: rgb;
+--colorscape-darker-default-color: rgb;
+--colorscape-complementary-default-color: rgb;
 ```
 
 #### Global
@@ -81,7 +147,28 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --grid-breakpoints-xl: px;  
 --body-font-family: "Font-Family", sans-serif;  
 --brand-font-family: "Font-Family", sans-serif;  
---text-muted-color: hex/rgb(a);
+--primary-color-scrollbar: hex/rgb(a); 
+--default-state-scrollbar: hex/rgb(a); 
+--text-muted-color: hex/rgb(a); 
+--mobile-series-img-background: true/false; // Should we render the series cover as background on mobile
+```
+
+#### Setting Item
+```css
+--setting-header-text-color: hex/rgb(a);    
+--setting-break-color: hex/rgb(a);  
+--setting-header-font-size: px/rem;  
+--setting-header-font-weight: bold/bolder;  
+```
+
+#### Table
+```css
+--table-header-bg-color: hex/rgb(a);
+--table-header-text-color: hex/rgb(a);
+--table-body-bg-color: hex/rgb(a);
+--table-body-text-color: hex/rgb(a);
+--table-body-striped-bg-color: hex/rgb(a);
+--table-body-border: hex/rgb(a);
 ```
   
 #### Navbar
@@ -90,6 +177,8 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --navbar-text-color: hex/rgb(a);  
 --navbar-fa-icon-color: hex/rgb(a);  
 --navbar-btn-hover-outline-color: hex/rgb(a);  
+--nav-mobile-offset: px;
+--nav-offset: px;
 ```
 
 #### Inputs
@@ -111,6 +200,33 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --btn-primary-hover-text-color: hex/rgb(a);  
 --btn-primary-hover-bg-color: hex/rgb(a);  
 --btn-primary-hover-border-color: hex/rgb(a);  
+
+ --btn-primary-outline-text-color: hex/rgb(a);
+--btn-primary-outline-bg-color: hex/rgb(a);
+--btn-primary-outline-border-color: hex/rgb(a);
+--btn-primary-outline-hover-text-color: hex/rgb(a);
+--btn-primary-outline-hover-bg-color: hex/rgb(a);
+--btn-primary-outline-hover-border-color: hex/rgb(a);
+
+--btn-secondary-text-color: hex/rgb(a);
+--btn-secondary-bg-color: hex/rgb(a);
+--btn-secondary-border-color: hex/rgb(a);
+--btn-secondary-hover-bg-color: hex/rgb(a);
+--btn-secondary-hover-border-color: hex/rgb(a);
+--btn-secondary-font-weight: bold/bolder;
+
+--btn-secondary-outline-text-color: hex/rgb(a);
+--btn-secondary-outline-bg-color: hex/rgb(a);
+--btn-secondary-outline-border-color: hex/rgb(a);
+--btn-secondary-outline-hover-bg-color: hex/rgb(a);
+--btn-secondary-outline-hover-border-color: hex/rgb(a);
+--btn-secondary-outline-font-weight: bold/bolder;
+
+
+--btn-primary-text-text-color: hex/rgb(a);
+--btn-secondary-text-text-color: hex/rgb(a);
+--btn-danger-text-text-color: hex/rgb(a);
+
 --btn-alt-bg-color: hex/rgb(a);  
 --btn-alt-border-color: hex/rgb(a);  
 --btn-alt-hover-bg-color: hex/rgb(a);  
@@ -121,11 +237,6 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --btn-disabled-text-color: hex/rgb(a);  
 --btn-disabled-border-color: hex/rgb(a);  
 --btn-focus-boxshadow-color: hex/rgb(a);  
---btn-alt-focus-boxshadow-color: hex/rgb(a);  
---btn-fa-icon-color: hex/rgb(a);  
---btn-disabled-bg-color: hex/rgb(a);  
---btn-disabled-text-color: hex/rgb(a);  
---btn-disabled-border-color: hex/rgb(a);  
 ```
 
 #### Nav (Tabs)
@@ -154,6 +265,17 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --nav-link-text-color: hex/rgb(a);  
 ```
 
+#### Modal
+```css
+--modal-bg-color: hex/rgb(a);  
+```
+
+#### Alerts
+```css
+--alert-text-color: hex/rgb(a);  
+--alert-bg-color: hex/rgb(a);  
+```
+
 #### Header
 ```css
 --nav-header-text-color: hex/rgb(a);  
@@ -168,7 +290,7 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --toast-warning-bg-color: hex/rgb(a);  
 ```
 
-#### Checkboxes
+#### Checkboxes/Switch
 ```css
 --checkbox-checked-bg-color: hex/rgb(a);  
 --checkbox-border-color: hex/rgb(a);  
@@ -207,6 +329,8 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --side-nav-item-active-text-color: hex/rgb(a);  
 --side-nav-active-bg-color: hex/rgb(a);  
 --side-nav-overlay-color: hex/rgb(a);  
+--side-nav-item-closed-color: hex/rgb(a);
+--side-nav-item-closed-hover-color: hex/rgb(a);
 ```
 
 #### List items
@@ -217,6 +341,21 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --list-group-hover-text-color: hex/rgb(a);  
 --list-group-hover-bg-color: hex/rgb(a);  
 --list-group-active-border-color: hex/rgb(a);
+--list-group-item-text-color: hex/rgb(a);
+--list-group-item-bg-color: hex/rgb(a);
+--search-list-group-item-bg-color: hex/rgb(a);
+--list-group-hover-text-color: hex/rgb(a);
+--list-group-hover-bg-color: hex/rgb(a);
+--list-group-active-border-color: hex/rgb(a)/none;
+--list-group-item-border-top-left-radius: px;
+--list-group-item-border-top-right-radius: px;
+--list-group-item-border-bottom-left-radius: px;
+--list-group-item-border-bottom-right-radius: px;
+--list-group-item-border-width: px;
+--list-group-item-border-color: rgba;
+--list-group-item-border-style: solid;
+--list-group-item-first-border-width: px;
+--list-group-item-last-border-width: px;
 ```
 
 #### Popover
@@ -281,6 +420,7 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 #### Rating star
 ```css
 --ratingstar-color: hex/rgb(a);  
+--rating-star-color: hex/rgb(a);  
 --ratingstar-star-empty: hex/rgb(a);  
 --ratingstar-star-filled: hex/rgb(a);  
 ```
@@ -357,6 +497,7 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 ```css
 --bulk-selection-highlight-text-color: hex/rgb(a);
 --bulk-selection-text-color: hex/rgb(a);
+--bulk-selection-bg-color: hex/rgb(a);
 ```
 
 #### Card List Item
