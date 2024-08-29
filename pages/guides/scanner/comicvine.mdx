@@ -6,3 +6,24 @@ import { Callout } from 'nextra-theme-docs'
 <Callout type="info">
 	 This page is under development
 </Callout>
+
+Comic Vine library type is built around comic users that use Mylar. This library type is much more strictly aligned and matches the stucture the CBL project uses. 
+
+```
+Library Root
+  ┖── Series Name (Starting Volume Year)
+      ┠── Series Name (Vol Year) #01.cbz
+      ┠── Series Name (Vol Year) #02.cbz
+      ┠── Series Name (Vol Year) #03.cbz
+  ┖── Series Name 2 (Starting Volume Year)
+      ┠── Series Name 2 #01.cbz
+      ┠── Series Name 2 #02.cbz
+      ⋮
+      ┖── Series Name 2 #06.cbz
+```
+
+Rules:
+- Kavita will first parse the Volume and Series from the folder name. The expected format is `Series (Volume Year)`
+- If there is a ComicInfo, Kavita will override with `Series (Volume)`. It is expected that the Volume is the year and not a single number (however this will still work)
+- If there is bad information from both, Kavita will attempt to parse information for each directory from the file to the library root. 
+- Kavita will still attempt to classify specials by filename (subject to change) and Format. 
