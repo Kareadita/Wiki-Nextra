@@ -68,6 +68,9 @@ server {
 
 ## Adding in Organizr iframe support
 
+Add the following line under `config/appsetting.json`.
+* `"AllowIFraming": true`
+
 Add the following two lines under `location /` and set the FQDN of your Organizr correctly.
 
 * `proxy_hide_header "Content-Security-Policy";`
