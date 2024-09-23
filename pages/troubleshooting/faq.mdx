@@ -97,3 +97,22 @@ rclone mount [your mount name]: [local path to be mounted] \
     --attr-timeout 20s \
     --vfs-cache-mode full
 ```
+
+#### Q. I'm running on Docker, how can I increase `inotify` limits?
+A. You need to increase your underlying OS limit. Please be careful as this consumes more resources.
+To check your current limits:
+
+```
+cat /proc/sys/fs/inotify/max_user_watches
+```
+Increase the limit (e.g., to 524288):
+```
+sudo sysctl fs.inotify.max_user_watches=524288
+```
+Make it persistent across reboots by adding this line to `/etc/sysctl.conf`:
+```
+fs.inotify.max_user_watches=524288
+```
+
+
+
