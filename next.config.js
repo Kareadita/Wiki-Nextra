@@ -1,7 +1,7 @@
 const withNextra = require('nextra')({
-	theme: 'nextra-theme-docs',
-	themeConfig: './theme.config.tsx',
-})
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
+});
 
 const isProduction = process.env.NODE_ENV === "production";
 const assetPrefix = isProduction ? "/wiki" : "";
@@ -16,4 +16,23 @@ const nextConfig = {
   output: "export",
 };
 
-module.exports = nextConfig,
+module.exports = {
+  ...withNextra(),
+  images: {
+    unoptimized: true,
+  },
+  redirects() {
+    return [
+      {
+        destination: '/installation/getting-started',
+        permanent: true,
+        source: '/installation',
+      },
+      {
+        destination: '/moved',
+        permanent: true,
+        source: '/en/:path*',
+      }
+    ]
+  },
+};
