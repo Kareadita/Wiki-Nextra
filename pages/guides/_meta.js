@@ -1,4 +1,4 @@
-{
+export default {
 	"admin-settings": "Admin Settings",
 	"user-settings": "User Settings",
 	"updating": "Updating",

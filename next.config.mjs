@@ -1,4 +1,6 @@
-const withNextra = require('nextra')({
+import nextra from 'nextra'
+
+const withNextra = nextra({
 	theme: 'nextra-theme-docs',
 	themeConfig: './theme.config.tsx',
 })
@@ -16,23 +18,22 @@ const nextConfig = {
   output: "export",
 };
 
-module.exports = {
-	...withNextra(),
+export default withNextra({
 	images: {
-    unoptimized: true,
-	},
-	async redirects() {
-		return [
-			{
-				destination: '/installation/getting-started',
-				permanent: true,
-				source: '/installation',
-			},
-			{
-				destination: '/moved',
-				permanent: true,
-				source: '/en/:path*',
-			}
-		]
-	},
-}
+		unoptimized: true,
+		},
+		async redirects() {
+			return [
+				{
+					destination: '/installation/getting-started',
+					permanent: true,
+					source: '/installation',
+				},
+				{
+					destination: '/moved',
+					permanent: true,
+					source: '/en/:path*',
+				}
+			]
+		}
+})

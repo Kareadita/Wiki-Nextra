@@ -1,4 +1,4 @@
-{
+export default {
 	"general": "General",
 	"users": "Users",
 	"libraries": "Libraries",

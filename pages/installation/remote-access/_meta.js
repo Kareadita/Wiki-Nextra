@@ -1,4 +1,4 @@
-{
+export default {
 	"apache2-example": "Apache2 Example",
 	"caddy-example": "Caddy Example",
 	"haproxy-example": "HAProxy Example",

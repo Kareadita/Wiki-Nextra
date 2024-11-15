@@ -1,4 +1,4 @@
-{
+export default {
 	"bookmarks": "Bookmarks",
 	"customization": "Customization",
 	"collections": "Collections",
