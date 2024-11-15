@@ -78,10 +78,17 @@ Some books belong together, like in the example, Harry Potter. Sure, we can have
 In order for Kavita to show a Specials tab for a series, the following conditions must be met:
 
 1. The filename MUST contain the SP markers (SP01, SP02, etc)
-2. The internal metadata must have the `calibre:series` tag set to the Series it should be included in and a `calibre:series_index` of `0`
+2. The internal metadata must have the `calibre:series` tag set to the Series it should be included in and a `calibre:series_index` of `100000`
 3. The title tag must be set with the title of the Special
 ```
 <meta name="calibre:series">Harry Potter</meta>
-<meta name="calibre:series_index">0</meta>
+<meta name="calibre:series_index">100000</meta>
 <dc:title>Harry Potter: A day in the life</dc:title>
+```
+
+Likewise, you can use Epub3 tags:
+```
+<dc:title id="id">Special Title Here</dc:title>
+<meta property="belongs-to-collection" id="id-5">Harry Potter</meta>
+<meta refines="#id-5" property="group-position">100000</meta>
 ```
