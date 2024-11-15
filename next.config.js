@@ -16,23 +16,20 @@ const nextConfig = {
   output: "export",
 };
 
-module.exports = {
-	...withNextra(),
-	images: {
-    unoptimized: true,
-	},
-	async redirects() {
-		return [
-			{
-				destination: '/installation/getting-started',
-				permanent: true,
-				source: '/installation',
-			},
-			{
-				destination: '/moved',
-				permanent: true,
-				source: '/en/:path*',
-			}
-		]
-	},
+module.exports = nextConfig,
+	
+async redirects() {
+	return [
+		{
+			destination: '/installation/getting-started',
+			permanent: true,
+			source: '/installation',
+		},
+		{
+			destination: '/moved',
+			permanent: true,
+			source: '/en/:path*',
+		}
+	]
+},
 }
