@@ -64,7 +64,9 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline
+      - name: Clean build cache
+        run: npm run clean
       - name: Build with Next.js
         run: npm run build
       - name: Upload artifact
