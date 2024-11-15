@@ -10,7 +10,7 @@ export default function AppPreview() {
 	// ! NOTE: There is a chance that 'system' will pop up first, only then resolving to
 	// ! either 'dark' or 'light'. I don't see this as much of an issue, TBH.
 	useEffect(() => {
-		let imageUrl = 'homepage-light.png'
+		let imageUrl = 'homepage-light2.png'
 		if (resolvedTheme == 'dark') {
 			imageUrl = 'homepage-dark2.png'
 		}
@@ -19,6 +19,10 @@ export default function AppPreview() {
 		image.src = `/${imageUrl}`
 	}, [resolvedTheme])
 
+	const backgroundImageClass = resolvedTheme === 'dark'
+		? "dark:bg-[url('/homepage-dark2.png')]"
+		: "bg-[url('/homepage-light2.png')]";
+
 	return (
 		<div className="relative -mt-7 h-[432px] w-full sm:p-0 lg:h-[700px]">
 			<div className="relative h-full">
@@ -26,7 +30,7 @@ export default function AppPreview() {
 					initial={{ opacity: 0, scale: 0.75 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ delay: 0.5, duration: 1 }}
-					className="z-40 flex h-full flex-1 self-center bg-[url('/homepage-dark2.png')] bg-contain bg-[center_top] bg-no-repeat dark:bg-[url('/homepage-dark2.png')] sm:w-auto"
+					className={`z-40 flex h-full flex-1 self-center bg-contain bg-[center_top] bg-no-repeat ${backgroundImageClass} sm:w-auto`}
 				/>
 			</div>
 		</div>
