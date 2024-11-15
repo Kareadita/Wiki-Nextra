@@ -14,21 +14,4 @@ export default withNextra({
 	assetPrefix,
 	basePath: assetPrefix,
 	output: "export",
-	images: {
-		unoptimized: true,
-		},
-		async redirects() {
-			return [
-				{
-					destination: '/installation/getting-started',
-					permanent: true,
-					source: '/installation',
-				},
-				{
-					destination: '/moved',
-					permanent: true,
-					source: '/en/:path*',
-				}
-			]
-		}
 })
