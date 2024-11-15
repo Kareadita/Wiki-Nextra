@@ -17,19 +17,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig,
-	
-async redirects() {
-	return [
-		{
-			destination: '/installation/getting-started',
-			permanent: true,
-			source: '/installation',
-		},
-		{
-			destination: '/moved',
-			permanent: true,
-			source: '/en/:path*',
-		}
-	]
-},
 }
