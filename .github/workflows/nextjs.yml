@@ -63,6 +63,8 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Debug Information
+        run: pwd
       - name: Install dependencies
         run: npm ci --prefer-offline
       - name: Build with Next.js
