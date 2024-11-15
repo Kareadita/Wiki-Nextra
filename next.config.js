@@ -8,6 +8,7 @@ const assetPrefix = isProduction ? "/wiki" : "";
 
 const nextConfig = {
   reactStrictMode: true,
+  outputFileTracing: true,
   swcMinify: true,
   trailingSlash: true,
   assetPrefix,
