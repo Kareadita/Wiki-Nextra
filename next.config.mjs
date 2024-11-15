@@ -14,4 +14,7 @@ export default withNextra({
 	assetPrefix,
 	basePath: assetPrefix,
 	output: "export",
+	images: {
+		unoptimized: true,
+	},
 })
