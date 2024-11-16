@@ -39,17 +39,13 @@ jobs:
           node-version: "20"
           cache: "npm"
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         with:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-      - name: Debug Information
-        run: pwd
-      - name: Debug Part 2
-        run: ls
       - name: Install dependencies
         run: npm ci --prefer-offline
       - name: Build with Next.js
