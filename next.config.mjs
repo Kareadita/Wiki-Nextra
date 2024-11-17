@@ -13,8 +13,4 @@ export default withNextra({
 	trailingSlash: true,
 	assetPrefix,
 	basePath: assetPrefix,
-	output: "export",
-	images: {
-		unoptimized: true,
-	},
 })
