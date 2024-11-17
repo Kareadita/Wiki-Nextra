@@ -1,4 +1,4 @@
-{
+export default {
 	"aidoku": "Aidoku",
 	"cdisplayex": "CDisplayEX",
 	"mylar": "Mylar",

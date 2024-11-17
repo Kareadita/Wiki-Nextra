@@ -1,4 +1,4 @@
-{
+export default {
 	"updating-docker":{
         "title": "Updating Docker",
         "theme": {

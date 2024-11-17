@@ -1,4 +1,4 @@
-{
+export default {
 	"demo": {
 		"title": "Demo",
 		"href": "https://demo.kavitareader.com/login?apiKey=9003cf99-9213-4206-a787-af2fe4cc5f1f",

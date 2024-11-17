@@ -1,4 +1,4 @@
-{
+export default {
 	"account": "Account",
 	"preferences": "Preferences",
 	"3rdpartycilents": "3rd Party Clients",
