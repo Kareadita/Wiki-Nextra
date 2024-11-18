@@ -12,15 +12,18 @@ export default function AppPreview() {
 		}
 	}, [resolvedTheme, systemTheme]);
 
+	// Don't forget to add to tailwind.config.js
 	const getRandomImageClass = (theme) => {
 		const darkClasses = [
 			'bg-dark2', 'bg-dark3', 'bg-dark4', 'bg-dark5',
 			'bg-dark6', 'bg-dark7', 'bg-dark8', 'bg-dark9',
+			'bg-dark10', 'bg-dark11'
 		];
 		const lightClasses = [
 			'bg-light2', 'bg-light3', 'bg-light4', 'bg-light5',
 			'bg-light6', 'bg-light7', 'bg-light8', 'bg-light9',
 			'bg-light10', 'bg-light11', 'bg-light12', 'bg-light13',
+			'bg-light14', 'bg-light15'
 		];
 
 		const classes = theme === 'dark' ? darkClasses : lightClasses;
