@@ -12,7 +12,7 @@ export default withNextra({
 	reactStrictMode: true,
 	trailingSlash: true,
 //	assetPrefix,
-	basePath: '/wiki',
+	basePath: '',
 	output: "export",
 	images: {
 		unoptimized: true,
