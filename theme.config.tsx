@@ -45,7 +45,7 @@ export default {
 			<meta property="og:description" content="Lightning fast with a slick design, Kavita is a rocket fueled self-hosted digital library which supports a vast array of file formats." />
 			<meta property="og:url" content="https://wiki.kavitareader.com/" />
 			<meta property="og:type" content="website" />
-			<meta property="og:image" content="https://raw.githubusercontent.com/Kareadita/Wiki-Nextra/main/public/homepage-dark.webp" />
+			<meta property="og:image" content="https://raw.githubusercontent.com/Kareadita/Wiki-Nextra/main/public/homepage-dark3.png" />
 			<meta property="og:image:alt" content="Kavita Wiki" />
 			<meta property="og:image:type" content="image/webp" />
 			<meta property="og:image:width" content="1332" />

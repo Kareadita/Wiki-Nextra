@@ -1,27 +1,37 @@
-import { motion } from 'framer-motion'
-import { useTheme } from 'nextra-theme-docs'
-import { useEffect } from 'react'
+import { useEffect, useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 export default function AppPreview() {
-	const { resolvedTheme } = useTheme()
+	const { resolvedTheme, systemTheme } = useTheme();
+	const [isThemeResolved, setIsThemeResolved] = useState(false);
 
-	//* This is a workaround to preload the other image in the background so if a user
-	//* switches themes, the image will already be loaded and there won't be a stutter.
-	// ! NOTE: There is a chance that 'system' will pop up first, only then resolving to
-	// ! either 'dark' or 'light'. I don't see this as much of an issue, TBH.
 	useEffect(() => {
-		let imageUrl = 'homepage-light2.png'
-		if (resolvedTheme == 'dark') {
-			imageUrl = 'homepage-dark2.png'
+		if (resolvedTheme || systemTheme) {
+			setIsThemeResolved(true);
 		}
+	}, [resolvedTheme, systemTheme]);
 
-		const image = new Image()
-		image.src = `/${imageUrl}`
-	}, [resolvedTheme])
+	const getRandomImageClass = (theme) => {
+		const darkClasses = [
+			'bg-dark2', 'bg-dark3', 'bg-dark4', 'bg-dark5',
+			'bg-dark6', 'bg-dark7', 'bg-dark8', 'bg-dark9',
+		];
+		const lightClasses = [
+			'bg-light2', 'bg-light3', 'bg-light4', 'bg-light5',
+			'bg-light6', 'bg-light7', 'bg-light8', 'bg-light9',
+			'bg-light10', 'bg-light11', 'bg-light12', 'bg-light13',
+		];
 
-	const backgroundImageClass = resolvedTheme === 'dark'
-		? "dark:bg-[url('/homepage-dark2.png')]"
-		: "bg-[url('/homepage-light2.png')]";
+		const classes = theme === 'dark' ? darkClasses : lightClasses;
+		return classes[Math.floor(Math.random() * classes.length)];
+	};
+
+	const backgroundImageClass = useMemo(() => getRandomImageClass(resolvedTheme), [resolvedTheme]);
+
+	if (!isThemeResolved) {
+		return <div className="h-[432px] lg:h-[700px]" />;
+	}
 
 	return (
 		<div className="relative -mt-7 h-[432px] w-full sm:p-0 lg:h-[700px]">
@@ -34,5 +44,5 @@ export default function AppPreview() {
 				/>
 			</div>
 		</div>
-	)
+	);
 }
