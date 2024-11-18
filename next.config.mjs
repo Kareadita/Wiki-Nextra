@@ -5,14 +5,14 @@ const withNextra = nextra({
 	themeConfig: './theme.config.tsx',
 })
 
-const isProduction = process.env.NODE_ENV === "production";
-const assetPrefix = isProduction ? "/wiki" : "";
+//const isProduction = process.env.NODE_ENV === "production";
+//const assetPrefix = isProduction ? "/wiki" : "";
 
 export default withNextra({
 	reactStrictMode: true,
 	trailingSlash: true,
-	assetPrefix,
-	basePath: assetPrefix,
+//	assetPrefix,
+	basePath: '/wiki',
 	output: "export",
 	images: {
 		unoptimized: true,
