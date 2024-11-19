@@ -31,7 +31,7 @@ A. There are 2 things to keep in mind. If the underlying file Created/LastModifi
 #### Q. How exactly does Estimated Reading Time work?
 A. Kavita calculates the reading time using two different methods. The calculated reading time may not always reflect the actual reading time but should be sufficient in providing a general sense of how long it will take to read or finish off a series. Note: Kavita uses characters instead of words to account for languages that don't have spaces, with the assumption of 5 characters per word. 
 - For items where we can count words (epub), we use a spread of 10,260 to 30,000 words per hour to calculate min, max, and average. 
-- For files that don't have countable words, we use a spread of 2.75 to 3.33 minutes per page. This works in most cases but might fail for files webtoons, which have a long strip format.
+- For files that don't have countable words, we use a spread of 2.75 to 3.33 pages per minute. This works in most cases but might fail for files webtoons, which have a long strip format.
 
 #### Q. Does Kavita collect any data on me?
 A. By default, Kavita will collect stats on your installation. This will run after 24 hours to give you time to opt-out. You can opt-out at any time by turning off "Send Data" from the Admin Dashboard. All data is anonymized and contains no information about your filenames or IP. The Kavita team actively uses this data to help design the UX and plan enhancements. If you choose to remain opted-in, thank you. It helps in the design and planning effort. You can view the code at any time [here](https://github.com/Kareadita/KavitaStats). Here is a [record](https://github.com/Kareadita/KavitaStats/blob/main/KavitaStats/Entities/StatRecord.cs) from our stats database:
