@@ -22,7 +22,7 @@ For all types of libraries, Kavita has an override for treating files as Special
 
 ## Specials
 
-Kavita treats multiple types of files as "Specials" and will group them in a separate tab in series detail. Special marker (SP) will be removed from the UI title, however is used when ordering.
+Kavita treats multiple types of files as "Specials" and will group them in a separate tab in series detail. Special marker (SP) will be removed from the UI title, however is used when ordering and is required if not using internal metadata.
 
 An entity is considered a special when a series can be parsed out of it, but no volume or chapter information is found:
 
@@ -41,14 +41,6 @@ Library Root
       ┖── Series Name SP01 Special Name.cbz
 ```
 
-Other keywords that are used to mark as special are `Specials`, `Omake`, `OneShot`, `Extra`, `Art Collection`, `Side Stories`:
-
-```
-Library Root
-  ┖── Series Name
-      ┖── Specials
-          ┖── Series Name Omakes SP01.cbz
-```
 
 For it to identify as a special and not as the series from the filename, it will look up towards the library root and attempt to parse the series name from the folder names.<br/>
 For example:
