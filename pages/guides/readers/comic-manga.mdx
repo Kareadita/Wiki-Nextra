@@ -10,19 +10,65 @@ import webtoonPrevImage from '../../../public/guides/readers/image-reader/webtoo
 
 ## Comic/Manga/Image Reader
 
-This reader is aimed towards the consumption of image-based content. 
+This reader is aimed towards the consumption of image-based content.
+
+## Simple Controls
+<Image
+    src={menuImage}
+    alt="picture"
+    width={300}
+    height={250}
+/>
+
+1. Previous Chapter - Moves to the previous chapter/issue/book in reading order (if within a reading list, respects order)
+2. Go to page 1
+3. Progress bar - Drag to find a page, click to jump (or use `G` on PC to open jump to page modal)
+4. Go to last page
+5. Next Chapter - Moves to the next chapter/issue/book in reading order
+6. Shortcut Keys - For PC users, some keys are available for quicker reading
+7. Bookmark Page - Saves an image of the page to view later. You can also double tap/click the image
+
 
 ## Menu Controls
-    <Image
-      src={menuImage}
-      alt="picture"
-      width={300} 
-      height={250}
-    />
-
     <Image
       src={extendedMenuImage}
       alt="picture"
       width={300} 
       height={250}
     />
+
+1. **Reading Direction** - Switch where the pagination area renders.
+  - Left to Right
+  - Right to Left
+2. **Pagination Layout**
+  - Right is forward, Left is backwards
+  - Down is forward, Up is backwards
+  - Infinite Scroll/Webtoon mode
+3. **Fullscreen**
+  - When in fullscreen you cannot zoom
+4. **Extended Settings Menu**
+  - Opens the extended settings drawer
+5. **Image Splitting** (for images that are 2 images stitched together)
+  - Fit to Screen - Try to clamp the image to the render space
+  - Right to Left - Split the image and render the right side first, then the left side as a "virtual" page
+  - Left to Right - Split the image and render the left side first, then the right side as a "virtual" page
+  - No Split - Don't split
+6. **Image Scaling** - How Kavita caps the height/width to the render space
+  - Height - cap at 100% height
+  - Width - cap at 100% width
+  - Original - render it as it is
+7. **Layout Mode** - How the images layout
+  - Single - 1 image at a time
+  - Double - 2 images side by side
+  - Double (Manga) - 2 images side by side, oriented around Manga's reading style
+8. **Auto Close Menu** - close the menu automatically after a timeout without interaction
+9. **Emulate Comic Book** - Render a spine shadow to make it feel more like a double page.
+10. **Swipe Enabled** - Enables the ability to swipe left/right to trigger pagination instead of tapping
+11. **Brightness** - Override the brightness
+12. **Width Override** - Override the width scaling to a custom amount (works on all modes)
+
+## Saving settings
+
+You can use the Save Globally button to save all but the following to your user profile:
+* Width override
+* Brightness
