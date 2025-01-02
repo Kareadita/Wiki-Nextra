@@ -1,15 +1,15 @@
-import { Callout } from 'nextra/components'
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
+import YouTube from '/components/YouTube'
 
 <Callout type="info">
-While we recognize that most people want to access their system remotely, we do not provide an avenue for support. Any issues based around remote access should be brought up with the devs/support group of the remote access tool used. 
+While we recognize that most people want to access their system remotely, we do not provide support for any remote access tools. Any issues based around remote access should be brought up with the devs/support group of the remote access tool used. 
 </Callout>
 
 These are the recommended ways:
 
-|     Name      | Public Access | Requires external software | Notes                       |
+|     Name      | Public Access | Requires app on users device? | Notes                    |
 |:-------------:|:-------------:|:--------------------------:|-----------------------------|
-|      VPN      |      No       |            Yes             | Recommended for single user |
+|      VPN      |      No       |            Yes             | Recommended for one or two users |
 | Reverse Proxy |      Yes      |             No             | Recommened for multiuser    |
 
 <Tabs items={['Reverse Proxy', 'VPN']}>
@@ -19,13 +19,11 @@ These are the recommended ways:
 
 A Reverse Proxy allows you to share web-based services, like Kavita, outside your home network through the upload bandwidth of your home internet connection.
 
-This can be accomplished in several ways including a purchased domain name, a free domain name service such as [NoIP.com](https://www.noip.com/), etc in combination with some form of Dynamic DNS.
+This can be accomplished in several ways including a purchased domain name, a free domain name service such as [NoIP.com](https://www.noip.com/) (or others like it) in combination with some form of Dynamic DNS.
 
-We will not cover how to achieve this here, but we will provide resources and examples of common Reverse Proxy configuration files.
+All the example configurations listed here are user submitted. If you would like to contribute your working Reverse Proxy config please join us in [Discord](https://discord.gg/b52wT37kt7) to discuss. 
 
-If you would like to contribute your working Reverse Proxy config please join us in [Discord](https://discord.gg/b52wT37kt7) to discuss. 
-
-### Config Example
+### Config Examples
 
 * [Apache2 Example](remote-access/apache2-example)
 * [Caddy Example](remote-access/caddy-example)
@@ -37,16 +35,18 @@ If you would like to contribute your working Reverse Proxy config please join us
 </Tabs.Tab>
 <Tabs.Tab>
 # VPN
-If you plan to host your Kavita for yourself and don't want to have public access to your server you should set up a VPN. 
 
-Users usually recommend using [Zerotier](https://www.zerotier.com/) for this purpose. It's a free easy to setup VPN. Which doesn't require any technical skill.
+<Callout type="info">
+  It is important to note that when we say VPN here we do not mean commerical VPN services like NordVPN, ExpressVPN, etc. We are talking about a private VPN tool like Tailscale or running your own VPN server.
+</Callout>
 
-To set up:
-- Create an account on the main page and create a network
-- Install the app on both the server and any device you wish to use
-- Join the created network on your devices
-- Authorize the devices in the network main panel
-- Connect to your apps using the new tailscale IP address
-----
+Using a private VPN tool like Tailscale has the benefit of not requiring any port forwarding, and it's more secure than exposing your server to the internet. If you plan to host your Kavita for just yourself or 1-2 other people and don't want to have public access to your server, you should use a VPN. 
+
+I recommend using [Tailscale](https://tailscale.com/) for this purpose. It's a free, easy to setup VPN which doesn't require any technical skill.
+
+Watch the video to see how to setup Tailscale on your server:
+
+<YouTube id="sPdvyR7bLqI"/>
+
   </Tabs.Tab>
 </Tabs>

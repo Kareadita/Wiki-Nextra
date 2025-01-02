@@ -1,11 +1,12 @@
 export default {
 	"general": "General",
-	"users": "Users",
-	"libraries": "Libraries",
 	"media": "Media",
 	"email": "Email",
+	"users": "Users",
+	"libraries": "Libraries",
 	"tasks": "Tasks",
-	"statistics": "Statistics",
 	"system": "System",
+	"statistics": "Statistics",
+	"mediaissues": "Media Issues",
 	"kavita+": "Kavita+"
 }

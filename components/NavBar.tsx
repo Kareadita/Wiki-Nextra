@@ -11,7 +11,7 @@ const docLinks = [
 		newWindow: true,
 	},	*/
 	{
-		href: '/installation/getting-started',
+		href: '/getting-started',
 		route: 'installation',
 		title: 'Installation',
 		type: 'page',

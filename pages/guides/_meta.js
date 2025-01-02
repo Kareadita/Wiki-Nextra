@@ -9,6 +9,5 @@ export default {
 	"readers": "Readers",
 	"themes": "Custom Themes",
 	"scanner": "Library Scanner",
-	"opds": "OPDS",
 	"api": "API"
 }

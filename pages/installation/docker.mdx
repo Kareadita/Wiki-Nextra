@@ -1,47 +1,36 @@
-import { Callout } from 'nextra/components'
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs, Card, Cards } from 'nextra/components'
+import Image from 'next/image'
+import { SiDocker, SiLinuxserver, SiGithub } from '@icons-pack/react-simple-icons'
+
 
 # Docker
-
-There is a few options when it comes to docker images. Just note that LSIO doesn't offer ARMv7 support (32-bit Rasberry Pi's) or Nightly images. 
-
-| Method                          |                                Description                                  | Notes                                                                      | 
-| ------------------------------- | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------:| 
-| [LinuxServer.io](https://hub.docker.com/r/linuxserver/kavita)                  |           Only offers stable versions. Please see LSIO's website for their own instructions on how to run the container. The rest of the options on this page won't apply here.|  No 32bit ARM support (armv7), no nightly testing branch |
-| [Kavita DockerHub](https://hub.docker.com/r/jvmilazz0/kavita)                | The primary dockerhub account for Kavita.  | Nightly Testing + official 32-bit ARM images |
-| [Github Container Registry](https://github.com/kareadita/Kavita/pkgs/container/kavita) |    Another option in case you don't want to use dockerhub.      | Nightly Testing + official 32-bit ARM images | 
+Kavita is officially published on 3 different container registries:
+<Cards>
+  <Cards.Card
+    title="LinuxServer.io"
+    icon={< SiLinuxserver />}
+    href="/installation/docker/lsio"
+  />
+    <Cards.Card
+    title="DockerHub"
+    icon={< SiDocker />}
+    href="/installation/docker/dockerhub"
+  />
+    <Cards.Card
+    title="Github Container Registry"
+    icon={< SiGithub />}
+    href="/installation/docker/github"
+  />
+</Cards>
 
 <Callout type="info">
-	Docker Compose is the recommended way to run containers. Only use `docker run` if you know what you are doing. 💪
+	Docker is a powerful tool, but many new users can find it confusing. If you're new to Docker, we recommend starting with the [Docker Overview](https://docs.docker.com/get-started/overview/) guide.
 </Callout>
 
-<Tabs items={['docker-compose.yml / Portainer Stacks', 'docker run']}>
-  <Tabs.Tab>
-  The contents of the compose file can be pasted directly into software like [Dockage](https://github.com/louislam/dockge) or [Portainer](https://www.portainer.io/). Otherwise, create the docker-compose.yml file in the folder you want to run it from and execute `docker compose up -d`
+The easist way to understand docker compose syntax is that anything on the left side of the colon is the host machine and anything on the right side is the container.
 
-<Callout type="warning">
-	This is just a template for setting up your docker compose file. Make sure to modify the folder paths to point to your own media. 
-</Callout>
+So `/volume1/storage/media/manga:/manga` means that the manga folder on your host machine is being mounted to the `/manga` folder inside the container.
 
-```yaml
-services:
-    kavita:
-        image: jvmilazz0/kavita:latest    # Using the stable branch from the official dockerhub repo.
-        container_name: kavita
-        volumes:
-            - ./manga:/manga            # Manga is just an example you can have the name you want. See the following
-            - ./comics:/comics          # Use as many as you want
-            - ./books:/books            #
-            - ./data:/kavita/config     # Change './data if you want to have the config files in a different place.
-                                        # /kavita/config must not be changed
-        environment:
-            - TZ=Your/Timezone
-        ports:
-            - "5000:5000" # Change the public port (the first 5000) if you have conflicts with other services
-        restart: unless-stopped
-```
-  </Tabs.Tab>
-  <Tabs.Tab>
 ```bash
 docker run --name kavita -p 5000:5000 \
 -v /your/manga/directory:/manga \
@@ -56,6 +45,3 @@ If you prefer bind mounts, you can swap out the two `--volume` lines with:
 ```bash
 --mount type=volume,source=/your/storage/path/kavita,target=/config \
 --mount type=volume,source=/your/storage/path/kavita,target=/data \
-```
-  </Tabs.Tab>
-</Tabs>

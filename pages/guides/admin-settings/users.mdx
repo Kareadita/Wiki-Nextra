@@ -13,27 +13,32 @@ From the Users Tab, admins can see the pending invites to their server and their
 
 Last Active will show the last timestamp that the user was seen online. If they are online right now there will be a green dot at the end of the timestamp. 
 
-If the user hasn't gone through the setup screen they will show as 'Pending'. Either they haven't opened the email sent (or didn't get it) or the admin hasn't set up the account manually.
+If the user hasn't gone through the setup screen they will show as 'Pending'. That means they haven't opened the email sent (or didn't get it) or the admin hasn't set up the account manually.
 
-Sharing: This will show all the libraries you have shared with that user. 
+Sharing: This will show all the libraries you have shared with that user. Admin users will see all libraries, regardless of sharing status.
 
 Roles will list out all the different permissions the user has. If the user is an admin it will just list "Admin", as admin users have all permissions possible and can't have roles restricted. 
 
-### Editing Users 
-![Edit](../../../public/guides/admin-settings/admin-settings-users-edit.png "Edit User Button")
-
-Clicking on the edit users button will bring up the same dialog used to create the user. See the [Roles](#roles) reference for what options are available to you.
-
-### Delete User
-![Delete](../../../public/guides/admin-settings/admin-settings-users-delete.png "Delete User Button")
-
+### Deleting a User
 <Callout type="error" emoji="️⚠️">
-  This action is irreversible and permanently deletes the user's data.  
+  This action is irreversible and permanently deletes the user's data. There is no "recycle bin" for users.
 </Callout>
+
+![Delete](../../../public/guides/admin-settings/admin-settings-users-delete.png "Delete User Button")
 
 This removes the user from the server. All the users saved preferences and bookmarks will also be deleted. 
 
 If you just want to prevent the user from logging in but still keep their account in the database, you can remove the [Login](#login) permission.
+
+### Editing a User
+![Edit](../../../public/guides/admin-settings/admin-settings-users-edit.png "Edit User Button")
+
+Clicking on the edit button will bring up the same dialog used to create the user. See the [Roles](#roles) reference for what options are available to you.
+
+### Change Password
+![Password](../../../public/guides/admin-settings/admin-settings-users-password.png "Edit User Button")
+
+Clicking on the edit button will bring up the same dialog used to create the user. See the [Roles](#roles) reference for what options are available to you.
 
 ### Resend Invite
 ![Resend](../../../public/guides/admin-settings/admin-settings-users-resend.png "Resend Invite Button")
@@ -91,7 +96,7 @@ Controls if the user is allowed to create bookmarks in their own profile. The re
 
 ### Change Restriction
 
-Controls if the user is allowed to change their content restrictions. 
+Controls if the user is allowed to change their content restrictions. Giving this permission to a user you are trying to enforce restrictions on is not recommended, as they could just change it to view everything.
 
 ### Login
 

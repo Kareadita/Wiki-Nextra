@@ -2,9 +2,7 @@
 title: NAS Installs
 ---
 
-import { Callout } from 'nextra/components'
-import { Steps } from 'nextra/components'
-import { Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs} from 'nextra/components'
 
 # NAS Appliances
 
@@ -16,17 +14,13 @@ While Kavita can be installed on most systems, you should still check with your 
 
 <Tabs items={['Unraid', 'Synology', 'QNAP', 'TrueNAS ']}>
   <Tabs.Tab>
-<Steps>
 
-### Step 1 - Installing for UnRAID
+#### Installing for UnRAID
  
-Search for Kavita in the Community Applications system. 
+1 - Search for Kavita in the Community Applications system. 
  
-### Step 2
- 
-Choose your port (5000 is the default), and path for data (Manga, comics, books) and library files.
+2 - Choose your port (5000 is the default), and path for data (Manga, comics, books) and library files.
 
-</Steps>
   </Tabs.Tab>
 <Tabs.Tab>
 #### Synology Install Steps
@@ -37,12 +31,12 @@ If your Synology is capable of running docker you can follow the guide written b
 </Tabs.Tab>
 
 <Tabs.Tab>
-## QNAP Install Steps
+#### QNAP Install Steps
 
 While the Kavita team does not own any QNAP devices, there does exist an image maintained by a third party.
 You can find it [here](https://www.forum-nas.fr/threads/kavita-net-apache80-0-5-1-1-a-fast-feature-rich-cross-platform-reading-server.16507/) 
 
-If your QNAP device is capable of running docker, users have reported that the standard [docker install](/installation/docker/install) works. This will enable you to stay up to date and even partake in nightly testing releases. 
+If your QNAP device is capable of running docker, users have reported that the standard [docker install](/installation/docker/) works. This will enable you to stay up to date and even partake in nightly testing releases. 
 
 </Tabs.Tab>
 <Tabs.Tab>

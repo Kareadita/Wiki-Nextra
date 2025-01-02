@@ -1,14 +1,16 @@
 import { Callout } from 'nextra/components'
 
-# General Tab 
+# Server Settings - General 
 
-![General](../../../public/guides/admin-settings/admin-settings-general.png "General Settings Page")
+## Networking Section
 
-## Host Name
+![Networking](../../../public/guides/admin-settings/admin-settings-general-networking.png "General Settings Page")
 
-If you are using a reverse proxy with Kavita, you can set this field so that Kavita uses your domain name. This will show up in the user's OPDS URL pages and any emails your server sends out if configured to do so. 
+### Host Name
 
-## Base URL
+If you are using a reverse proxy with Kavita, you can set this field so that Kavita uses your domain name. This will show up in the user's OPDS URL pages and any emails your server sends out, if configured to do so. 
+
+### Base URL
 
 <Callout type="info" emoji="ℹ️">
   This setting can not be changed if you are running the docker image as a non-root user. 
@@ -22,7 +24,13 @@ Use this if you want to host Kavita in a sub-folder. Most commonly used in sub-f
 Example: <br/>
 Setting the base URL to `/kavita/` would then make your URL to access the service: `http://[yourip]:[port]/kavita/`
 
-## Port
+### IP Address
+
+This is the IP address that Kavita will bind to. By default, Kavita will bind to all available IP addresses. If you want to bind to a specific IP address, you can set it here.
+
+This setting is disabled on Docker installations. You can control the IP address through the Docker run command or compose file if needed.
+
+### Port
 
 <Callout type="info" emoji="ℹ️">
   This setting can not be changed if you are running the docker image as a non-root user. 
@@ -32,59 +40,43 @@ Default: `5000`
 
 Changes to the port require a manual restart of the server to take. Docker users should configure the port through their compose file / run command instead of changing it within Kavita. 
 
-## Logging Level
+## System Section
+![System](../../../public/guides/admin-settings/admin-settings-general-system.png "System Section")
+
+### Days of Backups
+
+Default: `30` 
+
+The number of days worth of backups to maintain. The minimum is 1, maximum is 30.
+
+### Days of Logs
+
+Default: `30` 
+
+The number of days worth of logs to maintain. The minimum is 1, maximum is 30.
+
+### Logging Level
+For selecting the granularity of the logs. Most commonly used in helping diagnose problems or bugs.
 
 Default: `Information`
-
-For selecting the granularity of the logs. Most commonly used in helping diagnose problems or bugs.
 
 <Callout type="warning" emoji="⚠️">
   Changing this setting to `Debug` or higher can consume a large amount of disk space on an active server. Only change the log level if asked by support staff! 
 </Callout>
 
-## Days of Backups
-
-Default: `30` 
-
-The number of backups to maintain. The minimum is 1, maximum is 30.
-
-## Cache Size
+### Cache Size
 
 Default: `75`
 
 Amount of RAM to allocate for keeping heavily used API's in memory. Keep in mind that using dynamic filters has a higher chance of not getting cached due to the nature of how they work. 
 
-## On Deck Last Progress (days)
-
-Default: `30`
-
-The number of days since last the user has made any reading progress before removing the series from the `On Deck` section.
-
-This only applies to the built-in "On Deck" card. It will not apply to custom filters.
-
-## On Deck Last Chapter Add (days)
-
-Default: `7`
-
-An adjustable number of days before removing a series from "On Deck". Setting this to a higher value will prevent the series from falling off with inactivity. 
-
-## Anonymous Stats Collection
-
-By default, Kavita will collect anonymous usage data on your installation. This includes information on certain features used, number of files, OS version, Kavita install version, CPU, and memory. Stats collection will run after 24 hours in order to give you time to opt-out. 
-
-You can opt out at any time by turning off "Send Data" from the Admin Dashboard. All data is anonymized and contains **no information about your filenames or IP**.
-
-The Kavita team actively uses this data to help design the UX and plan enhancements. If you choose to remain opted-in, thank you. It helps in the design and planning effort. You can see exactly what data we collect [here](https://github.com/Kareadita/KavitaStats/blob/main/KavitaStats/Entities/StatRecord.cs).
-
-Check the [FAQ](https://wiki.kavitareader.com/en/faq#q-does-kavita-collect-any-data-on-me) to see an example of submitted data. 
-
-## Enable OPDS support
+### OPDS support
 
 Default: `Enabled`
 
-You can enable OPDS for your Server here. See this [page](https://wiki.kavitareader.com/en/guides/settings/opds) for how it works.
+System wide setting to turn on or off OPDS for the entire server. See this [page](../features/opds.mdx) for how it works.
 
-## Folder Watching
+### Folder Watching
 
 Default: `Disabled`
 
@@ -93,3 +85,35 @@ You can turn on or off the folder monitor system-wide here. Allows Kavita to mon
 <Callout type="info" emoji="ℹ️">
   The folder monitor only triggers once every 10 minutes before processing changes. That means changes won't be instant. 
 </Callout>
+
+### Allow Anonymous Usage Collection
+
+<Callout type="info" emoji="ℹ️">
+  The data collection task will only run after 24 hours has passed in order to give you time to opt-out.
+</Callout>
+
+By default, Kavita will collect anonymous usage data to help guide the development team into making decisions around features. This includes information on certain features used, number of files, OS version, Kavita install version, CPU, and memory.
+
+You can opt out at any time by turning off this setting. All data is anonymized and contains **no information about your filenames or IP**.
+
+The Kavita team actively uses this data to help design the UX and plan enhancements. If you choose to remain opted-in, **thank you** ❤. It greatly helps in the design and planning effort when trying to look for new features to add. You can see exactly what data we collect in the [source code](https://github.com/Kareadita/KavitaStats/tree/main/KavitaStats/Entities/V3).
+
+Check the [FAQ](../../troubleshooting/faq.mdx#q-does-kavita-collect-any-data-on-me) to see an example of submitted data. 
+
+
+## Customization Section
+![Customization](../../../public/guides/admin-settings/admin-settings-general-customization.png "System Section")
+
+### On Deck Last Progress (days)
+
+Default: `30`
+
+The number of days since last the user has made any reading progress before removing the series from the `On Deck` section.
+
+This only applies to the built-in "On Deck" card. It will not apply to custom filters.
+
+### On Deck Last Chapter Add (days)
+
+Default: `7`
+
+An adjustable number of days before removing a series from "On Deck". Setting this to a higher value will prevent the series from falling off with inactivity. 

@@ -1,0 +1,54 @@
+import { Callout } from 'nextra/components'
+
+# LinuxServer.io 
+
+The awesome people over at LinuxServer.io have [created a docker image for Kavita.](https://hub.docker.com/r/linuxserver/kavita)
+
+An important note is that they only offer stable releases and do not have support for 32bit ARM (armv7). 
+
+If you want to run the nightly testing branch or need armv7, you will need to run the official [dockerhub](/installation/docker/dockerhub.mdx) or [github](/installation/docker/github.mdx) image.
+
+
+### Docker Compose
+<Callout type="warning">
+	This is just a template for setting up your docker compose file. Make sure to modify the folder paths to point to your own media.
+</Callout>
+
+```docker copy
+services:
+  kavita:
+    image: lscr.io/linuxserver/kavita:latest
+    container_name: kavita
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/kavita/config:/config
+      - /path/to/data:/data #optional
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+```
+### Docker Run
+
+```docker copy
+docker run -d \
+  --name=kavita \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -p 5000:5000 \
+  -v /path/to/kavita/config:/config \
+  -v /path/to/data:/data `#optional` \
+  --restart unless-stopped \
+  lscr.io/linuxserver/kavita:latest
+```
+
+## Migrtaing to/from Official Images
+
+Kavita is functionally the same between the official dockerhub image and the linuxserver.io image. The only difference is the location of the config folder. 
+
+To migrate to LSIO from the official image, change the config folder in your mount from `/kavita/config` to `/config`.
+
+To go from LSIO to the official image, change the config folder in your mount from `/config` to `/kavita/config`.

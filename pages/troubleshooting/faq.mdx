@@ -11,14 +11,9 @@ Remember to use the new [Docker Central Repo!](https://hub.docker.com/r/jvmilazz
 #### Q. I really like Kavita, but can it mirror or just use my folder structure?
 A. No, Kavita uses filenames and internal metadata for parsing and is not designed to use folder structure. Please don't ask for this feature, it will never be implemented. If this is important to you, [Ubooquity](https://vaemendis.net/ubooquity/) may be a better choice, as it offers this feature. 
 
-#### Q. I'm seeing database is locked errors in my logs
-A. This can happen in some configurations. An easy solution is to turn on WAL mode, which Kavita supports out of the box. To do this, open your sqlite file (after stopping Kavita) and run `PRAGMA journal_mode=WAL;`. An easy tool to do this is [DB Browser for SQLite.](https://sqlitebrowser.org/)
+#### Q. Is there a way to use Kavita without Authentication?
+A. No, this type of functionality is not supported and there are no plans change it in the future. Kavita offers Refresh Tokens which should keep you authenticated without having to manually log in. You can also pass your apiKey to auto-login to your account via url (http://[yourkavitainstance]/login?apiKey=XXX). 
 
-For CLI users you can run the command below if your platform has the needed sqlite3 tools installed. 
-
-```bash copy
-sqlite3 kavita.db 'PRAGMA journal_mode=WAL;'
-```
 #### Q. I'm running on macOS Monterey and I get error 403 when trying to load the web app.
 As of macOS Monterey (12.xx) some systems might have the AirPlay service running on port 5000. You'll need to pick a different port for Kavita to run under.
 
@@ -66,9 +61,6 @@ If you have an Intel CPU, you can check if your device is supported by looking i
 AMD users can check [wikipedia for their architecture](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) to see if there is support. 
 
 If you are running on an older device that doesn't meet the requirement you can try the steps outlined here: [Github Ticket](https://github.com/Kareadita/Kavita/issues/1423)
-
-#### Q. Is there a way to use Kavita without Authentication?
-A. No, this type of functionality is not supported and there are no plans. Kavita offers Refresh Tokens which should keep you authenticated without having to manually log in. You can also use your apiKey to auto-login to your account via url (url/login?apiKey=XXX). 
 
 #### Q. Can I use Kavita with a Google Drive mount?
 A. Yes, you can use Plexdrive or rclone. Although it is not officially supported.

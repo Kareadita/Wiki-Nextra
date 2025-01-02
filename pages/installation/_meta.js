@@ -1,10 +1,6 @@
 export default {
-	"getting-started": "Getting Started",
 	"native": {
 		"title": "Native Install",
-		"theme": {
-			"toc": false
-		}
 	},
 	"docker": {
 		"title": "Docker Install",

@@ -1,0 +1,50 @@
+import { Callout, Card, Cards } from 'nextra/components'
+import Image from 'next/image'
+import { SiGnomeTerminal, SiDocker, SiGoogleCloudStorage } from '@icons-pack/react-simple-icons'
+
+## What is Kavita?
+Kavita is an open-source, self-hosted digital library management system primarily designed for managing and reading comics, manga, and ebooks. It is built to provide a streamlined and user-friendly experience for organizing and accessing a personal collection of digital reading materials.
+
+### Core Features
+
+- **[Library Management](guides/admin-settings/libraries/)**: Organize your digital reading materials into a library with custom tags and filters.
+- **Synchronized Reading**: Read your digital materials directly in your browser with a customizable reading experience.
+- **[Custom Filters](guides/features/filtering/)**: Create custom filters to organize your library based on your own criteria.
+- **[User Management](guides/admin-settings/users/)**: Create multiple users with different permissions to access your library, each with their own progress tracking.
+
+
+## System Requirements
+
+Kavita is built with Microsoft [.NET 8.0](https://dotnet.microsoft.com/en-us/) and [Angular 18](https://v18.angular.dev/). Each of these technologies have their own requirements, but most modern systems should be fine. 
+
+- [.NET Framework requirements](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md)
+- [Angular requirements](https://v18.angular.dev/reference/versions#browser-support)
+
+All Kavita builds are fully self-contained. This means there is no prerequisite software needed.
+
+Users have reported running the app on as little as a single-core 1Ghz CPU and 256MB RAM. 
+
+The only requirement Kavita has is the need for a CPU that supports SSE4.2 extensions. This is because of the upstream library `NetVIPS`. [See the FAQ](../troubleshooting/faq.mdx#q-what-is-the-netvips-dependency-and-what-does-it-mean-if-i-cant-run-it) for how to work around it. 
+
+## Demo
+
+If you want to try out a demo of Kavita first before installing, you can find it at [https://demo.kavitareader.com/](https://demo.kavitareader.com/login?apiKey=9003cf99-9213-4206-a787-af2fe4cc5f1f).
+
+## Installation methods
+
+There are a few ways to get setup running Kavita depending on what environment you have:
+
+<Cards>
+  <Cards.Card
+    title="Native Binary"
+    href="/installation/native"
+  />
+    <Cards.Card
+    title="Install With Docker"
+    href="/installation/docker"
+  />
+    <Cards.Card
+    title="Install On NAS"
+    href="/installation/nas"
+  />
+</Cards>

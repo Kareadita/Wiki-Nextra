@@ -1,28 +1,30 @@
-import { Callout } from 'nextra/components'
-import { Steps } from 'nextra/components'
-import { Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Native Install Methods
 
-Pre-built binaries will be available on [GitHub](https://github.com/Kareadita/Kavita/releases), Supported platforms are: Linux, macOS, and Windows.
+Pre-built binaries will be available on [GitHub](https://github.com/Kareadita/Kavita/releases). Supported platforms are: Linux, macOS, and Windows.
 
-Kavita's releases are made to be used 'out of the box'. This means there's no need to install extra requirements
+Kavita's releases are made to be used 'out of the box'. This means there is no need to install extra software or dependencies. 
 
-<Tabs items={['🪟 Windows', '🍎 OSX', '🐧 Linux']}>
+<Tabs items={[' Windows', '🍎 OSX', '🐧 Linux']}>
   <Tabs.Tab>
-You have 2 options when it comes to running on Windows. You can install with [Scoop](https://github.com/ScoopInstaller/Install#installation) or use the native builds posted in the steps below.
 
-To install with [Scoop](https://github.com/ScoopInstaller/Install#installation), follow their instructions to get scoop onto your system.
+You have 2 options when it comes to running on Windows. You can either use [Scoop](https://scoop.sh/) or download the pre-built binaries from the GitHub releases page. Running scoop has the added benefit of being able to update Kavita with a single command.
 
-Once scoop is installed, run:
+## Scoop Install
+
+Once you have `scoop` installed you can run the following commands to install Kavita. 
+
 ```cmd
 scoop bucket add extras
 scoop install kavita
 ```
-If you want to run Kavita as a service then you can add: 
+
+If you also plan on running Kavita as a service then you can run: 
 ```cmd
 scoop install shawl
 ```
+
 Then see the [optional step](#running-as-a-service-optional) section once you have everything installed. 
 
 If scoop was installed without modifying the default settings then Kavita will now be installed at `%userprofile%\scoop\apps\kavita\current\kavita.exe`
@@ -30,7 +32,8 @@ If scoop was installed without modifying the default settings then Kavita will n
 ## Install Steps from Github:
 
 <Steps>
-### Step 1
+
+<h3> Step 1 </h3>
  
 Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. 
 
@@ -39,7 +42,7 @@ Download the `kavita-win-x64` if you have a 64-bit system (preferred version - W
 Download the `kavita-win-x86` if you have a 32-bit system (usually older devices - Windows 7 and below)
 
  
-### Step 2
+<h3> Step 2 </h3>
  
 Unzip the archive to a writable directory using a program like [7z](https://www.7-zip.org/)
 
@@ -49,31 +52,50 @@ Do not place it in `Program Files/` or `Program Files (x86)/`
 These are protected folders and will have permissions problems!
 </Callout>
 
-### Step 3
+<h3> Step 3 </h3>
 
 Once the files are extracted to a location, run Kavita.exe to launch the server.
 
-### Step 4
+<h3> Step 4 </h3>
+
 Open a browser window and go to: `http://localhost:5000/`
 
 ### Running as a service (Optional)
 
 <Callout type="error">
-  `nssm` is outdated and has problems with Windows 11. Do not use it. 
+  `nssm` is outdated and has problems with Windows 11.  
 </Callout>
 
 We recommend using [shawl](https://github.com/mtkennerly/shawl) to run Kavita as a service. Shawl is a "portable app", you can simply download it and put it anywhere without going through an installer.
 
-Once you have shawl installed then you can modify this command to create the service: 
+If you installed `shawl` with scoop then you can run the steps to set it up as a service:
 
-<Callout type="warning">
-  This is an example! You need to modify the command to point to your files! Copying and pasting this command won't work.
-</Callout>
+Open windows explorer and navigate to the folder where Kavita is installed by scoop by pasting in the following path in your address bar:
 
-
+```cmd copy
+%userprofile%\scoop\apps\kavita\current
 ```
-sc create Kavita binPath= "C:\path\to\shawl.exe run --name Kavita --cwd C:\your\folder\for\kavita -- C:\your\folder\for\kavita\Kavita.exe"
+
+Once you have the path to the Kavita executable, open powershell as administrator. Change out the first path in `cwd` with your folder path you found in the last step, then the second path after the `--` with the path to kavita.exe .
+
+```cmd
+shawl add --name Kavita --cwd C:\Users\Diesel\scoop\apps\kavita\current -- C:\Users\Diesel\scoop\apps\kavita\current\Kavita.exe
 ```
+
+After that you need to set the service to auto start:
+
+```cmd copy
+sc config kavita start= auto
+```
+
+Then start the service:
+  
+```cmd copy
+sc start kavita
+```
+
+After that kavita should be running as a service. You can load up a browser and go to `http://localhost:5000/` to verify that it is running.
+
 </Steps>
 </Tabs.Tab>
 <Tabs.Tab>
@@ -83,11 +105,11 @@ sc create Kavita binPath= "C:\path\to\shawl.exe run --name Kavita --cwd C:\your\
 </Callout>
 
 <Steps>
-### Step 1
+<h3> Step 1 </h3>
  
 Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download. The file you want is "kavita-osx-x64.tar.gz".
  
-### Step 2
+<h3> Step 2 </h3>
  
 Unpack Kavita to your User Folder or folder of choice. For example, in Terminal:
 ```bash
@@ -95,7 +117,7 @@ cd ~
 mv ~/Downloads/kavita-osx-x64.tar.gz ~
 tar -xf kavita-osx-x64.tar.gz
 ```
-### Step 3
+<h3> Step 3 </h3>
 
 Make Kavita executable.
 
@@ -103,7 +125,8 @@ Make Kavita executable.
 sudo chmod +x ~/Kavita/Kavita
 ```
 
-### Step 4
+<h3> Step 4 </h3>
+
 Disable Gatekeeper for Kavita's folder so that Kavita and all .dll and .dylib files can be opened
 
 ```bash
@@ -117,12 +140,13 @@ If you get this screen:
 
 That means the command wasn't run on the right folder.
 
-### Step 5
+<h3> Step 5 </h3>
+
 ```bash
 export alias sqlite=sqlite3
 ```
 
-### Step 6
+<h3> Step 6 </h3>
 
 Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita folder, or else appsettings.json will fail to be acquired.
 
@@ -130,34 +154,36 @@ Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita fol
 cd ~/Kavita
 ./Kavita
 ```
-### Step 7
+
+<h3> Step 7 </h3>
+
 Open a browser window and go to: `http://localhost:5000/`
 </Steps>
   </Tabs.Tab>
 <Tabs.Tab>
 <Steps>
-### Step 1
+
+<h3> Step 1 </h3>
  
 Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download
  
-### Step 2
+<h3> Step 2 </h3>
  
 Unzip the archive to a writable directory with the command `tar -xzf kavita-linux-{arch}.tar.gz`
 
-### Step 3
+<h3> Step 3 </h3>
 
 Use `chmod` and `chown` commands so Kavita can write to the directory you placed it in.
 
-### Step 4
+<h3> Step 4 </h3>
 
-Run the Kavita executable. Usually `./Kavita`
+Run the Kavita executable. `./Kavita`
 
-### Step 5
 Open a browser window and go to: `http://localhost:5000/`
 
-### Setup Kavita as a service (Optional) 
+<h3> Setup Kavita as a service (Optional) </h3>
 
-To have Kavita start in the background at boot, you may install it as a systemd service. Save the following to a file named `kavita.service` in the directory /etc/systemd/system
+To have Kavita start in the background at boot, you may install it as a systemd service. Save the following to a file named `kavita.service` in the directory `/etc/systemd/system`
 
 <Callout type="info">
   This file is an example and assumes you have installed Kavita in `/opt/Kavita` and with running it as a separate user. Make sure to customize it to your system.

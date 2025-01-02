@@ -1,0 +1,71 @@
+import { Callout } from 'nextra/components'
+
+
+# Dockerhub 
+
+The official docker image is posted to dockerhub whenever there is new releases. You can find it [here](https://hub.docker.com/r/jvmilazz0/kavita)
+
+This image has support for armv7. 
+
+
+## Docker Compose
+<Callout type="warning">
+	This is just a template for setting up your docker compose file. Make sure to modify the folder paths to point to your own media. 
+</Callout>
+
+```docker
+services:
+    kavita:
+        image: jvmilazz0/kavita:latest    # Using the stable branch from the official dockerhub repo.
+        container_name: kavita
+        volumes:
+            - /your/path/to/manga:/manga
+            - /your/path/to/comics:/comics
+            - /your/path/to/books:/books
+            - /your/path/to/saved/config:/kavita/config     # /kavita/config must not be changed
+        environment:
+            - TZ=Your/Timezone
+        ports:
+            - "5000:5000"
+        restart: unless-stopped
+```
+## Docker Run
+
+```bash
+docker run --name kavita -p 5000:5000 \
+-v /your/manga/directory:/manga \
+-v /your/storage/directory/kavita:/kavita/config \
+--restart unless-stopped \
+-e TZ=Your/Timezone \
+-d jvmilazz0/kavita:latest
+```
+
+## Nightly Branch
+
+The nightly branch is where the latest features and bug fixes are tested before being merged into the stable branch. Be aware that you can not switch from the nightly branch to the stable branch until the next stable release aligns up again. 
+
+If you do plan on running the nightly branch and plan on helping with the testing process, please join the discord and take the "Kavita Nighly Testing" role. 
+
+<Callout type="info">
+	We don't recommend running the nightly as your main instance. There might be show stopping bugs or inefficiencies introduced at any point. 
+
+    It is recommended to run the nightly branch in a separate instance or container than your main instance.
+</Callout>
+
+### Compose
+```docker copy
+services:
+    kavita:
+        image: jvmilazz0/kavita:nightly    # Using the nightly branch from the official dockerhub repo.
+        container_name: kavita
+        volumes:
+            - /your/path/to/manga:/manga
+            - /your/path/to/comics:/comics
+            - /your/path/to/books:/books
+            - /different/path/to/config/:/kavita/config     # /kavita/config must not be changed
+        environment:
+            - TZ=Your/Timezone
+        ports:
+            - "5005:5000"
+        restart: unless-stopped
+```

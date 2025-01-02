@@ -21,6 +21,7 @@ export default {
 	"moved": {
 		"display": "hidden"
 	},
+	"getting-started": "Getting Started",
 	"installation": "Installation",
 	"guides": "Guides",
 	"troubleshooting": "Troubleshooting",
