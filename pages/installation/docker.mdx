@@ -37,6 +37,7 @@ docker run --name kavita -p 5000:5000 \
 -v /your/storage/directory/kavita:/kavita/config \
 --restart unless-stopped \
 -e TZ=Your/Timezone \
+-e DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true \
 -d jvmilazz0/kavita:latest
 ```
 
