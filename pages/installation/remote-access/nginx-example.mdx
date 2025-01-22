@@ -43,6 +43,7 @@ server{
 }
 
 server {
+    set $domain "kavita.example.com";
     if ($host = $domain) {
         return 301 https://$host$request_uri;
      } # managed by Certbot
