@@ -1,6 +1,9 @@
 export default {
 	"native": {
 		"title": "Native Install",
+		"theme": {
+			"toc": false
+		}
 	},
 	"docker": {
 		"title": "Docker Install",
