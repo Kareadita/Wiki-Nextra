@@ -29,10 +29,10 @@ Kavita will not overwrite your metadata based on:
 ## Genres/Tags
 Genres and Tags work differently than other fields:
 
-0. Field mapping is applied to Genre/Tag list. If `Source Removed` is selected, the item will be removed from the list.
-1. Both Genres and Tags will pass through Blacklist list and any blacklisted items will be removed.
-2. Tags will pass through the whitelist if applicable and only whitelisted strings will be kept.
-3. If the setting is enabled, the process will continue. If not, these processed genres/tags will be used in the `Age Rating Mapping` step.
+1. Field mapping is applied to Genre/Tag list. If `Source Removed` is selected, the item will be removed from the list.
+2. Both Genres and Tags will pass through Blacklist list and any blacklisted items will be removed.
+3. Tags will pass through the whitelist if applicable and only whitelisted strings will be kept.
+4. If the setting is enabled, the process will continue. If not, these processed genres/tags will be used in the `Age Rating Mapping` step.
 
 There is no ability to not have Genres/Tags apply unless the whole flow is disabled. Existing Genres/Tags will be overwritten by the incoming Genres/Tags. 
 
@@ -48,7 +48,7 @@ Setup a list of tags you ONLY want to write to your Series. This is the last ste
 
 
 ## People
-People by default will not be removed from a metadata match if there is no match. Kavita however will remove people from a bad match perviously.
+People by default will not be removed from a metadata match if there is no match. Kavita however will remove people from a bad match previously.
 
 You have the ability to control the naming pattern to use and which people roles you want to be written. Kavita will backfill existing people with metadata (description/cover image). 
 
