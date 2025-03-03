@@ -1,0 +1,18 @@
+---
+title: Koreader Integration
+---
+
+Kavita supports the Koreader Progress Sync plugin for epubs.
+
+
+Koreader Settings
+Custom server address to 'https://your-kavita.com/api/koreader/{api-key}'.
+Use your username on the login page, but the password can be anything.
+
+It's recommended to use (ODPS)[./odps] to download the desired book to your Koreader, as it will ensure the book is an exact copy of the file hosted on Kavita.
+
+Some Caveats:
+* You must have the book in kavita. Books are determined to be the same if their hashes match. (essentially, they must be an exact copy.)
+* You may need to rescan your library if updating from a previous version that doesn't support koreader progress sync.
+* Kavita only supports progress sync using binary matching. Koreader sets this by default, but if you experience any issues, make sure Binary is selected in the Koreader's document matching method.
+* Kavita does not (and will never) support user registration via Koreader.
