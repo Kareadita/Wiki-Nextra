@@ -5,49 +5,65 @@ title: Filtering
 ## Metadata Filtering
 Kavita has a rich metadata interface that allows you to build complex filters to find exactly what you're looking for. The system allows you to build a series of statements that AND or OR together with custom sorting and a limit feature for those that have large libraries. 
 
+These filters are dynamic and will update as you change the values. If you add new series with metadata that matches the filter, they will automatically be added to the results.
+
 ![new-filtering](../../../public/guides/features/filtering.png)
 
 ### Filter Fields
 | Field           |       Field Type     |          Description            |
 | ------ | ----------- |----------- |
-| Series Name 				  | String | The Name of the Series | 
-| Summary 				  | String | The Summary of the Series | 
-| Path 				 | String | The file path to the highest level of the Series | 
-| File Path 				  | String | The full file path for any file within the Series (note: this is slower than other fields) | 
-| Read Time 				  | Number | Number of hours to read the Series | 
-| Release Year 				  | Number | The Release year of the Series (minimum from all chapters) | 
-| Read Progress				  | Number  | Decimal percentage of Series that is read by user | 
-| User Rating 				  | Number | User Rating percentage of Series by user | 
-| Publication Status 				  | Single/Multi Select | Publication Status of Series (ie Complete, Hiatus, etc) | 
-| Languages 				  | Single/Multi Select | Language of Series | 
-| Age Rating 				  | Single/Multi Select | Age Rating of Series | 
-| People* 				  | Single/Multi Select | Person of some Role that is on the Series | 
-| Genres 				  | Single/Multi Select | Genre in Series | 
-| Tags 				  | Single/Multi Select | Tag in Series | 
-| Collection Tag 				  | Single/Multi Select | Series that belongs in a Collection | 
-| Format 				  | Single/Multi Select | Series Format (epub, archive, etc) | 
-| Want To Read 				  | Boolean | If Series is in the user's Want To Read list | 
-| Reading Date 				  | Date | Latest date the Series was read by the user | 
+| Age Rating               | Single/Multi Select | Age Rating of Series                                                      |
+| Artist                   | Single/Multi Select | Artist of Series                                                         |
+| Average Rating           | Number              | Kavita+ external rating, percent                                          |
+| Characters               | Single/Multi Select | Character in Series                                                       |
+| Collection Tag           | Single/Multi Select | Series that belongs in a Collection                                       |
+| Colorist                 | Single/Multi Select | Colorist of Series                                                        |
+| File Path                | String              | The full file path for any file within the Series (note: this is slower than other fields) |
+| Format                   | Single/Multi Select | Series Format (epub, archive, etc)                                        |
+| Genres                   | Single/Multi Select | Genre in Series                                                           |
+| Imprint                  | Single/Multi Select | Publisher Imprint                                                         |
+| Inker                    | Single/Multi Select | Inker of Series                                                           |
+| Languages                | Single/Multi Select | Language of Series                                                        |
+| Letterer                 | Single/Multi Select | Letterer of Series                                                        |
+| Library                  | Single/Multi Select | Library within Kavita                                                     |
+| Location                 | Single/Multi Select | Physical Location Series takes place in                                   |
+| Path                     | String              | The file path to the highest level of the Series                          |
+| Penciller                | Single/Multi Select | Penciller of Series                                                       |
+| People*                  | Single/Multi Select | Person of some Role that is on the Series                                 |
+| Publication Status       | Single/Multi Select | Publication Status of Series (ie Complete, Hiatus, etc)                   |
+| Publisher                | Single/Multi Select | Publisher of Series                                                       |
+| Read Progress            | Number              | Decimal percentage of Series that is read by user                         |
+| Read Time                | Number              | Number of hours to read the Series                                        |
+| Reading Date             | Date                | Latest date the Series was read by the user                               |
+| Release Year             | Number              | The Release year of the Series (minimum from all chapters)                |
+| Series Name              | String              | The Name of the Series                                                    |
+| Summary                  | String              | The Summary of the Series                                                 |
+| Tags                     | Single/Multi Select | Tag in Series                                                             |
+| Team                     | Single/Multi Select | Teams that appear in Series                                               |
+| Translators              | Single/Multi Select | Translator of Series                                                      |
+| User Rating              | Number              | User Rating percentage of Series by user                                  |
+| Want To Read             | Boolean             | If Series is in the user's Want To Read list                              |
+| Writers                  | Single/Multi Select | Writer of Series                                                          |
 
 * People refers to fields such as Translator, Editor, Inker, etc
 
 #### Filter Combination
-| Filter Combination           | Applies on          |          Description            |
-| ------ | ----------- |----------- |
-| `Equal`      | String/Number/Multi Select              |                 Equals exactly                  |
-| `Not Equal`     | String/Number/Multi Select            |                  Doesn't Equal                  |
-| `Begins With`     | String        |                 Starts with string                 |
-| `Ends With`     | String        |                 Ends with string                 |
-| `Matches`      | String             |                 Applies a search-like match on the field                   |
-| `Is Before`     | Date        |                Date is before X                 |
-| `Is After`     | Date        |                Date is after X                 |
-| `Less Than`     | Number        |                Less than X              |
-| `Less Than Equal`     | Number        |                Less than or Equal to X              |
-| `Greater Than`     | Number        |               Greater than X              |
-| `Greater Than Equal`     | Number        |                Greater than or Equal to X              |
-| `Contains`     | Multi Select         |                The Filter Field contains at least one entry of what is passed             |
-| `Must Contains`     | Multi Select         |                The Filter Field contains all of what is passed             |
-| `Must Not Contains`     | Multi Select         |                The Filter Field contains none of what is passed             |
+| Filter Combination      | Applies on                  | Description                                                    |
+|-------------------------|----------------------------|---------------------------------------------------------------|
+| `Equal`                 | String/Number/Multi Select | Equals exactly                                                |
+| `Not Equal`             | String/Number/Multi Select | Doesn't Equal                                                 |
+| `Begins With`           | String                     | Starts with string                                            |
+| `Ends With`             | String                     | Ends with string                                              |
+| `Matches`               | String                     | Applies a search-like match on the field                      |
+| `Is Before`             | Date                       | Date is before X                                              |
+| `Is After`              | Date                       | Date is after X                                               |
+| `Less Than`             | Number                     | Less than X                                                   |
+| `Less Than Equal`       | Number                     | Less than or Equal to X                                       |
+| `Greater Than`          | Number                     | Greater than X                                                |
+| `Greater Than Equal`    | Number                     | Greater than or Equal to X                                    |
+| `Contains`              | Multi Select               | The Filter Field contains at least one entry of what is passed |
+| `Must Contains`         | Multi Select               | The Filter Field contains all of what is passed               |
+| `Must Not Contains`     | Multi Select               | The Filter Field contains none of what is passed              |
 
 ### Smart Filters
 A Smart Filter is essentially a saved filter. The underlying filter can be loaded and changed and anything that is bound with the Smart Filter will automatically be reflected in the new filters. Once you have a Smart Filter created, check out [Customization](https://wiki.kavitareader.com/en/guides/customization) to learn about how you can utilize the filters.

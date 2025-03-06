@@ -7,7 +7,7 @@ export default {
 	"external-tools": "External Tools",
 	"metadata": "Metadata",
 	"readers": "Readers",
-	"themes": "Custom Themes",
 	"scanner": "Library Scanner",
+	"themes": "Custom Themes",
 	"api": "API"
 }
