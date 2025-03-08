@@ -106,5 +106,18 @@ Make it persistent across reboots by adding this line to `/etc/sysctl.conf`:
 fs.inotify.max_user_watches=524288
 ```
 
+#### Q. Why am I seeing translation strings? eg. settings.admin-manage-tokens
+A. This is a browser cache issue. There are a few ways to fix this issue:
+
+- Hard refresh browser. (Shift + Refresh) This should make a new request for data when version doesn't match.
+
+- Try to run the bust locale task if you are an admin
+
+- Open dev tools (right click -> inspect) and delete the following key in Application localstorage: "@transloco/translations" and refresh browser to get the new version
+
+- In the dev tools, go to the network tab and check disable cache. Then refresh
+
+- Delete all browser cache, cookies, and any other data related to your kavita domain within your browser.
+
 
 
