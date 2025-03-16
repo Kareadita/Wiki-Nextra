@@ -89,3 +89,19 @@ If you would like to have the authors added to the directory and filename of the
 `{series:'re(ifempty($,field('title') & ' - ' & field('authors')),':',' -')'}/{series:'re(ifempty($,field('title') & ' - ' & field('authors')),':',' -')'}{series_index:0>2s| - |}`
 
 > Title of the Book - Author Name/Title of the Book - Author Name.epub
+
+## Using polish to clean up your epubs
+
+Polish is a very useful tool that is included by default within calibre but is hidden. It has a handful of very useful functions that will clean up the epub typically resulting in a smaller epub with embedded metadata and can even upgrade the internals of a EPUB2 to an EPUB3. It's highly recommended as a last step before bringing the files to kavita because you can guarantee your metadata will be included and a smaller filesize can make a massive difference when it comes to serving that file.
+
+To access polish you need to go to preferences > Toolbars & menus. From there you can choose the toolbar that fits best but the main toolbar is the one you'll likely be adding it to. 
+Now on the left you'll see Available actions and on the right you'll see Current actions. Available actions are the plugins and options that are currently "hidden". You need to scroll through this list until you see Polish books. It'll have a little featherduster next to it. Click the green arrow pointing to the right to add it to Current actions. Now it should be at the bottom of the list and you can click on it then click the up and down arrows to the right to move it to the location you want it.
+
+When you're done with that the button should appear on toolbar. Select a book or multiple then click on the button to pull up this screen.
+
+![calibre-polish-settings-page](../../../public/guides/3rdparty/calibre-polish-settings-page.png)
+
+The important settings on this screen are `Update metadata in the book files` and `Upgrade book internals`. Everything else is your preference and has an about next to it explaining what exactly each option does.
+The options that can rather dramatically cut down on filesize are `Embed all refrenced fonts`, `Subset all embedded fonts`, `Remove unused CSS rules from the book`, and `Losslessly compress images`. When you're happy with the selections click on OK and it will start polishing. 
+
+It can take some time to process all of them. If you have `Show report` turned on when it finishes it will give you a popup breaking down exactly what was done. Now your books are ready for kavita.
