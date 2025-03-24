@@ -151,23 +151,17 @@ export alias sqlite=sqlite3
 
 <h3> Step 6 </h3>
 
-Run from within ~/Kavita folder, codesign.
+  Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita folder, or else appsettings.json will fail to be acquired.
 
-```bash
-codesign -s - Kavita
-./Kavita
-```
+  You only need to run `codesign` on the first run
+
+  ```bash
+  cd Kavita
+  codesign -s - Kavita
+  ./Kavita
+  ```
 
 <h3> Step 7 </h3>
-
-Start Kavita in Terminal. You need to launch Kavita from within the ~/Kavita folder, or else appsettings.json will fail to be acquired.
-
-```bash
-cd ~/Kavita
-./Kavita
-```
-
-<h3> Step 8 </h3>
 
 Open a browser window and go to: `http://localhost:5000/`
 </Steps>
