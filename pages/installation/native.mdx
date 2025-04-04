@@ -174,18 +174,20 @@ Open a browser window and go to: `http://localhost:5000/`
  
 Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download.
 
-From a terminal, you can use `wget` to download a release.
+From a terminal, you can use `wget` to download a release, for example:
 
 ```bash
-wget https://github.com/Kareadita/Kavita/releases/download/v0.8.5.11/kavita-linux-x64.tar.gz
+wget https://github.com/Kareadita/Kavita/releases/download/{version}/kavita-linux-{arch}.tar.gz
 ```
  
 <h3> Step 2 </h3>
- 
-Unpack Kavita to a folder of your choice.
+
+Unpack Kavita to a writeable folder of your choice.
+
 ```bash
-tar -xzf kavita-linux-x64.tar.gz
+tar -xzf kavita-linux-{arch}.tar.gz
 ```
+
 <h3> Step 3 </h3>
 
 Make Kavita executable.
