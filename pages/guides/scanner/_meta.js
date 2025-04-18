@@ -1,4 +1,6 @@
 export default {
-	"managefiles": "Managing Files"
+	"managefiles": "Managing Files",
+	"comic": "Comic (Legacy)",
+	"comicvine": "Comic",
 
 }
