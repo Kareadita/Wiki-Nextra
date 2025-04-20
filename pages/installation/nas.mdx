@@ -31,12 +31,106 @@ If your Synology is capable of running docker you can follow the guide written b
 </Tabs.Tab>
 
 <Tabs.Tab>
-#### QNAP Install Steps
 
-While the Kavita team does not own any QNAP devices, there does exist an image maintained by a third party.
-You can find it [here](https://www.forum-nas.fr/threads/kavita-net-apache80-0-5-1-1-a-fast-feature-rich-cross-platform-reading-server.16507/) 
+<Callout emoji="♥">
+    Installation steps provided by @mrfearless
+</Callout>
 
-If your QNAP device is capable of running docker, users have reported that the standard [docker install](/installation/docker/) works. This will enable you to stay up to date and even partake in nightly testing releases. 
+### Pre-Installation Steps for Kavita on a QNAP NAS
+
+- Install Container Station (if it is not already installed) via: App Center->Qnap Store->QTS Essentials->Container Station. Click the 'Install' button and follow the prompts to install it.
+
+- Before loading Container Station and deploying the Kavita Docker image, it is recommended to create a number of shared folders. One shared folder will be for the configuration data for Kavita to reside on, and other shared folders for ebooks, comics etc.
+
+- Go to the Shared Folders option via a QTS desktop icon or via the Control Panel.
+
+    - Click the 'Create' button at the top left, and select the 'Shared Folder' menu item. The Create A Shared Folder dialog box will be shown. 
+
+    - Enter the Folder Name for this shared folder. This will be for the Kavita configuration data, so something like `Kavita-Config`. 
+
+    - Specify the Disk Volume where this shared folder will be created and will reside. Click the 'Next' Button to continue.
+    
+    - Configure access privileges for users. By default the admin will have read/write access. Click the 'Next' Button to continue.
+    
+    - Select properties to enable, or accept the defaults and click the 'Finish' button to create the new shared folder.
+    
+    - Repeat the process above for each shared folder you wish to create for your ebooks, comics etc. For example, you may want to create a shared folder named `ebooks` for your ebooks to reside in. You can name the shared folders anything you like, but it is recommended to use something that is meaningful to you, so you can easily identify them later.
+
+
+### Installation Kavita on a QNAP NAS with Container Station    
+
+- Load Container Station via the App Center or via a QTS desktop icon.
+
+- Click on 'Containers' in the side navigation.
+
+- Click the 'Explore' button at the top right.
+
+    - Enter `Kavita` in the search box and press enter/return. A list of Kavita docker images will be presented to you. Recommendation is to click the 'Deploy' button on the `jvmilazz0/kavita` image.
+
+    - A confirmation message box will be shown. Checkmark the confirmation warning: 'I understand. Do not show this message again' and click the 'OK' button to continue. 
+    
+    - Select the image version to deploy. Typically this is the latest, which is selected by default. Click the 'Next' button to continue.
+    
+    - The `jvmilazz0/kavita` image will be downloaded and the Create Container wizard/dialog will be displayed.
+    
+        Some of the settings will contain default selections or information which you can modify. Some recommended settings are as follows:
+        
+        - Name: `Kavita`
+        - Settings->Restart Policy: Unless Stopped.
+        - Network Configuration->Default web URL port: Toggle to enable, and specify port: `5000`
+        
+        - Publish network ports->Host: `5000`
+        - Publish network ports->Container: `5000`
+        - Publish network ports->TCP
+        
+        Click the Advanced Settings option at the bottom left. An Advanced Settings Dialog will now be shown.
+        
+            Click on 'Storage' in the Advanced Settings side navigation.
+        
+            - Click the drop down arrow beside the 'Add Volume' button and select the 'Bind Mount Host Path' menu item.
+            
+            - Host: `/path/to/your/ebooks`
+            - Container: `/books`
+            
+            The host name should match the Shared Folder you created above, which is where your ebooks will reside and be accessible to kavita. The example Shared Folder created above was named : `ebooks`
+            
+            - Click the drop down arrow beside the 'Add Volume' button and select the 'Bind Mount Host Path' menu item.
+            
+            - Host: `/Kavita-Config`
+            - Container: `/kavita/config`
+            
+            The host name should match the Shared Folder you created above, which is where the Kavita configuration data will reside and be persistent, independent of the Kavita docker image. The example Shared Folder created above was named : `Kavita-Config`
+            
+            - Click the drop down arrow beside the 'Add Volume' button and select the 'Bind Mount Host Path' menu item for any other Shared Folders that you created for your Kavita content.
+        
+        - (Optional) - If you want to limit the hardware resources the container can use, click on 'Resources' in the Advanced Settings side navigation. Note that limiting resources can impact performance of the container. The following is an example of the settings you can configure:
+        ```
+        CPU Limit: Limited = 1 CPU
+        Memory Limit: Limited = 1024 MB
+        Memory Reservation: Limited = 1024 MB
+        ```
+        - Click 'Apply' button bottom right when you have finished modifying the Advanced Settings. The dialog will close and return you to the Create Container dialog.
+        
+    - Click the 'Next' button to view the Create Container Summary information. Click 'Back' to return and make any changes required, or click the 'Finish' button to create the Kavita docker image with the settings you have configured for it.
+    
+After the Kavita docker image has been created, it will run, and show the Logs and Status in the bottom right. You can now visit the webpage and port where Kavita is running. 
+
+Clicking on the icons that have a small square with an arrow will open the Kavita site in a new tab where you can continue the configuration of Kavita by first creating an admin account before logging in for the first time.
+
+
+### Updating Kavita on a QNAP NAS with Container Station
+
+To update a container image to a new release of Kavita perform the following steps:
+
+- Load Container Station via the App Center or via a QTS desktop icon.
+
+- Click on 'Containers' in the side navigation.
+
+    - Select the Kavita docker image from the containers list. Click the action cog wheel at the far right column and select the 'Recreate Directly' menu option.
+
+    - A message box with appear. Checkmark the 'Try pulling the image from the registry before creating the container'. This will ensure you are using the latest updated Kavita docker image. All the previous settings you configured for this container image will be preserved as the new Kavita docker image is downloaded and is recreated and started. After starting, Kavita will perform any migrations and upgrade tasks, as shown via the Logs window.
+    
+    - Log back into the Kavita webpage and go to Settings->System to confirm the newly updated Kavita version.
 
 </Tabs.Tab>
 <Tabs.Tab>

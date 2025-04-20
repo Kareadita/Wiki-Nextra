@@ -25,7 +25,6 @@ services:
             - /your/path/to/saved/config:/kavita/config     # /kavita/config must not be changed
         environment:
             - TZ=Your/Timezone
-            - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
         ports:
             - "5000:5000"
         restart: unless-stopped
