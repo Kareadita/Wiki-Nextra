@@ -2,24 +2,35 @@ import { Callout } from 'nextra-theme-docs'
 
 ## Metadata
 
-PDF files do not have a ComicInfo.xml, but they can have some limited metadata embedded in the file inside an `<x:xmpmeta>` tag, which can be edited with the calibre app or the ebook-meta command line tool shipped with calibre.
+PDF files do not have a ComicInfo.xml, but they can have some limited metadata embedded in the file inside an `<x:xmpmeta>` tag, which can be edited with the calibre app or the `ebook-meta` command line tool shipped with calibre.
 
-See the table below to know what tags Kavita reads from the PDF file
+See the table below to know what tags Kavita reads from the PDF file and how they can be set using calibre's built-in `ebook-meta` CLI tool.
 
 ## PDF
 
 ### Conversion table
 
-| In PDF                                                                                         | Is | Equivalent In Kavita                                                           |
-|------------------------------------------------------------------------------------------------|----|--------------------------------------------------------------------------------|
-| `dc:title` (this can be overridden by `calibre:series`)					 | →  | Chapter Title                                                                  |
-| `calibre:series`                                                                               | →  | Name                                                                           |
-| `calibreSI:series_index`                                                                       | →  | Volume                                                                         |
-| `calibre:rating`                                                                               | →  | UserRating                                                                     |
-| `dc:description`                                                                               | →  | Summary                                                                        |
-| `dc:publisher`                                                                                 | →  | Publisher                                                                      |
-| `Year`, `Month`, `Day`                                                                         | →  | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
-| `dc:creator`                                                                                   | →  | Writer                                                                         |
-| `dc:subject`                                                                                   | →  | Genres                                                                         |
-| `dc:language`                                                                                  | →  | Language (Kavita will only take the first)                                     |
-| `pdfx:isbn` or `prism:isbn`                                                                    | →  | ISBN                                                                           |
+| In PDF                                                            | `ebook-meta` flag      	 | Equivalent In Kavita                                                           |
+|-------------------------------------------------------------------|----------------------------|--------------------------------------------------------------------------------|
+| `dc:title` (this can be overridden by `calibre:series`)           | `--title` or `-t`        	 | Chapter Title                                                                  |
+| `calibre:series`                                                  | `--series` or `-s`     	 | Name                                                                           |
+| `calibreSI:series_index`                                          | `--index` or `-i`       	 | Volume                                                                         |
+| `calibre:rating`                                                  | `--rating` or `-r`      	 | UserRating                                                                     |
+| `dc:description`                                                  | `--comments` or `-c`     	 | Summary                                                                        |
+| `dc:publisher`                                                    | `--publisher` or `-p`    	 | Publisher                                                                      |
+| `Year`, `Month`, `Day`                                            | `--date` or `-d`       	 | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
+| `dc:creator`                                                      | `--author` or `-a`		 | Writer                                                                         |
+| `dc:subject`                                                      | `--tags`			         | Genres                                                                         |
+| `dc:language`                                                     | `--language` or `-l`     	 | Language (Kavita will only take the first)                                     |
+| `pdfx:isbn` or `prism:isbn`                                       | `--isbn`               	 | ISBN                                                                           |
+
+You can set each metadata tag by inputing the command using the format `ebook-meta -flag "value" filename.pdf`. If your any tag value or filename has spaces, be sure to include it in "double" or 'single' quotes. If your filename has `$` or `\` for some reason, use "double" quotes.
+
+You can only change one file at a time, but you can set multiple flags at once.
+
+**Example Command**
+```
+ebook-meta -t "My Title" -a "Jane Doe" -s "Great Literature" -i "2.00" "filename with spaces.pdf"
+```
+
+To set multiple items in each tag (authors, genres), you can seperate them with commas. Be sure to include "double" quotes.
