@@ -172,15 +172,29 @@ Open a browser window and go to: `http://localhost:5000/`
 
 <h3> Step 1 </h3>
  
-Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download
+Go to https://github.com/Kareadita/Kavita/releases/latest and scroll down until you see the 'assets' section where there's a list of files that you can download.
+
+From a terminal, you can use `wget` to download a release, for example:
+
+```bash
+wget https://github.com/Kareadita/Kavita/releases/download/{version}/kavita-linux-{arch}.tar.gz
+```
  
 <h3> Step 2 </h3>
- 
-Unzip the archive to a writable directory with the command `tar -xzf kavita-linux-{arch}.tar.gz`
+
+Unpack Kavita to a writeable folder of your choice.
+
+```bash
+tar -xzf kavita-linux-{arch}.tar.gz
+```
 
 <h3> Step 3 </h3>
 
-Use `chmod` and `chown` commands so Kavita can write to the directory you placed it in.
+Make Kavita executable.
+
+```bash
+sudo chmod +x ~/Kavita/Kavita
+```
 
 <h3> Step 4 </h3>
 
@@ -215,7 +229,21 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-Once the file is saved you can run `systemctl start kavita.service` to test if it starts correctly. If does, run `systemctl enable kavita.service` and it will start at boot for your system.
+To create a user matching the following configuration file, you need to add a user and a group named `kavita`.
+
+```bash
+sudo adduser kavita
+```
+
+This creates both a user and a group named `kavita`, and also adds the user to the group.
+
+Now you need to change the owner of the directory you installed Kavita in:
+
+```bash
+sudo chown -R kavita:kavita /opt/Kavita
+```
+
+Once the service configuration file is saved you can run `systemctl start kavita.service` to test if it starts correctly. If does, run `systemctl enable kavita.service` and it will start at boot for your system. To check the status of the service, you can run `systemctl status kavita.service`. If the service doesn't seem to start, you can use `journalctl` to get more detailed information about any errors that might have occurred.
 
 </Steps>
 </Tabs.Tab>
