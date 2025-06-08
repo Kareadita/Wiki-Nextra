@@ -1,0 +1,40 @@
+import { Callout } from 'nextra/components'
+
+![img.png](../../../public/guides/user-settings/reading-profile-page.png)
+
+## Reading profiles
+
+Reading profiles allow you to have different reader settings per series, or library. You can create as many reading profiles as you require, as long as the names are unique.
+
+Once you've created your profile you can bind it to a series or library. This happens via the actionables, or bulk actions for series. A library or series can only have one user profile bind at a time.
+
+<Callout type="info">
+    Your default profile is migrated from your user preferences, this profile can **not** be deleted or renamed.
+</Callout>
+
+### Implicit profiles
+
+When you make changes to a reader's settings while reading, Kavita will create an implicit profile for you. These profiles are **not** visible in your reading profiles settings.
+
+From the reader you can choose to
+- Create a new reading profile from the currently loaded implicit profile, which is visible in your settings, and can be assigned to other series.
+- Update the next profile in line to be selected for this series to be up to date with its implicit profile.
+
+Both actions delete the implicit profile.
+
+<Callout type="info">
+    Implicit profiles are removed when assigning a new profile to a series, or when clearing that series reading profiles.
+</Callout>
+
+<Callout type="warning">
+    Implicit profiles are not available for the pdf reader.
+</Callout>
+
+### Reading profile priorities
+
+When opening a series Kavita will automatically select the reading profile in the following order
+
+1. Implicit profile created for this series
+2. The profile assigned to the series
+3. The profile assigned to the library the series is part of
+4. Your default profile
