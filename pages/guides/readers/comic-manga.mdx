@@ -3,6 +3,7 @@ title: 'Comic/Manga Reader'
 ---
 import Image from 'next/image'
 import menuImage from '../../../public/guides/readers/image-reader/menu.png'
+import Link from 'next/link'
 import extendedMenuImage from '../../../public/guides/readers/image-reader/extended-menu.png'
 import webtoonNextImage from '../../../public/guides/readers/image-reader/webtoon-next-chapter.png'
 import webtoonPrevImage from '../../../public/guides/readers/image-reader/webtoon-prev-chapter.png'
@@ -33,8 +34,6 @@ This reader is aimed towards the consumption of image-based content.
     <Image
       src={extendedMenuImage}
       alt="picture"
-      width={300} 
-      height={250}
     />
 
 1. **Reading Direction** - Switch where the pagination area renders.
@@ -69,6 +68,5 @@ This reader is aimed towards the consumption of image-based content.
 
 ## Saving settings
 
-You can use the Save Globally button to save all but the following to your user profile:
-* Width override
+See <Link href={`/guides/user-settings/reading-profiles`}>reading profiles</Link> for how saving happens. The following settings are **not** saved.
 * Brightness
