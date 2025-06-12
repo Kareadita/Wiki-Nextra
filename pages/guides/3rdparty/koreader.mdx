@@ -1,0 +1,77 @@
+---
+title: 'KOReader Setup'
+---
+import Image from 'next/image'
+import { Steps } from 'nextra/components'
+import { Callout } from 'nextra/components'
+import OPDS1 from '../../../public/guides/3rdparty/koreader-opds-step1.png'
+import OPDS2_1 from '../../../public/guides/3rdparty/koreader-opds-step2-1.png'
+import OPDS2_2 from '../../../public/guides/3rdparty/koreader-opds-step2-2.png'
+import SYNC_ICON from '../../../public/guides/3rdparty/koreader-plugins-menu-icon.png'
+
+## KOReader
+
+### What is KOReader? [#about-koreader]
+
+> KOReader is a document viewer for E Ink devices. Supported fileformats include EPUB, PDF, DjVu, XPS, CBT, CBZ, FB2, PDB, TXT, HTML, RTF, CHM, DOC, MOBI and ZIP files. It’s available for Kindle, Kobo, PocketBook, Android and desktop Linux.
+\- [KOReader website](https://koreader.rocks)
+
+### Setup KOReader for usage with Kavita [#setup-with-kavita]
+
+<Callout type="info" emoji="ℹ️">For the purpose of this guide, a working KOReader setup is assumed.
+Also, please be aware that your screen may look different from the screenshots, based on your screen size.</Callout>
+
+#### Setting up the OPDS source
+
+KOReader supports the OPDS standard, which we will use to make your Kavita Library accessible.
+
+You will need to retrieve the [OPDS URL](/guides/user-settings/3rdpartycilents/#opds-url) from your settings.
+
+<Steps>
+
+##### Open the OPDS catalog list
+
+In the File Browser, open the menu, tap the Looking Glass (🔍), and look for the menu entry "OPDS Catalog"
+
+<Image src={OPDS1} alt="OPDS catalog menu entry" width={250} height={400}/>
+
+##### Add the Kavita Catalog
+
+- Tap the plus sign in the upper left
+<Image src={OPDS2_1} alt="OPDS catalog add" width={250} height={100} />
+
+- Fill out the dialog
+<Image src={OPDS2_2} alt="Add OPDS catalog modal" width={250} height={400} />
+|Field|Value|
+|:----:|:----:|
+|Catalog Name|A name of your choosing|
+|Catalog URL|Your OPDS URL|
+|Username|Your account username|
+|Password|Can be anything|
+</Steps>
+
+#### Setting up Progress Synchronization
+
+Since v0.8.7, Kavita supports 2-way sync of your reading progress. However, it needs to be enabled in KOReader first.
+
+<Callout type="info" emoji="ℹ️">You will need the [API key](/guides/user-settings/3rdpartycilents/#api-key) to set up progress sync</Callout>
+
+<Steps>
+
+##### Open any Book
+
+The relevant plugin is only displayed when actually reading a book.
+
+##### Setup the Custom Sync Server
+
+- Open the menu "Plugins" by tapping the icon below in the menu bar, then Progress Sync.
+<Image src={SYNC_ICON} alt="KOReader plugin menu icon" width={64} height={64} />
+- Tap "Custom Sync Server"
+- In the dialog, that pops up now, enter `<your-kavita-server>/api/koreader/<your-api-token>`
+- Tap 'Register / Login'
+- Login with your username/password
+</Steps>
+
+With this, you can now push/pull reading progress to/from Kavita.
+
+<Callout type="warning" emoji="⚠️">The automatic sync can potentially undo reading progress when configured wrong.</Callout>
