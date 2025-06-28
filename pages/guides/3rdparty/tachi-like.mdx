@@ -7,12 +7,20 @@ import { Callout } from 'nextra/components'
 
 
 <Callout type="warning" emoji="⚠️">
-  Currently, there is only official support for the Mihon version
+  Currently, we only support the official Mihon app and Komikku.
   
-  Some of the forks that are confirmed (by the users) to work are TachiyomiSY, TachiyomiAZ.
+  Forks that are confirmed to work: TachiyomiSY.
 </Callout>
 
 ## Add Kavita extension repository
+
+You can click on this button from your Android to automatically add the repo:
+
+<a href="https://intradeus.github.io/http-protocol-redirector/?r=tachiyomi://add-repo?url=https://raw.githubusercontent.com/Kareadita/tach-extensions/repo/index.min.json">
+    <img alt="Install Kavita Repo" src="https://img.shields.io/badge/Add%20Kavita%20Repo-49CC90?style=for-the-badge&labelColor=555555&color=49CC90&logo=android&logoColor=white">
+</a>
+
+Otherwise,
 
 1. In Mihon, go to "More" > "Settings" > "Browse" > "Extension repos"
 2. Click on "Add"
@@ -27,6 +35,9 @@ import { Callout } from 'nextra/components'
 3. Now you can either scroll down until you find it or hit the search icon and write Kavita in it.
 4. Once you find or search tap install.
 5. In the confirmation menu hit install again.
+
+**Make sure to click "Trust" on the extension once installed.**
+
 ![Installation](../../../public/guides/3rdparty/Installation.png "Installation")
 
 ## Setup
@@ -61,6 +72,10 @@ Access your Kavita instance from your web browser and log in
 ## Customization
 Once installed the user has access to 3 sources. This means you can have access to 3 different Kavita servers.<br/>
 On each source, you can set up different OPDS URLs and different filter preferences. By default, these are differentiated with a number. 1, 2 and 3. You can change each identifier with your own name.<br/>
+
+<Callout type="warning" emoji="⚠️">
+  You can only add different domains as instances—adding the same domain twice will cause both sources to break.
+</Callout>
 
 #### To change the name of the source
 
