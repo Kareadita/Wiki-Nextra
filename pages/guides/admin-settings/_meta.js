@@ -3,6 +3,7 @@ export default {
 	"media": "Media",
 	"email": "Email",
 	"users": "Users",
+	"open-id-connect": "OpenID Connect",
 	"libraries": "Libraries",
 	"tasks": "Tasks",
 	"system": "System",
