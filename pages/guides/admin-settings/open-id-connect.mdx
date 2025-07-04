@@ -1,0 +1,136 @@
+import { Callout } from 'nextra/components'
+
+<Callout type="info">
+    OpenID Connect support was added in the v0.8.8 release.
+</Callout>
+
+## OpenID Connect
+
+Kavita supports authentication and user management via any OpenID Connect-compliant provider.
+
+### Setup
+
+You can configure OpenID Connect directly from Kavita's Web UI. Some changes—like updating the Authority or Client ID—require saving and restarting the application manually.
+
+![OIDC Settings](../../../public/guides/admin-settings/oidc_settings.png "OIDC page in Admin Settings")
+
+As the Kavita Web UI acts as a public client, the only requirement is the URL to your OIDC provider (no trailing slash).
+
+<Callout type="info">
+  Kavita uses the discovery endpoint to load configuration dynamically. Ensure <code>&lt;your-url&gt;/.well-known/openid-configuration</code> is publicly accessible.
+</Callout>
+
+#### Required Redirect URLs
+
+You may need to configure the following URLs in your OIDC provider:
+
+| Purpose       | Path             |
+|---------------|------------------|
+| Redirect URI  | `/oidc/callback` |
+| Post-logout   | `/login`         |
+
+> **Note:** Non-secure (HTTP) connections are only allowed for local access.
+
+---
+
+### Audience Claim
+
+The audience (`aud`) claim in your ID token **must match** the Client ID you have configured in Kavita.
+
+<Callout type="warning">
+  If the audience claim is incorrect, authentication will fail. Double-check the Client ID and ensure it's set as the audience in your OIDC provider.
+</Callout>
+
+---
+
+### Features & Settings
+
+Kavita allows a flexible integration: you can use your OIDC provider purely for login or let it fully manage user roles and access.
+
+#### Account Linking
+
+When a user logs in via OIDC, Kavita will attempt to link the account by matching the email address.
+
+---
+
+#### Provision Accounts
+
+When enabled, Kavita will automatically create a new user if no matching email exists. See [Syncing](#syncing) for how permissions are handled for new accounts.
+
+#### Require Verified Emails
+
+Ensures only verified email addresses are matched or used for account creation. It's strongly recommended to keep this enabled.
+
+---
+
+#### Auto Login
+
+When enabled, users are automatically redirected to the OIDC login page. You can bypass auto-login by adding `skipAutoLogin=true` to the login URL query string.
+
+#### Disable Password Authentication
+
+Removes the local password login for non-admin users. Admins can still log in with a password.
+
+To temporarily show the password field, add `forceShowPassword=true` to the login URL query string.
+
+> API key authentication always remains available.
+
+---
+
+### Syncing
+
+By default, users created via OIDC have no roles or library access. Kavita provides two options to assign and manage permissions:
+
+#### Native Permissions
+
+If *Sync user settings with OIDC roles* is disabled, Kavita will use the default roles and library settings configured in the OpenID Connect admin UI. You can later adjust these manually in the Users panel.
+
+![OIDC Default NoSync Settings](../../../public/guides/admin-settings/oidc_default_no_sync.png "OIDC default no sync settings in OpenID Connect Settings")
+
+---
+
+#### OIDC-Managed Permissions
+
+If *Sync user settings with OIDC roles* is enabled, Kavita will derive user roles, library access, and age restrictions directly from your OIDC provider.
+
+- Permissions are synchronized on each login.
+- You cannot edit these roles within Kavita while syncing is enabled.
+- You can switch the ownership between Kavita and OIDC at any time.
+
+<Callout type="warning">
+  Roles must be provided under the <code>role</code> or <code>roles</code> claim. Enable debug logging for troubleshooting.
+</Callout>
+##### Role Mapping
+
+Kavita recognizes the following roles directly:
+
+- All standard [roles](./users.mdx#roles), such as `Login`, `Download`, etc.
+- Library access: `library-<LibraryName>` (e.g., `library-Manga`)
+- Age rating: `age-rating-<Rating>` (e.g., `age-rating-KidsToAdults`)
+- To allow unknown ratings: `age-rating-include-unknowns`
+
+---
+
+### Developer Notes
+
+Some OIDC providers may require additional configuration to expose roles or correctly set the audience claim.
+
+> Kavita does **not officially support or provide configuration help** for specific OIDC providers. However, everyone is welcome to ask questions in **non-support channels** on [Discord](https://discord.gg/b52wT37kt7) where the community might be able to help.
+
+We encourage users to **contribute guides or notes for any OIDC providers** to help expand this section for the benefit of others.
+
+
+#### Authentik
+
+Authentik works out of the box when setting up a new public client. Ensure the audience matches the Kavita Client ID.
+
+#### Keycloak
+
+When using Keycloak, you must manually configure dedicated client mappers:
+
+- **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita’s Client ID.
+- **User Client Role Mapper**: Ensure user roles are exposed in the ID token under either the `role` or `roles` claim.
+
+Failure to configure these mappers correctly will result in roles not being recognized by Kavita.
+
+---
