@@ -7,6 +7,7 @@ import { Callout } from 'nextra/components'
 import OPDS1 from '../../../public/guides/3rdparty/koreader-opds-step1.png'
 import OPDS2_1 from '../../../public/guides/3rdparty/koreader-opds-step2-1.png'
 import OPDS2_2 from '../../../public/guides/3rdparty/koreader-opds-step2-2.png'
+import FORCE_SCAN from '../../../public/guides/3rdparty/koreader-force-scan.png'
 import SYNC_ICON from '../../../public/guides/3rdparty/koreader-plugins-menu-icon.png'
 
 ## KOReader
@@ -50,6 +51,12 @@ In the File Browser, open the menu, tap the Looking Glass (🔍), and look for t
 |Password|Can be anything|
 </Steps>
 
+- Run a full **FORCE SCAN** of the library you want to sync against.
+
+  <Image src={FORCE_SCAN} alt="Force Sync button" width={300} height={75} />
+
+  <Callout type="info" emoji="ℹ️">This is required __**ONCE**__ to generate the hash for existing books, books that are added afterwards will have the hash generated when they're added.</Callout>
+
 #### Setting up Progress Synchronization
 
 Since v0.8.7, Kavita supports 2-way sync of your reading progress. However, it needs to be enabled in KOReader first.
@@ -75,3 +82,4 @@ The relevant plugin is only displayed when actually reading a book.
 With this, you can now push/pull reading progress to/from Kavita.
 
 <Callout type="warning" emoji="⚠️">The automatic sync can potentially undo reading progress. We **strongly** advise against using it. We also cannot support you on recovering potentially lost progress.</Callout>
+
