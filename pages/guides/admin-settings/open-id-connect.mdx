@@ -6,7 +6,9 @@ import { Callout } from 'nextra/components'
 
 ## OpenID Connect
 
-Kavita supports authentication and user management via any OpenID Connect-compliant provider.
+OpenID Connect (OIDC) is a widely adopted authentication protocol built on top of OAuth 2.0, allowing users to sign in using a trusted identity provider. Kavita supports integration with any OIDC-compliant service, such as Authentik, Keycloak, and many others.
+
+Kavita’s implementation lets you use OIDC for authentication only or delegate full user and role management to your identity provider. It supports features like account linking, auto-provisioning, role syncing, and login customization.
 
 ### Setup
 
@@ -35,7 +37,7 @@ You may need to configure the following URLs in your OIDC provider:
 
 ### Audience Claim
 
-The audience (`aud`) claim in your ID token **must match** the Client ID you have configured in Kavita.
+The audience (`aud`) claim **must match** the Client ID you have configured in Kavita.
 
 <Callout type="warning">
   If the audience claim is incorrect, authentication will fail. Double-check the Client ID and ensure it's set as the audience in your OIDC provider.
@@ -109,6 +111,10 @@ Kavita recognizes the following roles directly:
 - Age rating: `age-rating-<Rating>` (e.g., `age-rating-KidsToAdults`)
 - To allow unknown ratings: `age-rating-include-unknowns`
 
+<Callout type="warning">
+    Users will not be able to login without the `Login` role. You can use this role to restrict access to your Kavita instance while still allowing user creation.
+</Callout>
+
 ---
 
 ### Developer Notes
@@ -129,7 +135,7 @@ Authentik works out of the box when setting up a new public client. Ensure the a
 When using Keycloak, you must manually configure dedicated client mappers:
 
 - **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita’s Client ID.
-- **User Client Role Mapper**: Ensure user roles are exposed in the ID token under either the `role` or `roles` claim.
+- **User Client Role Mapper**: Ensure user roles are exposed in the ID token under either the `roles` claim.
 
 Failure to configure these mappers correctly will result in roles not being recognized by Kavita.
 
