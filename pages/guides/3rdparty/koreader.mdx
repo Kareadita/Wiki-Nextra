@@ -22,6 +22,22 @@ import SYNC_ICON from '../../../public/guides/3rdparty/koreader-plugins-menu-ico
 <Callout type="info" emoji="ℹ️">For the purpose of this guide, a working KOReader setup is assumed.
 Also, please be aware that your screen may look different from the screenshots, based on your screen size.</Callout>
 
+#### Run a full **FORCED SCAN** of the library you want to sync against
+
+  Click the leftmost button of the **Edit Library** dialog (see picture below for reference). 
+
+  <Callout type="info" emoji="ℹ️">
+  
+  This is required __**ONCE**__, when the library has been created before v0.8.7.
+  
+  It will generate the hash for existing books, books that are added afterwards will have the hash generated when they're added.
+  
+  </Callout>
+
+  <br />
+
+  <Image src={FORCE_SCAN} alt="Force Sync button" width={300} height={75} />
+
 #### Setting up the OPDS source
 
 KOReader supports the OPDS standard, which we will use to make your Kavita Library accessible.
@@ -29,7 +45,6 @@ KOReader supports the OPDS standard, which we will use to make your Kavita Libra
 You will need to retrieve the [OPDS URL](/guides/user-settings/3rdpartycilents/#opds-url) from your settings.
 
 <Steps>
-
 ##### Open the OPDS catalog list
 
 In the File Browser, open the menu, tap the Looking Glass (🔍), and look for the menu entry "OPDS Catalog"
@@ -49,14 +64,8 @@ In the File Browser, open the menu, tap the Looking Glass (🔍), and look for t
 |Catalog URL|Your OPDS URL|
 |Username|Your account username|
 |Password|Can be anything|
+
 </Steps>
-
-- Run a full **FORCE SCAN** of the library you want to sync against.
-
-  <Image src={FORCE_SCAN} alt="Force Sync button" width={300} height={75} />
-
-  <Callout type="info" emoji="ℹ️">This is required __**ONCE**__ to generate the hash for existing books, books that are added afterwards will have the hash generated when they're added.</Callout>
-
 #### Setting up Progress Synchronization
 
 Since v0.8.7, Kavita supports 2-way sync of your reading progress. However, it needs to be enabled in KOReader first.
