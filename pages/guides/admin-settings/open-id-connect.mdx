@@ -24,7 +24,7 @@ As the Kavita Web UI acts as a public client, the only requirement is the URL to
 
 #### Required Redirect URLs
 
-You may need to configure the following URLs in your OIDC provider:
+You may need to configure the following URLs in your OIDC provider, if you're using a custom base url adjust them accordingly:
 
 | Purpose       | Path             |
 |---------------|------------------|
@@ -108,8 +108,8 @@ Kavita recognizes the following roles directly:
 
 - All standard [roles](./users.mdx#roles), such as `Login`, `Download`, etc.
 - Library access: `library-<LibraryName>` (e.g., `library-Manga`)
-- Age rating: `age-rating-<Rating>` (e.g., `age-rating-KidsToAdults`)
-- To allow unknown ratings: `age-rating-include-unknowns`
+- Age rating: `age-restriction-<Rating>` (e.g., `age-restriction-KidsToAdults`)
+- To allow unknown ratings: `age-restriction-include-unknowns`
 
 <Callout type="warning">
     Users will not be able to login without the `Login` role. You can use this role to restrict access to your Kavita instance while still allowing user creation.
