@@ -100,7 +100,7 @@ If *Sync user settings with OIDC roles* is enabled, Kavita will derive user role
 - You can switch the ownership between Kavita and OIDC at any time.
 
 <Callout type="warning">
-  Roles must be provided under the <code>role</code> or <code>roles</code> claim. Enable debug logging for troubleshooting.
+  Roles must be provided under the `roles` claim unless otherwise configured. Enable debug logging for troubleshooting.
 </Callout>
 ##### Role Mapping
 
@@ -108,11 +108,31 @@ Kavita recognizes the following roles directly:
 
 - All standard [roles](./users.mdx#roles), such as `Login`, `Download`, etc.
 - Library access: `library-<LibraryName>` (e.g., `library-Manga`)
-- Age rating: `age-restriction-<Rating>` (e.g., `age-restriction-KidsToAdults`)
-- To allow unknown ratings: `age-restriction-include-unknowns`
+- Age restriction: `age-restriction-<Rating>` (e.g., `age-restriction-KidsToAdults`)
+- To allow unknown ratings: `include-unknowns`
 
 <Callout type="warning">
     Users will not be able to login without the `Login` role. You can use this role to restrict access to your Kavita instance while still allowing user creation.
+</Callout>
+
+---
+
+### Advanced settings
+
+Kavita offers a few settings in case the default configuration is insufficient
+
+#### Roles prefix
+
+Kavita will filter out all roles not starting with your configured prefix before trying to use them during sync. The prefix will be removed when using it.
+e.g. If you have the prefix `kavita-` configured, your age restricting role would be `kavita-age-restriction-KidsToAdults`
+
+
+#### Roles claim
+
+Under which claim should Kavita look for your configured roles. Must be in the root of the token.
+
+<Callout type="warning">
+    The default is `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` and should be used when the roles are under `roles` Using `roles`will **not** work.
 </Callout>
 
 ---
@@ -128,7 +148,10 @@ We encourage users to **contribute guides or notes for any OIDC providers** to h
 
 #### Authentik
 
-Authentik works out of the box when setting up a new public client. Ensure the audience matches the Kavita Client ID.
+When using Authentik you'll need to change some extra settings to get everything working correctly
+
+- **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings
+- **Roles claim**: Ensure the roles claim is set to `groups` when using the sync users feature
 
 #### Keycloak
 
