@@ -11,7 +11,7 @@ import { Steps } from 'nextra/components'
 * Userscript for in-browser management.
 
 <Callout type="info">
-  komf does not have a webui. It's advised to use [the userscript](https://github.com/Snd-R/komf-userscript).
+  Komf has a webui that can be used for some configuration but it's advised to use the extension for [chrome](https://chromewebstore.google.com/detail/komf/bhppjldobkpocplgfcimljjhdjgbpdnh) or [firefox](https://addons.mozilla.org/en-US/firefox/addon/komf/).
 </Callout>
 
 ## Setup
@@ -35,70 +35,39 @@ Fill out your `baseUri` to point to your Kavita install URL and put in your [Kav
   The API key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
 </Callout>
 
-### Userscript
+### Extension
 
-Once you have Komf running with the minimum setup posted above, we need to set up the user script to connect to it.
+Once you have Komf running with the minimum setup posted above, we need to set up the extension to connect to it.
 
 <Steps>
 
 ### Step 1
 
-If you don't already have a script manager add-on in your browser, set up [TamperMonkey](https://www.tampermonkey.net/). If you already running a script manager you *should* be able to use it without issue
-but due to subtle differences between the programs it's not always guaranteed.
+Install the extension following one of the links above. The chrome extension should work for chromium based browsers.
 
-<Callout type="info">
-  Because of [ManifestV3](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3) chrome users need to run the script manager in [Dev Mode](https://www.tampermonkey.net/faq.php#Q209)
-</Callout>
-
- 
 ### Step 2
 
-Once you have your script manager installed, visit the userscript's [releases page on github](https://github.com/Snd-R/komf-userscript/releases)
+Click on the extension to get a dialogue box.
 
 ### Step 3
 
-Click on `komf.user.js` for the latest release and your script manager should intercept the request.
-
-### Step 4
-
-Don't modify anything here. Click 'Install'
-
-<Callout type="warning">
-  Modifying the script directly breaks the auto-update function and will require you to manually set up your includes every time. Just don't change anything here!
-</Callout>
-
-
-### Step 5
-
-After installing the script, open up the script manager. It can usually be found in the top right of your browser where your other add-ons are.
-
-### Step 6
-
-Go to your script managers 'dashboard' and click on the newly added Komf script.
-
-### Step 7
-
-Go to the 'Settings' tab of the Komf script. In the `Includes/Excludes` section find `User Includes` and click Add. 
-
-### Step 8
-
-Type in the IP / hostname of your Kavita install. You NEED to include `/*` at the end for the script manager to detect the site.
+Type in the IP / hostname of your Kavita install in Add new Origin.
 
 Example: 
 ```bash
-http://192.168.0.100:5000/*
+http://192.168.0.100:5000
 ```
-### Step 9
+### Step 4
 
-Once the userscript is set up to recognize your Kavita you can close the script manager and open your Kavita instance.
+Once the extension is set up open or refresh Kavita.
 
-### Step 10
+### Step 5
 
-Inside your Kavita's browser window, you will now see a jigsaw puzzle piece in the top right corner next to your username. Click on it and put in your IP address of where komf is located. (This is NOT your kavita URL!)
+Inside your Kavita's browser window, you will now see a jigsaw puzzle piece in the top right corner next to your username. Click on it and put in your IP address of where komf is located. (This is NOT your kavita URL!) (Do note that if you use a hostname with SSL you will need to configure komf to use SSL as well otherwise you will have issues with CORS)
 
 Press 'Check Connection' to test if the userscript can talk to your Komf backend. If you see a `Connected ✔` then everything is working! 
 
-### Step 11
+### Step 6
 
 Now you can configure the rest of the settings for some directly from here. You can pick your providers, what libraries you want to apply against and any discord notifications to be sent.
 </Steps>
