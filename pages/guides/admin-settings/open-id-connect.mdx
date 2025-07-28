@@ -12,11 +12,9 @@ Kavita’s implementation lets you use OIDC for authentication only or delegate 
 
 ### Setup
 
-You can configure OpenID Connect directly from Kavita's Web UI. Some changes—like updating the Authority or Client ID—require saving and restarting the application manually.
+You can configure OpenID Connect directly from Kavita's Web UI. Some changes—Authority, Client ID, and Secret—require saving and restarting the application manually.
 
 ![OIDC Settings](../../../public/guides/admin-settings/oidc_settings.png "OIDC page in Admin Settings")
-
-As the Kavita Web UI acts as a public client, the only requirement is the URL to your OIDC provider (no trailing slash).
 
 <Callout type="info">
   Kavita uses the discovery endpoint to load configuration dynamically. Ensure <code>&lt;your-url&gt;/.well-known/openid-configuration</code> is publicly accessible.
@@ -24,14 +22,12 @@ As the Kavita Web UI acts as a public client, the only requirement is the URL to
 
 #### Required Redirect URLs
 
-You may need to configure the following URLs in your OIDC provider, if you're using a custom base url adjust them accordingly:
+You may need to configure the following URLs in your OIDC provider, not all providers require you to configure the logout URL, if you're using a custom base url adjust them accordingly:
 
-| Purpose       | Path             |
-|---------------|------------------|
-| Redirect URI  | `/oidc/callback` |
-| Post-logout   | `/login`         |
-
-> **Note:** Non-secure (HTTP) connections are only allowed for local access.
+| Purpose      | Path                     |
+|--------------|--------------------------|
+| Redirect URI | `/signin-oidc`           |
+| Post-logout  | `/signout-callback-oidc` |
 
 ---
 
@@ -102,6 +98,7 @@ If *Sync user settings with OIDC roles* is enabled, Kavita will derive user role
 <Callout type="warning">
   Roles must be provided under the `roles` claim unless otherwise configured. Enable debug logging for troubleshooting.
 </Callout>
+
 ##### Role Mapping
 
 Kavita recognizes the following roles directly:
@@ -124,7 +121,7 @@ Kavita offers a few settings in case the default configuration is insufficient
 #### Roles prefix
 
 Kavita will filter out all roles not starting with your configured prefix before trying to use them during sync. The prefix will be removed when using it.
-e.g. If you have the prefix `kavita-` configured, your age restricting role would be `kavita-age-restriction-KidsToAdults`
+e.g. If you have the prefix `kavita-` configured, your age restricting role could be `kavita-age-restriction-KidsToAdults`
 
 
 #### Roles claim
@@ -134,6 +131,10 @@ Under which claim should Kavita look for your configured roles. Must be in the r
 <Callout type="warning">
     The default is `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` and should be used when the roles are under `roles` Using `roles`will **not** work.
 </Callout>
+
+#### Custom scopes
+
+You may configure extra scopes to be requested by Kavita on login, login may fail if these are not configured correctly
 
 ---
 
@@ -150,16 +151,18 @@ We encourage users to **contribute guides or notes for any OIDC providers** to h
 
 When using Authentik you'll need to change some extra settings to get everything working correctly
 
-- **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings
-- **Roles claim**: Ensure the roles claim is set to `groups` when using the sync users feature
+- **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings.
+- **Roles claim**: Ensure the roles claim is set to `groups` when using the `Sync user settings` feature
 
 #### Keycloak
 
 When using Keycloak, you must manually configure dedicated client mappers:
 
 - **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita’s Client ID.
-- **User Client Role Mapper**: Ensure user roles are exposed in the ID token under either the `roles` claim.
+- **User Client Role Mapper**: Ensure user roles are exposed at the root of your token.
 
-Failure to configure these mappers correctly will result in roles not being recognized by Kavita.
+#### PocketID
+
+When using Pocket ID the `Sync user settings` will only sync after a full logout and login.
 
 ---
