@@ -1,7 +1,7 @@
 import { Callout } from 'nextra/components'
 
 <Callout type="info">
-    OpenID Connect support was added in the v0.8.8 release.
+    OpenID Connect support is part of the v0.8.8 release.
 </Callout>
 
 ## OpenID Connect
@@ -129,7 +129,8 @@ e.g. If you have the prefix `kavita-` configured, your age restricting role coul
 Under which claim should Kavita look for your configured roles. Must be in the root of the token.
 
 <Callout type="warning">
-    The default is `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` and should be used when the roles are under `roles` Using `roles`will **not** work.
+    The default is `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` and should be used when the roles are under `roles`.
+    Using `roles`will **not** work as the library we use automatically maps some claims; you may find the full list [here](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/src/Microsoft.IdentityModel.JsonWebTokens/ClaimTypeMapping.cs).
 </Callout>
 
 #### Custom scopes
