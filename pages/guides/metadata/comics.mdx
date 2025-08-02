@@ -80,6 +80,27 @@ The following entries will cause this:
 * GN
 * FCBD 
 
+### Trade Paperbacks and Comics Library Type
+
+The main `Comic` library type assumes an organization similar to that found within Comic Vine, Grand Comics Database, and Metron. They routinely list the trades as separate volumes, whch translates to a separate series when you use ComicInfo's `Series` appended by `volume`, presumably tagged by year as the primary comic library type does. 
+
+If you're autotagging or using Mylar3 to manage your archives Kavita will detect your trade paperbacks as separate series.
+
+To include them within the main series, our users have found two different approaches. 
+
+Method 1:
+
+The first is to tag the `Series` and `Volume` for your trade just as you would the individual issues, putting within the `Number` value the span of issues covered. In the below example, this would indicate issues 1-5 are collected in that one file. This will sort so these trades are in the correct series reading order when reading from the series page.
+
+`Number: 1-5`
+
+Method 2:
+
+The second method, for those who collect trades as well as issues and want it all in the same series within Kavita would be to again tag the `Series` and `Volume` consistent with the rest of the files, and for the `Number` a value like `TPB` or `TPB#` for multiple TPB bearing series. This will not mix the trades into the reading order, leaving them separated within the individual issues but still accessible from the series page or loading next after the end of the issues.
+
+`Number: TPB1`
+`Number: TPB2` 
+
 ### SeriesGroup
 
 The SeriesGroup tag can contain comma-delimited strings that will either create or update existing collections in Kavita if the Library has `Manage Collections` turned on (default is off). 
