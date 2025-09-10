@@ -26,7 +26,7 @@ Comic is designed with strict metadata adherence to Comic Vine in mind and is fo
 - Series name is formulated: `Series Name (Volume number)` where `Volume number` is expected to be the starting year of the run.
 - Does not render Volume tab (TPBs not supported)
 - See [Mylar guide](./guides/3rdparty/mylar/)
-- Supports Kavita+ features
+- Supports Kavita+ features: Metadata
 - Metadata sites/adherence (ComicVine/Metron/etc) dictate that TBPs and Annuals are their own series. 
 
 ###### Comic (Flexible)
@@ -36,24 +36,27 @@ This is the earliest version of Comics in Kavita and is much more flexible in re
 - Volume, TPBs, and Special tab all supported
 - Cannot represent multiple series of different runs separately without user intervention (attaching year to series name)
 - Supports flexible grouping like having TBPs and issues mixed or annuals as specials
-- Supports Kavita+ features
+- Supports Kavita+ features: Metadata
 
 ###### Image
 This is a custom built library for Loose Image libraries. 
 
+- Only supports image files
 - Can parse Volume and chapter number (using Manga naming conventions) from Folders for grouping
 - Series name is assumed to be the top level folder
 - Does not support Specials
+- Does not support any file-based metadata (sidecar files)
+- Supports Kavita+ features: Metadata, Scrobbling
 
 ###### Light Novels
 Light novels are Japanese books (usually in a series) that use the Volume nomenclature. This is essentially Book library type with some extra logic for Volumes. 
 
-- Supports Kavita+ features
+- Supports Kavita+ features: Metadata, Scrobbling, Reviews, Recommendations
 
 ###### Manga
 Manga supports manga/webtoon type of material. These generally stick to volume/chapter groupings. 
 
-- Supports Kavita+ features
+- Supports Kavita+ features: Metadata, Scrobbling, Reviews, Recommendations
 - Supports Specials and Volumes
 
 
