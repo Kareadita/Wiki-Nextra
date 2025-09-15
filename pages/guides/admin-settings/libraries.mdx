@@ -4,7 +4,7 @@ import { Callout } from 'nextra/components'
 
 ![Library](../../../public/guides/admin-settings/admin-settings-library.png "Library page in Admin Settings")
 
-The libraries tab is how you make your own content available to your users.
+> The libraries tab is how you make your own content available to your users.
 
 ## Managing Libraries
 
@@ -12,21 +12,57 @@ The libraries tab is how you make your own content available to your users.
 
 The name of the library is highlighted in green. Clicking on it will send you to the series view inside the library.
 
-Type is one of 4 options:
+#### Important Fields
 
-Book<br/>
-Comic<br/>
-Comic (Legacy)<br/>
-Image<br/>
-Light Novels<br/>
-Manga<br/>
+##### Type
+Type is the powerhouse of a Library. It will determine how the Scanner and UI are customized. Selecting the correct library will make an important difference in how Kavita works for you.
+
+###### Book
+Book is a general-purpose library type. 
+
+###### Comic
+Comic is designed with strict metadata adherence to Comic Vine in mind and is for those that are heavily using Mylar and CBL Project. 
+
+- Series name is formulated: `Series Name (Volume number)` where `Volume number` is expected to be the starting year of the run.
+- Does not render Volume tab (TPBs not supported)
+- See [Mylar guide](./guides/3rdparty/mylar/)
+- Supports Kavita+ features: Metadata
+- Metadata sites/adherence (ComicVine/Metron/etc) dictate that TBPs and Annuals are their own series. 
+
+###### Comic (Flexible)
+This is the earliest version of Comics in Kavita and is much more flexible in representation. It is a good choice if you are not actively going to use CBLs.
+
+- Series name is derived from parsing/metadata
+- Volume, TPBs, and Special tab all supported
+- Cannot represent multiple series of different runs separately without user intervention (attaching year to series name)
+- Supports flexible grouping like having TBPs and issues mixed or annuals as specials
+- Supports Kavita+ features: Metadata
+
+###### Image
+This is a custom built library for Loose Image libraries. 
+
+- Only supports image files
+- Can parse Volume and chapter number (using Manga naming conventions) from Folders for grouping
+- Series name is assumed to be the top level folder
+- Does not support Specials
+- Does not support any file-based metadata (sidecar files)
+- Supports Kavita+ features: Metadata, Scrobbling
+
+###### Light Novels
+Light novels are Japanese books (usually in a series) that use the Volume nomenclature. This is essentially Book library type with some extra logic for Volumes. 
+
+- Supports Kavita+ features: Metadata, Scrobbling, Reviews, Recommendations
+
+###### Manga
+Manga supports manga/webtoon type of material. These generally stick to volume/chapter groupings. 
+
+- Supports Kavita+ features: Metadata, Scrobbling, Reviews, Recommendations
+- Supports Specials and Volumes
+
 
 **Note:** Comic library type assumes volume is tagged as year or some other series unique identifier in the volume field to allow multiple series to exist with the same name in the library it also adheres to the data sources for comics method of handling specials/trades/annuals as separate entities.<br/> 
-Comic (Legacy) has a similar presentation to the Manga library and is more versatile for those wishing to customize metadata to group series with singles/TPBs/Annuals all in one Kavita series.
+Comic (Flexible) has a similar presentation to the Manga library and is more versatile for those wishing to customize metadata to group series with singles/TPBs/Annuals all in one Kavita series.
 
-Shared folders tell you how many source folders you have linked to this library. A single library can contain more than 1 folder on disk to merge libraries.
-
-Last Scanned: Will give you the timestamp that the last scan occurred. 
 
 ## Adding Libraries
 
@@ -41,7 +77,7 @@ Fill out the name you want your library known by. This is what you will select w
 Select the type of library you are trying to create from the dropdown, then press next.
 
 <Callout type="error" emoji="️⚠️">
-  Read up on the different types of libraries you can make and the rules that govern them here: !! ADD LINK !! 
+  Library type is an important field, read about them [above](#book).
 </Callout>
 
 ### Folders
@@ -69,9 +105,11 @@ This controls what kind of files the scanner will look for when adding to the li
 
 
 #### Exclude Patterns
+A set of [Glob syntax](https://github.com/dazinator/DotNet.Glob/blob/develop/README.md#patterns) that will ignore scanning/processing of files and folders. 
+
 ![LibraryAdvancedGlob](../../../public/guides/admin-settings/admin-settings-library-add-library-advanced-glob.png "Library Advanced Settings - Glob")
 
-In the example above, any file within a folder named One Piece from the library root will be ignored.
+> In the example above, any file within a folder named One Piece from the library root will be ignored.
 
 More advanced customization of excludes is accomplished by [glob patterns](https://github.com/dazinator/DotNet.Glob/blob/develop/README.md#patterns)
 
