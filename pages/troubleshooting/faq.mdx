@@ -120,4 +120,17 @@ A. This is a browser cache issue. There are a few ways to fix this issue:
 - Delete all browser cache, cookies, and any other data related to your kavita domain within your browser.
 
 
+#### Q. How do I restore the DB? 
+A. By default, Kavita stores backups in `config/backups`. To restore from an older version:
+- Stop Kavita
+- Copy everything in the backup zip into the `config/` directory
+- Start Kavita
+
+#### Q. I moved my files from one drive to another, how can I tell Kavita about this.
+A. Kavita can make this update without data loss. If docker, just change the mount point. If native,
+- Open Tasks in Settings and perform a backup
+- Add the new library path to your Library
+- Perform a scan library
+- Remove old library path
+- Open a Series and validate the FolderPath aligns with expectations.
 
