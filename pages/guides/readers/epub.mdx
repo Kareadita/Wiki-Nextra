@@ -1,44 +1,101 @@
 ---
-title: 'Book Reader'
+title: 'Epub Reader'
 ---
 import Image from 'next/image'
-import step1 from '../../../public/guides/readers/book-settings.png'
-import step2 from '../../../public/guides/readers/book-toc.png'
+import readerLayout from '../../../public/guides/readers/epub-reader/reader-layout-annotated.jpeg'
+import editAnnotationDrawer from '../../../public/guides/readers/epub-reader/edit-annotation-drawer-annotated.png'
+import highlightBar from '../../../public/guides/readers/epub-reader/highlight-bar.png'
 
 
-## Book Reader
+## Epub Reader
 
-Like many other readers, Kavita offers customizations for your reading experience. We offer 7 additional fonts to select from in addition to the fonts that come with the book. Font sizing, line spacing, and margin can all be customized (Margin will default to 0% on mobile devices regardless of your settings). 
+Kavita offers a customizable reader for epubs, which are best used for text-heavy books. 
+While image-based books will work in our reader, it's best to extract images from the epub (zip) and use the dedicated image reader. 
 
-We offer multiple reading directions and tap to paginate. Tap to Paginate lets you click on the sides of the book rather than having to press the Next/Prev page buttons on the top or bottom of the reader. 
+Kavita offers the following customizations:
+- Font Size
+- Line spacing
+- Margin
+- Font (you can upload your own fonts as well as our defaults)
+- Layout Mode
+  - Scroll (layout as the book dictates)
+  - 1 Column
+  - 2 Column (disabled for Vertical Writing Style)
+- Writing Style
+  - Horizontal
+  - Vertical (Japanese style books)
+- Color Theme
+  - Dark
+  - Black (OLED)
+  - White (E-Ink)
+  - Paper (mimics a book, includes a spine)
 
-The book reader lets you save your settings to your account from within the reader. You are not required to press Save, you can instead adjust it just for that reading session. 
+Kavita has a few smart features, like overriding settings based on available space. 
+- Margin will default to 0% on mobile devices
+- 2 Column Layout mode will switch to 1 Column when width is too small
 
-## Progress
-The book reader will remember approximately where you leave off and will try to restore the scroll position. This will work regardless of what size device you start and resume on. 
+### Progress
+Kavita uses an in-page approach to saving progress. This allows for you to read on your desktop, move to phone and resume at the appropriate spot. There can always be some drift due to how Epubs function.
 
-## Menu Controls
+
+### The Reader
     <Image
-      src={step1}
-      alt="picture"
-      width={300} 
-      height={250}
+      src={readerLayout}
+      alt="reader layout annotated"
+      height={400}
     />
+> 1. Open Settings menu
+> 2. Open Text/Image Bookmark drawer
+> 3. Highlight/Annotation drawer
+> 4. Table of Contents
+> 5. Close Reader
+> 6. Previous Page 
+> 7. Current Page - Click to open Go To Page prompt
+> 8. Estimated time to complete full book
+> 9. Next Page
 
-## Table of Contents
+### Features and Controls
 
-    <Image
-      src={step2}
-      alt="picture"
-      width={300} 
-      height={250}
-    />
+#### Inner Links
+Some books have links within the reader. Some external and some internal. Kavita does pre-processing before you read and determines if a link is external or not. All external links will open in a new tab with security provisions. Internal links can be clicked and Kavita will remember the history of links clicked, so you can back out of your nested linking in order by pressing the back button. 
 
-Kavita provides a dedicated section in the menu drawer for the table of contents. If a table of contents is not provided in the book metadata, Kavita will attempt to create one by parsing out links and headers in the book itself. As you read, the links will become bold based on where on the page you are. For example, in the image here, I have scrolled down and am on the first part of the first chapter. Notice that the chapter is also bold. You can click on any link to jump instantly to it. 
-
-## Inner Links
-Some books have links within the reader. Some external and some internal. Kavita does pre-processing before you read and determines if a link is external or not. All external links will open in a new tab. Internal links can be clicked and Kavita will remember the history of links clicked, so you can back out of your nested linking in order by pressing the back button. 
-
-## Continuous Reading
+#### Continuous Reading
 The book reader offers a way to stay within the reader and move on to the next book (assuming your book is in a series or a reading list). Like the web reader, we now have buttons to manually click and jump between books. Likewise, when you read the first or last page of the book and there is another book, the Next button will show two arrows implying the pagination will load the next book.
 
+#### Table of Contents
+Kavita provides a dedicated section in the menu drawer for the table of contents. If a table of contents is not provided in the book metadata, Kavita will attempt to create one by parsing out links and headers in the book itself. The active chapter will be bolded and clicking anywhere will jump to said chapter.
+
+#### Text Bookmarks
+A customizable selection of text to help you quickly navigate back, usually used as a personal table of contents (ie Fav Chocolate Chip Recipe).
+
+#### Image Bookmarks
+Any image in the book can be bookmarked by clicking the nearby bookmark icon. These images are present in the Bookmark drawer as well as the Bookmarks Section of the app for dedicated, image-based viewing.
+
+#### Annotations/Highlights
+Kavita offers a full-fledged annotation system. Annotations can be exported from the Annotations listing page and can optionally be filtered/sorted.
+
+
+##### How to Use
+<Image
+      src={highlightBar}
+      alt="highlight bar"
+      height={400}
+    />
+> 1. Highlight Text
+> 2. In the highlight menu, select Annotate
+> 3. Fill out the annotation formats
+
+##### Annotation Drawer
+The annotation system in Kavita uses the concept of a highlight color system. All annotations are bound to a given slot, which can be changed at any point. Each slot has a customizable color. When updating a slots color, all annotations will have their color changed.
+
+Kavita captures the surrounding context, the highlighted text, the creator of the highlight, the chapter and page when creating an annotation. 
+
+<Image
+      src={editAnnotationDrawer}
+      alt=""
+      height={400}
+    />
+> 1. Highlight Slot
+> 2. Rich Text Editor
+> 3. Spoiler control
+> 4. Quoted information
