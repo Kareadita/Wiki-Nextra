@@ -14,6 +14,23 @@ Kavita supports OPDS and the expanded page streaming specification called OPDS-P
 
 While OPDS and OPDS-PS cover a lot of use cases, the absolute best way to interact with the content on your server is through Kavita's API. Clients that use the API have a richer experience and can support new advanced features as they are added to Kavita.
 
+
+## Kavita Implementation
+Since Kavita supports rich collections like Smart Filters, Collections, Want to Read, Reading Lists, and Series, the OPDS feed will have different entries for each. Search works across these entities (assuming OpenSearch support) and all feeds have pagination support. 
+
+Kavita also offers a few enhancements not traditionally found in other OPDS Servers:
+### Continue From
+If you have reading progress on a Series/Volume/Reading List, Kavita will generate a "Continue From X" item at the top of the first page. This is an alias of the underlying file and allows you to skip scrolling until you find your location.
+
+### Progress Encoded Icons
+Kavita also encodes reading progress directly into the title (since metadata support is limited in clients). Kavita will encode the following icons at the start of the OPDS Item title: 
+⭘ - No Progress
+◔ - <= 25% Progress
+◑ - <= 50% Progress
+◕ - <= 100% Progress
+⬤ - Fully Read
+
+
 ## OPDS capable clients
 
 ### Android
