@@ -8,7 +8,7 @@ import { Callout } from 'nextra/components'
 
 OpenID Connect (OIDC) is a widely adopted authentication protocol built on top of OAuth 2.0, allowing users to sign in using a trusted identity provider. Kavita supports integration with any OIDC-compliant service, such as Authentik, Keycloak, and many others.
 
-Kavita’s implementation lets you use OIDC for authentication only or delegate full user and role management to your identity provider. It supports features like account linking, auto-provisioning, role syncing, and login customization.
+Kavita's implementation lets you use OIDC for authentication only or delegate full user and role management to your identity provider. It supports features like account linking, auto-provisioning, role syncing, and login customization.
 
 ### Setup
 
@@ -135,7 +135,7 @@ Under which claim should Kavita look for your configured roles. Must be in the r
 
 #### Custom scopes
 
-You may configure extra scopes to be requested by Kavita on login, login may fail if these are not configured correctly
+You may configure extra scopes to be requested by Kavita on login. Login may fail if these are not configured correctly.
 
 ---
 
@@ -153,13 +153,14 @@ We encourage users to **contribute guides or notes for any OIDC providers** to h
 When using Authentik you'll need to change some extra settings to get everything working correctly
 
 - **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings.
-- **Roles claim**: Ensure the roles claim is set to `groups` when using the `Sync user settings` feature
+- **Roles claim**: Ensure the roles claim is set to `groups` when using the `Sync user settings` feature.
 
 #### Authelia
 
 When using Authelia, you'll need to configure some extra settings to ensure proper integration with Kavita:
 
-- **Roles claim**: Set the roles claim to `groups` when using the `Sync user settings` feature. This ensures that user group memberships are properly synchronized with Kavita's role-based access control.
+- **Roles claim**: Set the roles claim to `groups` when using the `Sync user settings` feature.
+- **Custom scopes**: Ensure the `groups` scope is included.
 - **Claims policy**: Kavita requires specific claims to be present in the ID token. You must configure a claims policy in Authelia to include the necessary claims:
 
 ```yaml
@@ -170,13 +171,6 @@ claims_policies:
       - "email_verified"
       - "groups"
 ```
-
-- **Scopes**: Ensure the following scopes are configured in your Authelia client to provide the required user information to Kavita:
-  - `openid`
-  - `email`
-  - `profile`
-  - `groups`
-  - `offline_access`
 
 A complete Authelia OIDC client configuration for Kavita would look like this:
 
@@ -217,7 +211,7 @@ identity_providers:
 
 When using Keycloak, you must manually configure dedicated client mappers:
 
-- **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita’s Client ID.
+- **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita's Client ID.
 - **User Client Role Mapper**: Ensure user roles are exposed at the root of your token.
 
 #### PocketID
