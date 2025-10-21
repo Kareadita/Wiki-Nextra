@@ -155,6 +155,64 @@ When using Authentik you'll need to change some extra settings to get everything
 - **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings.
 - **Roles claim**: Ensure the roles claim is set to `groups` when using the `Sync user settings` feature
 
+#### Authelia
+
+When using Authelia, you'll need to configure some extra settings to ensure proper integration with Kavita:
+
+- **Roles claim**: Set the roles claim to `groups` when using the `Sync user settings` feature. This ensures that user group memberships are properly synchronized with Kavita's role-based access control.
+- **Claims policy**: Kavita requires specific claims to be present in the ID token. You must configure a claims policy in Authelia to include the necessary claims:
+
+```yaml
+claims_policies:
+  kavita:
+    id_token:
+      - "email"
+      - "email_verified"
+      - "groups"
+```
+
+- **Scopes**: Ensure the following scopes are configured in your Authelia client to provide the required user information to Kavita:
+  - `openid`
+  - `email`
+  - `profile`
+  - `groups`
+  - `offline_access`
+
+A complete Authelia OIDC client configuration for Kavita would look like this:
+
+```yaml
+identity_providers:
+  oidc:
+    claims_policies:
+      kavita:
+        id_token:
+          - "email"
+          - "email_verified"
+          - "groups"
+
+    clients:
+      - client_id: kavita
+        client_name: kavita
+        claims_policy: kavita
+        client_secret: '$pbkdf2-sha512$...'
+        public: false
+        redirect_uris:
+          - 'https://kavita.example.com/signin-oidc'
+          - 'https://kavita.example.com/signout-callback-oidc'
+        response_types:
+          - code
+        scopes:
+          - openid
+          - email
+          - profile
+          - groups
+          - offline_access
+        token_endpoint_auth_method: client_secret_post
+        grant_types:
+          - authorization_code
+          - refresh_token
+```
+
 #### Keycloak
 
 When using Keycloak, you must manually configure dedicated client mappers:
