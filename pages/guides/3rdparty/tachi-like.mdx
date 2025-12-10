@@ -16,21 +16,21 @@ import { Callout } from 'nextra/components'
 
 You can click on this button from your Android to automatically add the repo:
 
-<a href="https://intradeus.github.io/http-protocol-redirector/?r=tachiyomi://add-repo?url=https://raw.githubusercontent.com/Kareadita/tach-extensions/repo/index.min.json"><img alt="Install Kavita Repo" src="https://img.shields.io/badge/Add%20Kavita%20Repo-49CC90?style=for-the-badge&labelColor=555555&color=49CC90&logo=android&logoColor=white" /></a>
+<a href="https://intradeus.github.io/http-protocol-redirector/?r=tachiyomi://add-repo?url=https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json"><img alt="Install Kavita Repo" src="https://img.shields.io/badge/Add%20Kavita%20Repo-49CC90?style=for-the-badge&labelColor=555555&color=49CC90&logo=android&logoColor=white" /></a>
 
 Otherwise,
 
 1. In Mihon, go to "More" > "Settings" > "Browse" > "Extension repos"
 2. Click on "Add"
-3. Input this URL: `https://raw.githubusercontent.com/Kareadita/tach-extensions/repo/index.min.json`
+3. Input this URL: `https://raw.githubusercontent.com/Kareadita/tach-extension/repo/index.min.json`
 
 ## Installation
 
-**First of all make sure Kavita is updated**
+**First of all make sure Kavita is updated.**
 
 1. After that, after opening Mihon, go to Browse in the lower nav.
 2. Select the Extensions tab at the top of the screen.
-3. Now you can either scroll down until you find it or hit the search icon and write Kavita in it.
+3. Now you can either scroll down until you find it or hit the search icon and write Kavita in it. (Make sure to toggle "Multi" in the languages to see the extension)
 4. Once you find or search tap install.
 5. In the confirmation menu hit install again.
 
@@ -67,23 +67,82 @@ Access your Kavita instance from your web browser and log in
 
 <br/>
 <br/>
+
 ## Customization
+
 Once installed the user has access to 3 sources. This means you can have access to 3 different Kavita servers.<br/>
 On each source, you can set up different OPDS URLs and different filter preferences. By default, these are differentiated with a number. 1, 2 and 3. You can change each identifier with your own name.<br/>
 
 <Callout type="warning" emoji="⚠️">
-  You can only add different domains as instances—adding the same domain twice will cause both sources to break.
+  You can only add different domains as instances—adding the same domain twice will cause both sources to break.
 </Callout>
 
-#### To change the name of the source
+### To change the name of the source
 
-Follow the same process used for OPDS but tap "Displayed name for source" instead.
+Follow the same process used for OPDS but tap "Source Display Name" instead.
 
-#### Remove filters from the filter list
-The same process is used for OPDS but tapping "Default filters shown" instead. This will hide or show filters appearing in the filter list.  To hide one filter just uncheck the checkbox
+### Advanced customization
+The extension offers extensive customization. There is no breaking settings so you're free to play around with them. Here is a description of each option.
+
+#### Tags Grouping
+**This is only for forks. This does not work with the original Mihon.**
+This will turn your genres/tags list into organized categories, like so: 
+<img alt="tags_before" src="https://files.catbox.moe/sga9pt.png" height="350" /> => <img alt="tags_after" src="https://files.catbox.moe/qi6mc1.png" height="350" />
+<small>(left: disabled ; right: enabled)</small>
+
+#### Dynamic Cover Updates
+Everytime your title is refreshed, it will check what Volume/Issue you're currently reading and sync the cover.
+
+#### EPUB Visibility
+This is disabled by default because Kavita Epubs can't be read in Mihon, but you can enable it if needed here.
+
+#### Reading List: Display Release Date
+When enabled, the extension will display the original **Release Date** of the chapter instead of the date it was added to your Kavita server.
+
+#### Chapters: Display Release Dates
+When enabled, the extension will display the original **Release Date** for individual chapters instead of the date the chapter was added to your Kavita server. This is useful for accurate chronological sorting.
+
+#### Chapter Title Format
+This allows you to customize the title shown for each chapter using special format codes based on the metadata available in Kavita.
+ **⚠️ Use variables without curly braces, e.g., `$CleanTitle` instead of `${CleanTitle}`.** Available variables:
+`$Type` - Chapter/Episode/Volume/Issue/Special
+`$No` - Chapter number
+`$Title` - Original chapter title
+`$CleanTitle` - Custom-cleaned chapter title (default)
+`$Pages` - Number of pages
+`$Size` - File size
+`$Volume` - Volume number (If available)
+`$SeriesName` - Series name
+`$LibraryName` - Library name
+`$Format` - File format (CBZ, PDF, etc.)
+`$Created` - Creation date
+`$ReleaseDate` - Release date
+
+
+#### Scanlator Format
+Similar to the chapter title, this lets you customize the text displayed in the Scanlator field using available metadata variables.
+ **⚠️ Use variables without curly braces, e.g., `$CleanTitle` instead of `${CleanTitle}`.** Available variables:
+`$Type` - Chapter/Episode/Volume/Issue/Special
+`$No` - Chapter number
+`$Title` - Original chapter title
+`$CleanTitle` - Custom-cleaned chapter title (default)
+`$Pages` - Number of pages
+`$Size` - File size
+`$Volume` - Volume number (If available)
+`$SeriesName` - Series name
+`$LibraryName` - Library name
+`$Format` - File format (CBZ, PDF, etc.)
+`$Created` - Creation date
+`$ReleaseDate` - Release date
+
+#### Allowed Libraries on Latest/Popular Feeds & Suggestions
+Use this setting to filter content on the main browsing tabs. Only content from the **selected** Kavita libraries will appear in the **Latest**, **Popular** feeds. For Komikku, this will be applied to **Suggestions** as well.
+
+#### Allowed Libraries in Search
+Use this setting to filter content when performing a global search. Only content from the **selected** Kavita libraries will return results when searching within the extension.
 
 ## Sync Progress with Kavita
-Kavita has progress sync with Mihon. It will automatically mark completed volumes and chapters as read in both apps. It does not sync page progress, it only syncs when a volume (or chapter if they are split) is complete.
+Kavita has progress sync with Mihon. It will automatically mark completed chapters as read in both apps. It does not sync page progress, it only syncs when a chapter is complete.
 
 To activate tracking go to settings > Tracking and click on Kavita at the bottom.
 
