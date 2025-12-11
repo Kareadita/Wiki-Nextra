@@ -71,7 +71,7 @@ Removes the local password login for non-admin users. Admins can still log in wi
 
 To temporarily show the password field, add `forceShowPassword=true` to the login URL query string.
 
-> API key authentication always remains available.
+> Auth key authentication always remains available.
 
 ---
 
@@ -107,6 +107,8 @@ Kavita recognizes the following roles directly:
 - Library access: `library-<LibraryName>` (e.g., `library-Manga`)
 - Age restriction: `age-restriction-<Rating>` (e.g., `age-restriction-KidsToAdults`)
 - To allow unknown ratings: `include-unknowns`
+
+Roles are case-insensitive starting with v0.8.9
 
 <Callout type="warning">
     Users will not be able to login without the `Login` role. You can use this role to restrict access to your Kavita instance while still allowing user creation.
