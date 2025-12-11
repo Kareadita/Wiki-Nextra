@@ -157,55 +157,10 @@ When using Authentik you'll need to change some extra settings to get everything
 
 #### Authelia
 
-When using Authelia, you'll need to configure some extra settings to ensure proper integration with Kavita:
+When using Authelia, you'll need to configure some extra settings to ensure proper integration with Kavita when using the Sync User feature:
 
-- **Roles claim**: Set the roles claim to `groups` when using the `Sync user settings` feature.
+- **Roles claim**: Set the roles claim to `groups`.
 - **Custom scopes**: Ensure the `groups` scope is included.
-- **Claims policy**: Kavita requires specific claims to be present in the ID token. You must configure a claims policy in Authelia to include the necessary claims:
-
-```yaml
-claims_policies:
-  kavita:
-    id_token:
-      - "email"
-      - "email_verified"
-      - "groups"
-```
-
-A complete Authelia OIDC client configuration for Kavita would look like this:
-
-```yaml
-identity_providers:
-  oidc:
-    claims_policies:
-      kavita:
-        id_token:
-          - "email"
-          - "email_verified"
-          - "groups"
-
-    clients:
-      - client_id: kavita
-        client_name: kavita
-        claims_policy: kavita
-        client_secret: '$pbkdf2-sha512$...'
-        public: false
-        redirect_uris:
-          - 'https://kavita.example.com/signin-oidc'
-          - 'https://kavita.example.com/signout-callback-oidc'
-        response_types:
-          - code
-        scopes:
-          - openid
-          - email
-          - profile
-          - groups
-          - offline_access
-        token_endpoint_auth_method: client_secret_post
-        grant_types:
-          - authorization_code
-          - refresh_token
-```
 
 #### Keycloak
 
