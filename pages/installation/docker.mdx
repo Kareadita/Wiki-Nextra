@@ -40,8 +40,9 @@ docker run --name kavita -p 5000:5000 \
 -d jvmilazz0/kavita:latest
 ```
 
-If you prefer bind mounts, you can swap out the two `--volume` lines with:
+If you prefer volume mounts, you can swap out the two `--volume` lines with:
 
 ```bash
---mount type=volume,source=/your/storage/path/kavita,target=/config \
---mount type=volume,source=/your/storage/path/kavita,target=/data \
+--mount type=volume,target=/kavita/config \
+--mount type=volume,target=/manga \
+```
