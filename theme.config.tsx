@@ -8,12 +8,16 @@ import WikiLogo from './components/WikiLogo'
 export const GITHUB_REPO = 'https://github.com/Kareadita/Wiki-Nextra'
 const DOCS_PAGES_HREF = `${GITHUB_REPO}/tree/main/pages`
 
+export const CURRENT_VERSION = {major: 0, minor: 8, patch: 8};
+export const CURRENT_VERSION_STRING = `${CURRENT_VERSION.major}.${CURRENT_VERSION.minor}.${CURRENT_VERSION.patch}`
+
+
 export default {
 	banner: {
-		key: '0.8.8',
+		key: CURRENT_VERSION_STRING,
 		content: (
 		  <a href="https://github.com/Kareadita/Kavita/releases/latest" target="_blank">
-			🎉 Kavita v0.8.8 is released. Read more →
+			🎉 Kavita v{CURRENT_VERSION_STRING} is released. Read more →
 		  </a>
 		)
 	},

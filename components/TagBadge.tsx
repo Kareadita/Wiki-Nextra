@@ -1,4 +1,16 @@
-export function TagBadge({ children }) {
+import { CURRENT_VERSION } from '../theme.config'
+
+type TagBadgeProps = {
+    major: number
+    minor: number
+    patch: number
+}
+
+export function TagBadge({ major, minor, patch }: TagBadgeProps) {
+    if (Math.abs(CURRENT_VERSION.major - major) > 1) return null
+    if (Math.abs(CURRENT_VERSION.minor - minor) > 1) return null
+    if (Math.abs(CURRENT_VERSION.patch - patch) > 2) return null
+
     return (
         <span
             style={{
@@ -12,7 +24,7 @@ export function TagBadge({ children }) {
                 whiteSpace: 'nowrap',
             }}
         >
-      {children}
+      v{major}.{minor}.{patch}
     </span>
     )
 }
