@@ -3,18 +3,24 @@ import { Callout } from 'nextra/components'
 ![3rdpartysettings](../../../public/guides/user-settings/user-settings-3rdpartyclients.png "User Settings 3rd Party Accounts Page")
 
 
-This section is for viewing or regenerating your API key and OPDS URL. 
+This section is for viewing or regenerating your Auth key and OPDS URL. 
 
-## API key
+## Auth key
 
 <Callout type="error" emoji="️🚫">
-  Do NOT give out your API key to anyone! Your API key is your username AND password rolled up into 1 string. <br/>
+  Do NOT give out your Auth key to anyone! Your Auth key is your username AND password rolled up into 1 string. <br/>
   If someone has your key they can login as you! Only configure apps that you trust with your key.
 </Callout>
 
 This is your access key that can be used by apps to act on your behalf. Some user-made scripts and apps can login directly to your account using this key.
 
-Check the [API](https://www.kavitareader.com/docs/api/#/) documentation to see what is possible 
+Check the [API](https://www.kavitareader.com/docs/api/#/) documentation to see what is possible.
+
+![AuthKeys](../../../public/guides/user-settings/auth-keys.png)
+
+An Auth Key can be created with a custom expiration, name, and key length. For 3rd party clients, like Koreader, it is recommended to have a non-expiring short key.
+
+If an app calls for an OPDS url, you can sub the auth key in for the opds key.
 
 ### OPDS URL
 
