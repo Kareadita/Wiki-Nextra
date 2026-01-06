@@ -1,17 +1,10 @@
 import { Callout } from 'nextra/components'
 
-
 # Custom Themes
 
-<Callout type="info">
- Kavita only supports the Dark theme out of the box. However, you can find a good starting point for [Light/E-Ink themes here](https://github.com/Kareadita/Themes).
+![Theme Manager](../../public/guides/user-settings/theme-manager.png)
 
- A basic light theme is available but needs some polish. It has been last updated to Kavita v0.7.14.
-</Callout>
-
-Kavita supports reading a .css file for custom theming.
-
-Submit your created custom themes on our [Theme repo!](https://github.com/Kareadita/Themes) 
+Kavita supports customizing most of the colors via themes. You can either create your own or share it via our [Theme's Repo](https://github.com/Kareadita/Themes) and download/update with the built-in client. 
 
 There are a few things to note:
 - You only need to add variables you want to override or any custom css
@@ -22,9 +15,10 @@ There are a few things to note:
 - After placing the file in the directory, you must scan for it using the Scan button on the User Settings > Themes page before you can apply it.
 - Optionally, you can set it as Default and all new accounts will have this theme auto-selected (they can override with their preference)
 - This is limited to the properties we have exposed. (*See Available CSS Variables Below*)
+- Technically, any css can be injected to customize the layout.
 
 <Callout type="info">
- If you would like any other properties exposed, please feel free to suggest themes in our [Discord](https://discord.gg/b52wT37kt7) server or [feature request page](https://github.com/Kareadita/Kavita/discussions).
+ If you would like any other properties exposed, please feel free to suggest themes via a [feature request](https://github.com/Kareadita/Kavita/discussions).
 </Callout>
 
 So for instance, if we created `/config/themes/test-theme-123.css` then the CSS within the file should be structured as follows
@@ -66,6 +60,8 @@ You can use `color: var(--css-variable-name)` to refer to a defined css variable
 --bs-body-bg: hex/rgb(a);  // Background color for pages  
 --body-text-color: hex/rgb(a);   
 --btn-icon-filter: invert(1) grayscale(%) brightness(%));  // Any filter chain. Useful mainly for dark themes
+--dropdown-icon-white: url;
+--dropdown-icon-black: url;
 ```
 
 ### Elevation System
@@ -114,7 +110,7 @@ Theming colors that performs a gradient for background. Can be disabled else aut
 `--colorscape-primary-color` and the alpha variants will be updated in real time. the default variant is fixed and represents the default state and should 
 match the non-default/alpha on launch.
 ```css
---colorscape-enabled: true/false;
+--colorscape-enabled: true/false; // This will be overridden by User setting
 
 /* These are the default background colors for the app. These will be updated on different pages with the generated colors. Must be RGB */
 --colorscape-primary-color: rgb;
@@ -546,4 +542,33 @@ match the non-default/alpha on launch.
 --setting-mobile-breakpoint: number;
 --setting-tablet-breakpoint: number;
 --setting-desktop-breakpoint: number;
+```
+
+#### Charts
+```css
+--charts-palette1: hex/rgb(a);
+--charts-palette2: hex/rgb(a);
+--charts-palette3: hex/rgb(a);
+--charts-palette4: hex/rgb(a);
+--charts-palette5: hex/rgb(a);
+--charts-palette6: hex/rgb(a);
+--charts-palette7: hex/rgb(a);
+```
+
+#### Tooltips
+```css
+--tooltip-bg-color: hex/rgb(a);
+--tooltip-outline-color: hex/rgb(a);
+--tooltip-caret-color: hex/rgb(a);
+```
+
+#### Misc
+```css
+--offwhite-text-color: hex/rgb(a);
+```
+
+#### Activity Card
+```css
+--activity-card-client-platform-badge-bg-color: hex/rgb(a);
+--activity-card-client-device-badge-bg-color: hex/rgb(a);
 ```
