@@ -26,7 +26,7 @@ Also, please be aware that your screen may look different from the screenshots, 
 
   <Callout type="info" emoji="ℹ️">
   
-  This is required __**ONCE**__, when the library has been created before v0.8.7.
+  This is required __**ONCE**__, when the library has been created before v0.8.7 (or once after v0.8.9 if you want PDF/Archive support).
   
   It will generate the hash for existing books, books that are added afterwards will have the hash generated when they're added.
   
@@ -68,7 +68,7 @@ In the File Browser, open the menu, tap the Looking Glass (🔍), and look for t
 
 Since v0.8.7, Kavita supports 2-way sync of your reading progress. However, it needs to be enabled in KOReader first.
 
-<Callout type="info" emoji="ℹ️">You will need the [API key](/guides/user-settings/3rdpartycilents/#api-key) to set up progress sync</Callout>
+<Callout type="info" emoji="ℹ️">You will need the [Auth key](/guides/user-settings/3rdpartycilents/#api-key) to set up progress sync</Callout>
 
 <Steps>
 
@@ -86,13 +86,13 @@ The relevant plugin is only displayed when actually reading a book.
 - Login with your username, the password can be anything
 </Steps>
 
-With this, you can now push/pull reading progress to/from Kavita.
+With this, you can now push/pull reading progress to/from Kavita for Archives, PDF, and Epub files.
 
 <Callout type="warning" emoji="⚠️">The automatic sync can potentially undo reading progress. We **strongly** advise against using it. We also cannot support you on recovering potentially lost progress.</Callout>
 
 #### Archive (CBR/CBZ files) Streaming
 
-We do not have KOReader Sync Server setup with archives at this time, KOReader does however make use of the OPDS-PS standard which Kavita supports.
+KOReader supports OPDS-PS for page streaming and Kavita supports Progress Sync for Archives as well.
 
 - Open OPDS Catalog
 - Select Kavita Server

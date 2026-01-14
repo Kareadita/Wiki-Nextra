@@ -2,11 +2,11 @@
 
 ## Authentication
 
-For writing custom scripts that access Kavita's API, you will need to authenticate against the API first. You can do this by sending a POST request to the [`/api/Plugin/authenticate`](https://www.kavitareader.com/docs/api/#/Plugin/post_api_Plugin_authenticate) endpoint with an API key. It will return a JWT User Token that you can send in all your headers going forward. 
+Kavita has multiple methods of authentication, but the best approach would be to use Auth Keys. An Auth key is a user-created key with a custom expiration date (or none) and attach to the `x-api-key` header.
 
-You don't want to directly use JWT tokens in your scripts. They expire and rotate out on a frequent basis. API keys do not expire and only change if the user manually requests a new key.
+To check if there is an expiration limit, `GET /api/plugin/authkey-expires`. Null implies no expiration. Kavita will email users when an Auth Key is about to expire (if email is setup).
 
-Using the API key will always give you a valid JWT token. 
+![AuthKeys](../../../public/guides/user-settings/auth-keys.png)
 
 ## Swagger UI
 
@@ -22,29 +22,35 @@ Here's a small example written in Python for connecting to the `/api/Plugin/auth
 
 ```python copy
 import requests
-import json
 from urllib.parse import urlparse
+from datetime import datetime, timezone
 
-url = input("Paste in your full ODPS URL from your Kavita user dashboard (/preferences#clients): ")
-
+url = input("Paste in your full ODPS URL from your Kavita user dashboard (or url with auth key) (/preferences#clients): ")
 parsed_url = urlparse(url)
-
 host_address = parsed_url.scheme + "://" + parsed_url.netloc
 api_key = parsed_url.path.split('/')[-1]
 
-login_endpoint = "/api/Plugin/authenticate"
-try:
-    apikeylogin = requests.post(host_address + login_endpoint + "?apiKey=" + api_key + "&pluginName=pythonScanScript")
-    apikeylogin.raise_for_status() # check if the response code indicates an error
-    jwt_token = apikeylogin.json()['token']
-except requests.exceptions.RequestException as e:
-    print("Error during authentication:", e)
-    exit()
-
 headers = {
-    "Authorization": f"Bearer {jwt_token}",
+    "x-api-key": api_key,
     "Content-Type": "application/json"
 }
+
+# Check if the API key is expired
+try:
+    expiry_response = requests.get(host_address + "/api/plugin/authkey-expires", headers=headers)
+    expiry_response.raise_for_status()
+    
+    expiry_time = expiry_response.json()
+    if expiry_time is not None:
+        expiry_dt = datetime.fromisoformat(expiry_time.replace('Z', '+00:00'))
+        if expiry_dt <= datetime.now(timezone.utc):
+            print("Error: API key has expired")
+            exit()
+except requests.exceptions.RequestException as e:
+    print("Error checking API key expiration:", e)
+    exit()
+
+# Perform the scan
 scan_endpoint = "/api/Library/scan-all"
 response = requests.post(host_address + scan_endpoint, headers=headers)
 ```

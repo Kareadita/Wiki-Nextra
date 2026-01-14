@@ -1,10 +1,11 @@
 import { Callout } from 'nextra/components'
+import { TagBadge } from '../../../components/TagBadge'
 
 <Callout type="info">
     Reading profiles are part of the v0.8.7 release.
 </Callout>
 
-![img.png](../../../public/guides/user-settings/reading-profile-page.png)
+![reading-profile-page.png](../../../public/guides/user-settings/reading-profile-page.png)
 
 ## Reading Profiles
 
@@ -15,6 +16,26 @@ Once you've created your profile, you can bind it to a series or library. This i
 <Callout type="info">
     Your default profile is migrated from your user preferences. This profile can **not** be deleted or renamed.
 </Callout>
+
+### Linked to devices <TagBadge major={0} minor={8} patch={9} />
+
+You can bind devices to a reading profile, if a reading profile has devices assigned, it will only be used when you're reading on one of those devices.
+When binding a profile to a series/library you can have at most one profile per device.
+
+<br></br>
+
+<div style={{ display: 'flex', gap: '16px' }}>
+    <img
+        src="/guides/user-settings/reading-profiles-device-selection.png"
+        alt="Device selection"
+        style={{ width: '50%' }}
+    />
+    <img
+        src="/guides/user-settings/reading-profiles-bind-to-entity.png"
+        alt="Bind to entity"
+        style={{ width: '50%' }}
+    />
+</div>
 
 ### Settings
 
@@ -27,7 +48,7 @@ When you're reading on a device with a smaller or equal width than the breakpoin
 
 ### Implicit Profiles
 
-When you make changes to a reader's settings while reading, Kavita will create an implicit profile for you. These profiles are **not** visible in your reading profiles settings.
+When you make changes to a reader's settings while reading, Kavita will create an implicit profile for you. These profiles are **not** visible in your reading profiles settings and are automatically bound to the device you're reading on.
 
 From the reader, you can choose to:
 - Create a new reading profile from the currently loaded implicit profile, which becomes visible in your settings and can be assigned to other series.
@@ -51,3 +72,5 @@ When opening a series, Kavita will automatically select the reading profile in t
 2. The profile assigned to the series
 3. The profile assigned to the library the series is part of
 4. Your default profile
+
+For each step, reading profiles with a matching device take priority

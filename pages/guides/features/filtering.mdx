@@ -13,7 +13,7 @@ These filters are dynamic and will update as you change the values. If you add n
 | Field           |       Field Type     |          Description            |
 | ------ | ----------- |----------- |
 | Age Rating               | Single/Multi Select | Age Rating of Series                                                      |
-| Artist                   | Single/Multi Select | Artist of Series                                                         |
+| Artist                   | Single/Multi Select | Artist of Series                                                          |
 | Average Rating           | Number              | Kavita+ external rating, percent                                          |
 | Characters               | Single/Multi Select | Character in Series                                                       |
 | Collection Tag           | Single/Multi Select | Series that belongs in a Collection                                       |
@@ -34,6 +34,7 @@ These filters are dynamic and will update as you change the values. If you add n
 | Publisher                | Single/Multi Select | Publisher of Series                                                       |
 | Read Progress            | Number              | Decimal percentage of Series that is read by user                         |
 | Read Time                | Number              | Number of hours to read the Series                                        |
+| Read Last                | Number              | Number of days from TODAY the Series was read                             |
 | Reading Date             | Date                | Latest date the Series was read by the user                               |
 | Release Year             | Number              | The Release year of the Series (minimum from all chapters)                |
 | Series Name              | String              | The Name of the Series                                                    |
@@ -64,6 +65,22 @@ These filters are dynamic and will update as you change the values. If you add n
 | `Contains`              | Multi Select               | The Filter Field contains at least one entry of what is passed |
 | `Must Contains`         | Multi Select               | The Filter Field contains all of what is passed               |
 | `Must Not Contains`     | Multi Select               | The Filter Field contains none of what is passed              |
+
+
+### Sort Fields
+| Field                |        Description                            |
+| -------------------- | --------------------------------------------- |
+| Sort Name            | Sort Name of Series                           |
+| Average Rating       | Average Rating of Series (Kavita+)            |
+| Created              | Creation Date                                 |
+| Item Added           | Date of Series being updated with new files   |
+| Item Modified        | Date of any modification to Series            |
+| Last Read            | Date of Progress on Series by You             |
+| My Rating            | My Rating against a Series                    |
+| Random               | Randomize output                              |
+| Release Year         | Release Year of Series                        |
+| Time To Read         | Average time to Read whole Series             |
+
 
 ### Smart Filters
 A Smart Filter is essentially a saved filter. The underlying filter can be loaded and changed and anything that is bound with the Smart Filter will automatically be reflected in the new filters. Once you have a Smart Filter created, check out [Customization](https://wiki.kavitareader.com/en/guides/customization) to learn about how you can utilize the filters.

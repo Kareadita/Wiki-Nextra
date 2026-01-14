@@ -5,6 +5,6 @@ export default {
 	"3rdpartycilents": "3rd Party Clients",
 	"theme": "Theme",
 	"devices": "Devices",
-	"stats": "Stats",
+	"profile": "Profile",
 	"scrobbling": "Scrobbling"
 }

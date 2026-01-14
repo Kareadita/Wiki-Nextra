@@ -4,5 +4,7 @@ export default {
 	"comictagger": "ComicTagger",
 	"epub2cbz": "Epub to CBZ",
 	"calibre": "Calibre",
-	"sigil": "Sigil"
+	"sigil": "Sigil",
+	"obsidian-importer": "Obsidian",
+	"cbz-cover-manager": "CBZ Cover Manager"
 }
