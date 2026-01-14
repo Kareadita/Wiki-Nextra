@@ -6,7 +6,7 @@ Kavita has multiple methods of authentication, but the best approach would be to
 
 To check if there is an expiration limit, `GET /api/plugin/authkey-expires`. Null implies no expiration. Kavita will email users when an Auth Key is about to expire (if email is setup).
 
-![AuthKeys](../../../public/guides/user-settings/auth-keys.png)
+![AuthKeys](../../public/guides/user-settings/auth-keys.png)
 
 ## Swagger UI
 
@@ -39,7 +39,7 @@ headers = {
 try:
     expiry_response = requests.get(host_address + "/api/plugin/authkey-expires", headers=headers)
     expiry_response.raise_for_status()
-    
+
     expiry_time = expiry_response.json()
     if expiry_time is not None:
         expiry_dt = datetime.fromisoformat(expiry_time.replace('Z', '+00:00'))
