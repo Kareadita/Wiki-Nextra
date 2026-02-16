@@ -160,6 +160,10 @@ We encourage users to **contribute guides or notes for any OIDC providers** to h
 
 ### Authentik
 
+Authentik uses some different terminology than what we provide.
+
+- **Authority**: While Kavita refers to authority as the url that it gets the provider information from Authentik refers to this URL as `OpenID Configuration Issuer`.
+
 When using Authentik you'll need to change some extra settings to get everything working correctly
 
 - **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings.
