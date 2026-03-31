@@ -29,37 +29,37 @@ Kavita uses these fields to find the matching issue in your library.
 
 Kavita tries to match each CBL entry using a series of strategies called **tiers**, ordered from most reliable to least. As soon as a tier produces a match, Kavita stops and uses that result. If a tier fails, Kavita moves on to the next one.
 
-### Tier 0 — Remap Rules (highest priority)
+### Tier 0: Remap Rules (highest priority)
 
 Remap rules are user-created overrides that tell Kavita "whenever you see *this* CBL series, use *that* Kavita series/volume/issue instead." They always take priority over every other matching strategy.
 
 See the [Remap Rules](#remap-rules) section below for details.
 
-### Tier 1 — External IDs
+### Tier 1: External IDs
 
 If the CBL file includes external database identifiers (ComicVine ID, Metron ID), Kavita checks whether any issue in your library has the same ID. This is a very reliable match because it uses a globally unique identifier rather than names. Kavita will parse these from ComicInfo `Notes` or `WebLink`.
 
-### Tier 2 — Exact Name
+### Tier 2: Exact Name
 
 Kavita normalizes the CBL series name (lowercasing, removing punctuation, etc.) and compares it against the normalized names of every series in your library. If there's an exact match, that series is used.
 
 **When multiple series share the same name**, Kavita chooses using the CBL entry's publication year and the series' release year metadata.
 
-### Tier 3 — Comic Naming Pattern
+### Tier 3: Comic Naming Pattern
 
-Many Comic library types store the volume year in the series title — for example, a CBL entry with Series=`Batman` and Volume=`2014` would look for a Kavita series named `Batman (2014)`. This tier generates that combined name and checks for a match.
+Many Comic library types store the volume year in the series title. For example, a CBL entry with Series=`Batman` and Volume=`2014` would look for a Kavita series named `Batman (2014)`. This tier generates that combined name and checks for a match.
 
 This is specifically useful for Comic libraries where Kavita titles series as `Name (Volume)` during scanning.
 
-### Tier 4 — Article Stripped
+### Tier 4: Article Stripped
 
 Kavita removes leading articles (like "The", "A", "An") from the CBL series name and tries again. This catches cases where the CBL uses "The Amazing Spider-Man" but your library has "Amazing Spider-Man".
 
-### Tier 5 — Reprint Stripped
+### Tier 5: Reprint Stripped
 
 Kavita removes common edition suffixes like "Deluxe Edition", "Omnibus", "Director's Cut", "TPB", etc., and tries matching the base series name.
 
-### Tier 6 — Alternate Series
+### Tier 6: Alternate Series
 
 Kavita checks the `Alternate Series` metadata field on issues in your library. If an issue's alternate series name matches the CBL series name, that's a match.
 
@@ -71,11 +71,11 @@ If none of the above tiers produce a match, the entry is marked as **Unmatched**
 
 Once a series is matched (by any tier), Kavita still needs to find the correct volume and issue within that series. This works the same way regardless of which tier matched the series:
 
-1. **Find the volume** — If the CBL entry has a volume number, Kavita looks for a volume in the matched series whose number range includes that value. If no volume is specified, Kavita uses the loose-leaf volume (where issues not assigned to a specific volume live).
+1. **Find the volume**: If the CBL entry has a volume number, Kavita looks for a volume in the matched series whose number range includes that value. If no volume is specified, Kavita uses the loose-leaf volume (where issues not assigned to a specific volume live).
 
-2. **Find the issue** — Within the target volume, Kavita looks for a chapter whose range matches the CBL issue number, first by exact string match, then by numeric match.
+2. **Find the issue**: Within the target volume, Kavita looks for a chapter whose range matches the CBL issue number, first by exact string match, then by numeric match.
 
-3. **Fallbacks** — If no specific volume was requested and the issue isn't found in the loose-leaf volume, Kavita checks the specials volume and then searches across all volumes as a last resort.
+3. **Fallbacks**: If no specific volume was requested and the issue isn't found in the loose-leaf volume, Kavita checks the specials volume and then searches across all volumes as a last resort.
 
 If the volume can't be found, the entry is reported as **Volume Missing**. If the volume is found but the issue isn't, it's reported as **Issue Missing**.
 
@@ -101,18 +101,18 @@ This is useful when the CBL volume number doesn't correspond to any volume in th
 
 An issue-level remap is the most specific: "This exact CBL entry (series + volume + issue) maps to this exact Kavita issue."
 
-This is the last resort when automatic resolution can't find the right issue. The user selects the exact target issue, and Kavita uses it directly — no volume or issue resolution needed.
+This is the last resort when automatic resolution can't find the right issue. The user selects the exact target issue, and Kavita uses it directly, no volume or issue resolution needed.
 
 ### How remap rules are matched
 
 When multiple remap rules exist for the same CBL series, Kavita picks the most specific one that applies:
 
-1. **Volume + Issue match** — A rule that matches both the CBL volume *and* issue number
-2. **Issue-only match** — A rule that matches just the CBL issue number (any volume)
-3. **Volume-only match** — A rule that matches just the CBL volume (any issue)
-4. **Series-only match** — A catch-all rule for the series with no volume/issue constraints
+1. **Volume + Issue match**: A rule that matches both the CBL volume *and* issue number
+2. **Issue-only match**: A rule that matches just the CBL issue number (any volume)
+3. **Volume-only match**: A rule that matches just the CBL volume (any issue)
+4. **Series-only match**: A catch-all rule for the series with no volume/issue constraints
 
-This means you can create a broad series-level remap and then add more specific rules for individual issues that need special handling — the specific rules will take priority where they apply, and the series-level rule covers everything else.
+This means you can create a broad series-level remap and then add more specific rules for individual issues that need special handling, the specific rules will take priority where they apply, and the series-level rule covers everything else.
 
 ### Remap rule scope
 
