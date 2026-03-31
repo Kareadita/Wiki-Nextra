@@ -5,5 +5,6 @@ export default {
 	"filtering": "Filtering",
 	"opds": "OPDS",
 	"readinglists": "Reading Lists",
+	"cbl-import": "CBL Import",
 	"relationships": "Relationships"
 }

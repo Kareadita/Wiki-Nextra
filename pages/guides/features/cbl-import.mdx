@@ -1,0 +1,124 @@
+---
+title: 'CBL Import'
+---
+
+# CBL Import Matching Algorithm
+
+When you import a CBL (Comic Book Library) reading list, Kavita needs to match each entry in the file to a series, volume, and issue in your library. This page explains how that matching works, the order of priority, and how remap rules let you fix entries that can't be resolved automatically.
+
+## What's in a CBL entry?
+
+Each line in a CBL file describes a single issue with these fields:
+
+| Field | Example | Purpose |
+|-------|---------|---------|
+| Series | `Batman` | The series name |
+| Number | `1` | The issue or chapter number |
+| Volume | `2005` | Volume identifier (often the start year for comics) |
+| Year | `2005` | Publication year |
+
+Kavita uses these fields to find the matching issue in your library.
+
+## Matching tiers
+
+Kavita tries to match each CBL entry using a series of strategies called **tiers**, ordered from most reliable to least. As soon as a tier produces a match, Kavita stops and uses that result. If a tier fails, Kavita moves on to the next one.
+
+### Tier 0 — Remap Rules (highest priority)
+
+Remap rules are user-created overrides that tell Kavita "whenever you see *this* CBL series, use *that* Kavita series/volume/issue instead." They always take priority over every other matching strategy.
+
+See the [Remap Rules](#remap-rules) section below for details.
+
+### Tier 1 — External IDs
+
+If the CBL file includes external database identifiers (ComicVine ID, Metron ID), Kavita checks whether any issue in your library has the same ID. This is a very reliable match because it uses a globally unique identifier rather than names. Kavita will parse these from ComicInfo `Notes` or `WebLink`.
+
+### Tier 2 — Exact Name
+
+Kavita normalizes the CBL series name (lowercasing, removing punctuation, etc.) and compares it against the normalized names of every series in your library. If there's an exact match, that series is used.
+
+**When multiple series share the same name**, Kavita chooses using the CBL entry's publication year and the series' release year metadata.
+
+### Tier 3 — Comic Naming Pattern
+
+Many Comic library types store the volume year in the series title — for example, a CBL entry with Series=`Batman` and Volume=`2014` would look for a Kavita series named `Batman (2014)`. This tier generates that combined name and checks for a match.
+
+This is specifically useful for Comic libraries where Kavita titles series as `Name (Volume)` during scanning.
+
+### Tier 4 — Article Stripped
+
+Kavita removes leading articles (like "The", "A", "An") from the CBL series name and tries again. This catches cases where the CBL uses "The Amazing Spider-Man" but your library has "Amazing Spider-Man".
+
+### Tier 5 — Reprint Stripped
+
+Kavita removes common edition suffixes like "Deluxe Edition", "Omnibus", "Director's Cut", "TPB", etc., and tries matching the base series name.
+
+### Tier 6 — Alternate Series
+
+Kavita checks the `Alternate Series` metadata field on issues in your library. If an issue's alternate series name matches the CBL series name, that's a match.
+
+### Unmatched
+
+If none of the above tiers produce a match, the entry is marked as **Unmatched** with a reason of **Series Missing**.
+
+## Volume and issue resolution
+
+Once a series is matched (by any tier), Kavita still needs to find the correct volume and issue within that series. This works the same way regardless of which tier matched the series:
+
+1. **Find the volume** — If the CBL entry has a volume number, Kavita looks for a volume in the matched series whose number range includes that value. If no volume is specified, Kavita uses the loose-leaf volume (where issues not assigned to a specific volume live).
+
+2. **Find the issue** — Within the target volume, Kavita looks for a chapter whose range matches the CBL issue number, first by exact string match, then by numeric match.
+
+3. **Fallbacks** — If no specific volume was requested and the issue isn't found in the loose-leaf volume, Kavita checks the specials volume and then searches across all volumes as a last resort.
+
+If the volume can't be found, the entry is reported as **Volume Missing**. If the volume is found but the issue isn't, it's reported as **Issue Missing**.
+
+## Remap rules
+
+Remap rules are the most powerful way to resolve CBL entries that Kavita can't match automatically. There are three levels of remap rules, from broadest to most specific.
+
+### Series-level remap
+
+A series-level remap tells Kavita: "Every time the CBL mentions series X, look in Kavita series Y instead."
+
+**Example:** Your CBL has entries for `Zombie Tales: Death Valley` but your library has this content under `Adventure Time`. A series-level remap from `Zombie Tales: Death Valley` to `Adventure Time` will redirect all entries for that CBL series.
+
+After redirecting to the target series, Kavita still resolves the volume and issue using the CBL entry's numbers. If the CBL volume doesn't exist in the target series (common when remapping across different library types, e.g. a Comic CBL entry with Volume=`2005` targeting a Manga series that only has loose issues), Kavita automatically falls back to the loose-leaf volume for issue resolution.
+
+### Volume-level remap
+
+A volume-level remap narrows the scope: "For CBL series X, look in this specific volume of Kavita series Y."
+
+This is useful when the CBL volume number doesn't correspond to any volume in the target series, but you know exactly which volume the issues belong to. Kavita will resolve individual issues within the specified volume.
+
+### Issue-level remap
+
+An issue-level remap is the most specific: "This exact CBL entry (series + volume + issue) maps to this exact Kavita issue."
+
+This is the last resort when automatic resolution can't find the right issue. The user selects the exact target issue, and Kavita uses it directly — no volume or issue resolution needed.
+
+### How remap rules are matched
+
+When multiple remap rules exist for the same CBL series, Kavita picks the most specific one that applies:
+
+1. **Volume + Issue match** — A rule that matches both the CBL volume *and* issue number
+2. **Issue-only match** — A rule that matches just the CBL issue number (any volume)
+3. **Volume-only match** — A rule that matches just the CBL volume (any issue)
+4. **Series-only match** — A catch-all rule for the series with no volume/issue constraints
+
+This means you can create a broad series-level remap and then add more specific rules for individual issues that need special handling — the specific rules will take priority where they apply, and the series-level rule covers everything else.
+
+### Remap rule scope
+
+Remap rules can be **user-specific** (only apply to your imports) or **global** (apply to all users). When both exist for the same CBL series, your personal rules take priority over global ones.
+
+## Matching results at a glance
+
+| Status | Meaning |
+|--------|---------|
+| **Success** | Fully matched to a series, volume, and issue |
+| **Series Missing** | No series in your library could be matched |
+| **Volume Missing** | Series was found, but the requested volume doesn't exist |
+| **Issue Missing** | Series and volume were found, but the issue doesn't exist |
+
+When entries show as Volume Missing or Issue Missing, you can create remap rules to manually point them at the correct location in your library, then re-validate to apply the fix.
