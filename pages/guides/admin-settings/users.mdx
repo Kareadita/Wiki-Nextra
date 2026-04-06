@@ -66,6 +66,14 @@ Right now the wording may seem confusing, but you can create a username-only acc
 
 ![InviteUser](../../../public/guides/admin-settings/admin-settings-users-create-user.png "Invite User Screen")
 
+## Age Rating Restriction
+
+When selected, all series and reading lists that have at least one item that is greater than the selected restriction will be pruned from the results. This is not applicable to admins.
+
+### Include Unknowns
+
+If this is checked any series that does not have the age rating defined will be treated as an unknown rating, thus blocking it from showing up for the user. 
+
 ## Roles
 
 ### Admin
@@ -98,14 +106,14 @@ Controls if the user is allowed to create bookmarks in their own profile. The re
 
 Controls if the user is allowed to change their content restrictions. Giving this permission to a user you are trying to enforce restrictions on is not recommended, as they could just change it to view everything.
 
+### Read Only
+
+Restricts the user from managing their own account without an admin. This has very limited permissions. (This is used explicitly for Demo Server.)
+
 ### Login
 
-Controls if a user is allowed to login or not. This allows an admin to disable the account, but not delete the users stored settings and progress. 
+Controls if a user is allowed to login or not. This allows an admin to disable the account, but not delete the users' stored settings and progress. 
 
-### Age Rating Restriction
+### Promote
 
-When selected, all series and reading lists that have at least one item that is greater than the selected restriction will be pruned from the results. This is not applicable to admins.
-
-### Include Unknowns
-
-If this is checked any series that does not have the age rating defined will be treated as an unknown rating, thus blocking it from showing up for the user. 
+Allows the user to share, or "promote," their Collections, Reading Lists, etc. to all other users on the server.
