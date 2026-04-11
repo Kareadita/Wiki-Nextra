@@ -6,5 +6,6 @@ export default {
 	"calibre": "Calibre",
 	"sigil": "Sigil",
 	"obsidian-importer": "Obsidian",
-	"cbz-cover-manager": "CBZ Cover Manager"
+	"cbz-cover-manager": "CBZ Cover Manager",
+	"cbz-missing-sequence-checker": "CBZ Missing Sequence Checker"
 }
