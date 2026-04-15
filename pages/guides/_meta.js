@@ -9,5 +9,6 @@ export default {
 	"readers": "Readers",
 	"scanner": "Library Scanner",
 	"themes": "Custom Themes",
-	"api": "API"
+	"epub-fonts": "Custom Fonts",
+	"api": "API",
 }
