@@ -12,9 +12,38 @@ The system allows you to build a series of statements that AND or OR together wi
 On some pages, these filters can be saved to a [Smart Filter](#smart-filter) which can then be shared via url, bound to your Side Nav/Dashboard, or seen on the Smart Filters page (under user profile).
 These filters are dynamic, thus if you add new entities, they will show up in the filters. 
 
+### Smart Filters
+A Smart Filter is essentially a saved filter. The underlying filter can be loaded and changed and anything that is bound with the Smart Filter will automatically be reflected in the new filters. Once you have a Smart Filter created, check out [Customization](https://wiki.kavitareader.com/en/guides/customization) to learn about how you can utilize the filters.
+
+To create a Smart Filter, just add a name in the Name field and hit Save. Smart Filter names must be unique per user. Smart Filters are user-bound. 
+
+![create_smart_filter](../../../public/guides/features/create_smart_filter.png)
+
+![smart%20filter%20list](../../../public/guides/features/smart%20filter%20list.png)
+
+
 
  
-<Tabs items={['Series', 'People', 'Reading Lists']} defaultIndex="1">
+<Tabs items={['General', 'Series', 'People', 'Reading Lists']} defaultIndex="1">
+  <Tabs.Tab>
+  #### Filter Combination
+    | Filter Combination      | Applies on                  | Description                                                    |
+    |-------------------------|----------------------------|---------------------------------------------------------------|
+    | `Equal`                 | String/Number/Multi Select | Equals exactly                                                |
+    | `Not Equal`             | String/Number/Multi Select | Doesn't Equal                                                 |
+    | `Begins With`           | String                     | Starts with string                                            |
+    | `Ends With`             | String                     | Ends with string                                              |
+    | `Matches`               | String                     | Applies a search-like match on the field                      |
+    | `Is Before`             | Date                       | Date is before X                                              |
+    | `Is After`              | Date                       | Date is after X                                               |
+    | `Less Than`             | Number                     | Less than X                                                   |
+    | `Less Than Equal`       | Number                     | Less than or Equal to X                                       |
+    | `Greater Than`          | Number                     | Greater than X                                                |
+    | `Greater Than Equal`    | Number                     | Greater than or Equal to X                                    |
+    | `Contains`              | Multi Select               | The Filter Field contains at least one entry of what is passed |
+    | `Must Contains`         | Multi Select               | The Filter Field contains all of what is passed               |
+    | `Must Not Contains`     | Multi Select               | The Filter Field contains none of what is passed              |
+  </Tabs.Tab>
   <Tabs.Tab>
 
 
@@ -55,25 +84,7 @@ These filters are dynamic, thus if you add new entities, they will show up in th
     | Want To Read             | Boolean             | If Series is in the user's Want To Read list                              |
     | Writers                  | Single/Multi Select | Writer of Series                                                          |
 
-    * People refers to fields such as Translator, Editor, Inker, etc
-
-    #### Filter Combination
-    | Filter Combination      | Applies on                  | Description                                                    |
-    |-------------------------|----------------------------|---------------------------------------------------------------|
-    | `Equal`                 | String/Number/Multi Select | Equals exactly                                                |
-    | `Not Equal`             | String/Number/Multi Select | Doesn't Equal                                                 |
-    | `Begins With`           | String                     | Starts with string                                            |
-    | `Ends With`             | String                     | Ends with string                                              |
-    | `Matches`               | String                     | Applies a search-like match on the field                      |
-    | `Is Before`             | Date                       | Date is before X                                              |
-    | `Is After`              | Date                       | Date is after X                                               |
-    | `Less Than`             | Number                     | Less than X                                                   |
-    | `Less Than Equal`       | Number                     | Less than or Equal to X                                       |
-    | `Greater Than`          | Number                     | Greater than X                                                |
-    | `Greater Than Equal`    | Number                     | Greater than or Equal to X                                    |
-    | `Contains`              | Multi Select               | The Filter Field contains at least one entry of what is passed |
-    | `Must Contains`         | Multi Select               | The Filter Field contains all of what is passed               |
-    | `Must Not Contains`     | Multi Select               | The Filter Field contains none of what is passed              |
+    \* People refers to fields such as Translator, Editor, Inker, etc
 
 
     ### Sort Fields
@@ -91,23 +102,46 @@ These filters are dynamic, thus if you add new entities, they will show up in th
     | Time To Read         | Average time to Read whole Series             |
   </Tabs.Tab>
   <Tabs.Tab>
-  
+
+    ### Filter Fields
+    | Field          | Field Type           | Description |
+    | -------------- | -------------------- | ----------- |
+    | Role           | Single/Multi Select  |     Role |
+    | Name           | String               |     Name        |
+    | Series Count   | Number               |     Number of Series     |
+    | Chapter Count  | Number               |  Number of Chapters/Books  |
+    | Library        | Single/Multi Select  |  Restrict to libraries  |
+
+    ### Sort Fields
+    | Field          | Description |
+    | -------------- | ----------- |
+    | Name           |             |
+    | Series Count   |             |
+    | Chapter Count  |             |
+
   </Tabs.Tab>
   <Tabs.Tab>
-  
+
+    ### Filter Fields
+    | Field               | Field Type           | Description                          |
+    | ------------------- | -------------------- | ------------------------------------ |
+    | Title               | String               |                                      |
+    | Release Year        | Number               |                                      |
+    | Item Count          | Number               |                                      |
+    | Tags                | Single/Multi Select  |                                      |
+    | Writer              | Single/Multi Select  |                                      |
+    | Artist              | Single/Multi Select  |                                      |
+    | Provider            | Single/Multi Select  | Source is either Kavita, URL, or File |
+    | Missing Item Count  | Number               |      Only applicable for Url-based lists, number of items missing against the source truth |
+
+    ### Sort Fields
+    | Field               | Description |
+    | ------------------- | ----------- |
+    | Title               |             |
+    | Release Year Start  |             |
+    | Release Year End    |             |
+    | Item Count          |             |
+
   </Tabs.Tab>
 </Tabs>
-
-
-
-
-
-### Smart Filters
-A Smart Filter is essentially a saved filter. The underlying filter can be loaded and changed and anything that is bound with the Smart Filter will automatically be reflected in the new filters. Once you have a Smart Filter created, check out [Customization](https://wiki.kavitareader.com/en/guides/customization) to learn about how you can utilize the filters.
-
-To create a Smart Filter, just add a name in the Name field and hit Save. Smart Filter names must be unique per user. Smart Filters are user-bound. 
-
-![create_smart_filter](../../../public/guides/features/create_smart_filter.png)
-
-![smart%20filter%20list](../../../public/guides/features/smart%20filter%20list.png)
 
