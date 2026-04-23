@@ -20,3 +20,4 @@ packages/nextra-theme-*/style.css
 
 tsup.config.bundled*
 tsconfig.tsbuildinfo
+Claude.md
