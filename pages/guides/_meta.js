@@ -1,7 +1,6 @@
 export default {
 	"admin-settings": "Admin Settings",
 	"user-settings": "User Settings",
-	"updating": "Updating",
 	"features": "Features",
 	"metadata": "Metadata",
 	"readers": "Readers",

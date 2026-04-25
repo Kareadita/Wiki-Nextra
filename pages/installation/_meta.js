@@ -18,5 +18,6 @@ export default {
 		}
 	},
 	"managed-hosting": "Managed Hosting",
-	"remote-access": "Remote Access"	
+	"remote-access": "Remote Access",
+	"updating": "Updating"	
 }
