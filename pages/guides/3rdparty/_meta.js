@@ -6,6 +6,7 @@ export default {
 	"panels": "Panels",
 	"paperback": "Paperback",
 	"tachi-like": "Mihon",
+	"yomu": "Yomu",
 	"misc": "Misc"
 
 }
