@@ -9,23 +9,25 @@ Remember to use the new [Docker Central Repo!](https://hub.docker.com/r/jvmilazz
 </Callout>
 
 #### Q. I really like Kavita, but can it mirror or just use my folder structure?
-A. No, Kavita uses filenames and internal metadata for parsing and is not designed to use folder structure. Please don't ask for this feature, it will never be implemented. If this is important to you, [Ubooquity](https://vaemendis.net/ubooquity/) may be a better choice, as it offers this feature. 
+A. No, Kavita uses filenames and internal metadata for parsing and is not designed to use folder structure. Please don't ask for this feature, it will never be implemented. If this is important to you, [Ubooquity](https://vaemendis.net/ubooquity/) may be a better choice, as it offers this feature.
 
 #### Q. Is there a way to use Kavita without Authentication?
-A. No, this type of functionality is not supported and there are no plans change it in the future. Kavita offers Refresh Tokens which should keep you authenticated without having to manually log in. You can also pass your apiKey to auto-login to your account via url (http://[yourkavitainstance]/login?apiKey=XXX). 
+A. No, this type of functionality is not supported and there are no plans change it in the future. Kavita offers Refresh Tokens which should keep you authenticated without having to manually log in. You can also pass your apiKey to auto-login to your account via url (http://[yourkavitainstance]/login?apiKey=XXX).
 
 #### Q. I'm running on macOS Monterey and I get error 403 when trying to load the web app.
 As of macOS Monterey (12.xx) some systems might have the AirPlay service running on port 5000. You'll need to pick a different port for Kavita to run under.
 
 #### Q. Is there an app? I don't want to use the website.
-Kavita does not yet offer mobile apps, however, you can "Add to Home screen" our website, which will create an icon on your mobile device and launch the site in fullscreen mode.
+A. Kavita does not yet offer mobile apps, however, you can "Add to Home screen" our website, which will create an icon on your mobile device and launch the site in fullscreen mode.
+
+Check out the growing list of [3rd Party Clients](../../guides/3rdparty/aidoku) and [OPDS Capable Clients](../../guides/features/opds/#opds-capable-clients)
 
 #### Q. Sometimes I add ComicInfo to the first archive, but Kavita doesn't show it at a series level. Is this a bug?
-A. There are 2 things to keep in mind. If the underlying file Created/LastModified hasn't been changed since our last scan, we skip it to save time and resources. A series scan will always scan or a library-forced scan will work. Sometimes it's best to rename the file once and then back. In addition, if the file is not an archive starting with C, like cbz, cbr, etc, then it will not be checked for ComicInfo metadata. 
+A. There are 2 things to keep in mind. If the underlying file Created/LastModified hasn't been changed since our last scan, we skip it to save time and resources. A series scan will always scan or a library-forced scan will work. Sometimes it's best to rename the file once and then back. In addition, if the file is not an archive starting with C, like cbz, cbr, etc, then it will not be checked for ComicInfo metadata.
 
 #### Q. How exactly does Estimated Reading Time work?
-A. Kavita calculates the reading time using two different methods. The calculated reading time may not always reflect the actual reading time but should be sufficient in providing a general sense of how long it will take to read or finish off a series. Note: Kavita uses characters instead of words to account for languages that don't have spaces, with the assumption of 5 characters per word. 
-- For items where we can count words (epub), we use a spread of 10,260 to 30,000 words per hour to calculate min, max, and average. 
+A. Kavita calculates the reading time using two different methods. The calculated reading time may not always reflect the actual reading time but should be sufficient in providing a general sense of how long it will take to read or finish off a series. Note: Kavita uses characters instead of words to account for languages that don't have spaces, with the assumption of 5 characters per word.
+- For items where we can count words (epub), we use a spread of 10,260 to 30,000 words per hour to calculate min, max, and average.
 - For files that don't have countable words, we use a spread of 2.75 to 3.33 pages per minute. This works in most cases but might fail for files webtoons, which have a long strip format.
 
 #### Q. Does Kavita collect any data on me?
@@ -50,7 +52,7 @@ A. By default, Kavita will collect stats on your installation. This will run aft
 }
 ```
 #### Q. Kavita doesn't seem to run/generate covers / generate black and white covers on my computer.
-A. Kavita uses NetVips for cover generation and thus requires SSE4.2 instruction set. Generally, Core i3/i5/i7/i9 support them, whereas Pentium and Celeron CPUs do not. CPUs from 2011 onwards should support SSE4.2. You can read more about it [here](https://github.com/kleisauke/net-vips/issues/176). If you fall in this category and still want to use Kavita, you can delete the libvips.dll or libvips.so and install it (`libvips-tools` for Linux) via your system manager (version must < v8.10.6) or compile it yourself, see this issue [here](https://github.com/Kareadita/Kavita/issues/1423). 
+A. Kavita uses NetVips for cover generation and thus requires SSE4.2 instruction set. Generally, Core i3/i5/i7/i9 support them, whereas Pentium and Celeron CPUs do not. CPUs from 2011 onwards should support SSE4.2. You can read more about it [here](https://github.com/kleisauke/net-vips/issues/176). If you fall in this category and still want to use Kavita, you can delete the libvips.dll or libvips.so and install it (`libvips-tools` for Linux) via your system manager (version must < v8.10.6) or compile it yourself, see this issue [here](https://github.com/Kareadita/Kavita/issues/1423).
 
 #### Q. What is the `NetVips` dependency and what does it mean if I can't run it?
 
@@ -58,7 +60,7 @@ A. Kavita uses the `NetVips` [package](https://github.com/kleisauke/net-vips) to
 
 If you have an Intel CPU, you can check if your device is supported by looking in [Intel's ARC database](https://ark.intel.com/content/www/us/en/ark.html#@Processors) for your CPU. "Instruction Set Extensions" should list SSE4.2
 
-AMD users can check [wikipedia for their architecture](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) to see if there is support. 
+AMD users can check [wikipedia for their architecture](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) to see if there is support.
 
 If you are running on an older device that doesn't meet the requirement you can try the steps outlined here: [Github Ticket](https://github.com/Kareadita/Kavita/issues/1423)
 
@@ -120,7 +122,7 @@ A. This is a browser cache issue. There are a few ways to fix this issue:
 - Delete all browser cache, cookies, and any other data related to your kavita domain within your browser.
 
 
-#### Q. How do I restore the DB? 
+#### Q. How do I restore the DB?
 A. By default, Kavita stores backups in `config/backups`. To restore from an older version:
 - Stop Kavita
 - Copy everything in the backup zip into the `config/` directory
