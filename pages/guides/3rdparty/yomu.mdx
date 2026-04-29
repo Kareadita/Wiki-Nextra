@@ -1,0 +1,55 @@
+import { Callout } from 'nextra/components'
+
+# Yomu
+
+[Yomu](https://yomureader.app/) is a free native manga, webtoon, and manhwa reader for iPhone, iPad, and Mac with **built-in Kavita support** — no separate extension or repository required.
+
+## Installation
+
+1. Download Yomu from the [App Store](https://apps.apple.com/app/yomu/id6760745234) (iOS, iPadOS 15+, macOS 13+).
+2. Open the app and tap **Browse** → tap the **+** button → choose **Add Kavita Server**.
+
+## Setup
+
+To connect Yomu to your Kavita instance you'll need an API key.
+
+### Get your API key
+
+1. Sign in to your Kavita server in a web browser.
+2. Open your **User Settings**.
+3. Switch to the **3rd Party Clients** tab.
+4. Copy the text under the **API Key**.
+
+<Callout type="info">
+You can paste the full Kavita login URL (e.g. `https://my.server/login?apiKey=...`) into the **Server URL** field and Yomu will extract the API key automatically.
+</Callout>
+
+### Configure the source
+
+1. In Yomu's Kavita server form, fill in:
+   - **Name** — optional label shown in the Browse list
+   - **Server URL** — e.g. `https://my.server:5000`
+   - **API Key** — paste from step 4 above
+2. Tap **Test Connection** to verify, then **Save**.
+
+You can configure multiple Kavita servers — each one shows up as its own entry under Browse.
+
+## Browse and read
+
+- Browse, search, and filter series across every Kavita server you've added
+- Pick from manga, webtoon (vertical scroll), or comic reading modes per series
+- Download chapters for offline reading
+- Read-state and progress sync back to Kavita automatically as you finish chapters
+- Bookmarks, per-series reader settings, and external display support on iPad and Mac
+
+## Tracking
+
+Reading progress (last page read, completed chapters) syncs to your Kavita server automatically — no extra setup. You can also link series to AniList, MyAnimeList, Kitsu, or MangaUpdates.
+
+## Compatibility
+
+Keep both up to date for best results:
+- Kavita server (latest stable)
+- Yomu (latest from the App Store)
+
+Yomu uses the official Kavita REST API — no plugins needed.
