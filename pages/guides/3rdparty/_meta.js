@@ -1,7 +1,7 @@
 export default {
 	"aidoku": "Aidoku",
 	"cdisplayex": "CDisplayEX",
-	"kavita-dedicated": "Dedciated Kavita Apps",
+	"kavita-dedicated": "Dedicated Kavita Apps",
 	"koreader": "KOReader",
 	"mylar": "Mylar",
 	"panels": "Panels",
