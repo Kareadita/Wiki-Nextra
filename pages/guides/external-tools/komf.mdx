@@ -23,16 +23,16 @@ The minimum `application.yml` file needed to start Komf is:
 ```yml copy
 kavita:
   baseUri: "http://localhost:5000" #or env:KOMF_KAVITA_BASE_URI
-  apiKey: "YOUR_API_KEY_HERE!" #or env:KOMF_KAVITA_API_KEY
+  apiKey: "YOUR_AUTH_KEY_HERE!" #or env:KOMF_KAVITA_API_KEY
 
 database:
   file: ./database.sqlite # database file location.
 ```
 
-Fill out your `baseUri` to point to your Kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
+Fill out your `baseUri` to point to your Kavita install URL and put in your [Kavita Auth key](../user-settings/3rdpartycilents.mdx#api-key). 
 
 <Callout type="info">
-  The API key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
+  The Auth key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
 </Callout>
 
 <Callout type="warning">
