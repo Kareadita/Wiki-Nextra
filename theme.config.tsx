@@ -8,7 +8,7 @@ import WikiLogo from './components/WikiLogo'
 export const GITHUB_REPO = 'https://github.com/Kareadita/Wiki-Nextra'
 const DOCS_PAGES_HREF = `${GITHUB_REPO}/tree/main/pages`
 
-export const CURRENT_VERSION = {major: 0, minor: 9, patch: 0, build: 0};
+export const CURRENT_VERSION = {major: 0, minor: 9, patch: 0, build: 2};
 export const CURRENT_VERSION_STRING = `${CURRENT_VERSION.major}.${CURRENT_VERSION.minor}.${CURRENT_VERSION.patch}${CURRENT_VERSION.build ? '.' + CURRENT_VERSION.build : ''}`
 
 
