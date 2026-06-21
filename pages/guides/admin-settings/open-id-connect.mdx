@@ -67,13 +67,15 @@ When enabled, users are automatically redirected to the OIDC login page. You can
 
 ### Disable Password Authentication
 
-Removes the local password login for non-admin users. Admins can still log in with a password.
-
-To temporarily show the password field, add `forceShowPassword=true` to the login URL query string.
+Users will no longer be able to login in with their username & password.
 
 > Auth key authentication always remains available.
 
-> Ex. `https://kavita.example.com/login?forceShowPassword=true&skipAutoLogin=true`
+> Ex. `https://kavita.example.com/login?skipAutoLogin=true`
+
+<Callout type="info">
+  In case of issues, the server administrator can remove the OIDC config from appsettings.json. Which will allow them to log in with their password again, as OIDC is disabled.
+</Callout>
 
 ---
 
