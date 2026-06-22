@@ -1,0 +1,41 @@
+import { Callout } from 'nextra/components'
+
+# Komic
+
+[Komic](https://pruizlezcano.github.io/komic/) is a native comic, manga, webtoon, manhwa, and EPUB reader for iPhone and iPad with **built-in Kavita support**.
+
+## Installation
+
+1. Download Komic from the [App Store](https://apps.apple.com/app/komic-comic-manga-reader/id6744676973/).
+2. Open the app and follow the onboarding instructions to add a Kavita server.
+
+## Setup
+
+To connect Komic to your Kavita instance you'll need an API key.
+
+### Get your API key
+
+1. Sign in to your Kavita server in a web browser.
+2. Open your **User Settings**.
+3. Switch to the **Auth Keys / OPDS** tab.
+4. Copy one of the existing keys, or create a new key for Komic if you prefer.
+
+### Configure the source
+
+1. In Komic, enter your Kavita server URL (for example `https://my.server:5000`) and API key from step 4 above.
+2. Komic will verify the connection and save the source for browsing and reading.
+
+<Callout type="warning" emoji="⚠️">
+  [iOS requires HTTPS for remote connections](https://www.cnet.com/news/privacy/ios-apps-will-require-secure-https-connections-by-2017/). That means if you want to access your Kavita instance remotely you need to setup a reverse proxy and use SSL. 
+</Callout>
+
+## Pricing
+
+Komic is free to download, and you can connect to your Kavita server and read your library for free.
+
+Komic+ (optional in-app purchase) unlocks:
+
+- Offline reading (downloads)
+- Progress sync
+- Live Text
+- Multi-server support
