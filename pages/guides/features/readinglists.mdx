@@ -8,45 +8,57 @@ import { Steps } from 'nextra/components'
 
 Reading Lists are an ordered set of chapters that can be created by any user and promoted (made visible to all users on the server) by admins. Like Collections, they can have a cover image and summary. 
 
-The main feature of a reading list is the order. Reading order is enforced at the chapter level. When reading said list, the readers are capable of moving between different types of readers. So the list could start with Manga then move into epub reader then to pdf and back to Manga without ever leaving the reader. 
+The main feature of a reading list is the order. Reading order is enforced at the chapter/issue level. When reading said list, the readers are capable of moving between different types of readers. So the list could start with Manga then move into epub reader then to pdf and back to Manga without ever leaving the reader. 
 
-The list order can be changed by using drag and drop or clicking Order Numbers and shifting the order number directly. 
+The list order can be changed by clicking Order Numbers button or exporting as CBL, reordering exeternally then importing again. 
 
 ![lists](../../../public/guides/features/readinglists.png)
 
 ![detail](../../../public/guides/features/readinglist_detail.png)
 
 ## Creating a Reading List via CBL 
-Kavita supports the creation of Reading Lists via CBL files. From the side menu, click the ... menu next to `Home` and select `Import CBL`.
+Kavita supports the creation of Reading Lists via CBL files. From the side menu, click the actions menu (...) next to `Reading List` and select `CBL Manager`.
+
+
 
 <Steps>
 
-## Step 1 
+## The Manager Screen
 
-This will bring up the initial screen showing the wizard-like import. From here, the user can select multiple CBL files. 
-![First%20Step](../../../public/guides/features/import_readinglist_step1.png) 
+This is the Manager for CBLs. Kavita supports both the CBL v1 (.cbl) and v2 (.json) formats. From this screen, you can manage your existing imported lists or import new ones. 
 
-## Step 2
+To Import, you can either use the Browse to browse the CBL Reading List repo or upload by Url/file. Any url-based list will run a sync (import) every 3 days if there are changes in the list. 
+
+![detail](../../../public/guides/features/cbl_manager.png)
+
+## Browse for a List/Upload from file/url
 
 Here you see that I have uploaded multiple files. I can remove which ones I might not want to move to the next step.
-![2nd%20Step](../../../public/guides/features/import_readinglist_step2.png)
+![detail](../../../public/guides/features/cbl_browse.png)
 
 Upon hitting next, you can see that some of these failed the validation step. Validation is a lightweight step meant to quickly cull errors, like invalid CBL formats, missing access to series/libraries (via rating or library restrictions), etc. Those that have failed will not be moved to the next step. You do not need to manually remove them. 
 
-## Step 3
-![3rd%20Step](../../../public/guides/features/import_readinglist_step3.png)
+## Make decisions and save them for next time (Remap Rules)
+![ImportIssues](../../../public/guides/features/cbl_import_issues.png)
+![Import](../../../public/guides/features/cbl_import.png)
 
-The next step is a dry run. Validation step can't catch everything that might happen during reading list creation, so the dry run pretends to create the Reading List without saving it to the DB. Here you will see more errors around missing issues/volumes, etc. You will not be able to move forward unless there is at least partial or full success. Failures will prevent import as that implies everything in the list failed.
+This is the basis of the remap rules functionality. In the first image, there are a multitude of missing series and chapters. I use the edit button to teach Kavita about what I want. These decisions will create remap rules, so the next import I'm not repeating myself.
 
-## Step 4
+## Import
 
-![4th%20Step](../../../public/guides/features/import_readinglist_step4.png)
+Hit Import for the list, Kavita will create the final entry (or update the existing). Any items skipped or not matched will be skipped but counted. You wlil see missing items on that list (and can filter for it).
 
-Once you're done, your reading list should appear in your library and you can restart the flow from the UI or close it and view your reading list. 
+From the manager screen, you can see when the list was last updated and trigger an automatic sync or manual. 
 
-## Step 5
-
-![Final%20Step](../../../public/guides/features/import_readinglist_step5.png)
 
 
 </Steps>
+
+
+## Remap Rules
+![RemapRules](../../../public/guides/features/remap_rules.png)
+These are rules for the CBL Import screen that teach Kavita how to map some data from a CBL to an internal Kavita entity. 
+
+Kavita supports promotion (making applicable to all users) as well as user-defined remap rules. 
+
+The easiest way to manage is via the `settings#remap-rules` page. 

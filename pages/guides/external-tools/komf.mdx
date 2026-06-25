@@ -2,6 +2,14 @@ import { Callout } from 'nextra/components'
 import { Steps } from 'nextra/components'
 
 
+<Callout type="warning">
+Komf no longer works reliably with Kavita. The core app has not been updated in months and has issues that have not been addressed. Also the extension and the deprecated userscript have issues with the configuration icons appearing. The team is unaware of free alternatives for adding metadata into Kavita automatically.
+
+[Kavita+](https://wiki.kavitareader.com/kavita+/metadata/) is getting a major overhaul in v0.9.1 with MangaBaka and Hardcover support, on top of ComicbookRoundup.
+
+If you are aware of a software, please let us know.
+</Callout>
+
 ## [Komf](https://github.com/Snd-R/komf)
 
 * Separate server that listens to `Series Add` events from Kavita and can scrape a number of configurable sources 
@@ -23,16 +31,20 @@ The minimum `application.yml` file needed to start Komf is:
 ```yml copy
 kavita:
   baseUri: "http://localhost:5000" #or env:KOMF_KAVITA_BASE_URI
-  apiKey: "YOUR_API_KEY_HERE!" #or env:KOMF_KAVITA_API_KEY
+  apiKey: "YOUR_AUTH_KEY_HERE!" #or env:KOMF_KAVITA_API_KEY
 
 database:
   file: ./database.sqlite # database file location.
 ```
 
-Fill out your `baseUri` to point to your Kavita install URL and put in your [Kavita API key](../user-settings/3rdpartycilents.mdx#api-key). 
+Fill out your `baseUri` to point to your Kavita install URL and put in your [Kavita Auth key](../user-settings/3rdpartycilents.mdx#api-key). 
 
 <Callout type="info">
-  The API key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
+  The Auth key you use will be the user that Komf is logging in as. Make sure that the user has the correct permissions in Kavita to do what you're asking of it.
+</Callout>
+
+<Callout type="warning">
+    If you're connecting to Kavita over https, you'll also need to connect to Komf over https.
 </Callout>
 
 ### Extension

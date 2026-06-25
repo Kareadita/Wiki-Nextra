@@ -35,7 +35,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-# Check if the API key is expired
+# Check if the Auth key is expired
 try:
     expiry_response = requests.get(host_address + "/api/plugin/authkey-expires", headers=headers)
     expiry_response.raise_for_status()
@@ -44,10 +44,10 @@ try:
     if expiry_time is not None:
         expiry_dt = datetime.fromisoformat(expiry_time.replace('Z', '+00:00'))
         if expiry_dt <= datetime.now(timezone.utc):
-            print("Error: API key has expired")
+            print("Error: Auth key has expired")
             exit()
 except requests.exceptions.RequestException as e:
-    print("Error checking API key expiration:", e)
+    print("Error checking Auth key expiration:", e)
     exit()
 
 # Perform the scan
