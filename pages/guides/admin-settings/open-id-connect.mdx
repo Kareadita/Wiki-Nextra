@@ -65,13 +65,13 @@ Ensures only verified email addresses are matched or used for account creation. 
 
 When enabled, users are automatically redirected to the OIDC login page. You can bypass auto-login by adding `skipAutoLogin=true` to the login URL query string.
 
+> Ex. `https://kavita.example.com/login?skipAutoLogin=true`
+
 ### Disable Password Authentication
 
 Users will no longer be able to login in with their username & password.
 
 > Auth key authentication always remains available.
-
-> Ex. `https://kavita.example.com/login?skipAutoLogin=true`
 
 <Callout type="info">
   In case of issues, the server administrator can remove the OIDC config from appsettings.json. Which will allow them to log in with their password again, as OIDC is disabled.
