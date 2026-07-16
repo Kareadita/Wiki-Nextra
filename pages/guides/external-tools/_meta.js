@@ -3,6 +3,7 @@ export default {
 	"komf": "Komf",
 	"comictagger": "ComicTagger",
 	"epub2cbz": "Epub to CBZ",
+	"cbzit": "cbzit",
 	"calibre": "Calibre",
 	"sigil": "Sigil",
 	"obsidian-importer": "Obsidian",
