@@ -1,0 +1,17 @@
+import { Callout } from 'nextra/components'
+
+## justRead
+
+[justRead](https://justread.app) is a native EPUB, PDF, and audiobook reader for iPhone and iPad. It connects to Kavita through the standard OPDS catalog (no dedicated API integration), so you get catalog browsing, server-side search, and EPUB downloads, but no reading-progress sync back to Kavita.
+
+<Callout type="warning" emoji="⚠️">
+  [iOS requires HTTPS for remote connections](https://www.cnet.com/news/privacy/ios-apps-will-require-secure-https-connections-by-2017/). If you want to reach your Kavita instance remotely, set up a reverse proxy with SSL first.
+</Callout>
+
+### Setup
+
+1. In Kavita, open **User Settings → OPDS** and copy your OPDS URL (see the [OPDS guide](../features/opds.mdx) for details).
+2. In justRead, go to **Library → Add OPDS Server** and paste the URL.
+3. Browse and download EPUBs from your Kavita library directly in justRead.
+
+Only EPUB downloads are supported (justRead does not read comic/manga formats), so this integration is best suited for Kavita libraries that include text books alongside comics.
