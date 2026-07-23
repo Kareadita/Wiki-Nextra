@@ -8,5 +8,6 @@ export default {
 	"3rdparty": "3rd Party Clients",
 	"external-tools": "External Tools",
 	"themes": "Custom Themes",
-	"api": "API"
+	"epub-fonts": "Custom Fonts",
+	"api": "API",
 }
