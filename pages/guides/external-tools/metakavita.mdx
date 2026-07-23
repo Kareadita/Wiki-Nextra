@@ -1,0 +1,73 @@
+# MetaKavita
+
+**MetaKavita** is a lightweight, self-hosted metadata enricher and manager built specifically for [Kavita](https://kavitareader.com/). Designed as a powerful alternative to existing tools like Komf, it acts as a smart bridge between your Kavita libraries and public metadata databases. 
+
+*Note: MetaKavita is currently under active development, with new features and scrapers being regularly added.*
+
+**GitHub Repository:** [raukorim-bot/MetaKavita](https://github.com/raukorim-bot/MetaKavita)
+
+![MetaKavita Dashboard](https://raw.githubusercontent.com/raukorim-bot/MetaKavita/main/assets/dashboard1.5.5.png)
+
+## Core Features
+
+### Multi-Media Auto-Discovery Scrapers
+MetaKavita uses a dynamic Auto-Discovery Registry to support various library types natively (Manga, Comics, and Books). 
+Supported providers include:
+*   **Manga:** MangaDex, AniList, Kitsu, Shikimori, MangaBaka, MangaUpdates, Manga-News.
+*   **Comics/BD:** ComicVine, Bédéthèque.
+*   **Books/Literature:** Google Books, Open Library, Hardcover.
+
+### On-the-Fly Summary Translation
+No more manual translations! MetaKavita integrates a resilient translation pipeline. It can automatically translate foreign metadata descriptions into your preferred target language using:
+*   **Google Translate** (Zero-config, completely free)
+*   **Microsoft Azure Translator** (Enterprise tier)
+*   **DeepL API**
+
+### Smart ID Matching & Magic Routing
+*   **Magic Input:** Paste a direct URL from any supported provider (e.g., a MangaDex link) into the dashboard. MetaKavita will auto-detect the source, bypass standard searches, and surgically scrape that exact page.
+*   **Smart Validation:** When performing broad searches, the engine utilizes string-similarity scoring and keyword analysis to prevent false-positive matches and metadata corruption.
+
+### Granular Scraping & Protection
+Worried about overwriting custom data? MetaKavita offers a "Targeted Fields" UI where you can individually lock or unlock up to 12 specific metadata fields (Summary, Cover, Staff, Genres, Tags, Year, Publisher, Age Rating, Reading Direction, etc.) per series.
+
+### Real-Time WebSockets (100% AJAX)
+The dashboard is entirely asynchronous.
+*   **Live Covers:** Search for alternative covers manually and watch them stream onto your screen progressively as providers respond.
+*   **Live Processing:** During batch operations, active series pulse on your screen, and console logs are streamed directly to your browser via WebSockets.
+
+### Automation & Security
+*   **Auto-Sync Polling & Webhooks:** Run automated background tasks or trigger metadata updates via secure Webhooks (great for n8n or download scripts).
+*   **Highly Secure:** Includes SSRF protection on its image proxy, Timing-Attack immune password login, and dynamic credential masking.
+
+---
+
+## Installation (Docker)
+
+The recommended and easiest way to deploy MetaKavita is using Docker Compose.
+
+1. Create a `docker-compose.yml` file anywhere on your server with the following content:
+
+```yaml
+services:
+  metakavita:
+    image: ghcr.io/raukorim-bot/metakavita:latest
+    container_name: metakavita
+    restart: unless-stopped
+    ports:
+      - "5010:5010"
+    environment:
+      # Optional: Secure your dashboard with a password
+      - ADMIN_PASSWORD=your_secure_password
+      # Optional: Use if hosting behind a reverse proxy subpath (e.g., [domain.com/metakavita](https://domain.com/metakavita))
+      # - ROOT_PATH=/metakavita 
+    volumes:
+      # Stores config.json, cache.db, and logs
+      - ./data:/app/data
+```
+
+2. Start the container:
+```bash
+docker compose up -d
+```
+
+3. Open your browser and navigate to `http://localhost:5010` (or your server's IP address) to access the MetaKavita dashboard. You can configure your Kavita API Key and target languages directly from the UI.
