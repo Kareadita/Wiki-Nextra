@@ -46,7 +46,7 @@ The following will be parsed as "Chapters", which may naturally group into a Vol
 
 ### Marking a Comic as a Special
 
-Filenames containing words like "Annual", "TPB", "Omnibus", "One Shot", etc. are not enough on their own to mark an issue as a Special — a file named `Batman Beyond Annual.cbz` or `Batman Beyond OneShot.cbz` will parse as a normal, loose-leaf issue. There are only two ways to force something into being a Special:
+Filenames containing words like "Annual", "TPB", "Omnibus", "One Shot", etc. are not enough on their own to mark an issue as a Special - a file named `Batman Beyond Annual.cbz` or `Batman Beyond OneShot.cbz` will parse as a normal, loose-leaf issue. There are only two ways to force something into being a Special:
 
 1. Include an explicit `SP01`, `SP02`, etc. marker in the filename (see [Specials](/guides/scanner/managefiles#specials)).
 2. Set the [`Format` field](/guides/metadata/comics#format) in the file's `ComicInfo.xml` to one of the recognized keywords (`Special`, `Annual`, `TPB`, `Omnibus`, `One Shot`, etc). This is the metadata-driven equivalent of the old keyword list and is the recommended approach if you can embed `ComicInfo.xml`.
