@@ -1,0 +1,10 @@
+import { Callout } from 'nextra/components'
+
+## [cbzit](https://github.com/mate2/cbzit)
+cbzit turns folders of manga/comic page images into cleanly-named .cbz archives. It scans the folder, guesses the structure (series, volumes, chapters, language, titles), prints a dry-run report of exactly what it would build, and only writes once you confirm — your originals are never touched.
+* Smart bottom-up structure detection: series, volumes, chapters, page order, language tags and titles parsed from messy real-world folder names.
+* Dry-run report first — every archive name and page count is shown before a single byte is written.
+* Lossless & safe: duplicate chapters are kept as separate entries, page-name collisions are renumbered, and anything ambiguous becomes a visible warning instead of a silent wrong guess.
+* `merge` subcommand: consolidate a pile of chapter .cbz files into per-volume .cbz files, with a size guard.
+* Sort-safe, zero-padded naming so a folder's alphabetical order always matches reading order.
+* Cross-platform Node.js CLI — run it with `npx cbzit ./my-folder`, no install needed.
