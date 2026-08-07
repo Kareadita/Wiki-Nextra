@@ -30,14 +30,22 @@ Library Root
 
 | Filename                                                        |               Parsed Series Name               | Volume | Chapter |
 |:----------------------------------------------------------------|:----------------------------------------------:|:-------|:--------|
-| `Noblesse - Episode 406 (52 Pages).7z`                          |                    Noblesse                    | 406    |         |
+| `Noblesse - Episode 406 (52 Pages).7z`                          |                    Noblesse                    |        | 406     |
 | `[Hidoi]_Amaenaideyo_MS_vol01_chp02.rar`                        |                 Amaenaideyo MS                 | 1      | 2       |
-| `Transferred to another world magical swordsman v1.2`           | Transferred to another world magical swordsman | 1      | 2       |
 | `Okusama wa Shougakusei c003 (v01) [bokuwaNEET]`                |             Okusama wa Shougakusei             | 1      | 3       |
 | `Goblin Slayer Side Story - Year One 025.5`                     |      Goblin Slayer Side Story - Year One       |        | 25.5    |
-| `Itoshi no Karin - c001-006x1 (v01) [Renzokusei Scans]`         |                Itoshi no Karin                 |        | 1-6     |
+| `Itoshi no Karin - c001-006x1 (v01) [Renzokusei Scans]`         |                Itoshi no Karin                 | 1      | 1-6     |
 | `Beelzebub_53[KSH].zip`                                         |                   Beelzebub                    |        | 53      |
 | `Killing Bites Vol. 0001 Ch. 0001 - Galactica Scanlations (gb)` |                 Killing Bites                  | 1      | 1       |
-|                                                                 |                                                |        |         |
-|                                                                 |                                                |        |         |
-And [many more](https://github.com/Kareadita/Kavita/blob/develop/API.Tests/Parsing/MangaParsingTests.cs)...
+| `Dance in the Vampire Bund v16-17 (Digital) (NiceDragon)`       |          Dance in the Vampire Bund             | 16-17  |         |
+| `Chevaliers d'Héliopolis T3 - Rubedo, l'oeuvre au rouge`        |             Chevaliers d'Héliopolis            | 3      |         |
+| `Tower Of God S01 014 (CBT) (digital).cbz`                      |                  Tower Of God                  | 1      | 14      |
+| `諌山創] 進撃の巨人 第23巻`                                        |               諌山創] 進撃の巨人                  | 23     |         |
+| `Kebab Том 1 Глава 3`                                           |                     Kebab                      | 1      | 3       |
+| `เด็กคนนี้ขอลาออกจากการเป็นเจ้าของปราสาท เล่ม 1`                  | เด็กคนนี้ขอลาออกจากการเป็นเจ้าของปราสาท              | 1      |         |
+
+And [many more](https://github.com/Kareadita/Kavita/blob/develop/Kavita.Services.Tests/Parsing/MangaParsingTests.cs)...
+
+<Callout type="info">
+	Besides `v`/`vol`/`volume`, Kavita also recognizes French `t`/`tome`, Japanese `巻`, Chinese `卷`/`册`, Korean `권`/`장`/`시즌` (season), Thai `เล่ม`/`เล่มที่`, and Russian `Том`/`Тома` as volume markers, and their Chapter equivalents (`ch`/`chapter`/`c`, Japanese `話`, Chinese `话`, Korean `화`/`회`, Thai `บทที่`/`ตอนที่`, Russian `Глава`).
+</Callout>

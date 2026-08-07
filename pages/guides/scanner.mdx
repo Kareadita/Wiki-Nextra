@@ -123,6 +123,7 @@ In-depth overview on how the scan loop works
 - For each folder (in a library or for a given series), Kavita first checks if the folder has changed since our last scan. This checks at a minute level, so seconds will be ignored. This validates on the Last Write Time of the folder. (Note: Last Write time requires scanning all nested folders to accurately report the last time that folder has changed)
 - Kavita checks for libraries glob pattern and parse if it exists. This allows Glob patterns to apply to the scanner and ignore certain files or folders. This applies recursively.
 - Files that are ignored in the libraries [Exclude Settings](../guides/admin-settings/libraries.mdx#exclude-patterns) will not show during the can.
+- Image files named `cover`/`!cover` or `folder` (eg. `cover.jpg`, `folder.png`) are treated as a cover image, not a page, and are excluded from parsing/reading. Files containing `backcover` are not treated as a cover.
 
 ### Step 3: Processing files
 - The library dictates the rules for the parser and there are different parsers for different file types. 
