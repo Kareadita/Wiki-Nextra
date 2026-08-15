@@ -22,10 +22,12 @@ MetaKavita is designed as a LAN / VPN management tool. Read the [security notes]
 
 Built-in sources cover manga, comics/BD and books. A **Community Store** installs extra scrapers (and keeps core ones updated) without rebuilding the image.
 
-* **Manga:** MangaDex, AniList, Kitsu, Shikimori, MangaBaka, MangaUpdates, Manga-News, MyAnimeList
+* **Manga:** MangaDex, AniList, Kitsu, Shikimori, MangaBaka, MangaUpdates, Manga-News, MyAnimeList, Anime News Network
 * **Comics / BD:** ComicVine, Bédéthèque, BDTheque, Planète BD, Metron, League of Comic Geeks
-* **Books:** Google Books, Open Library, Hardcover, Babelio, Decitre, SensCritique, Anime News Network
+* **Books:** Google Books, Open Library, Hardcover, Babelio, Decitre, SensCritique
 * **Community Store:** optional sources such as Wikidata, plus user-made scrapers from [community-scraper-metakavita](https://github.com/raukorim-bot/community-scraper-metakavita)
+
+Some sources also serve a second library type (AniList, MAL, MangaBaka, Google Books, Open Library, Hardcover, SensCritique).
 
 ### Matching and writes
 
@@ -37,9 +39,9 @@ Built-in sources cover manga, comics/BD and books. A **Community Store** install
 
 ### Library tools
 
-* **Inventory:** see which series are missing volumes or chapters, find likely duplicates, export CSV/TXT. Duplicate groups show Kavita folder paths and can generate a bash `mv`/`rm` script — MetaKavita never deletes files or Kavita records itself.
+* **Inventory** (on by default, read-only): see which series are missing volumes or chapters, find likely duplicates, export CSV/TXT. Duplicate groups show Kavita folder paths and can generate a bash `mv`/`rm` script — MetaKavita never deletes files or Kavita records itself.
 * **Per-volume / album metadata** (off by default): preview then write album title, summary, release date, ISBN and cover into empty fields. Sources include ComicVine, Bédéthèque, Planète BD, Manga-News, MangaDex covers, and ISBN lookups (Google Books / Open Library / Hardcover).
-* **Light mode:** hide Manual Review, Inventory and/or volume enrichment from the sidebar if you do not use them.
+* **Light mode:** hide Manual Review, Inventory and/or volume enrichment from the sidebar if you do not use them. Hiding a section also switches that feature off.
 
 ### Translation, automation, Companion
 
@@ -55,7 +57,7 @@ Create a `docker-compose.yml` anywhere on your server:
 ```yaml copy
 services:
   metakavita:
-    image: ghcr.io/raukorim-bot/metakavita:latest   # or pin :1.7
+    image: ghcr.io/raukorim-bot/metakavita:latest   # or pin :1.7.0
     container_name: metakavita
     restart: unless-stopped
     ports:
