@@ -1,6 +1,7 @@
 export default {
 	"mangamanager": "Manga-Manager",
 	"komf": "Komf",
+	"metakavita": "MetaKavita",
 	"comictagger": "ComicTagger",
 	"epub2cbz": "Epub to CBZ",
 	"cbzit": "cbzit",
