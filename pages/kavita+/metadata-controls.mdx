@@ -61,7 +61,18 @@ Like the above sections, this is for Volumes (note: A volume made up of 1 chapte
 
 ## People
 
-This section dictates how People (Writer/Aritst/Character) are created and written. YOu can turn it on/off and configure if you want `FIRST LAST` naming convention. People from Kavita+ come with images when available.
+This section dictates how People (Writer/Aritst/Character) are created and written. You can turn it on/off and configure if you want `FIRST LAST` naming convention. People from Kavita+ come with images when available.
+
+People by default will not be removed from a metadata match if there is no match. Kavita however will remove people from a bad match previously.
+
+You have the ability to control the naming pattern to use and which people roles you want to be written. Kavita will backfill existing people with metadata (description/cover image). 
+
+
+## Cover Image
+
+Cover Image, if enabled, will do an additional check to avoid replacing a good cover with a lower resolution cover. 
+Kavita will check if the cover is at least 70% similar and if so will take the file with the better resolution.
+
 
 
 ## Tags
@@ -98,3 +109,7 @@ This is a powerful system that allows you to craft tags/genres however you want.
 ## Overrides
 
 By default, Kavita will not write over Locked fields. This section grants it permission. This section contains all the items listed above.
+
+Kavita will not overwrite your metadata based on:
+1. If the setting is on/off
+2. If the underlying field is locked AND there is no override setup
