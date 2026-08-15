@@ -1,4 +1,5 @@
 export default {
+	"license-management": "License Management",
 	"metadata": "Metadata",
 	"progress-sync": "Progress Sync",
 	"recs-ratings-reviews": "Recs, Ratings, & Reviews",
