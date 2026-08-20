@@ -21,7 +21,7 @@ This means Kavita+ can support all media types out of the box.
 
 By default, Kavita will perform 50 metadata matches/refreshes per day. Any ad-hoc requests done via the UI are excluded from this limit. 
 
-Kavita will not auto-select unless there is only 1 100% match. Any match failures will be put into a state where the admin needs to resolve. You can do that from Manage Metadata settings page or using the Match Modal.
+A match is auto selected if there is exactly one 100% match, or if there is exactly one match scored 90% or higher. Any match failures will be put into a state where the admin needs to resolve. You can do that from Manage Metadata settings page or using the Match Modal.
 
 
 ### Manual Match
@@ -41,3 +41,32 @@ To gain an understanding of any matching issues (affects both metadata and scrob
 showing all series and their underlying status. 
 
 ![matched-metadata](../../public/kavita+/matched-metadata.png "matched-metadata")
+
+## Relationships
+
+Kavita maps MangaBaka relationship types to the closest supported Kavita relationship kind.
+
+| MangaBaka Relationship           | Kavita               |
+|----------------------------------|----------------------|
+| `Adaptation`                     | `Adaptation`         |
+| `Alternative`                    | `AlternativeSetting` |
+| `Cameo`                          | `Cameo`              |
+| `CharacterFocus`                 | `Cameo`              |
+| `Compilation`                    | `Compilation`        |
+| `Contains`                       | `Contains`           |
+| `Crossover`                      | `Other`              |
+| `Expansion`                      | `AlternativeVersion` |
+| `Main`                           | `Parent`             |
+| `Parent`                         | `Parent`             |
+| `Parody`                         | `Doujinshi`          |
+| `Prequel`                        | `Prequel`            |
+| `Reboot`                         | `AlternativeVersion` |
+| `Remake`                         | `AlternativeVersion` |
+| `Sequel`                         | `Sequel`             |
+| `Series`                         | `Series`             |
+| `SideStory`                      | `SideStory`          |
+| `Source`                         | `Source`  (Ignored)  |
+| `SpinOff`                        | `SpinOff`            |
+| `Summary`                        | `AlternativeVersion` |
+| `Uncollected`                    | `Other`              |
+| Any other / unknown relationship | `Other`              |
