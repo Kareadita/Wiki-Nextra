@@ -3,18 +3,20 @@ import { Callout } from 'nextra/components'
 # Smart Collections
 Kavita+ supports two different Smart Collections:
 1. Ability to import a MAL Interest Stack and keep it synced with your Server
-2. Ability to Sync your Want to Read from MAL/AniList with your Want to Read in Kavita.
+2. Ability to Sync your Want to Read from Scrobble Provider with your Want to Read in Kavita.
 
-#### MAL Stack Import (and sync)
+## MAL Stack Import (and sync)
 Kavita+ allows any user to import their MAL stacks and restacks from their account into Kavita. Kavita will build a collection that syncs **every 2 days** with the upstream MAL stack. 
 
-<Callout type="info">
-	 Kavita will sync once every 2 days to MAL. This period is not adjustable.
-</Callout>
+To import a stack:
+1. Ensure you have setup the MAL Connection in the `Connections` page. 
+![connections](../../public/kavita+/scrobbling/connections.png "connections")
+2. Navigate to `Import MAL Stack` settings page. Kavita will pull all your lists, press **Track** to start tracking.
+![mal stack import](../../public/kavita+/mal-stack/step-1.png "import-mal-stack")
+3. View the Tracked Collection.
+![mal stack import 2](../../public/kavita+/mal-stack/step-2.png "import-mal-stack-2")
 
-![mal stack import](../../public/kavita+/import-mal-stack.png "import-mal-stack")
-![mal stack import 2](../../public/kavita+/import-mal-stack-2.png "import-mal-stack-2")
-![mal stack import 3](../../public/kavita+/import-mal-stack-3.png "import-mal-stack-3")
 
-#### Want to Read sync
-Kavita supports the ability to add Series to Want to Read from a user's MAL/AniList Planned to Read list. 
+
+## Want to Read sync
+Kavita supports the ability to add Series to Want to Read from a user's Scrobble Provider. You can configure it on [Progress Sync](/kavita+/progress-sync) page.
