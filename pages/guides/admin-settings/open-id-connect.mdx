@@ -164,12 +164,30 @@ We encourage users to **contribute guides or notes for any OIDC providers** to h
 
 Authentik uses some different terminology than what we provide.
 
-- **Authority**: While Kavita refers to authority as the url that it gets the provider information from Authentik refers to this URL as `OpenID Configuration Issuer`.
+- **Authority**: While Kavita refers to authority as the url that it gets the provider information, Authentik refers to this URL as `OpenID Configuration Issuer`.
 
-When using Authentik you'll need to change some extra settings to get everything working correctly
+To use the OIDC-Managed permissions, you will need to setup a `Property Mapping` within Authentik. Once a user group (such as `kavita-user`) is created, assign roles to this group for authentication and library access.
+Use a set prefix (such as `kavita-`) for the role names. Any unicode or spaces used in library names should be used as-is.
 
-- **Advanced Protocol Settings**: Ensure the `offline_access` scope is selected in the provider for Kavita in your Authentik settings.
-- **Roles claim**: Ensure the roles claim is set to `groups` when using the `Sync user settings` feature.
+In Authentik, configure the following:
+- Create a new `Scope Mapping` Property Mapping with the following `Expression` to return the list of `Roles` that are assigned to the User Group. In the example below, this will pull all roles that start with `kavita-`.
+```
+roles = [role.name for group in request.user.ak_groups.all() for role in group.roles.all() if role.name.startswith("kavita-")]
+return {
+    "roles": list(set(roles))
+}
+```
+- Optionally, create another `Scope Mapping` Property Mapping to always return a users email address as verified so they will also be verified within Kavita, since as of 2025.10 [Authentik does not return `true` by default](https://docs.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2):
+```
+return {
+    "email_verified": True
+}
+```
+- **Authentik Provider Settings**: In addition to `email`, `openid` and `profile` scopes, ensure `offline_access` and the Property Mappings you created above are included.
+Then in Kavita, configure the following:
+- **Sync user settings with OIDC roles**: Ensure this is toggled on.
+- **Roles Prefix**: Ensure this is filled in and is the same prefix used in the Property Mapping, such as `kavita-`. For example, the `kavita-login` role will allow a user to login to Kavita.
+- **Custom Scopes**: Ensure the 2 Property Mapping scopes you created are filled in here (under `Scope name` within Authentik).
 
 ### Authelia
 
