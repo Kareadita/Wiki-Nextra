@@ -1,0 +1,67 @@
+import { Callout } from 'nextra/components'
+
+# ComicVerse
+
+[ComicVerse](https://apps.apple.com/us/app/comicverse-cbr-cbz-reader/id6753079682) is a comic and manga reader for iPhone and iPad that connects to Kavita over **OPDS**. It reads CBZ, CBR, CB7, CBT, PDF and EPUB, streams pages straight from the server or downloads them for offline reading, and reports your progress back to Kavita.
+
+<Callout type="warning" emoji="⚠️">
+  [iOS requires HTTPS for remote connections](https://www.cnet.com/news/privacy/ios-apps-will-require-secure-https-connections-by-2017/). To reach your Kavita instance from outside your network you'll need a reverse proxy with SSL.
+</Callout>
+
+## Installation
+
+Download ComicVerse from the [App Store](https://apps.apple.com/us/app/comicverse-cbr-cbz-reader/id6753079682) (iPhone and iPad, iOS/iPadOS 17.6+). Reading your own library is free.
+
+## Setup
+
+<Callout type="info">
+  OPDS is **off by default** in Kavita and is enabled per user. If the OPDS section is missing from your settings, ask your server admin to enable it for your account.
+</Callout>
+
+### Get your OPDS URL
+
+1. Sign in to your Kavita server in a web browser.
+2. Open your **User Settings**.
+3. Switch to the **3rd Party Clients** tab.
+4. Copy the **OPDS URL**.
+
+The URL already contains your API key (`https://my.server/api/opds/{apiKey}`), so ComicVerse does not ask for a username or password.
+
+<Callout type="error" emoji="🚫">
+  Treat that URL as a password — anyone holding it can read your library as you. If you share a screenshot, crop the key out. You can regenerate it from the same settings page.
+</Callout>
+
+### Add the server
+
+1. Open the **Library** tab and tap **+**.
+2. Choose **Comic Server**.
+3. Tap **+** to add a server, then enter:
+   - **Name** — any label you like
+   - **URL** — the OPDS URL you copied
+4. Tap the server to browse it.
+
+## Browse and read
+
+Your Kavita libraries, series and collections appear as browsable folders. On any comic:
+
+- **Stream (▶)** reads it directly from the server, a page at a time, using nothing but the catalogue Kavita already served — no download, no storage used.
+- **Download (↓)** saves it to your on-device library for offline reading. Downloads run in the background and appear under **Activity → Downloads**.
+
+Downloaded files live in the Files app under **On My iPhone/iPad → ComicVerse**, so they can be managed or removed without going through the app.
+
+## Progress
+
+ComicVerse reports your position back to Kavita as you read, so the web reader and any other client pick up where you left off.
+
+Kavita also records progress as a side effect of serving pages, which on its own runs slightly ahead — a streaming reader fetches a page or two before you get there, and those count as read. ComicVerse sends an explicit report as well, which lands last and settles progress on the page you are actually on. That report is also what keeps progress accurate once a comic has been **downloaded**, when no pages are being fetched from the server at all.
+
+## Compatibility
+
+Keep both current for best results:
+
+- Kavita server (latest stable)
+- ComicVerse (latest from the App Store)
+
+ComicVerse uses Kavita's OPDS feed and the OPDS Page Streaming Extension — no plugin or extension is required.
+
+Full setup guide: [guides.comicverse.ai](https://guides.comicverse.ai/reading-content/intro)

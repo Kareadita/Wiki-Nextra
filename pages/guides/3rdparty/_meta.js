@@ -1,6 +1,7 @@
 export default {
 	"aidoku": "Aidoku",
 	"cdisplayex": "CDisplayEX",
+	"comicverse": "ComicVerse",
 	"kavita-dedicated": "Dedicated Kavita Apps",
 	"komic": "Komic",
 	"koreader": "KOReader",
