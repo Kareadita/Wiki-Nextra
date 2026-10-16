@@ -4,6 +4,7 @@ export default {
 	"kavita-dedicated": "Dedicated Kavita Apps",
 	"komic": "Komic",
 	"koreader": "KOReader",
+	"manyue": "ManYue",
 	"mylar": "Mylar",
 	"panels": "Panels",
 	"paperback": "Paperback",

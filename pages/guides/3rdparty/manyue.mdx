@@ -1,0 +1,42 @@
+import { Callout } from 'nextra/components'
+
+# ManYue
+
+[ManYue](https://apps.apple.com/app/id6753895889) is a native comic, manga, and manhwa reader for iPhone and iPad with **built-in Kavita support**, plus Komga, Suwayomi, LANraragi, OPDS, SMB, WebDAV, and local CBZ/CBR/PDF files.
+
+## Installation
+
+1. Download ManYue from the [App Store](https://apps.apple.com/app/id6753895889) (iOS / iPadOS 15+).
+2. Open the app and add a Kavita server from the library / server connection flow.
+
+## Setup
+
+To connect ManYue to your Kavita instance you'll need an API key.
+
+### Get your API key
+
+1. Sign in to your Kavita server in a web browser.
+2. Open your **User Settings**.
+3. Switch to the **Auth Keys / OPDS** tab.
+4. Copy one of the existing keys, or create a new key for ManYue if you prefer.
+
+### Configure the source
+
+1. In ManYue, enter your Kavita server URL (for example `https://my.server:5000`) and the API key from step 4 above.
+2. Save the connection, then browse and read from your Kavita libraries.
+
+<Callout type="warning" emoji="⚠️">
+  [iOS requires HTTPS for remote connections](https://www.cnet.com/news/privacy/ios-apps-will-require-secure-https-connections-by-2017/). That means if you want to access your Kavita instance remotely you need to setup a reverse proxy and use SSL.
+</Callout>
+
+## Pricing
+
+ManYue is a paid App Store download. Local CBZ/CBR/PDF reading works without extras. Connecting server libraries (including Kavita) requires the optional **Ultra** tier.
+
+## Compatibility
+
+Keep both up to date for best results:
+- Kavita server (latest stable)
+- ManYue (latest from the App Store)
+
+Disclosure: this guide was submitted by the ManYue developer.
