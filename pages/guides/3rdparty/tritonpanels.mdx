@@ -1,0 +1,44 @@
+import { Callout } from 'nextra/components'
+
+# TritonPanels
+
+[TritonPanels](https://tritonpanels.tritonapps.com/kavita-app) is a comic and manga reader for iPhone, iPad and Android with **built-in Kavita support**, including two-way reading progress sync.
+
+## Installation
+
+1. Download TritonPanels from the [App Store](https://apps.apple.com/ie/app/tritonpanels-comic-book-reader/id6782908043) (iOS / iPadOS 17 or later) or [Google Play](https://play.google.com/store/apps/details?id=com.tritonapps.tritonpanels) (Android 7.0 or later).
+2. TritonPanels requires **Kavita 0.9.1.4 or later**.
+
+## Setup
+
+TritonPanels signs in to Kavita with an Auth Key. Your password is not needed.
+
+### Create an Auth Key
+
+1. Sign in to your Kavita server in a web browser, as the user you want to read as.
+2. Open **User Settings → Auth Keys** and create a key.
+3. Copy it. You can revoke it in the same place at any time.
+
+### Configure the source
+
+1. In TritonPanels, tap **+** in your library to open **Connect Storage**, then tap **Kavita** under **CATALOGS**.
+2. Enter a **Name**, the **Server address** (for example `http://192.168.1.20:5000` at home, or `https://kavita.example.com`) and the **Auth Key**.
+3. Tap **Test and save**. On iPhone and iPad, allow **Local Network** access when iOS asks.
+
+<Callout type="info">
+  Use the **Kavita** option rather than adding Kavita's OPDS feed as a general OPDS catalog. Only the Kavita option syncs reading progress.
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  Plain HTTP is accepted only for home-network addresses, after a confirmation prompt. For remote access, use a VPN into your home network or a reverse proxy with HTTPS and a certificate from a public authority. Tailscale addresses (`100.x.x.x`), `*.ts.net` names and self-signed certificates are not supported.
+</Callout>
+
+## Reading and progress
+
+- Browse libraries, series, volumes, chapters and specials as Kavita labels them, with Kavita's own search.
+- Progress is sent to Kavita while reading and on close, and progress from Kavita's web reader is picked up when a chapter is opened. Mark as read and unread are synced too.
+- **Make available offline** downloads chapters; pages read offline are sent when Kavita is reachable again.
+
+## Pricing
+
+TritonPanels is a subscription app with a 14-day free trial. There is no free tier.

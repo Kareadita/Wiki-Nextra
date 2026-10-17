@@ -8,5 +8,6 @@ export default {
 	"panels": "Panels",
 	"paperback": "Paperback",
 	"tachi-like": "Mihon",
+	"tritonpanels": "TritonPanels",
 	"yomu": "Yomu"
 }
