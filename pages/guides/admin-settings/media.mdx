@@ -1,4 +1,5 @@
 import { Callout } from 'nextra/components'
+import { TagBadge } from '../../../components/TagBadge'
 
 # Media Tab
 ![Media](../../../public/guides/admin-settings/admin-settings-media.png "Media page in Admin Settings")
@@ -48,3 +49,7 @@ Options are:
 This setting lets you change where Kavita stores bookmarks the users create. Since making bookmarks saves a copy of the page outside of the initial library, this will take up additional space.
 
 Changing this lets you store the bookmarks in a spot that has access to a larger pool of storage.
+
+### Kepubify Path <TagBadge major={0} minor={9} patch={2} /> [#kepubify-path]
+
+Path to the `kepubify` executable, used by [Kobo Sync](../features/kobo-sync.mdx) to convert epubs to kepubs. Kavita ships with the binary, so leave this empty unless you want to use your own. Kavita tells you whether it can run the executable at the path you entered.

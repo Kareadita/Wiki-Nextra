@@ -4,64 +4,83 @@ import { KavitaPlusBadge } from '../../../components/KavitaPlusBadge'
 
 # Kobo Sync <TagBadge major={0} minor={9} patch={2} />
 
-Kavita can be used as sync server for your Kobo, taking over the role of the official Kobo servers.
+Kavita can be used as a sync server for your Kobo, taking over the role of the official Kobo servers.
 
 ## Features
 
-- Sync epubs and archives to your Kobo
-- Sync all or some libraries. Or sync only series in a collection of choice
-- Optional forwarding of request to the Kobo Store if not handled by Kavita
+- Sync epubs to your Kobo
+- Sync all or some libraries, or only the series in a collection of your choice
+- Optional forwarding of requests to the Kobo Store when Kavita does not handle them
 - Precise 2-way progress sync
-- Recommendations (Kavita+)
+- Recommendations <KavitaPlusBadge />
+
+<Callout type="info">
+    Only epubs are synced for now. Support for archives (cbz, cbr, etc.) is coming soon.
+</Callout>
 
 ## Setup
 
 <Callout type="warning">
-    Kobo Sync may be disabled by an administrator
+    Kobo Sync can be turned off by an administrator with the [Enable Kobo Sync](../admin-settings/general.mdx#enable-kobo-sync) server setting.
 </Callout>
 
-Connect your Kobo to your computer, and open `.kobo/Kobo/Kobo eReader.conf`. Under `[OneStoreServices]` find or create the following line
+Connect your Kobo to your computer, and open `.kobo/Kobo/Kobo eReader.conf`. Under `[OneStoreServices]`, find or create the following line:
 
 ```
 api_endpoint=https://storeapi.kobo.com
 ```
 
-Then replace `https://storeapi.kobo.com` with your Kavita url.
+Then replace `https://storeapi.kobo.com` with your Kavita URL, followed by `/kobo/` and your Auth key:
 
 ```
 api_endpoint=https://kavita.example.com/kobo/<AuthKey>
 ```
 
-Find out how to obtain an auth key [here](../user-settings/3rdpartyclients.mdx#auth-key)
+See [Auth key](../user-settings/3rdpartyclients.mdx#auth-key) for how to find yours.
 
 <Callout type="warning">
     It is recommended to only use Kobo Sync over https!
 </Callout>
 
+To stop using Kavita, set the line back to `api_endpoint=https://storeapi.kobo.com`.
+
 ### Kepubify
 
-Epubs are automatically converted to kepubs when downloaded on your Kobo, Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary in server settings.
-
-The binary is included in all our releases. (Docker & Native)
+Epubs are automatically converted to kepubs when downloaded on your Kobo. Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary with the [Kepubify Path](../admin-settings/media.mdx#kepubify-path) server setting.
 
 ## Preferences
 
+Kobo Sync preferences are set per user, in the Kobo Sync section of User Settings > [Preferences](../user-settings/preferences.mdx).
+
 ### Sync Preferences
 
-To prevent your Kobo from having to load *ALL* your books, you can restrict syncing to specific libraries or to series in a collection of choice.
+To prevent your Kobo from having to load *ALL* your books, you can restrict syncing to specific libraries or to the series in a collection of your choice.
+
+- **Sync Collection**: when set, only books from series in this collection are synced. This takes precedence over the library settings below.
+- **All Libraries**: sync books from every library you have access to.
+- **Sync Libraries**: when All Libraries is off, only books from series in these libraries are synced. Selecting no libraries is treated as all libraries.
 
 <Callout type="info">
-    Using a collection is recommended as it gives you most freedom and shorter syncs.
+    Using a collection is recommended as it gives you the most freedom and shorter syncs.
 </Callout>
+
+### Sync Item Limit
+
+The maximum number of items sent to your Kobo per sync request, between 25 and 100. Default: `100`
+
+### Forward to Kobo Store
+
+Default: `Enabled`
+
+Requests for books outside your Kavita library are forwarded to the official Kobo Store. Disable this to stop your Kobo from talking to Kobo's servers.
 
 ### Progress Sync
 
-The progress sync for archives is per page, and will translate perfectly.
+Progress for epubs always syncs to the right chapter. When kepubify is available, the position inside the chapter is synced on a best-effort basis.
 
-Progress sync for epubs is always guaranteed on the chapter, and when kepubify is available it's best-effort for in chapter progress.
-When reading on Kavita Kobo progress is synced every 5m.
+Progress you make in Kavita's reader reaches your Kobo about 5 minutes later, at its next sync or when the book is opened.
 
-### Recommendations (Kavita+)
+### Recommendations <KavitaPlusBadge /> [#recommendations]
 
-Recommendation will only show up on your Kobo while using the Collection sync. Kavita will send back the first book of all recommendation series not yet in your collection,
-if you decide to read a book simply click add/restore on your kobo and the series will be added to the collection and all its book synced to your Kobo.
+Recommendations only show up on your Kobo when syncing a collection. For each recommended series not yet in your collection, Kavita sends the first book.
+If you want to read it, click add/restore on your Kobo: the series is added to your collection, and all of its books are synced to your Kobo.
