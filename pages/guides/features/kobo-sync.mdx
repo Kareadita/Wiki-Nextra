@@ -1,0 +1,67 @@
+import { Callout } from 'nextra/components'
+import { TagBadge } from '../../../components/TagBadge'
+import { KavitaPlusBadge } from '../../../components/KavitaPlusBadge'
+
+# Kobo Sync <TagBadge major={0} minor={9} patch={2} />
+
+Kavita can be used as sync server for your Kobo, taking over the role of the official Kobo servers.
+
+## Features
+
+- Sync epubs and archives to your Kobo
+- Sync all or some libraries. Or sync only series in a collection of choice
+- Optional forwarding of request to the Kobo Store if not handled by Kavita
+- Precise 2-way progress sync
+- Recommendations (Kavita+)
+
+## Setup
+
+<Callout type="warning">
+    Kobo Sync may be disabled by an administrator
+</Callout>
+
+Connect your Kobo to your computer, and open `.kobo/Kobo/Kobo eReader.conf`. Under `[OneStoreServices]` find or create the following line
+
+```
+api_endpoint=https://storeapi.kobo.com
+```
+
+Then replace `https://storeapi.kobo.com` with your Kavita url.
+
+```
+api_endpoint=https://kavita.example.com/kobo/<AuthKey>
+```
+
+Find out how to obtain an auth key [here](../user-settings/3rdpartyclients.mdx#auth-key)
+
+<Callout type="warning">
+    It is recommended to only use Kobo Sync over https!
+</Callout>
+
+### Kepubify
+
+Epubs are automatically converted to kepubs when downloaded on your Kobo, Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary in server settings.
+
+The binary is included in all our releases. (Docker & Native)
+
+## Preferences
+
+### Sync Preferences
+
+To prevent your Kobo from having to load *ALL* your books, you can restrict syncing to specific libraries or to series in a collection of choice.
+
+<Callout type="info">
+    Using a collection is recommended as it gives you most freedom and shorter syncs.
+</Callout>
+
+### Progress Sync
+
+The progress sync for archives is per page, and will translate perfectly.
+
+Progress sync for epubs is always guaranteed on the chapter, and when kepubify is available it's best-effort for in chapter progress.
+When reading on Kavita Kobo progress is synced every 5m.
+
+### Recommendations (Kavita+)
+
+Recommendation will only show up on your Kobo while using the Collection sync. Kavita will send back the first book of all recommendation series not yet in your collection,
+if you decide to read a book simply click add/restore on your kobo and the series will be added to the collection and all its book synced to your Kobo.
