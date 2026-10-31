@@ -4,6 +4,7 @@ export default {
 	"collections": "Collections",
 	"filtering": "Filtering",
 	"opds": "OPDS",
+	"kobo-sync": "Kobo Sync",
 	"readinglists": "Reading Lists",
 	"cbl-import": "CBL Import",
 	"relationships": "Relationships"

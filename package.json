@@ -18,6 +18,8 @@
 		"@fortawesome/free-solid-svg-icons": "^6.5.1",
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"@icons-pack/react-simple-icons": "^9.7.0",
+		"baseline-browser-mapping": "^2.11.30",
+		"caniuse-lite": "^1.0.30001818",
 		"clsx": "2.1.0",
 		"framer-motion": "^10.18.0",
 		"next": "^15.5.9",
