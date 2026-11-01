@@ -1,4 +1,4 @@
-import { CURRENT_VERSION } from '../theme.config'
+import { CURRENT_VERSION } from '../site'
 
 type TagBadgeProps = {
     major: number

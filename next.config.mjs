@@ -1,9 +1,6 @@
 import nextra from 'nextra'
 
-const withNextra = nextra({
-	theme: 'nextra-theme-docs',
-	themeConfig: './theme.config.tsx',
-})
+const withNextra = nextra({})
 
 //const isProduction = process.env.NODE_ENV === "production";
 //const assetPrefix = isProduction ? "/wiki" : "";
