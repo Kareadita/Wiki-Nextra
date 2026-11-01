@@ -4,30 +4,30 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-	--background-image-dark2: url('/homepage-dark2.png');
-	--background-image-dark3: url('/homepage-dark3.png');
-	--background-image-dark4: url('/homepage-dark4.png');
-	--background-image-dark5: url('/homepage-dark5.png');
-	--background-image-dark6: url('/homepage-dark6.png');
-	--background-image-dark7: url('/homepage-dark7.png');
-	--background-image-dark8: url('/homepage-dark8.png');
-	--background-image-dark9: url('/homepage-dark9.png');
-	--background-image-dark10: url('/homepage-dark10.png');
-	--background-image-dark11: url('/homepage-dark11.png');
-	--background-image-light2: url('/homepage-light2.png');
-	--background-image-light3: url('/homepage-light3.png');
-	--background-image-light4: url('/homepage-light4.png');
-	--background-image-light5: url('/homepage-light5.png');
-	--background-image-light6: url('/homepage-light6.png');
-	--background-image-light7: url('/homepage-light7.png');
-	--background-image-light8: url('/homepage-light8.png');
-	--background-image-light9: url('/homepage-light9.png');
-	--background-image-light10: url('/homepage-light10.png');
-	--background-image-light11: url('/homepage-light11.png');
-	--background-image-light12: url('/homepage-light12.png');
-	--background-image-light13: url('/homepage-light13.png');
-	--background-image-light14: url('/homepage-light14.png');
-	--background-image-light15: url('/homepage-light15.png');
+	--background-image-dark2: url('/homepage-dark2.webp');
+	--background-image-dark3: url('/homepage-dark3.webp');
+	--background-image-dark4: url('/homepage-dark4.webp');
+	--background-image-dark5: url('/homepage-dark5.webp');
+	--background-image-dark6: url('/homepage-dark6.webp');
+	--background-image-dark7: url('/homepage-dark7.webp');
+	--background-image-dark8: url('/homepage-dark8.webp');
+	--background-image-dark9: url('/homepage-dark9.webp');
+	--background-image-dark10: url('/homepage-dark10.webp');
+	--background-image-dark11: url('/homepage-dark11.webp');
+	--background-image-light2: url('/homepage-light2.webp');
+	--background-image-light3: url('/homepage-light3.webp');
+	--background-image-light4: url('/homepage-light4.webp');
+	--background-image-light5: url('/homepage-light5.webp');
+	--background-image-light6: url('/homepage-light6.webp');
+	--background-image-light7: url('/homepage-light7.webp');
+	--background-image-light8: url('/homepage-light8.webp');
+	--background-image-light9: url('/homepage-light9.webp');
+	--background-image-light10: url('/homepage-light10.webp');
+	--background-image-light11: url('/homepage-light11.webp');
+	--background-image-light12: url('/homepage-light12.webp');
+	--background-image-light13: url('/homepage-light13.webp');
+	--background-image-light14: url('/homepage-light14.webp');
+	--background-image-light15: url('/homepage-light15.webp');
 }
 
 .svg-inline--fa {
