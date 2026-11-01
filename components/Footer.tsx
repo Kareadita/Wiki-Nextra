@@ -35,8 +35,7 @@ const navigation = {
 export default function Footer() {
 	return (
 		<footer
-			className="w-full border-t bg-[#FAFAFA] dark:border-neutral-800 dark:bg-[#0E0E0E]"
-			aria-labelledby="footer-heading"
+			className="w-full border-t border-gray-200 bg-[#FAFAFA] dark:border-neutral-800 dark:bg-[#0E0E0E]"
 		>
 			<div className="mx-auto flex max-w-[85rem] flex-col items-center justify-center space-y-7 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
 				<div className="flex items-center space-x-8">
@@ -47,7 +46,7 @@ export default function Footer() {
 							className={clsx(
 								item.disabled
 									? 'pointer-events-none text-gray-400 dark:text-gray-500'
-									: 'text-gray-750 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100',
+									: 'hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100',
 								'text-base',
 							)}
 						>
@@ -62,7 +61,7 @@ export default function Footer() {
 							href={item.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-gray-750 hover:text-gray-650 dark:text-gray-300 dark:hover:text-gray-100"
+							className="dark:text-gray-300 dark:hover:text-gray-100"
 						>
 							<span className="sr-only">{item.name}</span>
 							<item.icon className="h-6 w-6" aria-hidden="true" />
