@@ -7,9 +7,8 @@ type TagBadgeProps = {
 }
 
 export function TagBadge({ major, minor, patch }: TagBadgeProps) {
-    if (Math.abs(CURRENT_VERSION.major - major) > 1) return null
-    if (Math.abs(CURRENT_VERSION.minor - minor) > 1) return null
-    if (Math.abs(CURRENT_VERSION.patch - patch) > 2) return null
+    if (major < CURRENT_VERSION.major) return null
+    if (major === CURRENT_VERSION.major && minor < CURRENT_VERSION.minor - 1) return null
 
     return (
         <span
