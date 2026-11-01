@@ -21,7 +21,7 @@ Kavita can be used as a sync server for your Kobo, taking over the role of the o
 ## Setup
 
 <Callout type="warning">
-    Kobo Sync can be turned off by an administrator with the [Enable Kobo Sync](../admin-settings/general.mdx#enable-kobo-sync) server setting.
+    Kobo Sync can be turned off by an administrator with the [Enable Kobo Sync](/guides/admin-settings/general#enable-kobo-sync) server setting.
 </Callout>
 
 Connect your Kobo to your computer, and open `.kobo/Kobo/Kobo eReader.conf`. Under `[OneStoreServices]`, find or create the following line:
@@ -36,7 +36,7 @@ Then replace `https://storeapi.kobo.com` with your Kavita URL, followed by `/kob
 api_endpoint=https://kavita.example.com/kobo/<AuthKey>
 ```
 
-See [Auth key](../user-settings/3rdpartyclients.mdx#auth-key) for how to find yours.
+See [Auth key](/guides/user-settings/3rdpartyclients#auth-key) for how to find yours.
 
 <Callout type="warning">
     It is recommended to only use Kobo Sync over https!
@@ -46,11 +46,11 @@ To stop using Kavita, set the line back to `api_endpoint=https://storeapi.kobo.c
 
 ### Kepubify
 
-Epubs are automatically converted to kepubs when downloaded on your Kobo. Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary with the [Kepubify Path](../admin-settings/media.mdx#kepubify-path) server setting.
+Epubs are automatically converted to kepubs when downloaded on your Kobo. Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary with the [Kepubify Path](/guides/admin-settings/media#kepubify-path) server setting.
 
 ## Preferences
 
-Kobo Sync preferences are set per user, in the Kobo Sync section of User Settings > [Preferences](../user-settings/preferences.mdx).
+Kobo Sync preferences are set per user, in the Kobo Sync section of User Settings > [Preferences](/guides/user-settings/preferences).
 
 ### Sync Preferences
 

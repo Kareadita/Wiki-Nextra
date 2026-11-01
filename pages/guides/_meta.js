@@ -10,4 +10,7 @@ export default {
 	"themes": "Custom Themes",
 	"epub-fonts": "Custom Fonts",
 	"api": "API",
+	"updating": {
+		"display": "hidden",
+	},
 }
