@@ -1,3 +1,4 @@
 export default {
-	"faq": "FAQ"
+	"faq": "FAQ",
+	"media-errors": "Media Errors"
 }

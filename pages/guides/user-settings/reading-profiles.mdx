@@ -1,5 +1,8 @@
 import { Callout } from 'nextra/components'
 import { TagBadge } from '../../../components/TagBadge'
+import Image from 'next/image'
+import deviceSelection from '../../../public/guides/user-settings/reading-profiles-device-selection.png'
+import bindToEntity from '../../../public/guides/user-settings/reading-profiles-bind-to-entity.png'
 
 <Callout type="info">
     Reading profiles are part of the v0.8.7 release.
@@ -17,7 +20,7 @@ Once you've created your profile, you can bind it to a series or library. This i
     Your default profile is migrated from your user preferences. This profile can **not** be deleted or renamed.
 </Callout>
 
-### Linked to devices <TagBadge major={0} minor={8} patch={9} />
+### Linked to devices <TagBadge major={0} minor={8} patch={9} /> [#linked-to-devices]
 
 You can bind devices to a reading profile, if a reading profile has devices assigned, it will only be used when you're reading on one of those devices.
 When binding a profile to a series/library you can have at most one profile per device.
@@ -25,13 +28,13 @@ When binding a profile to a series/library you can have at most one profile per 
 <br></br>
 
 <div style={{ display: 'flex', gap: '16px' }}>
-    <img
-        src="/guides/user-settings/reading-profiles-device-selection.png"
+    <Image
+        src={deviceSelection}
         alt="Device selection"
         style={{ width: '50%' }}
     />
-    <img
-        src="/guides/user-settings/reading-profiles-bind-to-entity.png"
+    <Image
+        src={bindToEntity}
         alt="Bind to entity"
         style={{ width: '50%' }}
     />

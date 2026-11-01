@@ -4,9 +4,12 @@ visible: true
 ---
 
 import { Callout } from 'nextra/components'
+import Image from 'next/image'
+import mihonOriginal from '../../../public/guides/3rdparty/mihon-original.png'
+import mihonNew from '../../../public/guides/3rdparty/mihon-new.png'
 
 
-<Callout type="warning" emoji="⚠️">
+<Callout type="warning">
   Currently, we only support the official Mihon app and Komikku.
   
   Forks that are confirmed to work: TachiyomiSY.
@@ -73,7 +76,7 @@ Access your Kavita instance from your web browser and log in
 Once installed the user has access to 3 sources. This means you can have access to 3 different Kavita servers.<br/>
 On each source, you can set up different OPDS URLs and different filter preferences. By default, these are differentiated with a number. 1, 2 and 3. You can change each identifier with your own name.<br/>
 
-<Callout type="warning" emoji="⚠️">
+<Callout type="warning">
   You can only add different domains as instances—adding the same domain twice will cause both sources to break.
 </Callout>
 
@@ -89,14 +92,14 @@ The extension offers extensive customization. There is no breaking settings so y
 This will turn your genres/tags list into organized categories, like so: 
 
 <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-  <img 
-    src="/guides/3rdparty/mihon-original.png" 
+  <Image 
+    src={mihonOriginal} 
     alt="mihon original" 
     style={{ height: '350px', width: 'auto', maxWidth: 'none' }} 
   />
   <span style={{ alignSelf: 'center' }}>→</span>
-  <img 
-    src="/guides/3rdparty/mihon-new.png" 
+  <Image 
+    src={mihonNew} 
     alt="mihon new" 
     style={{ height: '350px', width: 'auto', maxWidth: 'none' }} 
   />
