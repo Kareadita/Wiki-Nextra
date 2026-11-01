@@ -1,6 +1,8 @@
 import nextra from 'nextra'
 
-const withNextra = nextra({})
+const withNextra = nextra({
+	search: { codeblocks: true },
+})
 
 //const isProduction = process.env.NODE_ENV === "production";
 //const assetPrefix = isProduction ? "/wiki" : "";

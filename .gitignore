@@ -6,6 +6,7 @@ node_modules/
 dist/
 .turbo/
 out/
+public/_pagefind/
 # Theme styles
 packages/nextra-theme-*/style.css
 

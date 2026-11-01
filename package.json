@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "next build",
+		"postbuild": "node scripts/search-index.mjs",
 		"dev": "next dev",
 		"postinstall": "patch-package"
 	},
@@ -35,6 +36,7 @@
 		"@types/node": "20.11.5",
 		"@types/react": "^18.3.31",
 		"@types/react-dom": "^18.3.7",
+		"pagefind": "^1.5.2",
 		"patch-package": "^8.0.1",
 		"postcss": "^8.4.49",
 		"tailwindcss": "^4.3.3",

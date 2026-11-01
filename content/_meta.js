@@ -14,6 +14,9 @@ export default {
 		"href": "/guides",
 		"type": "page"
 	},
+	"index": {
+		"display": "hidden"
+	},
 	"en": {
 		"display": "hidden",
 		"type": "page"
