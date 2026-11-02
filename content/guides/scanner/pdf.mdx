@@ -1,0 +1,16 @@
+---
+title: PDF
+description: How Kavita reads series and volume from PDF metadata, falling back to the file name.
+---
+import { Callout } from 'nextra/components'
+
+<Callout type="info">
+	 This part of the wiki is in progress. If you have schemes that work, please help by [submitting a PR](https://github.com/Kareadita/Wiki-Nextra/tree/main/content/guides/scanner/pdf.mdx) or reach out to the Kavita team in Discord. We would love to enhance our documentation.
+</Callout>  
+
+### PDF
+PDFs are primarily parsed based on the [calibre metadata spec](https://wiki.kavitareader.com/guides/metadata/pdfs/). Filename parsing will only be used as a fallback for Series/Volume information.
+
+Kavita scans PDFs in a 2-pass process. The first pass pulls from the internal metadata. If the Series is missing, Kavita will use the title and if the title missing, then will fall back to the filename parser. The second pass will use filename to fill in the missing information to be included in Kavita.
+
+[Calibre](https://wiki.kavitareader.com/guides/external-tools/calibre/) should be used for managing metadata on PDFs. Using Series and Title tags will make sure that items are being grouped properly within Kavita.

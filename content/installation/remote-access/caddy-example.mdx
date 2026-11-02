@@ -1,0 +1,13 @@
+---
+description: A Caddy reverse proxy config for Kavita.
+---
+## Caddy Config
+ ```
+{
+        email youremail@here.com
+}
+kavita.yourdomain.com {
+        encode gzip
+        reverse_proxy 192.168.0.1:5000
+}
+```

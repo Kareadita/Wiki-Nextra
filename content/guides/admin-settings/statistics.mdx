@@ -1,0 +1,65 @@
+---
+description: "See your whole server at a glance: totals, the most read series and reading lists, popular genres and people, your most active readers, and file format breakdowns."
+---
+import { Callout } from 'nextra/components'
+
+# Statistics Tab
+
+The Statistics tab shows what is on your server and how it gets read. Open it from Settings, under the admin section. Only admins can see it.
+
+It has two tabs:
+- **Stats**: your content and your readers
+- **Management**: your files
+
+## Stats
+
+### Totals
+
+The row at the top counts everything on the server, across all libraries. Hover over a number to see the exact count.
+
+| Total | What it counts |
+|---|---|
+| Total Series | Series in all your libraries |
+| Total Volumes | Volumes across those series |
+| Total Files | Files Kavita has scanned |
+| Total Size | Disk space those files use |
+| Total Genres | Genres from your metadata |
+| Total Tags | Tags from your metadata |
+| Total People | Writers, artists, characters and everyone else credited in your metadata |
+| Total Read Time | Time spent reading on the server |
+
+Large genre, tag and people counts are shortened, so 1,200 genres shows as `1.2K Genres`.
+
+### Popular lists
+
+Below the totals are ranked lists. They always cover the whole server: the library and time picker further down does not change them.
+
+| List | What it ranks |
+|---|---|
+| Popular Series | Series by number of reads. Click one to open it |
+| Most Read Reading Lists | Reading lists by number of readers. Click one to open it |
+| Popular Decades | How many series were released in each decade. Click a decade to see its series |
+| Popular Libraries | Libraries by number of reads |
+| Popular Genres | Genres by how many series have them |
+| Popular Tags | Tags by how many series have them |
+| Writers, cover artists, characters and publishers | People by how many series they appear on. Click a name to open their page |
+
+### Readers and reading activity
+
+The **Explore** line lets you narrow the next two sections. Click **Kavita** to pick specific libraries instead of all of them, and pick a time range beside it.
+
+- **Most Active Readers**: the users who read the most in that range, with their total reading time and how many comics and books they read.
+- **Reading Activity**: a chart of hours read over time, split by format. Choose a user to see only their reading, or keep **All Users**.
+
+## Management
+
+The Management tab is about your files rather than your readers.
+
+- **Files added over time**: a chart of how many files were added to the server on each date. Hover over a point to see the count, for example "On 3/14/2026, 120 files were added".
+- **Format**: your files grouped by extension and format, with the count and total size of each. Switch between a chart and a data table. **Download Report** saves the list of files for one extension.
+- **Publication Status**: how many series have each publication status from their metadata, as a chart or a data table.
+- **Reading by Day**: which days of the week your users read on.
+
+<Callout type="info">
+  A format of **Not Classified** means Kavita has not scanned those files since before v0.7. Run a forced scan from the library's settings to classify them.
+</Callout>

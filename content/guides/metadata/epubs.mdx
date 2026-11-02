@@ -1,0 +1,98 @@
+---
+title: EPUB Metadata
+description: The OPF tags Kavita reads from EPUBs, including extra people roles, reading lists, collections, series grouping and specials.
+---
+import { Callout } from 'nextra/components'
+
+## Metadata
+
+<Callout type="info">OPF metadata files must be **inside** the `.epub` file, or it won't be read.</Callout>
+
+EPUB files do not have a ComicInfo.xml, but they do have some limited metadata in the OPF file.
+See the table below to know what tags Kavita reads from the OPF file
+
+## OPF
+
+### Conversion table
+
+| In OPF                                                                                         | Is | Equivalent In Kavita                                                           |
+|------------------------------------------------------------------------------------------------|----|--------------------------------------------------------------------------------|
+| `dc:title` (this can be overridden by `calibre:series` or `belongs-to-collection` meta)        | →  | Chapter Title                                                                  |
+| `calibre:series`                                                                               | →  | Name                                                                           |
+| `calibre:series_index`                                                                         | →  | Volume                                                                         |
+| `dc:description`                                                                               | →  | Summary                                                                        |
+| `dc:publisher`                                                                                 | →  | Publisher                                                                      |
+| `Year`, `Month`, `Day`                                                                         | →  | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
+| `Summary`                                                                                      | →  | Series Summary from first issue/chapter Issue/Chapter Summary                  |
+| `dc:creator`                                                                                   | →  | Writer                                                                         |
+| `dc:subject`                                                                                   | →  | Genres                                                                         |
+| `dc:language`                                                                                  | →  | Language (Kavita will only take the first)                                     |
+| `dc:identifier opf:scheme="isbn`                                                               | →  | ISBN                                                                           |
+
+
+### Expanding People Metadata
+In an epub, you can expand on people with not just author and publisher mappings, but can support the following:
+* art/artist
+* aut/author
+* pbl/publisher
+* trl/translator
+* edt/editor
+* ill/illustrator
+* clr/colorist
+
+In order to achieve this, you must refine the existing `dc:creator` tag with a `meta` tag. Both must exist otherwise the creator will be treated just as an author. See below, we are going to define that there is an editor:
+
+```
+<dc:creator id="id-1">Miya Kazuki</dc:creator>
+<meta refines="#id-1" property="role" scheme="marc:relators">editor</meta>
+```
+
+### Reading Lists and Collections
+For libraries that are allowed to manage collections and reading lists (and Kavita v0.7.3+), Kavita can utilize epub metadata fields for this.
+
+In the following example, we have just a single title here and the meta tag to refine this title and indicate that it is used for a collection. With just this, Kavita will generate a `Collection` tag.
+
+```
+<dc:title id="t1">A Dictionary of Modern English Usage</dc:title>
+<meta refines="#t1" property="title-type">collection</meta>
+```
+
+If you add an additional tag of `display-seq` then Kavita will treat the collection as a reading list and generate the reading list in the following order. Note that if you have conflicts, Kavita will automatically reorder, so order may be skewed. 
+
+```
+<meta refined="#t1" property="display-seq">1</meta>
+```
+
+### Grouping Series
+Some books belong together, like in the example, Harry Potter. Sure, we can have each book as its own series, but sometimes it's better to group them under one series. The ideal way to perform this grouping is by using `calibre:series` and `calibre:series_index` or `belongs-to-collection` and `group-position` for Epub 3.2 files. In the following, we can have our 2 Harry Potter books grouped together as one single Harry Potter Series (I am using Epub 2 for the first and Epub 3+ for the second):
+
+```
+<dc:title id="id">Harry Potter and the Philosopher's Stone</dc:title>
+<meta name="calibre:series">Harry Potter</meta>
+<meta name="calibre:series_index">1</meta>
+```
+
+```
+<dc:title id="id">Harry Potter and the Chamber of Secrets</dc:title>
+<meta property="belongs-to-collection" id="id-5">Harry Potter</meta>
+<meta refines="#id-5" property="group-position">2</meta>
+```
+
+### Specials
+In order for Kavita to show a Specials tab for a series, the following conditions must be met:
+
+1. The filename MUST contain the SP markers (SP01, SP02, etc)
+2. The internal metadata must have the `calibre:series` tag set to the Series it should be included in and a `calibre:series_index` of `100000`
+3. The title tag must be set with the title of the Special
+```
+<meta name="calibre:series">Harry Potter</meta>
+<meta name="calibre:series_index">100000</meta>
+<dc:title>Harry Potter: A day in the life</dc:title>
+```
+
+Likewise, you can use Epub3 tags:
+```
+<dc:title id="id">Special Title Here</dc:title>
+<meta property="belongs-to-collection" id="id-5">Harry Potter</meta>
+<meta refines="#id-5" property="group-position">100000</meta>
+```

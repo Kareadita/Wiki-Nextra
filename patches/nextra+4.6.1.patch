@@ -1,0 +1,17 @@
+diff --git a/node_modules/nextra/dist/client/hooks/use-fs-route.js b/node_modules/nextra/dist/client/hooks/use-fs-route.js
+index 0a6443a..98e0b9b 100644
+--- a/node_modules/nextra/dist/client/hooks/use-fs-route.js
++++ b/node_modules/nextra/dist/client/hooks/use-fs-route.js
+@@ -4,7 +4,11 @@ import { usePathname } from "next/navigation";
+ const defaultLocale = process.env.NEXTRA_DEFAULT_LOCALE;
+ function useFSRoute() {
+   const $ = _c(2);
+-  const pathname = usePathname();
++  const rawPathname = usePathname();
++  let pathname = rawPathname;
++  try {
++    pathname = decodeURIComponent(rawPathname);
++  } catch {}
+   let t0;
+   if ($[0] !== pathname) {
+     t0 = (process.env.NEXTRA_SHOULD_ADD_LOCALE_TO_LINKS !== "true" && defaultLocale ? "/" + pathname.split("/").slice(2).join("/") : pathname).replace(/\.html$/, "").replace(/\/index(\/|$)/, "$1").replace(/\/$/, "") || "/";

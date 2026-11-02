@@ -1,0 +1,219 @@
+---
+description: "Sign in to Kavita through an OpenID Connect provider: redirect URLs, the audience claim, account linking, auto-provisioning and role syncing."
+---
+import { Callout } from 'nextra/components'
+
+<Callout type="info">
+    OpenID Connect support is part of the v0.8.8 release.
+</Callout>
+
+# OpenID Connect
+
+OpenID Connect (OIDC) is a widely adopted authentication protocol built on top of OAuth 2.0, allowing users to sign in using a trusted identity provider. Kavita supports integration with any OIDC-compliant service, such as Authentik, Keycloak, and many others.
+
+Kavita's implementation lets you use OIDC for authentication only or delegate full user and role management to your identity provider. It supports features like account linking, auto-provisioning, role syncing, and login customization.
+
+## Setup
+
+You can configure OpenID Connect directly from Kavita's Web UI. Some changes—Authority, Client ID, and Secret—require saving and restarting the application manually.
+
+![OIDC Settings](../../../public/guides/admin-settings/oidc_settings.png "OIDC page in Admin Settings")
+
+<Callout type="info">
+  Kavita uses the discovery endpoint to load configuration dynamically. Ensure <code>&lt;your-url&gt;/.well-known/openid-configuration</code> is publicly accessible.
+</Callout>
+
+### Required Redirect URLs
+
+You may need to configure the following URLs in your OIDC provider, not all providers require you to configure the logout URL, if you're using a custom base url adjust them accordingly:
+
+| Purpose      | Path                     |
+|--------------|--------------------------|
+| Redirect URI | `/signin-oidc`           |
+| Post-logout  | `/signout-callback-oidc` |
+
+---
+
+### Audience Claim
+
+The audience (`aud`) claim **must match** the Client ID you have configured in Kavita.
+
+<Callout type="warning">
+  If the audience claim is incorrect, authentication will fail. Double-check the Client ID and ensure it's set as the audience in your OIDC provider.
+</Callout>
+
+---
+
+## Features & Settings
+
+Kavita allows a flexible integration: you can use your OIDC provider purely for login or let it fully manage user roles and access.
+
+### Account Linking
+
+When a user logs in via OIDC, Kavita will attempt to link the account by matching the email address.
+
+---
+
+### Provision Accounts
+
+When enabled, Kavita will automatically create a new user if no matching email exists. See [Syncing](#syncing) for how permissions are handled for new accounts.
+
+### Require Verified Emails
+
+Ensures only verified email addresses are matched or used for account creation. It's strongly recommended to keep this enabled.
+
+---
+
+### Auto Login
+
+When enabled, users are automatically redirected to the OIDC login page. You can bypass auto-login by adding `skipAutoLogin=true` to the login URL query string.
+
+> Ex. `https://kavita.example.com/login?skipAutoLogin=true`
+
+### Disable Password Authentication
+
+Users will no longer be able to login in with their username & password.
+
+> Auth key authentication always remains available.
+
+<Callout type="info">
+  In case of issues, the server administrator can remove the OIDC config from appsettings.json. Which will allow them to log in with their password again, as OIDC is disabled.
+</Callout>
+
+---
+
+## Syncing
+
+By default, users created via OIDC have no roles or library access. Kavita provides two options to assign and manage permissions:
+
+### Native Permissions
+
+If *Sync user settings with OIDC roles* is disabled, Kavita will use the default roles and library settings configured in the OpenID Connect admin UI. You can later adjust these manually in the Users panel.
+
+![OIDC Default NoSync Settings](../../../public/guides/admin-settings/oidc_default_no_sync.png "OIDC default no sync settings in OpenID Connect Settings")
+
+---
+
+### OIDC-Managed
+
+If *Sync user settings with OIDC roles* is enabled, Kavita will derive user roles, library access, and age restrictions directly from your OIDC provider.
+
+- Permissions are synchronized on each login.
+- You cannot edit these roles within Kavita while syncing is enabled.
+- You can switch the ownership between Kavita and OIDC at any time.
+
+<Callout type="warning">
+  Roles must be provided under the `roles` claim unless otherwise configured. Enable debug logging for troubleshooting.
+</Callout>
+
+#### Role Mapping
+
+Kavita recognizes the following roles directly:
+
+- All standard [roles](/guides/admin-settings/users#roles), such as `Login`, `Download`, etc.
+- Library access: `library-<LibraryName>` (e.g., `library-Manga`)
+- Age restriction: `age-restriction-<Rating>` (e.g., `age-restriction-KidsToAdults`)
+- To allow unknown ratings: `age-restriction-include-unknowns`
+
+Roles are case-insensitive starting with v0.8.9
+
+<Callout type="warning">
+    Users will not be able to login without the `Login` role. You can use this role to restrict access to your Kavita instance while still allowing user creation.
+</Callout>
+
+#### Others
+
+As Kavita grows other features will be added to also sync via OIDC.
+
+- Kavita will sync your profile picture with the `picture` claim if you don't have a profile picture assigned at the time of syncing.
+
+---
+
+## Advanced settings
+
+Kavita offers a few settings in case the default configuration is insufficient
+
+### Roles prefix
+
+Kavita will filter out all roles not starting with your configured prefix before trying to use them during sync. The prefix will be removed when using it.
+e.g. If you have the prefix `kavita-` configured, your age restricting role could be `kavita-age-restriction-KidsToAdults`
+
+
+### Roles claim
+
+Under which claim should Kavita look for your configured roles. Must be in the root of the token.
+
+<Callout type="warning">
+    The default is `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` and should be used when the roles are under `roles`.
+    Using `roles`will **not** work as the library we use automatically maps some claims; you may find the full list [here](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/src/Microsoft.IdentityModel.JsonWebTokens/ClaimTypeMapping.cs).
+</Callout>
+
+### Custom scopes
+
+You may configure extra scopes to be requested by Kavita on login. Login may fail if these are not configured correctly.
+
+---
+
+## Developer Notes
+
+Some OIDC providers may require additional configuration to expose roles or correctly set the audience claim.
+
+> Kavita does **not officially support or provide configuration help** for specific OIDC providers. However, everyone is welcome to ask questions in **non-support channels** on [Discord](https://discord.gg/b52wT37kt7) where the community might be able to help.
+
+We encourage users to **contribute guides or notes for any OIDC providers** to help expand this section for the benefit of others.
+
+
+### Authentik
+
+Authentik uses some different terminology than what we provide.
+
+- **Authority**: While Kavita refers to authority as the url that it gets the provider information, Authentik refers to this URL as `OpenID Configuration Issuer`.
+
+To use the OIDC-Managed permissions, you will need to setup a `Property Mapping` within Authentik. Once a user group (such as `kavita-user`) is created, assign roles to this group for authentication and library access.
+Use a set prefix (such as `kavita-`) for the role names. Any unicode or spaces used in library names should be used as-is.
+
+In Authentik, configure the following:
+- Create a new `Scope Mapping` Property Mapping with the following `Expression` to return the list of `Roles` that are assigned to the User Group. In the example below, this will pull all roles that start with `kavita-`.
+```
+roles = [role.name for group in request.user.ak_groups.all() for role in group.roles.all() if role.name.startswith("kavita-")]
+return {
+    "roles": list(set(roles))
+}
+```
+- Optionally, create another `Scope Mapping` Property Mapping to always return a users email address as verified so they will also be verified within Kavita, since as of 2025.10 [Authentik does not return `true` by default](https://docs.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2):
+```
+return {
+    "email_verified": True
+}
+```
+- **Authentik Provider Settings**: In addition to `email`, `openid` and `profile` scopes, ensure `offline_access` and the Property Mappings you created above are included.
+Then in Kavita, configure the following:
+- **Sync user settings with OIDC roles**: Ensure this is toggled on.
+- **Roles Prefix**: Ensure this is filled in and is the same prefix used in the Property Mapping, such as `kavita-`. For example, the `kavita-login` role will allow a user to login to Kavita.
+- **Custom Scopes**: Ensure the 2 Property Mapping scopes you created are filled in here (under `Scope name` within Authentik).
+
+### Authelia
+
+When using Authelia, you'll need to configure some extra settings to ensure proper integration with Kavita when using the Sync User feature:
+
+- **Roles claim**: Set the roles claim to `groups`.
+- **Custom scopes**: Ensure the `groups` scope is included.
+
+### Keycloak
+
+When using Keycloak, you must manually configure dedicated client mappers:
+
+- **Audience Mapper**: Ensure the correct `aud` claim is added to the token, matching Kavita's Client ID.
+- **User Client Role Mapper**: Ensure user roles are exposed at the root of your token.
+
+### PocketID
+
+When using Pocket ID the `Sync user settings` will only sync after a full logout and login.
+
+## Common issues
+
+- **Non admin accounts can't see any series in their libraries**: If your series don't have age ratings applied you need to assign the `age-restriction-include-unknowns` role.
+
+- **You do not have the required roles assigned to access this application**: If this error keeps popping up, your idp is not sending the roles where Kavita is looking for them. Check your configuration with the notes above
+
+---

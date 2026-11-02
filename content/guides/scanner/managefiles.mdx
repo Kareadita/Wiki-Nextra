@@ -1,0 +1,112 @@
+---
+title: 'Managing your files'
+description: How Kavita turns file names into series, volumes, chapters and specials, and the folder layout each series needs.
+---
+import { Callout } from 'nextra/components'
+
+
+ # Naming convention / File Structure
+It's important to know how Kavita parses the info from the files, so you can see what you want how you want.
+
+Kavita uses parsing (not folder structure) to determine what is a series and what belongs to each series. Kavita requires that each series be in its folder and that no files are at root level of the library.
+
+Read up on [how the scanner works](/guides/scanner) prior to continuing with this article.
+
+
+<Callout type="info">
+	 When parsing filenames, anything between () themselves will be removed from the series name.
+</Callout>
+
+ <br/>If you wish to separate series using `Series Name (2019)`, it's advised to change parenthesis to brackets `{` `}` and change series name in the UI
+
+For all types of libraries, Kavita has an override for treating files as Specials. 
+
+## Specials
+
+Kavita treats multiple types of files as "Specials" and will group them in a separate tab in series detail. Special marker (SP) will be removed from the UI title, however is used when ordering and is required if not using internal metadata.
+
+An entity is considered a special when a series can be parsed out of it, but no volume or chapter information is found:
+
+```
+Library Root
+  ┖── Series Name
+      ┖── Series Name.cbz
+```
+
+To force a Special status, the filename can include SP01, SP02, etc.
+This will take the file and force it to be a special:
+
+```
+Library Root
+  ┖── Series Name
+      ┖── Series Name SP01 Special Name.cbz
+```
+
+<Callout type="warning">
+	 Words like `Annual`, `TPB`, `Omnibus`, `One Shot`, `Compendium`, etc. in a filename are **not** enough on their own to mark a file as a Special — Kavita only forces Special status from a filename via the `SP##` marker above. If you want one of those keywords to force a Special without an `SP##` marker, set it in the [`Format` field](/guides/metadata/comics#format) of the file's `ComicInfo.xml`.
+</Callout>
+
+
+For it to identify as a special and not as the series from the filename, it will look up towards the library root and attempt to parse the series name from the folder names.<br/>
+For example:
+
+```
+Library Root
+  ┖── Again!!
+      ┖── Specials
+            ┖── Again The After Story SP01.cbz
+```
+Will parse `"Again!!"` for the Series name and group the file `"Again The After Story SP01.cbz"` as a special under the series `"Again!!"`
+
+
+<Callout type="info">
+	 Additionally, if the file is a `.cb*` file you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#conversion-table) using the [Format tag](/guides/metadata/comics#format)
+</Callout>
+
+Specials will fall back to the folder name for the Series name. If you have a different name than the series files, then your special may not properly group.
+
+## Volumes
+In order for something to be parsed as having a volume, a volume must be on the filename.
+
+Volume means:
+* v1
+* vol 1
+* vol. 1
+* volume 01
+* Vol 7.5
+* Volume.2000
+* t2 / t. 2 / tome 2 (French)
+* S01 (only recognized for Manga, e.g. `Tower Of God S01 014.cbz`)
+* 卷2 / 册2 (Chinese)
+* 2巻 (Japanese)
+* 권2 / 장2 / 시즌2 "season" (Korean)
+* เล่ม 2 / เล่มที่ 2 (Thai)
+* Том 2 / Тома 2 (Russian)
+
+Multiple volumes in one file is also supported:
+
+* Vol. 1-5
+* Volume 3-7
+
+<Callout type="info">
+	  Additionally if the file is a `.cb*` file, you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#comicinfo) using the `volume tag`
+</Callout>
+
+<Callout type="info">
+	 If a filename contains two volume markers (eg. `One Piece - Vol 4 ch 2 - vol 6 omakes`), Kavita takes the first one and ignores the rest so it doesn't get confused by things like "Volume Extras" or "Vol.30 Omake" appearing after the real chapter/volume info. A true range like `v1-v2` is left alone.
+</Callout>
+
+## Chapters
+Similar to Volumes, a chapter marker is required for a file to be parsed as anything other than a loose leaf (i.e. one big oneshot-style read within its Volume).
+
+Chapter means:
+* c1 / ch1 / ch.1 / chapter 1 / chp. 1
+* A bare number in an otherwise unmarked filename (eg. `Beelzebub_53[KSH].zip` → chapter 53)
+* Decimal chapters, eg. `034.5`
+* A trailing `b` on a chapter number is treated as a half/extra chapter, eg. `Beelzebub_153b_RHS.zip` → chapter `153.5`
+* Ranges, eg. `c001-006` → `1-6`
+* 話 (Japanese), 话 (Chinese), 화 / 회 (Korean), บทที่ / ตอนที่ (Thai), Глава (Russian)
+
+<Callout type="info">
+	 Additionally if the file is a `.cb*` file, you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#comicinfo) using the `Number` tag
+</Callout>
