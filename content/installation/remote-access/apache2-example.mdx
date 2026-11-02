@@ -1,3 +1,6 @@
+---
+description: An Apache2 reverse proxy config for Kavita on its own domain or subdomain, with HTTPS.
+---
 These examples assume that Kavita is running on host 192.168.0.152 port 5000, and that apache is being used for SSL termination (Kavita is running http). 
 
 If you intend for apache to serve http alone, rather than https with a redirect for http, you will need to make your virtualhost definitions use port 80, and remove all of the config lines starting with SSL. If upstream is running serving https, you'll need to modify the proxy lines to reference https and the websocket lines to reference wss instead of ws.
