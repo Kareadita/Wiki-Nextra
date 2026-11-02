@@ -20,6 +20,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 		openGraph: {
 			...SITE_OPEN_GRAPH,
 			title: fullTitle,
+			description: metadata.description ?? SITE_OPEN_GRAPH?.description,
 		},
 	}
 }
