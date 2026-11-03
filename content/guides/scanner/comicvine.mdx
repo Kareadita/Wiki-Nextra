@@ -6,8 +6,9 @@ import { Callout } from 'nextra/components'
 
 # Comic Library Type
 
-Comic library type is built around users that have full metadata embedded in their files. This usually means Mylar users, but can be anyone who writes `Comicinfo.xml` into their files.
-This library type is much more strictly aligned and matches the structure the [CBL project](https://github.com/DieselTech/CBL-ReadingLists) expects. 
+The Comic library type is built for files with full metadata embedded in them. This usually means Mylar users, but it can be anyone who writes `ComicInfo.xml` into their files. It matches the structure the [CBL project](https://github.com/DieselTech/CBL-ReadingLists) expects, and it can tell two runs of a series apart by their year.
+
+## A good structure
 
 ```
 Library Root
@@ -22,11 +23,42 @@ Library Root
       ┖── Series Name 2 #06.cbz
 ```
 
-Rules:
-- If the `ComicInfo.xml` has both a `Series` and a `Volume` tag, Kavita builds the Series name as `Series (Volume)` directly from metadata and this takes priority over anything on disk.
-- Otherwise, Kavita falls back to the folder name. It looks at each folder from the file up to the library root for one matching `Series (Volume Year)` and uses the first match; if none match, it uses the closest folder name as-is.
-- Kavita will still classify specials by filename `SP##` marker.
+## How the series name is chosen
+
+The series name never comes from the file name. Kavita tries these in order, and stops at the first that works:
+
+1. **The `Series` and `Volume` tags together.** Series `Saga` and Volume `2012` make the name `Saga (2012)`, wherever the file is. A `Series` tag on its own is ignored.
+2. **A folder named `Series (Year)`**, checking each folder from the file up to the library root. The year also becomes the volume.
+3. **The folder closest to the file**, with anything in `()` removed. The file has no volume.
+
+| File | Tags in `ComicInfo.xml` | Series | Volume | Chapter |
+|---|---|---|---|---|
+| `Wrong Folder/Saga 005.cbz` | `Series` Saga, `Volume` 2012, `Number` 5 | Saga (2012) | 2012 | 5 |
+| `Wrong Folder/Saga 005.cbz` | `Series` Saga, `Number` 5 | Wrong Folder | | 5 |
+| `Saga (2012)/Saga 005.cbz` | `Series` Saga, `Number` 5 | Saga (2012) | 2012 | 5 |
+| `Saga (2012)/Saga 005.cbz` | None | Saga (2012) | 2012 | 5 |
+| `Saga (2012)/Saga v2 005.cbz` | None | Saga (2012) | 2012 | 5 |
+| `DC Comics/Birds of Prey (1999)/Birds of Prey 001 (1999).cbz` | None | Birds of Prey (1999) | 1999 | 1 |
+| `DC Comics/Blood Syndicate/Blood Syndicate 001 (1999).cbz` | None | Blood Syndicate | | 1 |
+| `Saga (Digital)/Saga 005.cbz` | None | Saga | | 5 |
 
 <Callout type="warning">
-	 Unlike the [Comic (Flexible)](/guides/scanner/comic#marking-a-comic-as-a-special) library type, the [`Format` field](/guides/metadata/comics#format) in `ComicInfo.xml` (`Annual`, `TPB`, `Omnibus`, etc) does **not** force Special status for the Comic Vine library type. Use an `SP##` filename marker instead if you need to force a Special here.
-</Callout> 
+	A folder only counts as `Series (Year)` if the name before the year has no digits. `Batman 66 (2013)/Batman 66 001.cbz` is series `Batman 66`, chapter 66, with no year. The same goes for `X-23 (2010)` and `2000 AD (1977)`. Set the `Series` and `Volume` tags on these: `X-23` and `2010` give `X-23 (2010)`.
+</Callout>
+
+## Issue numbers
+
+The `Number` tag sets the issue. Without it, Kavita reads the number from the file name using the [Comic (Flexible) rules](/guides/scanner/comic#examples). `Saga #5.cbz` and `Saga 005.cbz` are both issue 5, but `Saga c5.cbz` has no issue number.
+
+## Specials
+
+Add an `SP01`, `SP02`, etc. marker to the file name to mark a special.
+
+| File | Tags in `ComicInfo.xml` | Series | Result |
+|---|---|---|---|
+| `Saga (2012)/Saga Annual SP01.cbz` | None | Saga (2012) | A special |
+| `Saga (2012)/Saga Annual 001.cbz` | `Series` Saga, `Volume` 2012, `Number` 1, `Format` Annual | Saga (2012) | Issue 1, not a special |
+
+<Callout type="warning">
+	Unlike the [Comic (Flexible)](/guides/scanner/comic#marking-a-comic-as-a-special) library type, the [`Format` tag](/guides/metadata/comics#format) in `ComicInfo.xml` (`Annual`, `TPB`, `Omnibus`, etc) does **not** make a file a special here. Use an `SP` marker in the file name instead.
+</Callout>

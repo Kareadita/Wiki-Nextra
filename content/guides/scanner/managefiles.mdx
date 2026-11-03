@@ -1,112 +1,181 @@
 ---
 title: 'Managing your files'
-description: How Kavita turns file names into series, volumes, chapters and specials, and the folder layout each series needs.
+description: How Kavita turns file names into series, volumes, chapters and specials, and which names to avoid, with examples.
 ---
 import { Callout } from 'nextra/components'
 
 
- # Naming convention / File Structure
-It's important to know how Kavita parses the info from the files, so you can see what you want how you want.
+# Naming your files
 
-Kavita uses parsing (not folder structure) to determine what is a series and what belongs to each series. Kavita requires that each series be in its folder and that no files are at root level of the library.
-
-Read up on [how the scanner works](/guides/scanner) prior to continuing with this article.
-
+Kavita works out the series, volume and chapter of each file from its name, not from where it sits in your folders. A good name is the difference between one tidy series and several broken ones. Read up on [how the scanner works](/guides/scanner) and the [folder layout](/guides/scanner#file-layout) first: each series needs its own folder, and no files can sit at the root of the library.
 
 <Callout type="info">
-	 When parsing filenames, anything between () themselves will be removed from the series name.
+	The safest name starts with the series name and has a clear marker: `Series Name v01 c001.cbz`. Specials are `Series Name SP01 Title.cbz`.
 </Callout>
 
- <br/>If you wish to separate series using `Series Name (2019)`, it's advised to change parenthesis to brackets `{` `}` and change series name in the UI
+## Which name wins
 
-For all types of libraries, Kavita has an override for treating files as Specials. 
+Kavita checks three places, in this order:
 
-## Specials
+1. **Metadata inside the file**, if the file has any and the library's `Enable Metadata (ComicInfo/Epub/PDF)` setting is on. A `Series` tag beats the name in the file. See [Using metadata](#using-metadata).
+2. **The file name.**
+3. **The folder name**, only if no series can be read from the file name. See [Files with no series in the name](#files-with-no-series-in-the-name).
 
-Kavita treats multiple types of files as "Specials" and will group them in a separate tab in series detail. Special marker (SP) will be removed from the UI title, however is used when ordering and is required if not using internal metadata.
+## Each library reads names differently
 
-An entity is considered a special when a series can be parsed out of it, but no volume or chapter information is found:
+The library's type decides the rules. This page covers what the Manga rules accept, which Book, Light Novel and Image libraries also use. The pages below have the details and examples for each.
 
-```
-Library Root
-  ┖── Series Name
-      ┖── Series Name.cbz
-```
-
-To force a Special status, the filename can include SP01, SP02, etc.
-This will take the file and force it to be a special:
-
-```
-Library Root
-  ┖── Series Name
-      ┖── Series Name SP01 Special Name.cbz
-```
+| You have | Read |
+|---|---|
+| A Manga library | [Manga](/guides/scanner/manga) |
+| A Comic (Flexible) library | [Comic (Flexible)](/guides/scanner/comic) |
+| A Comic library | [Comic](/guides/scanner/comicvine) |
+| An Image library, where names come from folders | [Images](/guides/scanner/image) |
+| EPUB files in any library but Comic | [EPUB](/guides/scanner/epub) |
+| PDF files in any library but Comic | [PDF](/guides/scanner/pdf) |
 
 <Callout type="warning">
-	 Words like `Annual`, `TPB`, `Omnibus`, `One Shot`, `Compendium`, etc. in a filename are **not** enough on their own to mark a file as a Special — Kavita only forces Special status from a filename via the `SP##` marker above. If you want one of those keywords to force a Special without an `SP##` marker, set it in the [`Format` field](/guides/metadata/comics#format) of the file's `ComicInfo.xml`.
+	Comic (Flexible) doesn't accept everything on this page. `Saga c7.cbz` is not chapter 7, it becomes a series named `Saga c7`. `Saga Volume 01.cbz` becomes a series named `Saga Volume`. Use the list on the [Comic (Flexible)](/guides/scanner/comic) page.
 </Callout>
-
-
-For it to identify as a special and not as the series from the filename, it will look up towards the library root and attempt to parse the series name from the folder names.<br/>
-For example:
-
-```
-Library Root
-  ┖── Again!!
-      ┖── Specials
-            ┖── Again The After Story SP01.cbz
-```
-Will parse `"Again!!"` for the Series name and group the file `"Again The After Story SP01.cbz"` as a special under the series `"Again!!"`
-
-
-<Callout type="info">
-	 Additionally, if the file is a `.cb*` file you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#conversion-table) using the [Format tag](/guides/metadata/comics#format)
-</Callout>
-
-Specials will fall back to the folder name for the Series name. If you have a different name than the series files, then your special may not properly group.
 
 ## Volumes
-In order for something to be parsed as having a volume, a volume must be on the filename.
 
-Volume means:
-* v1
-* vol 1
-* vol. 1
-* volume 01
-* Vol 7.5
-* Volume.2000
-* t2 / t. 2 / tome 2 (French)
-* S01 (only recognized for Manga, e.g. `Tower Of God S01 014.cbz`)
-* 卷2 / 册2 (Chinese)
-* 2巻 (Japanese)
-* 권2 / 장2 / 시즌2 "season" (Korean)
-* เล่ม 2 / เล่มที่ 2 (Thai)
-* Том 2 / Тома 2 (Russian)
+A file only has a volume if a marker says so.
 
-Multiple volumes in one file is also supported:
+| Marker | Example | Volume |
+|---|---|---|
+| `v` | `Accel World v01.cbz` | 1 |
+| `vol`, `vol.` | `Accel World Vol. 2.cbz` | 2 |
+| `volume` | `Accel World Volume 3.cbz` | 3 |
+| A decimal | `Accel World Vol 7.5.cbz` | 7.5 |
+| `t`, `tome` (French) | `Accel World T2.cbz`, `Accel World Tome 2.cbz` | 2 |
+| `S` | `Tower Of God S01 014.cbz` | 1 (chapter 14) |
+| `卷`, `册` (Chinese) | `Accel World 第2卷.cbz`, `Accel World 卷2.cbz`, `Accel World 第1册.cbz` | 2, 2, 1 |
+| `巻` (Japanese) | `Accel World 1巻.cbz` | 1 |
+| `권`, `장` (Korean) | `Accel World 1권.cbz`, `Accel World 13장.cbz` | 1, 13 |
+| `시즌`, season (Korean) | `Accel World 시즌3.cbz` | 3 |
+| `เล่ม` (Thai) | `Accel World เล่ม 2.cbz` | 2 |
+| `Том`, `Тома` (Russian) | `Accel World Том 2.cbz` | 2 |
 
-* Vol. 1-5
-* Volume 3-7
+**One file can hold several volumes.** `Accel World v16-17.cbz` and `Accel World Vol. 1-5.cbz` are read as ranges. Repeat only the number: `v1-2` is volumes 1 to 2, but `v1-v2` is read as volume 2.
 
-<Callout type="info">
-	  Additionally if the file is a `.cb*` file, you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#comicinfo) using the `volume tag`
-</Callout>
+**A second volume marker is ignored.** `One Piece - Vol 4 ch 2 - vol 6 omakes.cbz` is volume 4, chapter 2.
 
 <Callout type="info">
-	 If a filename contains two volume markers (eg. `One Piece - Vol 4 ch 2 - vol 6 omakes`), Kavita takes the first one and ignores the rest so it doesn't get confused by things like "Volume Extras" or "Vol.30 Omake" appearing after the real chapter/volume info. A true range like `v1-v2` is left alone.
+	A file with only `Том 2`, `เล่ม 2` or `13장` also gets that number as its chapter, so `Accel World Том 2.cbz` is volume 2, chapter 2. If the file holds a chapter, add its marker: `Accel World Том 2 Глава 3.cbz` is volume 2, chapter 3.
 </Callout>
 
 ## Chapters
-Similar to Volumes, a chapter marker is required for a file to be parsed as anything other than a loose leaf (i.e. one big oneshot-style read within its Volume).
 
-Chapter means:
-* c1 / ch1 / ch.1 / chapter 1 / chp. 1
-* A bare number in an otherwise unmarked filename (eg. `Beelzebub_53[KSH].zip` → chapter 53)
-* Decimal chapters, eg. `034.5`
-* A trailing `b` on a chapter number is treated as a half/extra chapter, eg. `Beelzebub_153b_RHS.zip` → chapter `153.5`
-* Ranges, eg. `c001-006` → `1-6`
-* 話 (Japanese), 话 (Chinese), 화 / 회 (Korean), บทที่ / ตอนที่ (Thai), Глава (Russian)
+A chapter can have a marker, or be a plain number after the series name.
+
+| Marker | Example | Chapter |
+|---|---|---|
+| `c`, `ch`, `ch.` | `Accel World c5.cbz`, `Accel World ch5.cbz`, `Accel World Ch. 5.cbz` | 5 |
+| `chapter`, `chp.` | `Accel World Chapter 5.cbz`, `Accel World Chp. 5.cbz` | 5 |
+| `episode` | `Accel World Episode 5.cbz` | 5 |
+| `#` | `Accel World #5.cbz` | 5 |
+| A plain number | `Accel World 005.cbz` | 5 |
+| A decimal | `Accel World 034.5.cbz` | 34.5 |
+| A trailing `b` | `Beelzebub_153b_RHS.zip` | 153.5 |
+| A range | `Accel World c001-006.cbz`, `Accel World c01-c04.cbz` | 1-6, 1-4 |
+| `话` (Chinese) | `Accel World 第25话.cbz` | 25 |
+| `話` (Japanese) | `Accel World 第10話.cbz` | 10 |
+| `화`, `회` (Korean) | `Accel World 5화.cbz`, `Accel World 13회.cbz` | 5, 13 |
+| `Глава` (Russian) | `Accel World Глава 2.cbz` | 2 |
+| `ตอนที่`, `บทที่` (Thai) | `Accel World เล่ม 1 ตอนที่ 3.cbz` | 3 (volume 1) |
+
+Use a volume and a chapter together for a chapter inside a volume: `Accel World v02 c009.cbz` and `Accel World - Vol. 02 Ch. 009.cbz` are both volume 2, chapter 9.
 
 <Callout type="info">
-	 Additionally if the file is a `.cb*` file, you may set this value with the use of [ComicInfo metadata](/guides/metadata/comics#comicinfo) using the `Number` tag
+	Include a volume with the Thai chapter markers. Without one, the marker stays in the series name: `Accel World ตอนที่ 3.cbz` is a series named `Accel World ตอนที่`.
 </Callout>
+
+## The series name
+
+### What gets removed
+
+The series is cleaned up before it's used, so tags don't split it apart.
+
+| File | Series | What happened |
+|---|---|---|
+| `Fables (2004) v01.cbz` | Fables | Anything in `()` is removed |
+| `Fables [2004] v01.cbz` | Fables | Anything in `[]` is removed |
+| `Fables {2004} v01.cbz` | Fables `{2004}` | `{}` is kept, unless it's empty or `{Complete}` |
+| `[Hidoi]_Amaenaideyo_MS_vol01_chp02.rar` | Amaenaideyo MS | Group tags are removed, and `_` becomes a space |
+| `Air Gear Omnibus v01 (2016) (Digital).cbz` | Air Gear | `Omnibus` and `Omnibus Edition` are removed |
+| `To Love Ru v09 Uncensored (Ch.071-079).cbz` | To Love Ru | `Uncensored` is removed |
+| `Rent-a-(Really Shy)-Girlfriend Vol 01.cbz` | Rent-a-(Really Shy)-Girlfriend | `()` stays when it's joined to the words on both sides |
+
+To keep two runs of a series apart, put the year in `{}`, as in `Fables {2004}`, and rename the series in the UI if you like. In a [Comic library](/guides/scanner/comicvine), use metadata or a `Series (2004)` folder instead.
+
+### Numbers in the series name
+
+Kavita needs a marker to tell a number in the title from a chapter. Without one, it takes the first number it finds.
+
+| File | Series | Volume | Chapter | Result |
+|---|---|---|---|---|
+| `Golgo 13 112.cbz` | Golgo | | 13 | Wrong |
+| `Golgo 13 c112.cbz` | Golgo 13 | | 112 | Right |
+| `Golgo 13 v01.cbz` | Golgo 13 | 1 | | Right |
+| `Mob Psycho 100.cbz` | Mob Psycho | | 100 | Wrong |
+| `Mob Psycho 100 v02.cbz` | Mob Psycho 100 | 2 | | Right |
+| `Blade Runner 2019 - Volume 1.cbz` | Blade Runner 2019 | 1 | | Right |
+
+### Files with no series in the name
+
+If the name has no series, Kavita uses the folder.
+
+| File | Series | Volume | Chapter |
+|---|---|---|---|
+| `Accel World/v01.cbz` | Accel World | 1 | |
+| `Accel World/Vol 2 Ch 9.cbz` | Accel World | 2 | 9 |
+| `Mob Psycho 100/v02.cbz` | Mob Psycho | 2 | |
+| `Btooom!/Vol.1/Chapter 1/1.cbz` | Chapter 1 | | |
+
+The last two show why it's better to start every file with the series name:
+
+- A folder name is read like a file name, so `Mob Psycho 100/` loses its number. `Mob Psycho 100 v03.cbz` in the same folder would be a different series from `v02.cbz`.
+- Kavita uses the folder closest to the file, so nested volume and chapter folders can become the series. `Btooom!/Vol.1/Chapter 1/Btooom! Vol.1 Ch. 1.cbz` is series Btooom!, volume 1, chapter 1.
+
+## Specials
+
+Specials show in their own tab on the series page. A file is a special in any of these cases.
+
+| File | Series | Title | Why |
+|---|---|---|---|
+| `Accel World Gaiden SP01.cbz` | Accel World | Accel World Gaiden | Has an `SP` marker |
+| `Specials/Gaiden SP02.cbz` | Accel World | Gaiden | Has an `SP` marker |
+| `Accel World v02 SP03 Omake.cbz` | Accel World | Accel World v02 Omake | An `SP` marker beats any volume or chapter |
+| `Accel World Artbook.cbz` | Accel World | Accel World Artbook | No volume and no chapter |
+| `Accel World.cbz` | Accel World | Accel World | No volume and no chapter |
+
+These examples are all inside the `Accel World` folder. A file with an `SP` marker takes its series from the folder, or from the folder above if it's in `Specials`. The `SP` number sets the order, and it doesn't show in the title.
+
+A file also becomes a special through the [`Format` tag](#using-metadata) in its metadata.
+
+### Common mistakes
+
+| File | What you get | Fix |
+|---|---|---|
+| `Specials/Artbook.cbz` | A series named `Specials` | `Specials/Artbook SP01.cbz` |
+| `Specials/Artbook 1.cbz` | A series named `Artbook`, chapter 1 | `Specials/Artbook 1 SP01.cbz` |
+| `Accel World Annual 2.cbz` | A series named `Accel World Annual`, chapter 2 | `Accel World Annual 2 SP01.cbz` |
+| `Accel World sp01.cbz` | Not added, shows on [Media Issues](/guides/admin-settings/mediaissues) | Write `SP` in capitals |
+| `Wasp2 v01.cbz` | Not added, shows on [Media Issues](/guides/admin-settings/mediaissues) | Keep `sp` followed by a number out of the name |
+
+<Callout type="warning">
+	Being in a `Specials` folder isn't enough, the file needs its own `SP` marker. Words like `Annual`, `TPB`, `Omnibus`, `One Shot` or `Compendium` in a name don't make a file a special either.
+</Callout>
+
+## Using metadata
+
+Metadata beats the file name, which makes it the way out when a name can't be changed. Kavita reads `ComicInfo.xml` from `.cbz`, `.cbr`, `.cb7` and `.cbt` files, but not from `.zip`, `.rar` or `.7z`.
+
+| File | Tags in `ComicInfo.xml` | Series | Volume | Chapter |
+|---|---|---|---|---|
+| `Totally Wrong Name 5.cbz` | `Series` Right Name, `Volume` 2, `Number` 9 | Right Name | 2 | 9 |
+| `Totally Wrong Name 5.cbz` | `Number` 9 | Totally Wrong Name | | 9 |
+| `Accel World Artbook 2.cbz` | `Series` Accel World, [`Format`](/guides/metadata/comics#format) Special | Accel World (special) | | |
+
+The `Format` value has to match exactly, so `Special` works and `special` doesn't. A Comic library [ignores `Format`](/guides/scanner/comicvine). See [ComicInfo](/guides/metadata/comics#comicinfo) for every tag, and [EPUB](/guides/metadata/epubs) or [PDF](/guides/metadata/pdfs) metadata for those files.

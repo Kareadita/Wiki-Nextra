@@ -5,13 +5,12 @@ description: The folder and file names Kavita's Manga library understands out of
 import { Callout } from 'nextra/components'
 
 
-### Manga Structure
-<Callout type="info">
-	 Make sure you understand the [folder requirements](/guides/scanner#file-layout) of Kavita
-</Callout>
+# Manga
 
+Make sure you understand the [folder requirements](/guides/scanner#file-layout) and the [naming rules](/guides/scanner/managefiles) first. That page has every volume and chapter marker a Manga library accepts.
 
-A good structure would be:
+## A good structure
+
 ```
 Library Root
   ┖── Series Name
@@ -27,26 +26,34 @@ Library Root
       ┖── Series Name 2 Vol.02 Ch.6.cbz
 ```
 
-### Examples of Naming conventions supported out of the box
+## How this library reads a file
 
-| Filename                                                        |               Parsed Series Name               | Volume | Chapter |
-|:----------------------------------------------------------------|:----------------------------------------------:|:-------|:--------|
-| `Noblesse - Episode 406 (52 Pages).7z`                          |                    Noblesse                    |        | 406     |
-| `[Hidoi]_Amaenaideyo_MS_vol01_chp02.rar`                        |                 Amaenaideyo MS                 | 1      | 2       |
-| `Okusama wa Shougakusei c003 (v01) [bokuwaNEET]`                |             Okusama wa Shougakusei             | 1      | 3       |
-| `Goblin Slayer Side Story - Year One 025.5`                     |      Goblin Slayer Side Story - Year One       |        | 25.5    |
-| `Itoshi no Karin - c001-006x1 (v01) [Renzokusei Scans]`         |                Itoshi no Karin                 | 1      | 1-6     |
-| `Beelzebub_53[KSH].zip`                                         |                   Beelzebub                    |        | 53      |
-| `Killing Bites Vol. 0001 Ch. 0001 - Galactica Scanlations (gb)` |                 Killing Bites                  | 1      | 1       |
-| `Dance in the Vampire Bund v16-17 (Digital) (NiceDragon)`       |          Dance in the Vampire Bund             | 16-17  |         |
-| `Chevaliers d'Héliopolis T3 - Rubedo, l'oeuvre au rouge`        |             Chevaliers d'Héliopolis            | 3      |         |
-| `Tower Of God S01 014 (CBT) (digital).cbz`                      |                  Tower Of God                  | 1      | 14      |
-| `諌山創] 進撃の巨人 第23巻`                                        |               諌山創] 進撃の巨人                  | 23     |         |
-| `Kebab Том 1 Глава 3`                                           |                     Kebab                      | 1      | 3       |
-| `เด็กคนนี้ขอลาออกจากการเป็นเจ้าของปราสาท เล่ม 1`                  | เด็กคนนี้ขอลาออกจากการเป็นเจ้าของปราสาท              | 1      |         |
+- **Series:** from the file name. If there is none, from the [folder closest to the file](/guides/scanner/managefiles#files-with-no-series-in-the-name).
+- **Volume and chapter:** from the file name. A folder is only used for these when the file name has no series either.
+- **No volume and no chapter:** the file is a [special](/guides/scanner/managefiles#specials).
+- **Metadata:** `ComicInfo.xml` in a `.cbz`, `.cbr`, `.cb7` or `.cbt` file [beats the file name](/guides/scanner/managefiles#using-metadata).
 
-And [many more](https://github.com/Kareadita/Kavita/blob/develop/Kavita.Services.Tests/Parsing/MangaParsingTests.cs)...
+## Examples
 
-<Callout type="info">
-	Besides `v`/`vol`/`volume`, Kavita also recognizes French `t`/`tome`, Japanese `巻`, Chinese `卷`/`册`, Korean `권`/`장`/`시즌` (season), Thai `เล่ม`/`เล่มที่`, and Russian `Том`/`Тома` as volume markers, and their Chapter equivalents (`ch`/`chapter`/`c`, Japanese `話`, Chinese `话`, Korean `화`/`회`, Thai `บทที่`/`ตอนที่`, Russian `Глава`).
+| File | Series | Volume | Chapter |
+|---|---|---|---|
+| `Noblesse - Episode 406 (52 Pages).7z` | Noblesse | | 406 |
+| `[Hidoi]_Amaenaideyo_MS_vol01_chp02.rar` | Amaenaideyo MS | 1 | 2 |
+| `Okusama wa Shougakusei c003 (v01) [bokuwaNEET].cbz` | Okusama wa Shougakusei | 1 | 3 |
+| `Goblin Slayer Side Story - Year One 025.5.cbz` | Goblin Slayer Side Story - Year One | | 25.5 |
+| `Itoshi no Karin - c001-006x1 (v01) [Renzokusei Scans].cbz` | Itoshi no Karin | 1 | 1-6 |
+| `Beelzebub_53[KSH].zip` | Beelzebub | | 53 |
+| `Killing Bites Vol. 0001 Ch. 0001 - Galactica Scanlations (gb).cbz` | Killing Bites | 1 | 1 |
+| `Dance in the Vampire Bund v16-17 (Digital) (NiceDragon).cbz` | Dance in the Vampire Bund | 16-17 | |
+| `Chevaliers d'Héliopolis T3 - Rubedo, l'oeuvre au rouge.cbz` | Chevaliers d'Héliopolis | 3 | |
+| `Tower Of God S01 014 (CBT) (digital).cbz` | Tower Of God | 1 | 14 |
+| `Kaiju No. 8 036 (2021) (Digital).cbz` | Kaiju No. 8 | | 36 |
+| `諌山創] 進撃の巨人 第23巻.cbz` | 諌山創] 進撃の巨人 | 23 | |
+| `Kebab Том 1 Глава 3.cbz` | Kebab | 1 | 3 |
+| `Max Level Returner เล่ม 1 ตอนที่ 3.cbz` | Max Level Returner | 1 | 3 |
+
+And [many more](https://github.com/Kareadita/Kavita/blob/develop/Kavita.Services.Tests/Parsing/MangaParsingTests.cs) in our tests.
+
+<Callout type="warning">
+	A number in the title needs a marker after it. `Golgo 13 112.cbz` is series `Golgo`, chapter 13, but `Golgo 13 c112.cbz` is series `Golgo 13`, chapter 112. See [Numbers in the series name](/guides/scanner/managefiles#numbers-in-the-series-name).
 </Callout>

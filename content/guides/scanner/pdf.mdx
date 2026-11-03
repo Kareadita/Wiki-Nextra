@@ -1,16 +1,56 @@
 ---
 title: PDF
-description: How Kavita reads series and volume from PDF metadata, falling back to the file name.
+description: How Kavita reads series and volume from PDF metadata and the file name, and how each library type treats them.
 ---
 import { Callout } from 'nextra/components'
 
-<Callout type="info">
-	 This part of the wiki is in progress. If you have schemes that work, please help by [submitting a PR](https://github.com/Kareadita/Wiki-Nextra/tree/main/content/guides/scanner/pdf.mdx) or reach out to the Kavita team in Discord. We would love to enhance our documentation.
-</Callout>  
+# PDF
 
-### PDF
-PDFs are primarily parsed based on the [calibre metadata spec](https://wiki.kavitareader.com/guides/metadata/pdfs/). Filename parsing will only be used as a fallback for Series/Volume information.
+PDFs use both their file name and the [metadata inside the file](/guides/metadata/pdfs), in every library type but [Comic](/guides/scanner/comicvine). Metadata beats the file name wherever it has a value. [Calibre](/guides/external-tools/calibre) can edit it.
 
-Kavita scans PDFs in a 2-pass process. The first pass pulls from the internal metadata. If the Series is missing, Kavita will use the title and if the title missing, then will fall back to the filename parser. The second pass will use filename to fill in the missing information to be included in Kavita.
+## How each value is chosen
 
-[Calibre](https://wiki.kavitareader.com/guides/external-tools/calibre/) should be used for managing metadata on PDFs. Using Series and Title tags will make sure that items are being grouped properly within Kavita.
+- **Series:** the `calibre:series` metadata, then `dc:title`, then the file name, then the folder.
+- **Volume:** `calibreSI:series_index`, then the file name.
+- **Title:** `dc:title`, then the file name.
+
+| File | Metadata | Series | Volume | Title |
+|---|---|---|---|---|
+| `Leviathan Wakes.pdf` | Series The Expanse, index 1, title Leviathan Wakes | The Expanse | 1 | Leviathan Wakes |
+| `The Expanse v02.pdf` | None | The Expanse | 2 | The Expanse v02 |
+| `The Expanse v02.pdf` | Title Caliban's War | Caliban's War | 2 | Caliban's War |
+
+<Callout type="warning">
+	A title with no series becomes the series. That splits up a run of books if each has its own title, as `The Expanse v02.pdf` does above. Set the series as well as the title, or clear the title.
+</Callout>
+
+## Book and Light Novel libraries
+
+A Book library ignores chapter markers in the name, and a PDF with no volume is a special. With no series from metadata or the file name, it takes the folder's name.
+
+| File | Library | Metadata | Series | Result |
+|---|---|---|---|---|
+| `Expanse/The Expanse c05.pdf` | Book | None | Expanse | A special |
+| `Dictionary/Food Dictionary.pdf` | Book | None | Dictionary | A special |
+| `Leviathan/Leviathan Wakes.pdf` | Book | Title Leviathan Wakes | Leviathan Wakes | A special |
+| `Overlord/Overlord Vol. 3.pdf` | Light Novel | None | Overlord | Volume 3 |
+| `Overlord/Overlord c3.pdf` | Light Novel | None | Overlord | Chapter 3 |
+
+## Manga and Comic (Flexible) libraries
+
+The file name follows that library's rules, so chapters are kept. See [Manga](/guides/scanner/manga) and [Comic (Flexible)](/guides/scanner/comic).
+
+| File | Library | Series | Volume | Chapter |
+|---|---|---|---|---|
+| `Love Hina - Volume 01 [Scans].pdf` | Manga | Love Hina | 1 | |
+| `Love Hina c05.pdf` | Manga | Love Hina | | 5 |
+| `Saga 005.pdf` | Comic (Flexible) | Saga | | 5 |
+
+## Specials
+
+Add an `SP01`, `SP02`, etc. marker to the file name, in capitals. With no series in the metadata, the series comes from the folder.
+
+| File | Metadata | Series | Result |
+|---|---|---|---|
+| `Expanse/Short Stories SP01.pdf` | None | Expanse | A special |
+| `Expanse/Art SP01.pdf` | Series The Expanse, title Art | The Expanse | A special |

@@ -1,18 +1,48 @@
 ---
 title: EPUB
-description: How Kavita reads series, volume and title from EPUB metadata, falling back to the file name.
+description: How Kavita reads series, volume and title from EPUB metadata, and when it uses the file name instead.
 ---
 import { Callout } from 'nextra/components'
 
-<Callout type="info">
-	 This page is under development
+# EPUB
+
+EPUBs are read from the metadata inside the file, in every library type but [Comic](/guides/scanner/comicvine). Book and Light Novel libraries work the same way. The file name and the folder are not used while the library's `Enable Metadata (ComicInfo/Epub/PDF)` setting is on, apart from the `SP` marker.
+
+## How the series is chosen
+
+Kavita tries these in order, and stops at the first that works:
+
+1. **A series and an index together**: `calibre:series` and `calibre:series_index`, or `belongs-to-collection` and `group-position` for EPUB 3.2. A series with no index is ignored.
+2. **The title, if it has a volume in it.** `Overlord Vol. 3` becomes series `Overlord`, volume 3.
+3. **The title as it is.** The book is its own series.
+
+| File | Metadata | Series | Volume |
+|---|---|---|---|
+| `whatever.epub` | `calibre:series` The Expanse, `calibre:series_index` 3, title Abaddon's Gate | The Expanse | 3 |
+| `whatever.epub` | `calibre:series` The Expanse, no index, title Abaddon's Gate | Abaddon's Gate | |
+| `whatever.epub` | Title `Overlord Vol. 3` | Overlord | 3 |
+| `Overlord Vol. 5.epub` | Title `Overlord` | Overlord | |
+| `The Expanse v03.epub` | Title `Abaddon's Gate` | Abaddon's Gate | |
+| `Project Hail Mary.epub` | Title `Project Hail Mary` | Project Hail Mary | |
+
+<Callout type="warning">
+	A volume in the file name doesn't count when metadata is on. `The Expanse v03.epub` titled `Abaddon's Gate` is its own series with no volume. Set the series and its index to group books together. [Calibre](/guides/external-tools/calibre) can edit these, and [EPUB metadata](/guides/metadata/epubs#grouping-series) shows the tags.
 </Callout>
 
-### EPUB Structure
+## Specials
 
-EPUB are primarily parsed by metadata within the epub file (opf). Filenames are used only for Volume and Series, but metadata overrides everything. eBooks do not fall back to folders for parsing.
+A special needs an `SP` marker in the file name, and metadata to place it in its series. See [EPUB specials](/guides/metadata/epubs#specials).
 
-Kavita scans epubs in a 2-pass process. The first pass pulls from the internal metadata. If the Series is missing, the epub will use the title and if the title missing, then will fall back to the filename parser. The second pass will use filename to fill in the missing information to be included in Kavita. If **volume** and **series** names can be parsed, then the book is treated like a manga or comic and will show Volume X in the Series detail for the individual books. Within the metadata, certain tags are used to group them into a series, like "Expanse".
+| File | Metadata | Series | Result |
+|---|---|---|---|
+| `A Day SP01.epub` | `calibre:series` Harry Potter, `calibre:series_index` 100000 | Harry Potter | A special in the series |
+| `B Day SP02.epub` | Title `B Day in the Life` | B Day in the Life | A special in its own series |
 
+## With metadata turned off
 
-[Calibre](/guides/external-tools/calibre) eBook Management software can be used to edit epub metadata to include Series, Volume, and Title so that series with multiple books parse correctly into the same series. 
+If the library's `Enable Metadata (ComicInfo/Epub/PDF)` setting is off, Kavita reads the file name using the [naming rules](/guides/scanner/managefiles). It doesn't fall back to the folder, so a file needs a marker.
+
+| File | Result |
+|---|---|
+| `Overlord Vol. 6.epub` | Series `Overlord`, volume 6 |
+| `Project Hail Mary.epub` | Not added, shows on [Media Issues](/guides/admin-settings/mediaissues) as `No series name could be found` |

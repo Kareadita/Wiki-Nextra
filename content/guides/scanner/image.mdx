@@ -4,25 +4,53 @@ description: How Kavita builds series and chapters from folders of loose images,
 ---
 import { Callout } from 'nextra/components'
 
+# Images
+
+An Image library reads folders, not file names. Images have no metadata, and the name of an image only sets its order.
+
+- **Series:** the first folder under the library root, cleaned up the same way as [any series name](/guides/scanner/managefiles#what-gets-removed).
+- **Volume and chapter:** read from the folders between the series and the image, using the [Manga markers](/guides/scanner/managefiles#volumes). A chapter number in the image's own name is ignored.
+- **Pages:** every image in a chapter's folder is a page of that chapter.
+- **No volume and no chapter:** each image is its own special.
+
+## A good structure
+
+```
+Library Root
+  ┖── Series Name
+      ┠── Volume 1
+          ┠── Chapter 1
+              ┠── 01.png
+              ┖── 02.png
+          ┖── Chapter 2
+              ┖── 01.png
+      ┖── Chapter 3
+          ┖── 01.png
+```
+
+## Examples
+
+| Image | Series | Volume | Chapter |
+|---|---|---|---|
+| `Series Name/Volume 1/Chapter 1/01.png` | Series Name | 1 | 1 |
+| `Series Name/Volume 1/02.png` | Series Name | 1 | |
+| `Series Name/Chapter 3/01.png` | Series Name | | 3 |
+| `Series Name/Ch. 4/01.png` | Series Name | | 4 |
+| `Series Name/Vol.2 Ch.5/01.png` | Series Name | 2 | 5 |
+| `Series Name/Chapter 6 - The Title/01.png` | Series Name | | 6 |
+| `Series Name (Digital)/Chapter 1/01.jpg` | Series Name | | 1 |
+
+## Common mistakes
+
+| Image | What you get | Fix |
+|---|---|---|
+| `Series Name/page 01.jpg`, `page 02.jpg` | One special per image | Put them in a folder like `Chapter 1` |
+| `Series Name/Chapter 1 page 01.jpg` | A special, the chapter is ignored | `Series Name/Chapter 1/page 01.jpg` |
+| `Series Name/5/01.png` | A special, a plain number isn't a chapter | `Series Name/Chapter 5/01.png` |
+| `Series Name/Art/01.png` | One special per image | `Series Name/Chapter 1/01.png` |
+| `Publisher/Series Name/Chapter 3/01.jpg` | A series named `Publisher` | Keep each series directly under the library root |
+| `Series Name v02/Chapter 1/01.jpg` | A series named `Chapter 1`, volume 2 | `Series Name/Volume 2/Chapter 1/01.jpg` |
+
 <Callout type="info">
-	 This page is under development
+	Unlike other libraries, an image named `cover` or `folder` is a page like any other here. `SP` markers and `Specials` folders have no special meaning either.
 </Callout>
-
-### Image Structure
-
-Images offer no metadata support and have a very simple mechanism for parsing:
-- Series is set to the directory name and cleaned
-- Volume and Chapters are attempted to parse from folders up to the library root
-- If none are found, every image will be treated as a special
-
-This library type is designed to be used for Manga and uses those parsing patterns for Volume/Chapter extraction. 
-
-### Example
-```
-┖── Series Name
-    ┠── Volume 1
-        ┠── Chapter 1
-            ┠── 01.png
-    ┠── Chapter 2
-        ┖── 01.png
-```
