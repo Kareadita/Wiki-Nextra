@@ -2,6 +2,7 @@
 description: "Add and manage libraries: the library type (Book, Comic, Manga, Light Novel, Image), its folders, cover and advanced scan settings."
 ---
 import { Callout } from 'nextra/components'
+import { TagBadge } from '../../../components/TagBadge'
 
 # Libraries Tab
 
@@ -92,6 +93,25 @@ Pick the folders you want added to your library using the folder picker. A libra
   Docker users: If you don't see your mounted folder at first make sure to check `/` for it. 
 </Callout>
 
+#### Folder Watching <TagBadge major={0} minor={9} patch={2} /> [#folder-watching]
+
+Folder watching lets Kavita know when a file has been added or modified in your library and update it in your Kavita instance. A folder is scanned 30 seconds after its last change, and at most 10 minutes after the first change if changes keep coming. A polled library also waits for its next pass.
+
+Pick how this library watches:
+
+- **Automatic** (Recommended, the default): Kavita picks the best way to detect changes for each folder.
+- **File Watcher**: uses the operating system's change events. When files are added (loose images or non-supported extensions are ignored), renamed, deleted, etc, Kavita takes note and queues a Scan.
+- **Polling**: checks the folders on a schedule. Slower than File Watcher, but works everywhere.
+- **Off**: changes are picked up by the scheduled scan or a manual scan.
+
+The **Status** line below it shows what is happening now, with a **Retry** button if the library fell back to Polling. See [Folder Watching](/guides/scanner/folder-watching) for how each mode works.
+
+If libraries share folders, a folder in two libraries is polled if either library polls.
+
+<Callout type="info" emoji="🐳">
+  File Watcher does not work on Docker on a network share, Docker Desktop host folders (including Docker on Windows over WSL2) or FUSE pools. Automatic uses Polling on these instead. [See Issue on Github](https://github.com/Kareadita/Kavita/issues/1714)
+</Callout>
+
 ### Library Cover
 ![LibraryAddCovers](../../../public/guides/admin-settings/admin-settings-library-add-library-cover.png "Add Library Cover")
 
@@ -134,21 +154,6 @@ Set to create Reading Lists from StoryArc/StoryArcNumber and AlternativeSeries/A
 </Callout>
 
 This controls if your users can scrobble series that are found in this library. 
-
-#### Folder Watching
-<Callout type="warning">
-  Folder watching takes 10 minutes to trigger once a change is detected.
-</Callout>
-Folder watching is enabled by default and watches each folder of a given library for modifications. 
-
-Folder watching lets Kavita know when a file has been added or modified in your library and update it in your Kavita instance.
-When files are added (loose images or non-supported extensions are ignored), renamed, deleted, etc, Kavita takes note and queues a Scan.
-
-Overrides server folder watching for this library. If off, folder watching won't run on this library. If libraries share folders, then folders may still be run against.
-
-<Callout type="info" emoji="🐳">
-  Docker on Windows over WSL2 does not support folder watching. [See Issue on Gihtub](https://github.com/Kareadita/Kavita/issues/1714)
-</Callout>
 
 #### Include in Dashboard
 

@@ -1,44 +1,42 @@
 ---
-description: Common errors on Kavita's Media Errors page, what they mean, and how to fix the file.
+description: Common problems on Kavita's Media Issues page, what each reason means, and how to fix the file.
 ---
 import { Callout } from 'nextra/components'
+import { TagBadge } from '../../components/TagBadge'
 
 # Potential Media Problems
 Kavita will report any errors that arise during the scan or opening of a book for reading. However, some of the errors are more technical and you may need help decoding the underlying issue.
 
-Here are the most common problems you will see on the Media Errors page. 
+Here are the problems you will see on the [Media Issues](/guides/admin-settings/mediaissues) page. Once you fix or replace a file, scanning its folder clears the issue.
 
-{<table>
-  <thead>
-    <tr>
-      <th>Error Message</th>
-      <th align="center">Potentional Fix</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left">A local file header is corrupt.</td>
-      <td align="left">The zip file is damaged and can't be opened.</td>
-    </tr>
-    <tr>
-      <td align="left">Unknown Rar Header: ##</td>
-      <td align="left">The rar file is damaged and can't be opened.</td>
-    </tr>
-    <tr>
-      <td align="left">EPUB parsing error: 'nav' element in the navigation file does not contain a required 'ol' element.</td>
-      <td align="left">You have an invalid table of contents or multiple nav elements in your table of contents file.</td>
-    </tr>
-    <tr>
-      <td align="left">EPUB parsing error: 'li' element in the navigation file must contain either an 'a' element or a 'span' element.</td>
-      <td align="left">The table of contents does not follow spec. Repack with Sigil or Calibre to fix.</td>
-    </tr>
-    <tr>
-      <td align="left">End of central directory</td>
-      <td align="left">Bad archive, repair or replace.</td>
-    </tr>
-    <tr>
-      <td align="left">Incorrect EPUB navigation point: point ID is missing.</td>
-      <td align="left">Bad internal metadata for the epub making it unable to be parsed. Use Sigil or Calibre to fix it.</td>
-    </tr>
-  </tbody>
-</table>}
+## Reasons <TagBadge major={0} minor={9} patch={2} /> [#reasons]
+
+Each issue shows a **Reason**. The raw error message is under **Show details**.
+
+| Reason | Potential Fix |
+|---|---|
+| Unknown error | Open **Show details** and look for the message in [Error messages](#error-messages). |
+| Nothing could be parsed from the file name | Rename the file to follow the [naming rules](/guides/scanner). |
+| No series name could be found | Add the series name to the file name, or set the `Series` tag in the file's metadata. |
+| Archive could not be opened | The archive is damaged. Repair or replace it. |
+| Epub is damaged or has invalid content | Repair it with Sigil or Calibre, or replace it. |
+| Page count could not be read | The file may be damaged. Check that it opens elsewhere, then repack or replace it. |
+| Cover image could not be generated | Check that the first image in the file opens, then repack or replace it. |
+| Words could not be counted | The epub's content could not be read. Repair it with Sigil or Calibre. |
+| File could not be accessed (disk, network or permissions) | Check that the drive or share is connected, and that Kavita can read the file. |
+| Embedded metadata could not be read, imported without it | The file was added. Fix its `ComicInfo.xml` or epub metadata to get the metadata too. |
+| Epub has structural errors, imported in lenient mode | The file was added. Repair it with Sigil or Calibre if it doesn't display correctly. |
+| Matches more than one series | The file's `Series` and `LocalizedSeries` point at different series. [Correct the tags](/guides/scanner#files-that-match-more-than-one-series). |
+
+## Error messages [#error-messages]
+
+Some of the raw messages you may see under **Show details**:
+
+| Error Message | Potential Fix |
+|---|---|
+| A local file header is corrupt. | The zip file is damaged and can't be opened. |
+| Unknown Rar Header: ## | The rar file is damaged and can't be opened. |
+| EPUB parsing error: 'nav' element in the navigation file does not contain a required 'ol' element. | You have an invalid table of contents or multiple nav elements in your table of contents file. |
+| EPUB parsing error: 'li' element in the navigation file must contain either an 'a' element or a 'span' element. | The table of contents does not follow spec. Repack with Sigil or Calibre to fix. |
+| End of central directory | Bad archive, repair or replace. |
+| Incorrect EPUB navigation point: point ID is missing. | Bad internal metadata for the epub making it unable to be parsed. Use Sigil or Calibre to fix it. |

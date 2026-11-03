@@ -19,7 +19,8 @@ The XML schema of this file can be found on the [Anansi Project webpage](https:/
 |------------------------------------------------------------------------------------------------|----|--------------------------------------------------------------------------------|
 | `Title`                                                                                        | →  | Chapter Title                                                                  |
 | [`LocalizedSeries`](/guides/metadata/comics#non-standard-tags)                                 | →  | Localized Name                                                                 |
-| `Series` or [`SeriesSort`](/guides/metadata/comics#non-standard-tags)                          | →  | Name                                                                           |
+| `Series`                                                                                       | →  | Name                                                                           |
+| [`SeriesSort`](/guides/metadata/comics#non-standard-tags)                                      | →  | Sort Name                                                                      |
 | `Number`                                                                                       | →  | Issue/Chapter number                                                           |
 | [`Count`](/guides/metadata/comics#count)                                                       | →  | Publication Status                                                             |
 | `Volume`                                                                                       | →  | Volume                                                                         |
@@ -43,7 +44,7 @@ The XML schema of this file can be found on the [Anansi Project webpage](https:/
 ### Non-standard tags
 
 - `<LocalizedSeries>`: Contains optional localized series name which will display in Kavita. Will allow searching for either series name. Will group files that have the localized name and the series name together as one series.
-- `<SeriesSort>`: The sort title to use for the Series. Kavita will prefer this over `<Series>`
+- `<SeriesSort>`: The sort title to use for the Series. It only sets the sort name, and does not decide which series a file joins.
 
 ### Count
 Kavita will set the Publication Status on a series for you based on this tag

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const GITHUB_REPO = 'https://github.com/Kareadita/Wiki-Nextra'
 
-export const CURRENT_VERSION = {major: 0, minor: 9, patch: 1, build: 0}
+export const CURRENT_VERSION = {major: 0, minor: 9, patch: 2, build: 0}
 export const CURRENT_VERSION_STRING = `${CURRENT_VERSION.major}.${CURRENT_VERSION.minor}.${CURRENT_VERSION.patch}${CURRENT_VERSION.build ? '.' + CURRENT_VERSION.build : ''}`
 
 export const SITE_URL = 'https://wiki.kavitareader.com'

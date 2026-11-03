@@ -1,12 +1,32 @@
 ---
 title: Media Issues Tab
-description: Files Kavita could not read show up here and clear once they are fixed, with a link to common media problems and how to solve them.
+description: Files Kavita could not read show up here and clear once they are fixed, with filters, dismiss, and a link to common problems and how to solve them.
 ---
 import { Callout } from 'nextra/components'
+import { TagBadge } from '../../../components/TagBadge'
 
 ### Media Issues
 
+Any problems that Kavita has with your files, while scanning or reading, will show up here. An issue clears itself once the file is replaced or removed and its folder is scanned again.
 
-Any problems that Kavita detects with your files will show up here. Kavita will remove issues as it detects the files corrected for `File Format` or `Archive cannot be read` issues.
+See [Common Media Issues](/troubleshooting/media-errors) for what each reason means and how to fix it.
 
-See [Common Media Issues](/troubleshooting/media-errors) for some examples of general problems and how to fix them. 
+### The issue list <TagBadge major={0} minor={9} patch={2} /> [#the-issue-list]
+
+Each issue shows its **File**, **Series**, **Reason** and when it was **Last seen**. **Show details** adds the raw error message and when it was first seen.
+
+Use the **Library**, **Series** and **Reason** filters to narrow the list.
+
+Kavita does not retry a failed file on every scan. It tries again once the file's size or modified time changes.
+
+### Dismissing issues <TagBadge major={0} minor={9} patch={2} /> [#dismissing-issues]
+
+**Dismiss** an issue you can't or don't want to fix, one at a time or by selecting several. Dismissed issues move to the **Dismissed** section and are left out of scan results. **Restore** brings one back. A dismissed issue also comes back if its file changes and still has a problem.
+
+**Clear all** removes every issue, after asking you to confirm.
+
+### Where else issues show <TagBadge major={0} minor={9} patch={2} /> [#where-else-issues-show]
+
+- **Sidebar:** the count beside Media Issues leaves out dismissed issues.
+- **Series page:** a warning icon shows when the series has a file with an issue.
+- **Scan summary:** `Problem files: 3 (1 new)` in the [event widget](/guides/scanner#what-a-scan-reports), with `Show problem files` and `Open Media Issues`.

@@ -3,6 +3,7 @@ description: "How Kavita scans a library: the folder layout it needs, what each 
 ---
 import { Callout } from 'nextra/components'
 import { FileTree } from 'nextra/components'
+import { TagBadge } from '../../components/TagBadge'
 
 
 ## Introduction
@@ -119,32 +120,89 @@ During the analyze files task, Kavita will open epub files and count the number 
 In-depth overview on how the scan loop works
 
 ### Step 1: Validate if Kavita needs to scan
-- On all scans, Kavita will validate that all library folders are not empty and can be accessed. If they cannot, the scan is aborted. For a series, Kavita also checks the folder path on disk for the series exists, if it does not, the scan gets aborted. 
+- On all scans, Kavita will validate that all library folders are not empty and can be accessed. If they cannot, the scan is aborted.
+- For a series scan, Kavita also checks that the drive holding the series is still mounted. If the drive is there but the series folder was deleted, the scan goes on and removes the series once none of its files exist.
 
 ### Step 2: Scan the directories
 - The scanner is pretty smart, it avoids as much work as possible by default. 
-- For each folder (in a library or for a given series), Kavita first checks if the folder has changed since our last scan. This checks at a minute level, so seconds will be ignored. This validates on the Last Write Time of the folder. (Note: Last Write time requires scanning all nested folders to accurately report the last time that folder has changed)
+- For each folder (in a library or for a given series), Kavita compares what is on disk with what it stored on the last scan. A folder is unchanged when it holds the same file names, with the same sizes and the same modified times (to the second), and each file was written before the series' last scan. The folder's own modified time is not used.
+- In a changed folder, Kavita normally opens only the files that differ. Adding one chapter to a folder of 1,000 files opens one file. **Scan Series** from a series' actions menu and a forced library scan re-read every file.
 - Kavita checks for libraries glob pattern and parse if it exists. This allows Glob patterns to apply to the scanner and ignore certain files or folders. This applies recursively.
 - Files that are ignored in the libraries [Exclude Settings](/guides/admin-settings/libraries#exclude-patterns) will not show during the can.
-- Image files named `cover`/`!cover` or `folder` (eg. `cover.jpg`, `folder.png`) are treated as a cover image, not a page, and are excluded from parsing/reading. Files containing `backcover` are not treated as a cover.
+- Image files named `cover`/`!cover` or `folder` (eg. `cover.jpg`, `folder.png`) are treated as a cover image, not a page, and are excluded from parsing/reading. Files containing `backcover` are not treated as a cover. In an Image library these files are pages like any other image.
 
 ### Step 3: Processing files
-- The library dictates the rules for the parser and there are different parsers for different file types. 
+- The library dictates the rules for the parser and there are different parsers for different library types. 
 - The parser parses out any information from the files, these files are a list of files collected from the folder scan in the previous step and are assumed to be one series
 - After parsing, Kavita checks any series need to be merged together. Merging might happen if there are ComicInfo's with a `LocalizedSeries` tag which allows 2 different names to be merged automatically. Note: If there are multiple series in one folder with a localizedSeries tag, they will group incorrectly. Kavita will log this, but not stop the scan. This is not a valid configuration.
 - For each found series in the folder (should be one), Kavita invokes a process series task
 
 ### Step 4: Process Series
-- This is responsible for taking the processed data and updating the Database. This runs parallel with other process series tasks. This may make the logs difficult to understand.
+- This is responsible for taking the processed data and updating the Database. Series are written one at a time.
 - The first thing that needs to happen is find the series in the Database. This is done by checking against the Series name and localized name. If neither exists, a new series will be created.
 - In here, Kavita does all the underlying db work and update fields, etc.
-- Lastly Kavita queues tasks to perform Cover Generation and File Analysis. These again will run in parallel and are scheduled on the same queue as other scan tasks. 
+- Cover Generation and File Analysis run alongside this as part of the scan job, not as separate queued tasks.
 
 <Callout type="info">
-  If there are no modifications to folders, Kavita will not scan or process them.
+  If the files in a folder have not changed, Kavita will not parse or process them.
 </Callout>
 
 #### Notes
-- Having multiple series in one folder is not supported but does work. There are some caveats to this. If there exists a series in that folder that utilizes the LocalizedSeries ComicInfo tag, then the series may group unexpectedly. This will be informed to the user via the Log file, ie ``. In addition, Folder Watching won't pick up on series changes correctly due to utilizing the same folder. 
-- For series scan, if the series folder is no longer on the disk, the scan will be aborted. A library scan should be run which will delete the series. 
-- Not every action you can perform on a folder will change its modification time, including renaming and moving it. Keep this in mind if library scans are not working as expected. Sometimes creating a blank .txt file in the folder is enough to make the OS change the update time. 
+- Having multiple series in one folder is not supported but does work. There are some caveats to this. If there exists a series in that folder that utilizes the LocalizedSeries ComicInfo tag, then the series may group unexpectedly. This will be informed to the user via the Log file. In addition, a change in a folder shared by several series makes Folder Watching run a library scan instead of a series scan, so the change is picked up, just more slowly.
+- If a series folder is no longer on the disk, a series scan or a library scan will delete the series, as long as the drive is still mounted.
+- Renaming or moving a file is picked up by a scan, because the old name is missing from the folder. Creating a blank `.txt` file no longer forces a re-read, since a scan only compares files the library can read. A library using [Polling](/guides/scanner/folder-watching#polling) is different: it uses folder times to decide which folders to check between scans.
+
+## Good to Know
+
+### Changing volume and chapter markers <TagBadge major={0} minor={9} patch={2} /> [#changing-volume-and-chapter-markers]
+
+<Callout type="info">
+  Adding or changing a volume or chapter marker on a file keeps its chapter, so reading progress stays. This works when Kavita can tell which file became which chapter.
+</Callout>
+
+| Change | Progress |
+|---|---|
+| `Spice and Wolf Vol. 1.cbz` to `Spice and Wolf Vol. 1 Ch. 1-6.cbz` | Kept. The volume has one chapter, and one file on disk |
+| `Adachi Ch. 0005.cbz` to `Adachi Vol. 1 Ch. 0005.cbz` | Kept. Only one chapter and one file have that number |
+| `Love Vol. 1.cbz` split into `Love Vol. 1 Ch. 1-3.cbz` and `Love Vol. 1 Ch. 4-6.cbz` | Lost. Both files are new chapters, and the old chapter is removed |
+| `Moon Vol. 2 Ch. 1.cbz` to `Moon Vol. 3 Ch. 1.cbz` while `Moon Vol. 1 Ch. 1.cbz` exists | Lost. Two chapters have that number, so Kavita can't tell which one moved |
+
+### What a scan can miss <TagBadge major={0} minor={9} patch={2} /> [#what-a-scan-can-miss]
+
+A scan can only see a change to a file's name, size or modified time. If a tool rewrites `v01.cbz` at exactly the same size and puts its old date back (a "keep file date" option), the scan treats it as unchanged. Use **Scan Series** from the series' actions menu, which re-reads every file in the series. A library using Polling has [one more case](/guides/scanner/folder-watching#polling).
+
+### Folders Kavita can't read <TagBadge major={0} minor={9} patch={2} /> [#folders-kavita-cant-read]
+
+- A subfolder that can't be read no longer stops the scan. Its series stay as they are, and the event widget shows `Some folders in {library} can't be read` with a **Rescan** button.
+- A library's root folder that can't be read still aborts the scan, and the event widget shows `{library} scan aborted`.
+
+### Folders Kavita always skips <TagBadge major={0} minor={9} patch={2} /> [#folders-kavita-always-skips]
+
+These folders never hold books, so Kavita ignores them and everything inside. The whole folder name has to match, in any casing:
+
+- Synology: `@eaDir`, `#recycle`, `#snapshot`
+- QNAP: `@Recycle`, `@Recently-Snapshot`, `.@__thumb`, `.qpkg`
+- Samba, TrueNAS, OpenMediaVault: `.recycle`
+- ZFS and snapper: `.zfs`, `.snapshots`
+- Windows: `$RECYCLE.BIN`, `System Volume Information`
+- macOS: `__MACOSX`, `.Trashes`, `.Spotlight-V100`, `.fseventsd`, `.TemporaryItems`, `.DocumentRevisions-V100`, `.AppleDouble`
+- Linux: `.Trash`, `.Trash-*`, `lost+found`
+- Syncthing: `.stversions`, `.stfolder`
+- WD My Cloud: `.wdmc`
+- Readers: `.caltrash`, `.yacreaderlibrary`
+
+Rename a folder if yours has one of these names and holds books.
+
+### Files that match more than one series <TagBadge major={0} minor={9} patch={2} /> [#files-that-match-more-than-one-series]
+
+If a file's `Series` matches one series and its `LocalizedSeries` matches another, Kavita can't pick, so the file joins neither. It shows on the [Media Issues](/guides/admin-settings/mediaissues) page as `Matches more than one series`. Correct the file's `Series` or `LocalizedSeries` tag and it will be added on the next scan.
+
+## What a Scan Reports <TagBadge major={0} minor={9} patch={2} /> [#what-a-scan-reports]
+
+Scans show in the event widget in the navigation bar, so you don't need to read the logs.
+
+- **Summary:** when a scan ends, it lists `Series added`, `Series removed`, `Series failed`, `Chapters added`, `Chapters updated` and `Chapters removed`, or `No changes`.
+- **Problem files:** `Problem files: 3 (1 new)` counts files with a [media issue](/guides/admin-settings/mediaissues). Use `Show problem files` or `Open Media Issues` to see them.
+- **Queued scans:** scans run one at a time, in the order they were asked for. A second request shows as queued until its turn.
+- **Up Next:** `Check {folder}` is a scan waiting on a change that [Folder Watching](/guides/scanner/folder-watching) saw.
+- **Errors:** `{library} scan failed`, `Couldn't update {series}` and `Couldn't remove deleted series from {library}`. If one library fails during a scan of all libraries, the others are still scanned.

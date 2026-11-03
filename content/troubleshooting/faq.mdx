@@ -26,7 +26,7 @@ A. Kavita does not yet offer mobile apps, however, you can "Add to Home screen" 
 Check out the growing list of [3rd Party Clients](/guides/3rdparty/aidoku) and [OPDS Capable Clients](/guides/features/opds#opds-capable-clients)
 
 #### Q. Sometimes I add ComicInfo to the first archive, but Kavita doesn't show it at a series level. Is this a bug?
-A. There are 2 things to keep in mind. If the underlying file Created/LastModified hasn't been changed since our last scan, we skip it to save time and resources. A series scan will always scan or a library-forced scan will work. Sometimes it's best to rename the file once and then back. In addition, if the file is not an archive starting with C, like cbz, cbr, etc, then it will not be checked for ComicInfo metadata.
+A. There are 2 things to keep in mind. Kavita re-reads a file when its size or modified time changes, so adding ComicInfo is normally picked up by the next library scan. If your tool keeps the same size and date, use Scan Series or a forced library scan, which re-read every file. In addition, if the file is not an archive starting with C, like cbz, cbr, etc, then it will not be checked for ComicInfo metadata.
 
 #### Q. How exactly does Estimated Reading Time work?
 A. Kavita calculates the reading time using two different methods. The calculated reading time may not always reflect the actual reading time but should be sufficient in providing a general sense of how long it will take to read or finish off a series. Note: Kavita uses characters instead of words to account for languages that don't have spaces, with the assumption of 5 characters per word.
@@ -36,22 +36,32 @@ A. Kavita calculates the reading time using two different methods. The calculate
 #### Q. Does Kavita collect any data on me?
 A. By default, Kavita will collect stats on your installation. This will run after 24 hours to give you time to opt-out. You can opt-out at any time by turning off "Send Data" from the Admin Dashboard. All data is anonymized and contains no information about your filenames or IP. The Kavita team actively uses this data to help design the UX and plan enhancements. If you choose to remain opted-in, thank you. It helps in the design and planning effort. You can view the code at any time [here](https://github.com/Kareadita/KavitaStats). Here are the [records](https://github.com/Kareadita/KavitaStats/tree/main/KavitaStats/Entities/V3) from our stats database:
 
+Here is a shortened example. `Libraries`, `Relationships` and `Users` hold counts and settings per library and per user, with no names:
+
 ```json
 {
-    "InstallId":"0cf3ad15",
-    "LastUpdate":"2021-08-21T00:00:11.385Z",
-    "Os":"Linux 5.4.0-80-generic #90~18.04.1-Ubuntu SMP Tue Jul 13 19:40:02 UTC 2021",
-    "KavitaVersion":"0.4.3.39",
-    "DotNetVersion":"5.0.9",
-    "IsDocker":true,
-    "NumOfCores":4,
-    "HasBookmarks" true,
-    "NumberOfLibraries": 4,
-    "NumberOfReadingLIsts": 2,
-    "NumberOfCollections": 0,
+    "InstallId": "0cf3ad15",
+    "Os": "Linux 6.8.0-45-generic",
+    "IsDocker": true,
+    "DotnetVersion": "10.0.0",
+    "KavitaVersion": "0.9.2.0",
+    "InitialKavitaVersion": "0.8.9.0",
+    "NumOfCores": 4,
+    "OsLocale": "en-US",
+    "NumberOfCollections": 3,
+    "NumberOfReadingLists": 2,
     "TotalFiles": 10351,
-    "ActiveTheme": "Dark",
-    "ReadingMode": "Webtoon"
+    "TotalGenres": 42,
+    "TotalSeries": 318,
+    "TotalLibraries": 4,
+    "TotalPeople": 1207,
+    "OpdsEnabled": true,
+    "ActiveKavitaPlusSubscription": false,
+    "OidcEnabled": false,
+    "UsingRestrictedProfiles": false,
+    "Libraries": [],
+    "Relationships": [],
+    "Users": []
 }
 ```
 #### Q. Kavita doesn't seem to run/generate covers / generate black and white covers on my computer.
@@ -69,6 +79,8 @@ If you are running on an older device that doesn't meet the requirement you can 
 
 #### Q. Can I use Kavita with a Google Drive mount?
 A. Yes, you can use Plexdrive or rclone. Although it is not officially supported.
+Rclone mounts count as network mounts, so a library in the Automatic [Folder Watching](/guides/scanner/folder-watching) mode polls them. Each pass reads the time of every known folder, which can be slow on remote storage. If that is a problem, set the library's Folder Watching to Off on its Folder tab.
+
 Rclone requires a specific configuration to cache files locally and works better with Kavita. Here is a user-provided configuration that works well:
 
 ```ssh copy
@@ -96,7 +108,9 @@ rclone mount [your mount name]: [local path to be mounted] \
 ```
 
 #### Q. I'm running on Docker, how can I increase `inotify` limits for folder watching?
-A. You need to increase your underlying OS limit. Please be careful as this consumes more resources.
+A. These limits only matter for a library using File Watcher. A library using [Polling](/guides/scanner/folder-watching#polling) doesn't use `inotify`, so setting the library to Polling is the other way out. On a network share, `inotify` never sees changes made from another machine, so raising the limit won't help there.
+
+To raise it, you need to increase your underlying OS limit. Please be careful as this consumes more resources.
 To check your current limits:
 
 ```
@@ -115,8 +129,6 @@ fs.inotify.max_user_watches=524288
 A. This is a browser cache issue. There are a few ways to fix this issue:
 
 - Hard refresh browser. (Shift + Refresh) This should make a new request for data when version doesn't match.
-
-- Try to run the bust locale task if you are an admin
 
 - Open dev tools (right click -> inspect) and delete the following key in Application localstorage: "@transloco/translations" and refresh browser to get the new version
 

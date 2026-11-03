@@ -86,14 +86,16 @@ Default: `Enabled`
 
 System wide setting to turn on or off Kobo Sync for all users on the server. See this [page](/guides/features/kobo-sync) for how it works.
 
-### Folder Watching
+### Folder Watching <TagBadge major={0} minor={9} patch={2} /> [#folder-watching]
 
-Default: `Disabled`
+Default: `Enabled`
 
-You can turn on or off the folder monitor system-wide here. Allows Kavita to monitor Library Folders to detect changes without manually invoking scans or waiting for nightly scans.
+You can turn on or off the folder monitor system-wide here. Allows Kavita to monitor Library Folders to detect changes without manually invoking scans or waiting for nightly scans. Each library chooses how it watches on its [Folder tab](/guides/admin-settings/libraries#folder-watching). See [Folder Watching](/guides/scanner/folder-watching) for how it works.
+
+Upgrading to v0.9.2 turns this on once for every server. You can turn it back off afterwards.
 
 <Callout type="info">
-  The folder monitor only triggers once every 10 minutes before processing changes. That means changes won't be instant. 
+  A folder is scanned 30 seconds after its last change. If changes keep coming, it is scanned at most 10 minutes after the first one.
 </Callout>
 
 ### Allow Anonymous Usage Collection
