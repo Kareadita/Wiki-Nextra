@@ -14,19 +14,19 @@ See the table below to know what tags Kavita reads from the PDF file and how the
 
 ### Conversion table
 
-| In PDF                                                            | `ebook-meta` flag             | Equivalent In Kavita                                                           |
-|-------------------------------------------------------------------|-------------------------------|--------------------------------------------------------------------------------|
-| `dc:title` (this can be overridden by `calibre:series`)           | `--title` or `-t`             | Chapter Title                                                                  |
-| `calibre:series`                                                  | `--series` or `-s`            | Name                                                                           |
-| `calibreSI:series_index`                                          | `--index` or `-i`             | Volume                                                                         |
-| `calibre:rating`                                                  | `--rating` or `-r`            | UserRating                                                                     |
-| `dc:description`                                                  | `--comments` or `-c`          | Summary                                                                        |
-| `dc:publisher`                                                    | `--publisher` or `-p`         | Publisher                                                                      |
-| `Year`, `Month`, `Day`                                            | `--date` or `-d`              | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
-| `dc:creator`                                                      | `--author` or `-a`            | Writer                                                                         |
-| `dc:subject`                                                      | `--tags`                      | Genres                                                                         |
-| `dc:language`                                                     | `--language` or `-l`          | Language (Kavita will only take the first)                                     |
-| `pdfx:isbn` or `prism:isbn`                                       | `--isbn`                      | ISBN                                                                           |
+| In PDF | `ebook-meta` flag | Equivalent In Kavita |
+|---|---|---|
+| `dc:title` (this can be overridden by `calibre:series`) | `--title` or `-t` | Chapter Title |
+| `calibre:series` | `--series` or `-s` | Name |
+| `calibreSI:series_index` | `--index` or `-i` | Volume |
+| `calibre:rating` | `--rating` or `-r` | UserRating |
+| `dc:description` | `--comments` or `-c` | Summary |
+| `dc:publisher` | `--publisher` or `-p` | Publisher |
+| `Year`, `Month`, `Day` | `--date` or `-d` | Release Date ([Release Year](/guides/metadata/comics#release-year) for series) |
+| `dc:creator` | `--author` or `-a` | Writer |
+| `dc:subject` | `--tags` | Genres |
+| `dc:language` | `--language` or `-l` | Language (Kavita will only take the first) |
+| `pdfx:isbn` or `prism:isbn` | `--isbn` | ISBN |
 
 You can only change one file at a time, but you can set multiple flags at once.
 
