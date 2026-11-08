@@ -51,7 +51,11 @@ To stop using Kavita, set the line back to `api_endpoint=https://storeapi.kobo.c
 
 Epubs are automatically converted to kepubs when downloaded on your Kobo. Kavita ships with the `kepubify` binary to do this. An administrator may provide a custom binary with the [Kepubify Path](/guides/admin-settings/general#kepubify-path) server setting.
 
-If you're using non-root docker Kavita cannot execute the shipped binary, and you'll need to ship your own or fix the permissions with an init container.
+If you're using non-root Docker, Kavita cannot execute the shipped binary, and you'll need to ship your own or fix the permissions with an init container.
+
+<Callout type="warning">
+    On `linux-musl`, you must provide your own `kepubify` binary.
+</Callout>
 
 ## Preferences
 
