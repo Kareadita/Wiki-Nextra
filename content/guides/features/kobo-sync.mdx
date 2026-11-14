@@ -13,9 +13,11 @@ Kavita can be used as a sync server for your Kobo, taking over the role of the o
 ## Features
 
 - Sync epubs, archives, and image-based series/files to your Kobo
-- Sync all or some libraries, or only the series in a collection of your choice
+- Sync from libraries, collections, or reading lists
 - Optional forwarding of requests to the Kobo Store when Kavita does not handle them
 - Precise 2-way progress sync
+- 1-way tag sync (Kavita Collections & Reading lists to Kobo Tags)
+- 2-way annotation sync
 - Recommendations <KavitaPlusBadge />
 
 
@@ -59,19 +61,20 @@ If you're using non-root Docker, Kavita cannot execute the shipped binary, and y
 
 ## Preferences
 
-Kobo Sync preferences are set per user, in the Kobo Sync section of User Settings > [Preferences](/guides/user-settings/preferences).
+Kobo Sync preferences are set per user, and can be found on the Account > Kobo Sync settings page.
 
 ### Sync Preferences
 
-To prevent your Kobo from having to load *ALL* your books, you can restrict syncing to specific libraries or to the series in a collection of your choice.
+To prevent your Kobo from having to load *ALL* your books, you can restrict syncing to specific libraries, reading lists or collections.
+You can decide to sync all or only a selection for each source. Reading lists and collections will also be synced to your Kobo as tags.
 
-- **Sync Collection**: when set, only books from series in this collection are synced. This takes precedence over the library settings below.
-- **All Libraries**: sync books from every library you have access to.
-- **Sync Libraries**: when All Libraries is off, only books from series in these libraries are synced. Selecting no libraries is treated as all libraries.
+Smart filters will be supported in the future!
 
-<Callout type="info">
-    Using a collection is recommended as it gives you the most freedom and shorter syncs.
+<Callout type="warning">
+    We recommend against syncing all chapters to keep the amount manageble on your Kobo
 </Callout>
+
+![Kobo Sync Sync sources](../../../public/guides/features/kobo_sync_sources.png)
 
 ### Sync Item Limit
 
@@ -89,7 +92,29 @@ Progress for epubs always syncs to the right chapter. When kepubify is available
 
 Progress you make in Kavita's reader reaches your Kobo about 5 minutes later, at its next sync or when the book is opened.
 
+### Annotation sync
+
+Annotations for chapters are synced between Kavita and Kobo.
+
 ### Recommendations <KavitaPlusBadge /> [#recommendations]
 
 Recommendations only show up on your Kobo when syncing a collection. For each recommended series not yet in your collection, Kavita sends the first book.
 If you want to read it, click add/restore on your Kobo: the series is added to your collection, and all of its books are synced to your Kobo.
+
+<Callout type="warning">
+    The management collection must be configured for recommendations to show up
+</Callout>
+
+## Sync points
+
+Each Kobo gets a sync point associated with it. This remembers which chapters, progress, and tags were last synced to the device.
+
+![Kobo Sync Devices](../../../public/guides/features/kobo_sync_devices.png)
+
+To force a completely new sync, you can delete one here.
+
+### Restore removed books
+
+Any books you've removed on your Kobo are stored in the sync point and can be restored here
+
+![Kobo Sync Restore modal](../../../public/guides/features/kobo_sync_restore_books.png)
