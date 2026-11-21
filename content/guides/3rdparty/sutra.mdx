@@ -1,0 +1,33 @@
+---
+description: "Connect Sutra on iOS or Android to Kavita using a private OPDS URL, with format limits, progress sync and comic streaming requirements explained."
+---
+
+# Sutra
+
+[Sutra](https://sutra-reader.com/) is a third-party ebook and comic reader for iOS and Android. It connects to a personal Kavita library using the user's OPDS URL.
+
+## Install and connect
+
+1. Install Sutra from the [App Store](https://apps.apple.com/ca/app/sutra-ebook-comic-reader/id6780096864) or [Google Play](https://play.google.com/store/apps/details?id=com.koustavdg.sutra).
+2. Sign in to your Kavita server in a browser. Open your user settings and find **Auth Keys / OPDS** (called **3rd Party Clients (OPDS)** in earlier versions).
+3. Copy your personal OPDS URL.
+4. In Sutra, choose **Add Library**, paste the URL and connect.
+
+The URL includes a private authentication key. Treat it like a password: do not share it publicly or include it in screenshots. See [Auth Key and OPDS URL](/guides/user-settings/3rdpartycilents/) for Kavita's settings.
+
+Your device must be able to reach the server. For remote access, use a properly secured server connection or a VPN; do not expose your key in a public URL or support post.
+
+## Read and sync
+
+- Browse the connected library and open supported DRM-free books.
+- Read EPUB and PDF for free. Full CBZ and DRM-free MOBI reading require Sutra Pro.
+- Reading progress syncs with Kavita. The progress representation depends on the book format.
+- With Sutra Pro and a supported Kavita streaming endpoint, CBZ pages can be requested without downloading the entire archive first. Pages still transfer over the network and may be cached. Download the complete book for offline reading.
+
+## Access and limitations
+
+Kavita library connection is free. Sutra Pro is an optional one-time purchase through each platform's store; Apple and Google purchases are separate.
+
+CBR/RAR archives and DRM-protected books are not currently supported. Catalog access alone does not guarantee streaming or reading-progress sync with other OPDS servers.
+
+For further setup help and current requirements, see the [Sutra Kavita guide](https://sutra-reader.com/kavita-reader.html).

@@ -7,6 +7,7 @@ export default {
 	"mylar": "Mylar",
 	"panels": "Panels",
 	"paperback": "Paperback",
+	"sutra": "Sutra",
 	"tachi-like": "Mihon",
 	"yomu": "Yomu"
 }
